@@ -20,6 +20,36 @@ def _replace_python_token(command: list[str]) -> list[str]:
     return command
 
 
+def _is_python_module_command(
+    command: list[str],
+    module: str,
+    *subcommands: str,
+) -> bool:
+    return (
+        len(command) >= 3 + len(subcommands)
+        and command[1] == "-m"
+        and command[2] == module
+        and command[3 : 3 + len(subcommands)] == list(subcommands)
+    )
+
+
+def _is_mutating_validation_command(command: list[str]) -> bool:
+    ruff_format = _is_python_module_command(
+        command,
+        "ruff",
+        "format",
+    ) or command[:2] == ["ruff", "format"]
+    black_format = _is_python_module_command(command, "black") or command[
+        :1
+    ] == ["black"]
+
+    if ruff_format and "--check" not in command:
+        return True
+    if black_format and "--check" not in command:
+        return True
+    return False
+
+
 def _load_validation_config(root: Path) -> dict[str, list[str]]:
     pyproject_path = root / "pyproject.toml"
     if not pyproject_path.exists():
@@ -90,6 +120,19 @@ def run_validation(root: Path) -> list[ValidationCommandResult]:
             continue
 
         normalized = _replace_python_token(command)
+        if phase == "format" and _is_mutating_validation_command(normalized):
+            results.append(
+                ValidationCommandResult(
+                    phase=phase,
+                    command=normalized,
+                    returncode=1,
+                    note=(
+                        "Mutating format validation commands are not allowed. "
+                        "Use a check-only formatter command."
+                    ),
+                )
+            )
+            continue
         completed = subprocess.run(
             normalized,
             cwd=root,

@@ -42,7 +42,8 @@ jobs:
         run: |
           mkdir -p release-assets
           cp artifacts/demo-migration-report.json release-assets/
-          cp artifacts/demo-migration.diff release-assets/
+          cp products/flatconfig-lift/demo-report.json release-assets/flatconfig-lift-demo-report.json
+          cp products/pydantic-v2-porter/demo-report.json release-assets/pydantic-v2-porter-demo-report.json
 
       - name: Publish GitHub release
         env:

@@ -35,7 +35,7 @@ The runner reads commands from `pyproject.toml`:
 
 ```toml
 [tool.sa20_pack.validation]
-format = ["python", "-m", "ruff", "format", ".", "--no-cache"]
+format = ["python", "-m", "ruff", "format", ".", "--check", "--no-cache"]
 typecheck = ["python", "-m", "mypy", "src", "tests"]
 build = ["python", "-m", "sa20_pack.build_runner"]
 test = ["python", "-m", "pytest", "-p", "no:cacheprovider"]

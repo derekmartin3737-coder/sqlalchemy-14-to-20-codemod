@@ -1,5 +1,5 @@
 name: "SA20 Pack"
-description: "Run the sa20-pack SQLAlchemy migration codemod"
+description: "Run the public sa20-pack SQLAlchemy fit scanner"
 
 inputs:
   path:
@@ -7,13 +7,13 @@ inputs:
     required: false
     default: "."
   apply:
-    description: "Whether to write changes back to disk"
+    description: "Compatibility-only. Ignored because the public action is scan-only."
     required: false
-    default: "true"
+    default: "false"
   diff:
-    description: "Whether to print unified diffs"
+    description: "Compatibility-only. The public scanner does not emit file diffs."
     required: false
-    default: "true"
+    default: "false"
   report-path:
     description: "Path to the JSON migration report"
     required: false
@@ -30,6 +30,8 @@ runs:
     - shell: pwsh
       run: |
         $args = @("${{ inputs.path }}", "--report", "${{ inputs.report-path }}")
-        if ("${{ inputs.apply }}" -eq "true") { $args += "--apply" }
+        if ("${{ inputs.apply }}" -eq "true") {
+          Write-Warning "apply=true is ignored because the public action is scan-only."
+        }
         if ("${{ inputs.diff }}" -eq "true") { $args += "--diff" }
         python -m sa20_pack.cli @args

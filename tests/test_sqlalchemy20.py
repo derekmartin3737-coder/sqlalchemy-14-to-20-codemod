@@ -42,6 +42,20 @@ def test_scan_flags_manual_review_patterns() -> None:
     ]
 
 
+def test_scan_ignores_comments_and_plain_string_literals() -> None:
+    source = (
+        "# select([users])\n"
+        'message = "session.query(User).get(user_id)"\n'
+        'warning = "engine.execute(stmt)"\n'
+    )
+
+    _, applications, findings, parse_error = scan_sqlalchemy20_patterns(source)
+
+    assert parse_error is None
+    assert applications == []
+    assert findings == []
+
+
 def test_runner_reports_preview_only_for_supported_repo() -> None:
     scratch_root = Path("test_runs")
     scratch_root.mkdir(exist_ok=True)
