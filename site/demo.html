@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demo | sa20-pack</title>
+    <meta
+      name="description"
+      content="See the free scan demo for the SQLAlchemy 1.4 to 2.0 migration pack."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="config.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap nav">
+        <a class="brand" href="index.html">sa20-pack</a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="pricing.html">Pricing</a>
+          <a href="demo.html">Demo</a>
+          <a href="policies.html">Policies</a>
+          <a href="#" data-repo-link>Repo</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="warning" id="launch-warning" aria-live="polite"></section>
+      <section class="page-title">
+        <p class="kicker">Public proof</p>
+        <h1>Free scan first. Paid apply pack second.</h1>
+        <p>
+          The included fixture repo starts with SQLAlchemy 2.0-breaking legacy
+          patterns. The public repo shows the fit scan and report. The paid
+          apply pack handles the documented rewrite path after checkout.
+        </p>
+        <div class="proof-strip">
+          <div class="proof-item">
+            <strong>preview_only</strong>
+            <span>the public repo stays scanner-first</span>
+          </div>
+          <div class="proof-item">
+            <strong>6 transforms</strong>
+            <span>detected in the public demo fixture</span>
+          </div>
+          <div class="proof-item">
+            <strong>0 unsupported</strong>
+            <span>in the happy-path fit-check fixture</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section stack">
+        <section class="page-panel">
+          <h2>Fixture repo</h2>
+          <p><code>fixtures/demo_repo</code></p>
+          <ul class="clean">
+            <li><code>select([User.name])</code></li>
+            <li><code>joinedload("addresses")</code></li>
+            <li><code>join("addresses")</code></li>
+            <li><code>update(..., whereclause=..., values=...)</code></li>
+            <li><code>session.query(User).get(...)</code></li>
+          </ul>
+        </section>
+
+        <section class="page-panel">
+          <h2>Run the free scan</h2>
+          <pre class="code-block">python -m sa20_pack.cli fixtures/demo_repo --report artifacts/demo-migration-report.json</pre>
+        </section>
+
+        <section class="page-panel">
+          <h2>What the scan finds</h2>
+          <pre class="code-block">Supported candidates:
+- select([User.name])
+- session.query(User).get(user_id)
+- joinedload("addresses")
+- join("addresses")
+- update(..., whereclause=..., values=...)</pre>
+        </section>
+
+        <section class="page-panel">
+          <h2>Why this matters</h2>
+          <p>
+            The selling point is not only that the scan finds the work. It is
+            that a team can prove fit before buying the apply pack, instead of
+            paying first and discovering the repo is outside scope.
+          </p>
+          <div class="page-actions">
+            <a class="button" href="#" data-doc-path="docs/demo.md"
+              >Open full demo doc</a
+            >
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-grid">
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="#" data-doc-path="artifacts/demo-migration-report.json"
+            >JSON summary</a
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

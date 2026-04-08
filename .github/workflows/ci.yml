@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install deps
+        shell: pwsh
+        run: python -m pip install -e '.[dev]'
+      - name: Ruff
+        shell: pwsh
+        run: python -m ruff check . --no-cache
+      - name: MyPy
+        shell: pwsh
+        run: python -m mypy src tests
+      - name: Build Check
+        shell: pwsh
+        run: python -m sa20_pack.build_runner
+      - name: Pytest
+        shell: pwsh
+        run: python -m pytest

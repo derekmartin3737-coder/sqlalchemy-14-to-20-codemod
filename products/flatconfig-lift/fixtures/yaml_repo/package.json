@@ -1,0 +1,7 @@
+{
+  "name": "yaml-repo",
+  "private": true,
+  "devDependencies": {
+    "eslint": "^9.12.0"
+  }
+}

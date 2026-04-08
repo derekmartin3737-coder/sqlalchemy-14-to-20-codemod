@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>sa20-pack | SQLAlchemy 1.4 to 2.0 Migration Pack</title>
+    <meta
+      name="description"
+      content="Free scanner and paid apply pack for narrow SQLAlchemy 1.4 to 2.0 legacy breakages, with buyer-visible reports and explicit limits."
+    />
+    <meta property="og:title" content="sa20-pack" />
+    <meta
+      property="og:description"
+      content="Free scanner and paid apply pack for narrow SQLAlchemy 1.4 to 2.0 legacy breakages."
+    />
+    <meta property="og:image" content="og-preview.svg" />
+    <meta property="og:type" content="website" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="config.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap nav">
+        <a class="brand" href="index.html">sa20-pack</a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="pricing.html">Pricing</a>
+          <a href="demo.html">Demo</a>
+          <a href="policies.html">Policies</a>
+          <a href="#" data-repo-link>Repo</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="warning" id="launch-warning" aria-live="polite"></section>
+
+      <section class="lead hero-panel">
+        <p class="kicker">SQLAlchemy 1.4 -> 2.0</p>
+        <h1>Deterministic migration for the legacy patterns teams fix by hand.</h1>
+        <p class="subhead">
+          Run the free scan on a real repo. See the supported candidates, a
+          machine-generated migration report, and the unsupported patterns that
+          still need follow-up before buying the apply pack.
+        </p>
+        <div class="badge-row">
+          <span class="badge">Deterministic AST transforms</span>
+          <span class="badge">Fail-closed unsupported findings</span>
+          <span class="badge">Validation after every run</span>
+          <span class="badge">CLI and GitHub Action</span>
+        </div>
+        <div class="actions">
+          <a class="button" href="#" data-free-link>Run the free scan first</a>
+          <a class="button secondary" href="#" data-pack-link
+            >Buy the wider edge-case pack</a
+          >
+          <a class="button secondary" href="#" data-bundle-link
+            >Get the preset bundle</a
+          >
+        </div>
+        <p class="caption">
+          Not a generic AI refactor tool. Narrow coverage, explicit limits, and
+          buyer-visible proof.
+        </p>
+        <div class="proof-strip">
+          <div class="proof-item">
+            <strong>preview_only</strong>
+            <span>public repo stays scanner-first</span>
+          </div>
+          <div class="proof-item">
+            <strong>0</strong>
+            <span>unsupported findings in the public happy-path demo</span>
+          </div>
+          <div class="proof-item">
+            <strong>2</strong>
+            <span>commercial offers instead of open-ended services work</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="kicker">Reliable by design</p>
+          <h2>The workflow is built to be trusted before it is bought.</h2>
+        </div>
+        <div class="grid three">
+          <article class="trust-card">
+            <h3>Deterministic first</h3>
+            <p>
+              The core path is syntax-aware rewriting for common legacy patterns,
+              not free-form code generation.
+            </p>
+          </article>
+          <article class="trust-card">
+            <h3>Fail closed</h3>
+            <p>
+              Unsupported patterns are flagged for deliberate follow-up instead
+              of being guessed into a risky edit.
+            </p>
+          </article>
+          <article class="trust-card">
+            <h3>Validation required</h3>
+            <p>
+              The paid apply pack treats validation as part of the reported
+              outcome. A failing repo is reported as failing.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="kicker">How it works</p>
+          <h2>Run a real repo through the same path a buyer will use.</h2>
+        </div>
+        <div class="grid two">
+          <div>
+            <h3>Free scan, then proof</h3>
+            <p>
+              The free tier identifies supported candidates, emits a JSON
+              report, and tells you whether your repo is a fit before you pay
+              for the apply pack.
+            </p>
+            <ol class="workflow-list">
+              <li>Run the scanner on a target repo.</li>
+              <li>Inspect the supported candidates and unsupported bucket.</li>
+              <li>Buy the apply pack only if the repo fits scope.</li>
+            </ol>
+          </div>
+          <div class="terminal-card">
+            <p class="terminal-label">Command</p>
+            <pre class="code-block">python -m sa20_pack.cli path/to/repo --report migration-report.json</pre>
+            <p class="terminal-note">
+              Use the same scanner locally or wrap it in CI with the included
+              GitHub Action.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="kicker">Proof</p>
+          <h2>Every run ends with a report, not a shrug.</h2>
+        </div>
+        <div class="grid two">
+          <div class="report-card">
+            <p class="report-label">Sample fit report</p>
+            <pre class="report-preview">Status: preview_only
+Files scanned: 5
+Files changed: 0
+Transforms applied: 6
+Unsupported findings: 0
+Overall confidence: 0.935</pre>
+          </div>
+          <div>
+            <h3>What buyers can verify immediately</h3>
+            <ul class="clean">
+              <li>which supported candidates were found</li>
+              <li>which patterns were left for follow-up</li>
+              <li>whether the repo looks like a fit before purchase</li>
+            </ul>
+            <div class="metric-strip">
+              <div class="metric">
+                <strong>5</strong>
+                <span>demo files scanned</span>
+              </div>
+              <div class="metric">
+                <strong>6</strong>
+                <span>deterministic transforms</span>
+              </div>
+              <div class="metric">
+                <strong>0.935</strong>
+                <span>overall demo confidence</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="kicker">Coverage</p>
+          <h2>Automate the safe path. Expose the risky path.</h2>
+        </div>
+        <div class="grid two">
+          <article class="list-card">
+            <h3>Automated today</h3>
+            <ul class="clean">
+              <li><code>select([..])</code> list syntax</li>
+              <li><code>session.query(Model).get(pk)</code></li>
+              <li>simple string relationship <code>join()</code></li>
+              <li>simple string loader options</li>
+              <li>legacy DML constructor kwargs</li>
+              <li>legacy declarative imports</li>
+            </ul>
+          </article>
+          <article class="list-card">
+            <h3>Flagged instead of guessed</h3>
+            <ul class="clean">
+              <li><code>engine.execute(...)</code></li>
+              <li>dotted loader paths</li>
+              <li>multi-hop string joins</li>
+              <li>removed <code>Query</code> helpers outside current coverage</li>
+              <li>parse failures</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="kicker">Commercial path</p>
+          <h2>Start with the public scanner. Buy only if the remaining work is real.</h2>
+        </div>
+        <div class="grid three">
+          <section class="offer">
+            <p class="offer-label">Free</p>
+            <h3>Scan and qualify</h3>
+            <p>
+              Run the public CLI, inspect the report, and see whether the repo
+              is a fit before spending money.
+            </p>
+            <a class="button" href="#" data-free-link>Open the repo</a>
+          </section>
+          <section class="offer">
+            <p class="offer-label">One-time pack</p>
+            <h3>Wider edge-case coverage</h3>
+            <p>
+              Add broader deterministic coverage, richer reporting, and tighter
+              rollout docs for teams that want fewer repeated follow-up edits.
+            </p>
+            <a class="button secondary" href="#" data-pack-link
+              >Open paid pack checkout</a
+            >
+          </section>
+          <section class="offer">
+            <p class="offer-label">Downloadable add-on</p>
+            <h3>Preset bundle</h3>
+            <p>
+              Add downloadable repo presets, rollout docs, and richer report
+              templates for teams that want a more repeatable migration path.
+            </p>
+            <a class="button secondary" href="#" data-bundle-link
+              >Open preset bundle checkout</a
+            >
+          </section>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="kicker">Boundaries</p>
+          <h2>Presentation should feel serious because the limits are serious too.</h2>
+        </div>
+        <div class="grid two">
+          <div>
+            <h3>What buyers are paying for</h3>
+            <p>
+              Less repetitive cleanup, clearer unsupported buckets, and a
+              migration report that tells a team what happened.
+            </p>
+            <p>
+              The paid layer earns its keep on ugly edge cases, rollout
+              confidence, and better docs for the people approving migration
+              spend.
+            </p>
+          </div>
+          <div>
+            <h3>What this is not</h3>
+            <p>
+              It is not a full SQLAlchemy 2.0 migration robot. It does not fake
+              support for transaction semantics, async migration, or full
+              <code>Query</code> to <code>select()</code> rewrites.
+            </p>
+            <p>
+              If your repo fails validation after changes, that is a failed
+              migration run, not a quiet success.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="kicker">FAQ</p>
+          <h2>Short answers for the normal skepticism.</h2>
+        </div>
+        <div class="faq-list">
+          <section class="faq-item">
+            <h3>Why not just use the migration guide?</h3>
+            <p>
+              You still should. This exists to remove the repetitive edits and
+              leave the dangerous parts visible for deliberate follow-up by the
+              repo owner.
+            </p>
+          </section>
+          <section class="faq-item">
+            <h3>How do I know whether it worked?</h3>
+            <p>
+              The free scan report shows supported candidates and unsupported
+              findings. The paid apply pack adds validation results and the
+              post-run migration report.
+            </p>
+          </section>
+          <section class="faq-item">
+            <h3>What if my repo is outside current coverage?</h3>
+            <p>
+              Use the free scan first. If the unsupported bucket is still faster
+              to fix by hand, do not buy. If the unsupported patterns are the
+              recurring expensive ones, that is where the paid layer helps.
+            </p>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-grid">
+        <div>
+          <p class="footer-title">sa20-pack</p>
+          <p class="caption">
+            Free scanner plus paid apply pack for the boring SQLAlchemy
+            breakages.
+          </p>
+        </div>
+        <div class="footer-links">
+          <a href="pricing.html">Pricing</a>
+          <a href="demo.html">Demo</a>
+          <a href="policies.html">Policies</a>
+          <a href="#" data-doc-path="docs/quickstart.md">Quickstart</a>
+          <a href="#" data-doc-path="docs/comparison.md">Comparison</a>
+          <a href="#" data-repo-link>GitHub repo</a>
+          <a href="#" data-contact-link>Contact</a>
+        </div>
+        <p class="caption footer-note">
+          Operated by <span data-seller-name>the seller</span>. Questions:
+          <a href="#" data-contact-link><span data-contact-email>email</span></a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

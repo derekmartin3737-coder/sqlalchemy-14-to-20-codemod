@@ -1,0 +1,55 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: python -m pip install -e '.[dev]'
+
+      - name: Ruff
+        run: python -m ruff check . --no-cache
+
+      - name: MyPy
+        run: python -m mypy src tests
+
+      - name: Build check
+        run: python -m sa20_pack.build_runner
+
+      - name: Pytest
+        run: python -m pytest
+
+      - name: Build package artifacts
+        run: python -m build --sdist --wheel --outdir dist --no-isolation
+
+      - name: Stage release assets
+        run: |
+          mkdir -p release-assets
+          cp artifacts/demo-migration-report.json release-assets/
+          cp artifacts/demo-migration.diff release-assets/
+
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: >
+          gh release create "${{ github.ref_name }}"
+          dist/*
+          release-assets/*
+          --generate-notes
+          --title "${{ github.ref_name }}"

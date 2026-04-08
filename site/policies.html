@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Policies | sa20-pack</title>
+    <meta
+      name="description"
+      content="Privacy, refund, license, and support boundaries for sa20-pack."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="config.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap nav">
+        <a class="brand" href="index.html">sa20-pack</a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="pricing.html">Pricing</a>
+          <a href="demo.html">Demo</a>
+          <a href="policies.html">Policies</a>
+          <a href="#" data-repo-link>Repo</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="warning" id="launch-warning" aria-live="polite"></section>
+      <section class="page-title">
+        <p class="kicker">Policies</p>
+        <h1>Clear boundaries before anyone buys.</h1>
+        <p>
+          These are the launch policies for the public site and product. The full
+          markdown versions live in the repo and should stay in sync with this
+          page.
+        </p>
+      </section>
+
+      <section class="section stack">
+        <section class="page-panel">
+          <h2>Privacy</h2>
+          <p>
+            The public website uses Cloudflare Web Analytics if the analytics
+            token is enabled. Checkout is handled by Lemon Squeezy. Payment and
+            payout operations may involve Lemon Squeezy and the configured
+            payout provider. The public CLI does not send hidden telemetry by
+            default.
+          </p>
+          <p>
+            Direct support requests send the information you include in your own
+            email. Do not send secrets, production credentials, or regulated
+            data.
+          </p>
+        </section>
+
+        <section class="page-panel">
+          <h2>Refunds</h2>
+          <p>
+            If the delivered paid pack materially fails to match the published
+            supported scope, contact the seller within 14 days of purchase.
+            Refunds are evaluated against the published scope, limitations, and
+            the delivered downloadable product.
+          </p>
+        </section>
+
+        <section class="page-panel">
+          <h2>License</h2>
+          <p>
+            The public repo remains under its open-source license. Paid packs are
+            separate commercial digital products for internal use by the buyer's
+            own organization and may not be resold or republished.
+          </p>
+        </section>
+
+        <section class="page-panel">
+          <h2>Support scope</h2>
+          <p>
+            Product support is limited to published docs, download issues, and
+            clarifying supported scope. If validation fails after a migration,
+            that is reported as a failed migration, not a fake success.
+          </p>
+        </section>
+
+        <section class="page-panel">
+          <h2>Use safeguards</h2>
+          <p>
+            Use version control, backups, and normal engineering review before
+            applying changes. The product helps with specific legacy patterns and
+            reporting, but it does not guarantee passing application behavior in
+            every environment.
+          </p>
+        </section>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-grid">
+        <div class="footer-links">
+          <a href="#" data-doc-path="docs/privacy-policy.md">Privacy policy</a>
+          <a href="#" data-doc-path="docs/refund-policy.md">Refund policy</a>
+          <a href="#" data-doc-path="docs/terms-of-sale.md">Terms of sale</a>
+          <a href="#" data-doc-path="docs/license-terms.md">License terms</a>
+          <a href="#" data-doc-path="docs/support-scope.md">Support scope</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

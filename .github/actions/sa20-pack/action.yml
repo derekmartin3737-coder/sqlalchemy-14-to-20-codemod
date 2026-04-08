@@ -1,0 +1,35 @@
+name: "SA20 Pack"
+description: "Run the sa20-pack SQLAlchemy migration codemod"
+
+inputs:
+  path:
+    description: "Path to the target repository or package"
+    required: false
+    default: "."
+  apply:
+    description: "Whether to write changes back to disk"
+    required: false
+    default: "true"
+  diff:
+    description: "Whether to print unified diffs"
+    required: false
+    default: "true"
+  report-path:
+    description: "Path to the JSON migration report"
+    required: false
+    default: "migration-report.json"
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+    - shell: pwsh
+      run: python -m pip install '.[dev]'
+    - shell: pwsh
+      run: |
+        $args = @("${{ inputs.path }}", "--report", "${{ inputs.report-path }}")
+        if ("${{ inputs.apply }}" -eq "true") { $args += "--apply" }
+        if ("${{ inputs.diff }}" -eq "true") { $args += "--diff" }
+        python -m sa20_pack.cli @args

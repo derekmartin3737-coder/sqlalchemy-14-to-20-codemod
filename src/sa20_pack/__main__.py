@@ -1,0 +1,4 @@
+from sa20_pack.cli import main
+
+if __name__ == "__main__":
+    raise SystemExit(main())

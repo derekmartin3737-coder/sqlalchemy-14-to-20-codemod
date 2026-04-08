@@ -1,0 +1,107 @@
+# Store Products
+
+Last updated: 2026-04-06
+
+Use this file when Lemon Squeezy unlocks first-product creation. The goal is to
+paste from here instead of improvising product setup on launch day.
+
+## Product 1
+
+Name: `sa20-pack Edge-Case Migration Pack`
+
+Price: `$299` one-time per team
+
+Type: single-payment digital product
+
+Who it is for:
+
+- teams that already ran the free scan
+- repos that are close to passing but still have repeated unsupported patterns
+- buyers who want fewer repetitive manual edits without hiring a migration shop
+
+What the buyer gets:
+
+- one downloadable versioned ZIP file
+- paid pack install instructions
+- coverage notes for the paid preset bundle
+- rollout checklist and manager summary
+
+Suggested short description:
+
+> Wider edge-case coverage for SQLAlchemy 1.4 to 2.0 migration, delivered as a
+> one-time digital pack with richer reporting and rollout docs.
+
+Suggested checkout summary:
+
+> Buy this only after running the free scan. This pack is for the recurring
+> unsupported patterns that are still expensive to fix by hand.
+
+Suggested confirmation modal:
+
+- Title: `Your migration pack is ready`
+- Message:
+  `Download the package, read the install guide first, and keep your report from the free scan nearby.`
+- Button text: `Open install guide`
+- Button link:
+  `https://YOUR-COMMERCE-SITE/success.html`
+
+Suggested receipt email button:
+
+- Button text: `Open install guide`
+- Destination:
+  `https://YOUR-COMMERCE-SITE/success.html`
+
+## Product 2
+
+Name: `sa20-pack Preset Bundle`
+
+Price: `$149` one-time per team
+
+Type: single-payment digital product
+
+Who it is for:
+
+- teams that want more repeatable rollout structure
+- buyers who want richer templates without buying a service
+- repos that benefit from preset guidance after the free scan
+
+What the buyer gets:
+
+- one downloadable versioned ZIP file
+- preset files for common migration shapes
+- richer report templates
+- rollout notes and manager summary templates
+
+Suggested short description:
+
+> Downloadable SQLAlchemy 1.4 to 2.0 migration presets, richer report
+> templates, and rollout docs for teams that need broader structure.
+
+Suggested checkout summary:
+
+> This is a downloadable add-on, not a service. Buy it when you want more
+> repeatable rollout structure after the free scan.
+
+Suggested confirmation modal:
+
+- Title: `Your preset bundle is ready`
+- Message:
+  `Download the bundle, review the included rollout notes, and keep your free scan report nearby while applying it.`
+- Button text: `Open install guide`
+- Button link:
+  `https://YOUR-COMMERCE-SITE/success.html`
+
+Suggested receipt email button:
+
+- Button text: `Open install guide`
+- Destination:
+  `https://YOUR-COMMERCE-SITE/success.html`
+
+## Tax and delivery notes
+
+- Choose the matching digital software tax category in Lemon Squeezy.
+- Lemon's docs say products are digital downloads and can include files and
+  links. That fits the one-time pack and the preset bundle.
+- Lemon's docs also say each product has a unique checkout URL from the Share
+  flow. Those are the two URLs that still need to be pasted into
+  `site/config.js`.

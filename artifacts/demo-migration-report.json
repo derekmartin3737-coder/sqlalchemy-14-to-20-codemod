@@ -1,0 +1,21 @@
+{
+  "created_at": "2026-04-08T04:00:00+00:00",
+  "root_path": "fixtures/demo_repo",
+  "mode": "dry-run",
+  "status": "preview_only",
+  "files_scanned": 5,
+  "files_changed": [],
+  "transform_count": 6,
+  "unsupported_count": 0,
+  "overall_confidence": 0.957,
+  "supported_candidates": {
+    "declarative_imports": 1,
+    "dml_constructor_kwargs": 1,
+    "query_get": 1,
+    "select_list_syntax": 1,
+    "string_join": 1,
+    "string_loader_option": 1
+  },
+  "manual_todos": [],
+  "note": "Public repo summary artifact. The commercial apply pack performs the documented rewrites after checkout."
+}

@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling>=1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pydantic-v2-porter"
+version = "0.1.0"
+description = "A deterministic Pydantic v1 to v2 migration pack"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Codex" }]
+dependencies = [
+  "libcst>=1.4.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "build>=1.2.2",
+  "hatchling>=1.27.0",
+  "mypy==1.11.2",
+  "pytest>=8.3.3",
+  "ruff>=0.6.9",
+]
+
+[project.scripts]
+pydantic-v2-porter = "pydantic_v2_porter.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pydantic_v2_porter"]
+
+[tool.mypy]
+python_version = "3.12"
+warn_unused_configs = true
+check_untyped_defs = true
+disallow_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q -p no:cacheprovider"
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]

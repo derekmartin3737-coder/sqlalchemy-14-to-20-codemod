@@ -1,0 +1,16 @@
+{
+  "confidence": 0.96,
+  "created_at": "2026-04-08T04:00:00+00:00",
+  "files_changed": [],
+  "findings": [],
+  "mode": "dry-run",
+  "notes": [],
+  "root_path": "fixtures/simple_repo",
+  "status": "preview_only",
+  "transforms_applied": [
+    "config_to_model_config",
+    "validate_arguments_to_validate_call",
+    "validator_to_field_validator"
+  ],
+  "note": "Public repo summary artifact. The commercial apply pack performs the documented rewrites after checkout."
+}

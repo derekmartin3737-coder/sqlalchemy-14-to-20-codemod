@@ -1,0 +1,251 @@
+PRODUCT IDEAS TRACKER
+Last updated: 2026-04-07
+
+Purpose
+- Keep a running list of product ideas that fit the real business constraint:
+  downloadable software or content that a buyer can use on their own, with no
+  required seller labor, no required human service, and no mandatory paid API.
+
+Hard filter for future products
+- Buyer must be able to download it and use it directly.
+- Product must solve one narrow painful problem.
+- Product must not require Derek to do custom labor.
+- Product must not require emailing anyone, booking time, or waiting on a
+  human to deliver the result.
+- Product should avoid mandatory paid APIs and avoid required user-owned API
+  keys where possible.
+- Deterministic transforms, static analysis, local processing, and packaged
+  rule bundles are preferred.
+
+Current flagship
+- sa20-pack
+  FIT: STRONG
+  Type: codemod + report + validation
+  Why it fits:
+  - local CLI
+  - no hosted backend
+  - no required API
+  - downloadable paid add-ons are possible
+
+Strong-fit candidates
+
+- flatconfig-lift
+  FIT: STRONG
+  Status:
+  - v0.1 scaffolded in `products/flatconfig-lift`
+  Type: codemod pack
+  Problem:
+  - migrate old ESLint config formats to flat config
+  Why it fits:
+  - deterministic transforms
+  - repo-native
+  - easy public demo
+  - paid presets can be packaged as downloads
+
+- pydantic-v2-porter
+  FIT: STRONG
+  Status:
+  - v0.1 scaffolded in `products/pydantic-v2-porter`
+  - public-repo proof pass completed on 2026-04-07
+  Type: codemod pack
+  Problem:
+  - migrate Pydantic v1 validators, settings, and common model breakages
+  Why it fits:
+  - painful version jump
+  - deterministic transforms are possible
+  - paid edge-case packs can be delivered as ZIPs
+
+- prompt-spec-ci
+  FIT: STRONG
+  Type: GitHub Action + local policy/test bundle
+  Problem:
+  - prompt regressions and broken tool-call behavior
+  Why it fits:
+  - can run on static fixtures and schemas
+  - no required model API if positioned as contract checking, not model hosting
+  - paid vertical packs can be downloadable templates and test suites
+
+- model-bom-lite
+  FIT: STRONG
+  Type: CLI + docs generator
+  Problem:
+  - generate provenance and policy docs for local/open-weight model repos
+  Why it fits:
+  - local file analysis first
+  - paid policy packs can be static templates
+  - no hosted runtime needed
+
+- export-doctor
+  FIT: STRONG
+  Type: local profiler + rules pack
+  Problem:
+  - ugly exports with unknown schema and inconsistent columns
+  Why it fits:
+  - deterministic profiling first
+  - vertical rule packs are sellable downloads
+  - no human service required
+
+- rfp-jsonify
+  FIT: STRONG
+  Type: local extractor + checklist generator
+  Problem:
+  - niche procurement PDFs are hard to structure into deadlines and requirements
+  Why it fits:
+  - narrow document family can be productized
+  - outputs are structured files
+  - paid niche templates/checklists can be downloadable
+
+- django-settings-lift
+  FIT: STRONG
+  Type: migration pack
+  Problem:
+  - one exact Django version jump with settings, middleware, and import churn
+  Why it fits:
+  - version-specific migration pain
+  - deterministic config rewrites
+  - easy to package as a codemod plus report
+
+- airflow-dag-lift
+  FIT: STRONG
+  Type: migration pack
+  Problem:
+  - one exact Airflow DAG/API migration with common argument/import changes
+  Why it fits:
+  - narrow upgrade pain
+  - deterministic rewrites on DAG code
+  - buyer-visible before/after value
+
+- actions-node-runtime-lift
+  FIT: STRONG
+  Type: repo codemod + audit report
+  Problem:
+  - GitHub Actions pinned to deprecated Node runtimes or stale action versions
+  Why it fits:
+  - deterministic YAML transforms
+  - zero backend
+  - team policy packs can be sold as downloads
+
+- jira-export-doctor
+  FIT: STRONG
+  Type: local export profiler
+  Problem:
+  - Jira CSV exports are messy and hard to map into consistent downstream use
+  Why it fits:
+  - deterministic schema inspection
+  - vertical templates are sellable
+  - no human service dependency
+
+- shopify-export-doctor
+  FIT: STRONG
+  Type: local export profiler
+  Problem:
+  - Shopify exports are inconsistent and painful to normalize
+  Why it fits:
+  - same boring-but-valuable pattern as export-doctor
+  - downloadable rule packs work
+
+- lab-log-normalizer
+  FIT: STRONG
+  Type: local file normalizer
+  Problem:
+  - lab instrument logs arrive in awkward semi-structured files
+  Why it fits:
+  - niche but painful
+  - strong deterministic parsing angle
+  - packaged parsers and templates can be sold without services
+
+Medium-fit candidates
+
+- reprobot-py
+  FIT: MEDIUM
+  Type: issue triage + repro plan generator
+  Problem:
+  - maintainers waste time turning vague issues into reproducible failures
+  Why it may fit:
+  - strong pain
+  - repo-native
+  Concerns:
+  - may rely too much on model judgment
+  - failing-test generation is harder to make deterministic
+
+- safe-paste-dev
+  FIT: MEDIUM
+  Type: local browser extension
+  Problem:
+  - engineers paste secrets into web AI tools by accident
+  Why it may fit:
+  - local-first
+  - one-time purchase possible
+  Concerns:
+  - browser extension distribution and trust can be harder than repo tools
+  - rules need to feel strong enough to justify payment
+
+- openapi-drift-guard
+  FIT: MEDIUM
+  Type: CLI + CI check
+  Problem:
+  - teams ship breaking API schema changes without noticing
+  Why it may fit:
+  - local schema comparison is deterministic
+  Concerns:
+  - many substitutes already exist
+  - willingness to pay may be lower unless narrowed to one vertical
+
+- pytest-asyncio-fixer
+  FIT: MEDIUM
+  Type: narrow migration pack
+  Problem:
+  - repos break on one exact pytest-asyncio behavior/config shift
+  Why it may fit:
+  - deterministic config and fixture updates possible
+  Concerns:
+  - market may be too small unless tied to a very painful exact jump
+
+- bank-csv-normalizer
+  FIT: MEDIUM
+  Type: local data normalizer
+  Problem:
+  - finance exports from one bank or broker are painful to clean
+  Why it may fit:
+  - deterministic mapping
+  - clear downloadable value
+  Concerns:
+  - may drift into many institutions and formats too quickly
+
+Weak-fit candidates under the current strict rule
+
+- cve-monday
+  FIT: WEAK
+  Type: advisory triage package
+  Problem:
+  - weekly security noise is hard to prioritize
+  Why it is weak:
+  - freshness matters
+  - likely needs ongoing feeds, updates, or service motion
+  - harder to keep fully autonomous and zero-cost
+
+- support-bridge
+  FIT: WEAK
+  Type: message router/bot
+  Problem:
+  - route Discord or Telegram support into GitHub
+  Why it is weak:
+  - needs third-party credentials and bot setup
+  - likely needs ongoing hosting or external integration work
+  - violates the "downloadable and just use it" preference
+
+Build queue candidates right now
+- 1. sa20-pack
+- 2. flatconfig-lift (v0.1 scaffolded; next step is real-repo proof)
+- 3. pydantic-v2-porter (v0.1 scaffolded; next step is real-repo proof)
+- 4. export-doctor narrowed to one exact export family
+- 5. prompt-spec-ci narrowed to one exact bot/use case
+
+Notes for future screening
+- Prefer exact version jumps over broad platform automation.
+- Prefer one ugly file family over "all documents" or "all CSVs."
+- Prefer packaged rule bundles over anything that smells like consulting.
+- If a product idea needs hosted infrastructure, recurring live data, or user
+  API keys, demote it unless there is a local-first version.
+- A product is not "ready" unless it clears the commercial benchmark in
+  `docs/commercial-benchmark.md`.

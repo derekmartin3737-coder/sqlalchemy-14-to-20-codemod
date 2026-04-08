@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pricing | sa20-pack</title>
+    <meta
+      name="description"
+      content="Free scan, one-time migration pack, and downloadable preset bundle for SQLAlchemy 1.4 to 2.0 migration."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="config.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap nav">
+        <a class="brand" href="index.html">sa20-pack</a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="pricing.html">Pricing</a>
+          <a href="demo.html">Demo</a>
+          <a href="policies.html">Policies</a>
+          <a href="#" data-repo-link>Repo</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="warning" id="launch-warning" aria-live="polite"></section>
+      <section class="page-title">
+        <p class="kicker">Pricing</p>
+        <h1>Start free. Pay for the ugly parts.</h1>
+        <p>
+          The public repo is there to qualify the repo and prove trust. The paid
+          layer exists for wider edge-case coverage, better reporting, and a
+          tighter rollout path.
+        </p>
+        <div class="badge-row">
+          <span class="badge">Public repo first</span>
+          <span class="badge">One-time checkout</span>
+          <span class="badge">Validation report included</span>
+          <span class="badge">No hosted SaaS dependency</span>
+        </div>
+      </section>
+
+      <section class="section stack">
+        <section class="page-panel">
+          <p class="offer-label">Free</p>
+          <h2>Free scan and report</h2>
+          <p>Price: <span class="pill">$0</span></p>
+          <ul class="clean">
+            <li>Public CLI</li>
+            <li>Public GitHub Action</li>
+            <li>Core deterministic transforms</li>
+            <li>Manual-review findings</li>
+            <li>JSON migration report</li>
+          </ul>
+          <div class="page-actions">
+            <a class="button" href="#" data-free-link>Open the repo</a>
+          </div>
+        </section>
+
+        <section class="page-panel">
+          <p class="offer-label">One-time pack</p>
+          <h2>Edge-case migration pack</h2>
+          <p>Launch target: <span class="pill">$299 per team</span></p>
+          <ul class="clean">
+            <li>Wider deterministic coverage for repeated unsupported patterns</li>
+            <li>Stronger repo-fit presets</li>
+            <li>Richer migration report and rollout checklist</li>
+            <li>Manager-facing summary for migration approval</li>
+            <li>Enterprise-safe docs/templates</li>
+          </ul>
+          <p class="small">
+            Use this when the free scan proves the repo is close, but the
+            remaining manual bucket is still expensive.
+          </p>
+          <div class="page-actions">
+            <a class="button secondary" href="#" data-pack-link
+              >Open paid pack checkout</a
+            >
+          </div>
+        </section>
+
+        <section class="page-panel">
+          <p class="offer-label">Downloadable add-on</p>
+          <h2>Preset bundle</h2>
+          <p>Launch target: <span class="pill">$149 per team</span></p>
+          <ul class="clean">
+            <li>Repo-type presets for common migration shapes</li>
+            <li>Richer report and rollout templates</li>
+            <li>Manager-facing summary and rollout notes</li>
+            <li>Downloadable add-on with no service dependency</li>
+          </ul>
+          <p class="small">
+            Use this when you want more repeatable rollout structure and preset
+            guidance without buying a service engagement.
+          </p>
+          <div class="page-actions">
+            <a class="button secondary" href="#" data-bundle-link
+              >Open preset bundle checkout</a
+            >
+          </div>
+        </section>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="kicker">Fit</p>
+          <h2>Buy only when the remaining migration work is still expensive.</h2>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Situation</th>
+              <th>Best fit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>You have not run the tool on your repo yet.</td>
+              <td>Use the free scan first.</td>
+            </tr>
+            <tr>
+              <td>The free scan leaves a recurring ugly manual bucket.</td>
+              <td>Buy the one-time edge-case pack.</td>
+            </tr>
+            <tr>
+              <td>You want more repeatable rollout structure and preset guidance.</td>
+              <td>Buy the preset bundle.</td>
+            </tr>
+            <tr>
+              <td>You need a full custom migration service.</td>
+              <td>Do not buy this.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-grid">
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="demo.html">Demo</a>
+          <a href="policies.html">Policies</a>
+          <a href="#" data-doc-path="docs/pricing.md">Pricing doc</a>
+          <a href="#" data-contact-link>Contact</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

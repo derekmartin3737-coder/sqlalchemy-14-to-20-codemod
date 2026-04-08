@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="sa20-pack preview">
+  <rect width="1200" height="630" fill="#08111f" />
+  <rect x="56" y="56" width="1088" height="518" rx="16" fill="#0f172a" stroke="#233146" stroke-width="2" />
+  <rect x="96" y="120" width="1008" height="102" rx="8" fill="#101a2d" stroke="#233146" stroke-width="2" />
+  <text x="96" y="92" fill="#22c55e" font-size="26" font-family="Arial, Helvetica, sans-serif" font-weight="700">SQLAlchemy 1.4 -&gt; 2.0</text>
+  <text x="96" y="170" fill="#e2e8f0" font-size="56" font-family="Arial, Helvetica, sans-serif" font-weight="700">sa20-pack</text>
+  <text x="96" y="212" fill="#9fb0c5" font-size="28" font-family="Arial, Helvetica, sans-serif">Deterministic migration for the boring breakages.</text>
+  <text x="96" y="310" fill="#dbeafe" font-size="24" font-family="Consolas, monospace">Status: validated</text>
+  <text x="96" y="352" fill="#dbeafe" font-size="24" font-family="Consolas, monospace">Transforms applied: 6</text>
+  <text x="96" y="394" fill="#dbeafe" font-size="24" font-family="Consolas, monospace">Unsupported findings: 0</text>
+  <text x="96" y="436" fill="#dbeafe" font-size="24" font-family="Consolas, monospace">Validation: format, typecheck, build, test</text>
+</svg>

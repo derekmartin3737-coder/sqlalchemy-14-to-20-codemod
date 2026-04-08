@@ -1,0 +1,8 @@
+{
+  "name": "sa20-pack",
+  "compatibility_date": "2026-04-06",
+  "assets": {
+    "directory": "./site"
+  }
+}
+
