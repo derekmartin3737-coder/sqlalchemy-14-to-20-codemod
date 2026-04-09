@@ -133,6 +133,9 @@ And the migration runner itself should produce a structured report showing:
   for website hosting, payments, payout access, analytics, and legal readiness.
 - Static storefront pages now exist under `site/` with config-based checkout
   links, success/cancel pages, policy page, and Cloudflare analytics hook.
+- The storefront now also has issue-shaped landing pages and product-detail
+  pages, plus a sitemap and canonical tags, so organic discovery can target
+  exact supported upgrade problems instead of relying only on the homepage.
 - The public storefront has been polished and pushed live on GitHub Pages.
 - GitHub Pages should now redirect to the canonical Cloudflare storefront so
   public traffic does not split across two different site experiences.

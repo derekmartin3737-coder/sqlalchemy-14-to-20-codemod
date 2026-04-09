@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fix declarative_base imports for SQLAlchemy 2.0 | sa20-pack</title>
+    <meta
+      name="description"
+      content="Fix legacy declarative_base import moves during SQLAlchemy 1.4 to 2.0 migration, qualify the repo with the free scan, and buy the pack only if it fits."
+    />
+    <link
+      rel="canonical"
+      href="https://sa20-pack.zippers3737.workers.dev/sqlalchemy-declarative-import-migration.html"
+    />
+    <meta
+      property="og:url"
+      content="https://sa20-pack.zippers3737.workers.dev/sqlalchemy-declarative-import-migration.html"
+    />
+    <meta
+      property="og:image"
+      content="https://sa20-pack.zippers3737.workers.dev/og-preview.svg"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="config.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap nav">
+        <a class="brand" href="index.html">sa20-pack</a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="pricing.html">Pricing</a>
+          <a href="demo.html">Demo</a>
+          <a href="policies.html">Policies</a>
+          <a href="#" data-repo-link>Repo</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="page-title">
+        <p class="kicker">SQLAlchemy issue page</p>
+        <h1>Fix legacy declarative imports without turning the upgrade into a hunt.</h1>
+        <p>
+          This page targets one of the cleaner ORM migration chores:
+          declarative imports that moved from the old extension path into
+          <code>sqlalchemy.orm</code>.
+        </p>
+        <ul class="eyebrow-list">
+          <li><a href="sqlalchemy-14-to-20-migration-pack.html">Pack details</a></li>
+          <li><a href="sqlalchemy-query-get-migration.html">Also see Query.get()</a></li>
+          <li><a href="sqlalchemy-select-list-migration.html">Also see select([..])</a></li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <div class="grid two">
+          <section class="page-panel">
+            <h2>What changes</h2>
+            <pre class="code-block">Before
+from sqlalchemy.ext.declarative import declarative_base
+
+After
+from sqlalchemy.orm import declarative_base</pre>
+          </section>
+          <section class="page-panel">
+            <h2>Use the free scan first</h2>
+            <p>
+              This is a good buyer path when the import move shows up together
+              with other supported legacy ORM patterns and the scan proves the
+              repo is inside published scope.
+            </p>
+            <div class="link-row">
+              <a class="button secondary" href="#" data-free-link
+                >Run the free scan</a
+              >
+              <a class="button" href="#" data-pack-link>Open pack checkout</a>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

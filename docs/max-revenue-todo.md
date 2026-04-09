@@ -67,6 +67,8 @@ the tool better without making the business more likely to earn.
   with it.
 - [ ] Tag the first public release and package the launch assets around that
   release, not around a floating branch.
+- [ ] Verify the new issue-shaped landing pages in Search Console and Bing.
+- [ ] Add one more SQLAlchemy issue page only after a supported pattern proves it deserves search focus.
 
 ## P0 — Must Do Before Expecting Real Sales
 
@@ -120,6 +122,7 @@ the tool better without making the business more likely to earn.
 - [ ] Add a short video or GIF of the before/after demo.
 - [x] Add a static landing page with:
   pain, command, report, before/after, pricing, and support CTA.
+- [x] Add issue-shaped landing pages for supported SQLAlchemy search queries.
 - [ ] Add social proof targets:
   logos, repo names, anonymized results, or quoted user feedback.
 - [ ] Add a docs page specifically for engineering managers who approve migration spend.

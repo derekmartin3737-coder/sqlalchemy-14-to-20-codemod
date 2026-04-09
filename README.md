@@ -52,6 +52,15 @@ repo.
 
 See [quickstart](docs/quickstart.md).
 
+## Searchable issue pages
+
+The storefront now has exact-problem landing pages for the highest-signal
+queries we already support:
+
+- [`session.query(...).get()` migration](site/sqlalchemy-query-get-migration.html)
+- [`select([columns])` migration](site/sqlalchemy-select-list-migration.html)
+- [`declarative_base` import migration](site/sqlalchemy-declarative-import-migration.html)
+
 ## Launch check
 
 Before announcing the public site, run:
@@ -96,6 +105,7 @@ The command fails if required launch assets are missing or if
 - [Lead tracker](docs/lead-tracker.md)
 - [Launch log](docs/launch-log.md)
 - [KPI dashboard](docs/kpi-dashboard.md)
+- [Distribution playbook](docs/distribution-playbook.md)
 - [Packaging](docs/packaging.md)
 - [Release checklist](docs/release-checklist.md)
 - [Limitations](docs/limitations.md)

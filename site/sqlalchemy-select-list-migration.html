@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fix select([columns]) for SQLAlchemy 2.0 | sa20-pack</title>
+    <meta
+      name="description"
+      content="Fix legacy select([columns]) syntax during SQLAlchemy 1.4 to 2.0 migration, qualify your repo with the free scan, and buy the apply pack only when it fits."
+    />
+    <link
+      rel="canonical"
+      href="https://sa20-pack.zippers3737.workers.dev/sqlalchemy-select-list-migration.html"
+    />
+    <meta
+      property="og:url"
+      content="https://sa20-pack.zippers3737.workers.dev/sqlalchemy-select-list-migration.html"
+    />
+    <meta
+      property="og:image"
+      content="https://sa20-pack.zippers3737.workers.dev/og-preview.svg"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="config.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap nav">
+        <a class="brand" href="index.html">sa20-pack</a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="pricing.html">Pricing</a>
+          <a href="demo.html">Demo</a>
+          <a href="policies.html">Policies</a>
+          <a href="#" data-repo-link>Repo</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="page-title">
+        <p class="kicker">SQLAlchemy issue page</p>
+        <h1>Fix legacy <code>select([columns])</code> calls before they slow the whole upgrade down.</h1>
+        <p>
+          The list-style <code>select()</code> syntax is one of the classic
+          SQLAlchemy 2.0 migration chores. This page is for teams trying to
+          qualify whether the fix is isolated or part of a bigger supported
+          cleanup set.
+        </p>
+        <ul class="eyebrow-list">
+          <li><a href="sqlalchemy-14-to-20-migration-pack.html">Pack details</a></li>
+          <li><a href="sqlalchemy-query-get-migration.html">Also see Query.get()</a></li>
+          <li><a href="demo.html">See the public demo</a></li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <div class="grid two">
+          <section class="page-panel">
+            <h2>What changes</h2>
+            <pre class="code-block">Before
+select([User.name])
+
+After
+select(User.name)</pre>
+          </section>
+          <section class="page-panel">
+            <h2>Best fit</h2>
+            <p>
+              Buy the pack when this pattern appears across enough files that
+              manual cleanup is annoying, and the free scan shows other
+              supported patterns in the same repo.
+            </p>
+            <div class="link-row">
+              <a class="button secondary" href="#" data-free-link
+                >Run the free scan</a
+              >
+              <a class="button" href="#" data-pack-link>Open pack checkout</a>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
