@@ -3,7 +3,7 @@ window.SA20_SITE_CONFIG = {
   contactEmail: "founder@example.com",
   repoUrl: "https://github.com/YOUR-USERNAME/sa20-pack",
   freeStartUrl: "",
-  paidPackUrl: "https://YOUR-STORE.lemonsqueezy.com/buy/YOUR-PACK",
-  presetBundleUrl: "https://YOUR-STORE.lemonsqueezy.com/buy/YOUR-BUNDLE",
+  paidPackUrl: "https://payhip.com/b/YOUR-PACK",
+  presetBundleUrl: "https://payhip.com/b/YOUR-BUNDLE",
   cloudflareAnalyticsToken: "",
 };

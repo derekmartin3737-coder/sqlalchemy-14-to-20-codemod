@@ -138,16 +138,18 @@ And the migration runner itself should produce a structured report showing:
   Cloudflare without re-entering static asset settings by hand.
 - `site/config.js` is now populated with the current seller name, contact email,
   and public GitHub repo URL.
-- Lemon Squeezy account creation and verification are complete, and the payout
-  path is configured.
+- Payhip is now the active checkout fallback and has live unlisted product links
+  for the first two products.
 - Store-product copy, fulfillment docs, release checklist, repo-fit checklist,
   preset-bundle checklist, legal checklist, lead tracker, and launch log now
   exist.
 - Claims-and-safeguards docs now exist, and the public/legal copy has been
   tightened to avoid broad guarantees.
-- Lemon still has the account in the temporary waiting state before first
-  product creation is enabled, so the only remaining live config placeholders
-  are still the two checkout URLs.
+- `site/config.js` now points the storefront at the live Payhip links for:
+  - `sa20-pack Edge-Case Migration Pack`: `https://payhip.com/b/QimJ6`
+  - `sa20-pack Preset Bundle`: `https://payhip.com/b/wh2Ro`
+- The third product still needs its checkout link wired into the storefront if
+  we decide to expose it there.
 - Repo launch/legal docs now exist for deployment, company setup, policies, KPI
   tracking, and launch readiness.
 - `sa20_pack.launch_readiness` now checks for missing launch assets and
@@ -189,8 +191,8 @@ And the migration runner itself should produce a structured report showing:
    the current operating queue.
 2. Keep the sole-proprietor / no-LLC path explicit, and resolve seller-name /
    assumed-business-name questions before first paid launch.
-3. The only remaining required placeholders in `site/config.js` should be the
-   two hosted checkout URLs unless manual analytics-token mode is chosen.
+3. Keep `site/config.js` in sync with the live checkout provider; right now the
+   root storefront uses Payhip links for product 1 and product 2.
 4. Keep the paid layer software-only: edge-case pack plus preset bundle, with
    no service dependency or human coding offer.
 5. Finalize the paid SKUs, deliverable format, analytics path, and legal sanity
