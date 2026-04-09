@@ -138,8 +138,8 @@ And the migration runner itself should produce a structured report showing:
   Cloudflare without re-entering static asset settings by hand.
 - `site/config.js` is now populated with the current seller name, contact email,
   and public GitHub repo URL.
-- Payhip is now the active checkout fallback and has live unlisted product links
-  for the first two products.
+- Payhip is now the active checkout provider and has live unlisted product
+  links for the first three products.
 - Store-product copy, fulfillment docs, release checklist, repo-fit checklist,
   preset-bundle checklist, legal checklist, lead tracker, and launch log now
   exist.
@@ -148,6 +148,8 @@ And the migration runner itself should produce a structured report showing:
 - `site/config.js` now points the storefront at the live Payhip links for:
   - `sa20-pack Edge-Case Migration Pack`: `https://payhip.com/b/QimJ6`
   - `sa20-pack Preset Bundle`: `https://payhip.com/b/wh2Ro`
+- The third product is live on Payhip as:
+  - `pydantic-v2-porter Apply Pack`: `https://payhip.com/b/KamA1`
 - The third product still needs its checkout link wired into the storefront if
   we decide to expose it there.
 - Repo launch/legal docs now exist for deployment, company setup, policies, KPI
