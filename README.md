@@ -4,6 +4,8 @@
 zero-infrastructure SQLAlchemy 1.4 to 2.0 migration scanner plus proof,
 reports, and commercial-pack docs.
 
+Website: [zippertools.org](https://zippertools.org/)
+
 It is deliberately opinionated:
 
 - free scanner first

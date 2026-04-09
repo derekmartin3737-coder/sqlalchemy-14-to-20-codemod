@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Zipper Tools">
+  <rect width="64" height="64" rx="12" fill="#08111f" />
+  <path
+    d="M18 18h28v7.5L28.5 46H46V53H18v-7.5L35.5 25H18z"
+    fill="#22c55e"
+  />
+</svg>
