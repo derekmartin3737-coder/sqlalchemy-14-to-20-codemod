@@ -134,6 +134,8 @@ And the migration runner itself should produce a structured report showing:
 - Static storefront pages now exist under `site/` with config-based checkout
   links, success/cancel pages, policy page, and Cloudflare analytics hook.
 - The public storefront has been polished and pushed live on GitHub Pages.
+- GitHub Pages should now redirect to the canonical Cloudflare storefront so
+  public traffic does not split across two different site experiences.
 - `wrangler.jsonc` now exists so the same storefront can be deployed through
   Cloudflare without re-entering static asset settings by hand.
 - `site/config.js` is now populated with the current seller name, contact email,

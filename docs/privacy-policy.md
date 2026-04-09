@@ -1,6 +1,6 @@
 # Privacy Policy
 
-Last updated: 2026-04-06
+Last updated: 2026-04-08
 
 This policy covers the public `sa20-pack` website, the free public repo, and
 related checkout and support flows.
@@ -17,14 +17,14 @@ website analytics such as page views, referrers, and traffic trends.
 
 ### Checkout and order information
 
-Paid checkout is handled by Lemon Squeezy. Orders, receipts, taxes handled by
-the merchant-of-record flow, and related customer information are processed
-through Lemon Squeezy under its own policies and legal obligations.
+Paid checkout is handled by Payhip. Orders, receipts, taxes, and related
+customer information are processed through Payhip and the configured payment
+provider under their own policies and legal obligations.
 
 ### Payment and payout operations
 
-Seller-side payout operations may involve Lemon Squeezy and the configured
-payout provider. Buyers do not send payout information to `sa20-pack`.
+Seller-side payout operations may involve Payhip and the configured payment
+provider. Buyers do not send payout information to `sa20-pack`.
 
 ### Direct support messages
 
@@ -60,7 +60,7 @@ written support arrangement says otherwise.
 
 - Cloudflare Pages
 - Cloudflare Web Analytics
-- Lemon Squeezy
+- Payhip
 - the configured payout provider
 - GitHub
 

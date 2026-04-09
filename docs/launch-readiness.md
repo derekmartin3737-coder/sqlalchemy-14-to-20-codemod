@@ -17,9 +17,8 @@ ready to go public.
 
 ## External actions still required before live revenue
 
-- create the Cloudflare production project or keep the current GitHub Pages site
-- create the Lemon Squeezy products
-- paste the live checkout URLs into `site/config.js`
+- keep the Cloudflare storefront deployed and current
+- keep the Payhip product links current in `site/config.js`
 - enable storefront traffic analytics
 - make one real test purchase
 
@@ -44,5 +43,6 @@ Call the business live only after:
 - free CTA works
 - paid CTA works
 - preset-bundle CTA works
+- checkout provider pages load
 - success/cancel pages work
 - policy docs match site copy

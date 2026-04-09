@@ -118,7 +118,7 @@ Paid commercial pack:
 - apply engine
 - broader transform coverage
 - richer rollout templates and presets
-- downloadable ZIP delivery through Lemon Squeezy
+- downloadable ZIP delivery through Payhip
 
 ## License
 
