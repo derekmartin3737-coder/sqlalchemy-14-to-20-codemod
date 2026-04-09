@@ -1,6 +1,6 @@
 # Fulfillment
 
-Last updated: 2026-04-06
+Last updated: 2026-04-09
 
 This file locks the delivery path before the first real sale.
 
@@ -10,9 +10,9 @@ Use automatic delivery first. Do not make manual email fulfillment the default.
 
 Preferred delivery path:
 
-1. upload a versioned ZIP to Lemon Squeezy
+1. upload a versioned ZIP to Payhip
 2. include supporting links to docs already hosted on the public site or repo
-3. let Lemon handle the download path from the receipt and customer order page
+3. let Payhip handle the download path from the receipt and customer order page
 
 Why this path:
 
@@ -72,13 +72,14 @@ Do not promise:
 - custom coding by a person
 - full migration completion
 
-## Lemon Squeezy notes
+## Payhip notes
 
-Lemon's docs say:
+Payhip's live launch path for this repo is:
 
-- products are digital downloads and subscriptions
-- products can include downloadable files and links
-- customers can access purchased files from receipts and the My Orders page
+- products are downloadable digital goods
+- customers receive receipt and download access from the checkout flow
+- storefront-level redirects should stay off so buyers keep instant download
+  access after purchase
 
-That makes Lemon the correct zero-cost default delivery layer for both paid
-downloadable offers once product creation unlocks.
+That makes Payhip the active zero-cost delivery layer for the paid
+downloadable offers in the current launch setup.

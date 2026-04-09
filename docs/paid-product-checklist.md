@@ -44,13 +44,14 @@ The pack does not clear launch unless every required item below is true.
 
 ## 4. Commerce Gate
 
-- Lemon product type is allowed under Lemon policy.
-- Lemon tax category matches the actual product.
-- Product file uploaded to Lemon is the private ZIP, not a public artifact.
+- Checkout product type is allowed under the active provider policy.
+- Checkout product tax category matches the actual product.
+- Product file uploaded to the active checkout provider is the private ZIP, not
+  a public artifact.
 - Checkout button points to the correct hosted checkout URL.
 - Confirmation and receipt buttons point to public guidance, not public code.
 - Success and cancel pages work.
-- Product price is consistent across site copy, Lemon, and docs.
+- Product price is consistent across site copy, Payhip, and docs.
 
 ## 5. Verification Gate
 

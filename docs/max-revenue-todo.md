@@ -8,6 +8,10 @@ access, and legal readiness starts in the "Go-Live Stack Decisions" section
 near the bottom of this file. That lower section is now the authoritative
 checklist for getting from here to a live company that can accept purchases.
 
+Note: Payhip is now the active checkout provider. Older Lemon Squeezy items
+remain in this file as historical research or fallback notes unless explicitly
+updated.
+
 Priority labels:
 
 - `P0`: blocks first sales
@@ -19,14 +23,10 @@ Priority labels:
 
 - [x] Public repo is live.
 - [x] Public website is live.
-- [x] Lemon Squeezy seller account exists.
-- [x] Lemon Squeezy account verification is complete.
+- [x] Payhip store is live.
 - [x] Payout path is configured.
-- [ ] First two products cannot be created yet because Lemon still has the
-  account in the temporary waiting state before first product creation is
-  enabled.
-- [ ] `site/config.js` still needs the two real hosted checkout URLs:
-  `paidPackUrl` and `presetBundleUrl`.
+- [x] First three products are live on Payhip.
+- [x] `site/config.js` has live checkout URLs for the exposed products.
 
 ## Before New Features
 
@@ -41,7 +41,7 @@ the tool better without making the business more likely to earn.
   - exact boundaries
   - exact fulfillment format
 - [x] Write the SKU and fulfillment docs so product setup can be pasted into
-  Lemon when creation unlocks.
+  the active checkout provider without improvising.
 - [ ] Decide whether the public storefront stays on GitHub Pages or moves to
   Cloudflare Pages before paid checkout goes live.
 - [ ] Make sure analytics are visible in at least two places:
@@ -212,14 +212,15 @@ Assumptions for this plan:
 
 Current stack in practice:
 
-- public storefront: GitHub Pages
-- website analytics: still needs a final decision and activation
-- checkout and merchant of record: Lemon Squeezy hosted checkout
+- public storefront: Cloudflare storefront at `sa20-pack.zippers3737.workers.dev`
+- backup entrypoint: GitHub Pages redirect
+- website analytics: Cloudflare Web Analytics path
+- checkout and merchant of record: Payhip digital-product checkout
 - payout path: configured and verified
-- revenue analytics: Lemon Squeezy dashboard
+- revenue analytics: Payhip dashboard
 - free adoption analytics: GitHub repo traffic, GitHub release downloads, later
   PyPI download proxies if we publish there
-- fallback checkout if Lemon onboarding blocks us after verification: Gumroad
+- fallback checkout if Payhip blocks us later: Gumroad
 
 Current best future storefront stack if we want a cleaner commerce host without
 paid infrastructure:
@@ -252,15 +253,15 @@ Go-live is only complete when all of these are true:
 
 - [x] public website is live on a free public URL
 - [x] free repo is public and usable
-- [ ] paid checkout is live and can accept real purchases
+- [x] paid checkout is live and can accept real purchases
 - [x] payout path is configured and verified
-- [ ] website traffic analytics are visible
-- [ ] order and revenue analytics are visible
-- [ ] terms, refund, privacy, support-scope, and license docs are published
+- [ ] website traffic analytics are visibly confirmed in the dashboard
+- [ ] order and revenue analytics are visibly confirmed in the dashboard
+- [x] terms, refund, privacy, support-scope, and license docs are published
 - [ ] one real order has been completed end to end
 - [ ] paid deliverable can be accessed without manual intervention
 - [ ] we have a written answer for "what happens if validation fails?"
-- [ ] we have a written answer for "what exactly is included in paid?"
+- [x] we have a written answer for "what exactly is included in paid?"
 
 ## P0 - Company, Legal, and Money Path
 
@@ -291,10 +292,8 @@ Go-live is only complete when all of these are true:
 ## P0 - Website and Public Storefront
 
 - [x] Treat the website as a storefront, not the product itself.
-- [ ] Decide whether to keep GitHub Pages for now or move to Cloudflare Pages
-  before paid checkout is switched on.
-- [ ] If moving, keep the first commerce launch on a free `*.pages.dev` URL to
-  preserve the $0 startup rule.
+- [x] Treat Cloudflare as the canonical storefront and GitHub Pages as a
+  redirect-only backup entrypoint.
 - [x] Upgrade `site/index.html` into a production storefront with:
   - clear problem statement
   - exact supported migration
@@ -314,18 +313,15 @@ Go-live is only complete when all of these are true:
 - [x] Add a simple success page and cancel page for checkout returns.
 - [x] Add social metadata and preview image assets.
 - [x] Deploy the site publicly.
-- [ ] If we choose Cloudflare Pages, deploy the storefront through
-  GitHub-connected Cloudflare Pages.
+- [x] Keep the Cloudflare storefront deployed and reachable.
 - [x] Write the deployment steps into the repo so another session can redeploy
   without guessing.
 
 ## P0 - Analytics and Dashboarding
 
-- [ ] Decide the live traffic analytics source:
-  Cloudflare Web Analytics, another free privacy-friendly option, or GitHub
-  Pages plus repo analytics only.
+- [x] Use Cloudflare Web Analytics as the live traffic analytics source.
 - [ ] Confirm we can see unique visitors, page views, referrers, and trends.
-- [x] Use Lemon Squeezy dashboards for orders, revenue, refunds, and payouts.
+- [x] Use Payhip dashboards for orders, revenue, refunds, and payouts.
 - [x] Use GitHub repo traffic and release downloads as free-tier adoption
   proxies.
 - [ ] If we publish to PyPI later, add PyPI download proxies to the weekly KPI
@@ -344,13 +340,11 @@ Go-live is only complete when all of these are true:
 
 ## P0 - Checkout, Payout Access, and Fulfillment
 
-- [x] Create the Lemon Squeezy seller account.
-- [ ] Confirm seller-country support and payout eligibility from official Lemon
-  docs before depending on it.
+- [x] Keep the Payhip store live and the payout path configured.
 - [x] Configure the payout method currently approved by the account.
 - [ ] Write down the real payout schedule and payout threshold so there is no
   surprise after first sale.
-- [ ] Set up Gumroad only as a fallback if Lemon onboarding or payout setup
+- [ ] Set up Gumroad only as a fallback if Payhip onboarding or payout setup
   blocks us.
 - [ ] Finalize the free offer:
   public CLI, public GitHub Action, basic report, limited coverage.
@@ -358,10 +352,9 @@ Go-live is only complete when all of these are true:
   wider edge-case coverage, richer reports, presets, and better docs.
 - [ ] Finalize the preset-bundle offer as a second downloadable SKU with a
   real versioned artifact.
-- [ ] Create the hosted paid-pack product in Lemon as soon as product creation
-  is unlocked.
-- [ ] Create the preset-bundle product in Lemon as soon as product creation is
-  unlocked.
+- [x] Create the hosted paid-pack product in Payhip.
+- [x] Create the preset-bundle product in Payhip.
+- [x] Create the Pydantic apply-pack product in Payhip.
 - [ ] Define the paid deliverable format:
   versioned ZIP, private wheel, add-on pack, or private release asset.
 - [ ] Prefer automatic artifact delivery through the checkout platform over

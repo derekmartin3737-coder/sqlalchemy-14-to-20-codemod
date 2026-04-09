@@ -195,8 +195,8 @@ And the migration runner itself should produce a structured report showing:
    the current operating queue.
 2. Keep the sole-proprietor / no-LLC path explicit, and resolve seller-name /
    assumed-business-name questions before first paid launch.
-3. Keep `site/config.js` in sync with the live checkout provider; right now the
-   root storefront uses Payhip links for product 1 and product 2.
+3. Keep `site/config.js` in sync with the live checkout provider; the root
+   storefront now uses Payhip links for product 1, product 2, and product 3.
 4. Keep the paid layer software-only: edge-case pack plus preset bundle, with
    no service dependency or human coding offer.
 5. Finalize the paid SKUs, deliverable format, analytics path, and legal sanity
@@ -208,6 +208,6 @@ And the migration runner itself should produce a structured report showing:
    offers.
 9. Keep full-repo public proof running, not just public-file proof, before
    starting product 4.
-10. Replace the currently published Lemon files with genuinely private
+10. Keep the currently published Payhip files pointed at genuinely private
     commercial ZIPs before treating checkout as real paid delivery.
 11. Keep this file updated as decisions harden or blockers appear.

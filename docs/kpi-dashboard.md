@@ -13,10 +13,10 @@ Use this file as the weekly progress log after launch.
 - site visitors: Cloudflare Web Analytics
 - free CTA clicks: optional manual estimate until click tracking exists
 - paid CTA clicks: optional manual estimate until click tracking exists
-- orders: Lemon Squeezy
-- revenue: Lemon Squeezy
-- refunds: Lemon Squeezy
-- payouts received: payout provider and Lemon payout history
+- orders: Payhip
+- revenue: Payhip
+- refunds: Payhip
+- payouts received: payout provider and Payhip payout history
 - GitHub views/clones: GitHub traffic
 - release downloads: GitHub Releases
 

@@ -1,17 +1,21 @@
 # Store Products
 
-Last updated: 2026-04-06
+Last updated: 2026-04-09
 
-Use this file when Lemon Squeezy unlocks first-product creation. The goal is to
-paste from here instead of improvising product setup on launch day.
+Use this file as the current Payhip product setup reference so product pages,
+pricing, and storefront links stay consistent.
 
 ## Product 1
 
 Name: `sa20-pack Edge-Case Migration Pack`
 
-Price: `$299` one-time per team
+Price: `$299.99` one-time per team
 
 Type: single-payment digital product
+
+Live product page:
+
+- `https://payhip.com/b/QimJ6`
 
 Who it is for:
 
@@ -55,9 +59,13 @@ Suggested receipt email button:
 
 Name: `sa20-pack Preset Bundle`
 
-Price: `$149` one-time per team
+Price: `$149.99` one-time per team
 
 Type: single-payment digital product
+
+Live product page:
+
+- `https://payhip.com/b/wh2Ro`
 
 Who it is for:
 
@@ -97,11 +105,34 @@ Suggested receipt email button:
 - Destination:
   `https://YOUR-COMMERCE-SITE/success.html`
 
+## Product 3
+
+Name: `pydantic-v2-porter Apply Pack`
+
+Price: `$249.99` one-time per team
+
+Type: single-payment digital product
+
+Live product page:
+
+- `https://payhip.com/b/KamA1`
+
+Who it is for:
+
+- teams that already ran the free fit scan for the Pydantic subset
+- repos that fall within the documented validator/config/settings coverage
+- buyers who want a downloadable local apply pack instead of a hosted tool
+
+What the buyer gets:
+
+- one downloadable versioned ZIP file
+- install instructions
+- coverage notes and limitations
+- rollout checklist and manager summary
+
 ## Tax and delivery notes
 
-- Choose the matching digital software tax category in Lemon Squeezy.
-- Lemon's docs say products are digital downloads and can include files and
-  links. That fits the one-time pack and the preset bundle.
-- Lemon's docs also say each product has a unique checkout URL from the Share
-  flow. Those are the two URLs that still need to be pasted into
-  `site/config.js`.
+- choose the matching digital-goods/software category in the checkout provider
+- keep products unlisted if Cloudflare remains the canonical storefront
+- keep product file uploads pointed at the private ZIPs, not public repo
+  artifacts

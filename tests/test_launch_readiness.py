@@ -85,6 +85,7 @@ def test_launch_readiness_detects_placeholders() -> None:
                 '  repoUrl: "https://github.com/example/sa20-pack",',
                 '  paidPackUrl: "https://store.example.com/pack",',
                 '  presetBundleUrl: "https://store.example.com/bundle",',
+                '  pydanticPackUrl: "https://store.example.com/pydantic",',
                 '  cloudflareAnalyticsToken: "",',
                 "};",
             ]
@@ -96,6 +97,7 @@ def test_launch_readiness_detects_placeholders() -> None:
         "contactEmail",
         "paidPackUrl",
         "presetBundleUrl",
+        "pydanticPackUrl",
     ]
 
 
@@ -111,6 +113,7 @@ def test_launch_readiness_passes_with_live_values() -> None:
                 '  repoUrl: "https://github.com/taylor/sa20-pack",',
                 '  paidPackUrl: "https://store.sa20pack.test/pack",',
                 '  presetBundleUrl: "https://store.sa20pack.test/bundle",',
+                '  pydanticPackUrl: "https://store.sa20pack.test/pydantic",',
                 '  cloudflareAnalyticsToken: "cf-token-123",',
                 "};",
             ]

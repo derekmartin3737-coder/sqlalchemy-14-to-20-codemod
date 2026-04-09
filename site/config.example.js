@@ -5,5 +5,6 @@ window.SA20_SITE_CONFIG = {
   freeStartUrl: "",
   paidPackUrl: "https://payhip.com/b/YOUR-PACK",
   presetBundleUrl: "https://payhip.com/b/YOUR-BUNDLE",
+  pydanticPackUrl: "https://payhip.com/b/YOUR-PYDANTIC-PACK",
   cloudflareAnalyticsToken: "",
 };

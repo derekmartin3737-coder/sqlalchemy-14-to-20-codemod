@@ -54,6 +54,7 @@ REQUIRED_CONFIG_KEYS = (
     "repoUrl",
     "paidPackUrl",
     "presetBundleUrl",
+    "pydanticPackUrl",
 )
 
 

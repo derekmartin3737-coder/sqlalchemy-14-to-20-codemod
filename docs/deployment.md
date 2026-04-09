@@ -5,20 +5,21 @@ viewing progress after launch.
 
 ## Fastest free public deployment
 
-The repo now includes a GitHub Pages workflow in
-[`deploy-site.yml`](../.github/workflows/deploy-site.yml).
+The repo includes both a GitHub Pages workflow in
+[`deploy-site.yml`](../.github/workflows/deploy-site.yml)
+and a simple root-page redirect so GitHub Pages can act as a backup entrypoint.
+The canonical live storefront is:
 
-That is the fastest zero-cost way to get a public URL online from this repo.
-Current live URL:
+- `https://sa20-pack.zippers3737.workers.dev/`
+
+The GitHub Pages URL should redirect there:
 
 - `https://derekmartin3737-coder.github.io/sqlalchemy-14-to-20-codemod/`
 
 For Cloudflare, the repo now also includes
 [`wrangler.jsonc`](../wrangler.jsonc)
 so the static storefront can be deployed with `npx wrangler deploy` instead of
-re-entering asset settings by hand. Right now the public site exists, but paid
-checkout is still blocked on the first two Lemon products being created and
-their hosted checkout URLs being added to `site/config.js`.
+re-entering asset settings by hand.
 
 ## 1. Fill the launch config
 
@@ -32,16 +33,15 @@ Edit [`site/config.js`](../site/config.js) and replace:
 
 Use [`site/config.example.js`](../site/config.example.js) as the reference format.
 
-## 2. Create the checkout products
+## 2. Keep the checkout products current
 
-In Lemon Squeezy:
+In Payhip:
 
-1. create the one-time migration-pack product
-2. create the preset-bundle product
-3. set the return URLs to:
-   - `https://YOUR-SITE.pages.dev/success.html`
-   - `https://YOUR-SITE.pages.dev/cancel.html`
-4. copy the hosted checkout URLs into `site/config.js`
+1. keep the product files current
+2. keep the product images current
+3. keep the Payhip product links in `site/config.js`
+4. leave the products unlisted if the public storefront should stay on
+   Cloudflare instead of Payhip
 
 ## 3. Deploy the storefront
 
@@ -92,6 +92,6 @@ Before announcing anything:
 After launch, check:
 
 - Cloudflare Web Analytics for site traffic
-- Lemon Squeezy for orders, revenue, refunds, and payouts
+- Payhip for orders, revenue, refunds, and payouts
 - GitHub traffic for repo views and clones
 - the manual KPI tracker in [kpi-dashboard.md](kpi-dashboard.md)

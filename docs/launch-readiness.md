@@ -29,9 +29,10 @@ Call the business live only after:
 1. the public site is deployed
 2. the repo is public
 3. the paid checkout buttons are live
-4. analytics are visible
-5. one real order completes end to end
-6. the paid deliverable path has been tested without manual intervention
+4. the optional adjacent-pack CTA is live if the storefront exposes it
+5. analytics are visible
+6. one real order completes end to end
+7. the paid deliverable path has been tested without manual intervention
 
 ## Launch-day checks
 
@@ -43,6 +44,7 @@ Call the business live only after:
 - free CTA works
 - paid CTA works
 - preset-bundle CTA works
+- pydantic-pack CTA works if exposed on the site
 - checkout provider pages load
 - success/cancel pages work
 - policy docs match site copy

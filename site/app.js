@@ -123,6 +123,11 @@
     config.presetBundleUrl,
     "Preset bundle coming soon",
   );
+  setHref(
+    "[data-pydantic-link]",
+    config.pydanticPackUrl,
+    "Pydantic pack coming soon",
+  );
 
   applyText("[data-seller-name]", config.sellerName, "the seller");
   applyText("[data-contact-email]", config.contactEmail, "contact email");

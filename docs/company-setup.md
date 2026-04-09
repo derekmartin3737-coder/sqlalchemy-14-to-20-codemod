@@ -33,11 +33,11 @@ Current direction:
 - review [legal-checklist.md](legal-checklist.md)
   before first paid launch
 
-## Tax and merchant-of-record reality
+## Tax and checkout reality
 
-Lemon Squeezy says it acts as merchant of record and handles the customer-facing
-tax/payment side of the sale. That reduces launch burden, but it does not remove
-your own income-tax and recordkeeping responsibilities as the seller.
+Payhip is the active storefront and checkout layer for the launch. That reduces
+infrastructure burden, but it does not remove your own income-tax and
+recordkeeping responsibilities as the seller.
 
 ## Identity and payout verification
 

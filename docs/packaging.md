@@ -20,11 +20,11 @@ Keep the public repo as the trust layer.
 
 Distribute paid coverage as one of:
 
-- Lemon digital download ZIP
+- Payhip digital download ZIP
 - paid add-on package
 - customer-specific preset pack
 
-For the current launch plan, prefer the Lemon digital download ZIP path from
+For the current launch plan, prefer the Payhip digital download ZIP path from
 [fulfillment.md](fulfillment.md)
 and use the tagged release path from
 [release-checklist.md](release-checklist.md)

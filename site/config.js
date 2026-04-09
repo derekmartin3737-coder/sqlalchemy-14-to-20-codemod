@@ -6,5 +6,6 @@ window.SA20_SITE_CONFIG = {
     "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/blob/main/docs/quickstart.md",
   paidPackUrl: "https://payhip.com/b/QimJ6",
   presetBundleUrl: "https://payhip.com/b/wh2Ro",
+  pydanticPackUrl: "https://payhip.com/b/KamA1",
   cloudflareAnalyticsToken: "",
 };
