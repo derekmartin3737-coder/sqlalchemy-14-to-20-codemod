@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://sa20-pack.zippers3737.workers.dev/sitemap.xml
+Sitemap: https://zippertools.org/sitemap.xml

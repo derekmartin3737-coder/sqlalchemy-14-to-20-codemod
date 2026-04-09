@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://sa20-pack.zippers3737.workers.dev/</loc>
+    <loc>https://zippertools.org/</loc>
   </url>
   <url>
-    <loc>https://sa20-pack.zippers3737.workers.dev/pricing.html</loc>
+    <loc>https://zippertools.org/pricing.html</loc>
   </url>
   <url>
-    <loc>https://sa20-pack.zippers3737.workers.dev/demo.html</loc>
+    <loc>https://zippertools.org/demo.html</loc>
   </url>
   <url>
-    <loc>https://sa20-pack.zippers3737.workers.dev/policies.html</loc>
+    <loc>https://zippertools.org/policies.html</loc>
   </url>
   <url>
-    <loc>https://sa20-pack.zippers3737.workers.dev/sqlalchemy-14-to-20-migration-pack.html</loc>
+    <loc>https://zippertools.org/sqlalchemy-14-to-20-migration-pack.html</loc>
   </url>
   <url>
-    <loc>https://sa20-pack.zippers3737.workers.dev/sqlalchemy-preset-bundle.html</loc>
+    <loc>https://zippertools.org/sqlalchemy-preset-bundle.html</loc>
   </url>
   <url>
-    <loc>https://sa20-pack.zippers3737.workers.dev/pydantic-v2-migration-pack.html</loc>
+    <loc>https://zippertools.org/pydantic-v2-migration-pack.html</loc>
   </url>
   <url>
-    <loc>https://sa20-pack.zippers3737.workers.dev/sqlalchemy-query-get-migration.html</loc>
+    <loc>https://zippertools.org/sqlalchemy-query-get-migration.html</loc>
   </url>
   <url>
-    <loc>https://sa20-pack.zippers3737.workers.dev/sqlalchemy-select-list-migration.html</loc>
+    <loc>https://zippertools.org/sqlalchemy-select-list-migration.html</loc>
   </url>
   <url>
-    <loc>https://sa20-pack.zippers3737.workers.dev/sqlalchemy-declarative-import-migration.html</loc>
+    <loc>https://zippertools.org/sqlalchemy-declarative-import-migration.html</loc>
   </url>
 </urlset>

@@ -10,7 +10,7 @@ The repo includes both a GitHub Pages workflow in
 and a simple root-page redirect so GitHub Pages can act as a backup entrypoint.
 The canonical live storefront is:
 
-- `https://sa20-pack.zippers3737.workers.dev/`
+- `https://zippertools.org/`
 
 The GitHub Pages URL should redirect there:
 

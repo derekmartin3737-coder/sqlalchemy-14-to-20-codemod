@@ -215,7 +215,7 @@ Assumptions for this plan:
 
 Current stack in practice:
 
-- public storefront: Cloudflare storefront at `sa20-pack.zippers3737.workers.dev`
+- public storefront: Cloudflare storefront at `zippertools.org`
 - backup entrypoint: GitHub Pages redirect
 - website analytics: Cloudflare Web Analytics path
 - checkout and merchant of record: Payhip digital-product checkout

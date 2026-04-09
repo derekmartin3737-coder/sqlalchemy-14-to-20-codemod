@@ -57,7 +57,7 @@ The storefront should always have:
 These still need to be done in dashboards, not in git:
 
 1. Verify the Cloudflare storefront in Google Search Console.
-2. Submit `https://sa20-pack.zippers3737.workers.dev/sitemap.xml` to Google.
+2. Submit `https://zippertools.org/sitemap.xml` to Google.
 3. Verify the storefront in Bing Webmaster Tools.
 4. Submit the same sitemap to Bing.
 5. Turn on Cloudflare Web Analytics in the Cloudflare dashboard if it is not
