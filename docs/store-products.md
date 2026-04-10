@@ -15,7 +15,7 @@ Type: single-payment digital product
 
 Live product page:
 
-- `https://payhip.com/b/QimJ6`
+- `https://pay.zippertools.org/b/QimJ6`
 
 Who it is for:
 
@@ -47,13 +47,13 @@ Suggested confirmation modal:
   `Download the package, read the install guide first, and keep your report from the free scan nearby.`
 - Button text: `Open install guide`
 - Button link:
-  `https://YOUR-COMMERCE-SITE/success.html`
+  `https://zippertools.org/success.html`
 
 Suggested receipt email button:
 
 - Button text: `Open install guide`
 - Destination:
-  `https://YOUR-COMMERCE-SITE/success.html`
+  `https://zippertools.org/success.html`
 
 ## Product 2
 
@@ -65,7 +65,7 @@ Type: single-payment digital product
 
 Live product page:
 
-- `https://payhip.com/b/wh2Ro`
+- `https://pay.zippertools.org/b/wh2Ro`
 
 Who it is for:
 
@@ -97,13 +97,13 @@ Suggested confirmation modal:
   `Download the bundle, review the included rollout notes, and keep your free scan report nearby while applying it.`
 - Button text: `Open install guide`
 - Button link:
-  `https://YOUR-COMMERCE-SITE/success.html`
+  `https://zippertools.org/success.html`
 
 Suggested receipt email button:
 
 - Button text: `Open install guide`
 - Destination:
-  `https://YOUR-COMMERCE-SITE/success.html`
+  `https://zippertools.org/success.html`
 
 ## Product 3
 
@@ -115,7 +115,7 @@ Type: single-payment digital product
 
 Live product page:
 
-- `https://payhip.com/b/KamA1`
+- `https://pay.zippertools.org/b/KamA1`
 
 Who it is for:
 
@@ -136,3 +136,4 @@ What the buyer gets:
 - keep products unlisted if Cloudflare remains the canonical storefront
 - keep product file uploads pointed at the private ZIPs, not public repo
   artifacts
+

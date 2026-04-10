@@ -42,6 +42,9 @@ In Payhip:
 3. keep the Payhip product links in `site/config.js`
 4. leave the products unlisted if the public storefront should stay on
    Cloudflare instead of Payhip
+5. if Payhip custom-domain checkout is active, prefer the branded
+   `pay.your-domain` product links in `site/config.js` over raw `payhip.com`
+   links
 
 ## 3. Deploy the storefront
 

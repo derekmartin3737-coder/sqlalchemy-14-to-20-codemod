@@ -151,12 +151,12 @@ And the migration runner itself should produce a structured report showing:
 - Claims-and-safeguards docs now exist, and the public/legal copy has been
   tightened to avoid broad guarantees.
 - `site/config.js` now points the storefront at the live Payhip links for:
-  - `sa20-pack Edge-Case Migration Pack`: `https://payhip.com/b/QimJ6`
-  - `sa20-pack Preset Bundle`: `https://payhip.com/b/wh2Ro`
+  - `sa20-pack Edge-Case Migration Pack`: `https://pay.zippertools.org/b/QimJ6`
+  - `sa20-pack Preset Bundle`: `https://pay.zippertools.org/b/wh2Ro`
 - The third product is live on Payhip as:
-  - `pydantic-v2-porter Apply Pack`: `https://payhip.com/b/KamA1`
-- The third product still needs its checkout link wired into the storefront if
-  we decide to expose it there.
+  - `pydantic-v2-porter Apply Pack`: `https://pay.zippertools.org/b/KamA1`
+- Payhip custom-domain checkout is now active on `https://pay.zippertools.org/`
+  so the storefront no longer needs to send buyers to raw `payhip.com` links.
 - Repo launch/legal docs now exist for deployment, company setup, policies, KPI
   tracking, and launch readiness.
 - `sa20_pack.launch_readiness` now checks for missing launch assets and

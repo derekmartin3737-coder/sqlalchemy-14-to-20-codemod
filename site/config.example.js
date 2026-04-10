@@ -3,8 +3,8 @@ window.SA20_SITE_CONFIG = {
   contactEmail: "founder@example.com",
   repoUrl: "https://github.com/YOUR-USERNAME/sa20-pack",
   freeStartUrl: "",
-  paidPackUrl: "https://payhip.com/b/YOUR-PACK",
-  presetBundleUrl: "https://payhip.com/b/YOUR-BUNDLE",
-  pydanticPackUrl: "https://payhip.com/b/YOUR-PYDANTIC-PACK",
+  paidPackUrl: "https://pay.YOUR-DOMAIN.example/b/YOUR-PACK",
+  presetBundleUrl: "https://pay.YOUR-DOMAIN.example/b/YOUR-BUNDLE",
+  pydanticPackUrl: "https://pay.YOUR-DOMAIN.example/b/YOUR-PYDANTIC-PACK",
   cloudflareAnalyticsToken: "",
 };

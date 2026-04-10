@@ -4,8 +4,8 @@ window.SA20_SITE_CONFIG = {
   repoUrl: "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod",
   freeStartUrl:
     "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/blob/main/docs/quickstart.md",
-  paidPackUrl: "https://payhip.com/b/QimJ6",
-  presetBundleUrl: "https://payhip.com/b/wh2Ro",
-  pydanticPackUrl: "https://payhip.com/b/KamA1",
+  paidPackUrl: "https://pay.zippertools.org/b/QimJ6",
+  presetBundleUrl: "https://pay.zippertools.org/b/wh2Ro",
+  pydanticPackUrl: "https://pay.zippertools.org/b/KamA1",
   cloudflareAnalyticsToken: "",
 };
