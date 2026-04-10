@@ -4,19 +4,19 @@
 
 ## Free vs paid at a glance
 
-| Capability | Free scan | Edge-case pack | Preset bundle |
-| --- | --- | --- | --- |
-| Public CLI | Yes | Yes | Uses public CLI outputs |
-| Core deterministic transforms | Yes | Yes | Uses public CLI outputs |
-| Diff preview | Yes | Yes | Uses public CLI outputs |
-| JSON migration report | Yes | Yes, plus richer buyer docs | Uses public CLI outputs plus richer templates |
-| Manual-review findings | Yes | Yes | Uses public CLI outputs plus rollout guidance |
-| Wider edge-case coverage | No | Yes | No |
-| Preset bundles | No | Included | Yes |
-| Manager summary | No | Yes | Yes |
-| Rollout checklist | Basic public docs | Yes | Yes |
-| Human service dependency | No | No | No |
-| Full custom migration service | No | No | No |
+| Capability | Free scan | Edge-case pack | Preset bundle | Pydantic apply pack |
+| --- | --- | --- | --- | --- |
+| Public CLI | Yes | Yes | Uses public CLI outputs | Uses public fit scan outputs |
+| Core deterministic transforms | Yes | Yes | Uses public CLI outputs | No |
+| Diff preview | Yes | Yes | Uses public CLI outputs | No |
+| JSON migration report | Yes | Yes, plus richer buyer docs | Uses public CLI outputs plus richer templates | Yes, plus richer buyer docs |
+| Manual-review findings | Yes | Yes | Uses public CLI outputs plus rollout guidance | Yes |
+| Wider edge-case coverage | No | Yes | No | No |
+| Preset bundles | No | Included | Yes | No |
+| Manager summary | No | Yes | Yes | Yes |
+| Rollout checklist | Basic public docs | Yes | Yes | Yes |
+| Human service dependency | No | No | No | No |
+| Full custom migration service | No | No | No | No |
 
 ### Free scan
 
@@ -36,6 +36,8 @@ whether the repo is a fit before paying.
 ### One-time edge-case pack
 
 Product name: **`sa20-pack Edge-Case Migration Pack`**
+
+List price: **$299 per team**
 
 Launch price: **$99 per team**
 
@@ -57,21 +59,9 @@ What the buyer is really paying for:
 
 Product name: **`sa20-pack Preset Bundle`**
 
+List price: **$149 per team**
+
 Launch price: **$49 per team**
-
-### Pydantic apply pack
-
-Product name: **`pydantic-v2-porter Apply Pack`**
-
-Launch price: **$99 per team**
-
-What it includes:
-
-- safe validator rewrites
-- `BaseSettings` migration support
-- supported `root_validator(pre=True)` rewrites
-- safe config conversion for the documented subset
-- fail-closed unsupported findings
 
 What it includes:
 
@@ -85,6 +75,22 @@ What it does not include:
 - custom repo debugging
 - custom coding by a person
 - guaranteed full migration ownership
+
+### Pydantic apply pack
+
+Product name: **`pydantic-v2-porter Apply Pack`**
+
+List price: **$249 per team**
+
+Launch price: **$99 per team**
+
+What it includes:
+
+- safe validator rewrites
+- `BaseSettings` migration support
+- supported `root_validator(pre=True)` rewrites
+- safe config conversion for the documented subset
+- fail-closed unsupported findings
 
 ## Why the split works
 

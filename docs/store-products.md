@@ -9,7 +9,9 @@ pricing, and storefront links stay consistent.
 
 Name: `sa20-pack Edge-Case Migration Pack`
 
-Price: `$99.00` one-time per team
+List price: `$299.00` one-time per team
+
+Launch price: `$99.00` one-time per team
 
 Type: single-payment digital product
 
@@ -59,7 +61,9 @@ Suggested receipt email button:
 
 Name: `sa20-pack Preset Bundle`
 
-Price: `$49.00` one-time per team
+List price: `$149.00` one-time per team
+
+Launch price: `$49.00` one-time per team
 
 Type: single-payment digital product
 
@@ -109,7 +113,9 @@ Suggested receipt email button:
 
 Name: `pydantic-v2-porter Apply Pack`
 
-Price: `$99.00` one-time per team
+List price: `$249.00` one-time per team
+
+Launch price: `$99.00` one-time per team
 
 Type: single-payment digital product
 
