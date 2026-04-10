@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#08111f" />
+    <title>Fix root_validator(pre=True) for Pydantic v2 | pydantic-v2-porter</title>
+    <meta
+      name="description"
+      content="Qualify and fix supported pre root_validator migrations for Pydantic v2 with a free fit scan and a paid apply pack only when the repo fits."
+    />
+    <link
+      rel="canonical"
+      href="https://zippertools.org/pydantic-root-validator-pre-migration.html"
+    />
+    <meta
+      property="og:url"
+      content="https://zippertools.org/pydantic-root-validator-pre-migration.html"
+    />
+    <meta
+      property="og:image"
+      content="https://zippertools.org/og-preview.svg"
+    />
+    <meta property="og:site_name" content="sa20-pack" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="config.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap nav">
+        <a class="brand" href="index.html">sa20-pack</a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="pricing.html">Pricing</a>
+          <a href="demo.html">Demo</a>
+          <a href="policies.html">Policies</a>
+          <a href="#" data-repo-link>Repo</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="page-title">
+        <p class="kicker">Pydantic issue page</p>
+        <h1>Fix supported <code>root_validator(pre=True)</code> migrations for v2.</h1>
+        <p>
+          This page is for the narrow supported pre root-validator subset:
+          exact two-parameter classmethod roots that can be rewritten to
+          <code>@model_validator(mode="before")</code> without pretending to
+          cover the broader deprecated surface.
+        </p>
+        <ul class="eyebrow-list">
+          <li><a href="pydantic-v2-migration-pack.html">Pack details</a></li>
+          <li><a href="pydantic-validator-v2-migration.html">Also see validator rewrites</a></li>
+          <li><a href="pydantic-basesettings-migration.html">Also see BaseSettings</a></li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <div class="grid two">
+          <section class="page-panel">
+            <h2>What changes</h2>
+            <pre class="code-block">Before
+@root_validator(pre=True)
+def normalize_payload(cls, values):
+    return values
+
+After
+@model_validator(mode="before")
+@classmethod
+def normalize_payload(cls, values):
+    return values</pre>
+          </section>
+          <section class="page-panel">
+            <h2>Buying rule</h2>
+            <p>
+              Use the free fit scan first. Buy the pack only when your repo uses
+              supported pre root validators and does not lean on unsupported post
+              root-validator behavior.
+            </p>
+            <div class="link-row">
+              <a class="button secondary" href="pydantic-v2-migration-pack.html"
+                >Read pack details</a
+              >
+              <a class="button" href="#" data-pydantic-link
+                >Open Pydantic pack checkout</a
+              >
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="callout">
+          <h2>Do not buy based on this page alone</h2>
+          <p>
+            Post <code>root_validator</code> behavior and signature-heavy cases
+            remain outside the supported subset. Let the fit scan decide whether
+            the repo still belongs in the paid pack.
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

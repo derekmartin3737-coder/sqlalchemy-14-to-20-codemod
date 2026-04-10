@@ -41,6 +41,15 @@ Examples for the root SQLAlchemy product:
 The site now has dedicated landing pages for the first three issue-shaped
 queries above.
 
+Examples for the Pydantic pack:
+
+- `pydantic validator v2`
+- `pydantic BaseSettings pydantic-settings`
+- `root_validator pre pydantic v2`
+
+The storefront now has dedicated landing pages for those supported Pydantic
+queries too.
+
 ## Technical baseline
 
 The storefront should always have:

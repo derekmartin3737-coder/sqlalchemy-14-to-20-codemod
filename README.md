@@ -63,6 +63,13 @@ queries we already support:
 - [`select([columns])` migration](site/sqlalchemy-select-list-migration.html)
 - [`declarative_base` import migration](site/sqlalchemy-declarative-import-migration.html)
 
+The storefront also carries Pydantic v2 migration pages for the documented
+supported subset:
+
+- [`@validator(...)` migration](site/pydantic-validator-v2-migration.html)
+- [`BaseSettings` migration](site/pydantic-basesettings-migration.html)
+- [`root_validator(pre=True)` migration](site/pydantic-root-validator-pre-migration.html)
+
 ## Launch check
 
 Before announcing the public site, run:

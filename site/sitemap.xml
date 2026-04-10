@@ -22,6 +22,15 @@
     <loc>https://zippertools.org/pydantic-v2-migration-pack.html</loc>
   </url>
   <url>
+    <loc>https://zippertools.org/pydantic-validator-v2-migration.html</loc>
+  </url>
+  <url>
+    <loc>https://zippertools.org/pydantic-basesettings-migration.html</loc>
+  </url>
+  <url>
+    <loc>https://zippertools.org/pydantic-root-validator-pre-migration.html</loc>
+  </url>
+  <url>
     <loc>https://zippertools.org/sqlalchemy-query-get-migration.html</loc>
   </url>
   <url>

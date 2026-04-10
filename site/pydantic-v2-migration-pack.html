@@ -4,10 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#08111f" />
-    <title>Pydantic v2 Migration Pack | pydantic-v2-porter</title>
+    <title>Pydantic v1 to v2 Migration Pack | pydantic-v2-porter</title>
     <meta
       name="description"
-      content="Commercial Pydantic v1 to v2 apply pack for safe validator, settings, and config rewrites, with fail-closed unsupported findings."
+      content="Commercial Pydantic v1 to v2 apply pack for safe validator, BaseSettings, pre root_validator, and config rewrites, with fail-closed unsupported findings."
     />
     <link
       rel="canonical"
@@ -27,7 +27,7 @@
         "@context": "https://schema.org",
         "@type": "Product",
         "name": "pydantic-v2-porter Apply Pack",
-        "description": "Commercial Pydantic v1 to v2 apply pack for safe validator, settings, and config rewrites, with fail-closed unsupported findings.",
+        "description": "Commercial Pydantic v1 to v2 apply pack for safe validator, BaseSettings, pre root_validator, and config rewrites, with fail-closed unsupported findings.",
         "brand": {
           "@type": "Brand",
           "name": "pydantic-v2-porter"
@@ -70,6 +70,11 @@
           This pack is intentionally narrow: safe validator, config, and
           settings rewrites first, explicit unsupported findings second.
         </p>
+        <ul class="eyebrow-list">
+          <li><a href="pydantic-validator-v2-migration.html">Validator rewrites</a></li>
+          <li><a href="pydantic-basesettings-migration.html">BaseSettings move</a></li>
+          <li><a href="pydantic-root-validator-pre-migration.html">pre root_validator</a></li>
+        </ul>
         <div class="badge-row">
           <span class="badge">$249.99 one-time</span>
           <span class="badge">Downloadable apply pack</span>
@@ -92,6 +97,7 @@
             <ul class="clean">
               <li>safe validator rewrites</li>
               <li><code>BaseSettings</code> migration support</li>
+              <li>supported <code>root_validator(pre=True)</code> rewrites</li>
               <li>safe <code>Config</code> to <code>model_config</code> conversion</li>
               <li>explicit unsupported findings for riskier cases</li>
             </ul>
@@ -104,6 +110,36 @@
               <li>you have not yet qualified the repo against documented scope</li>
             </ul>
           </section>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="kicker">Search by issue</p>
+          <h2>Meet the exact Pydantic breakage instead of making buyers infer the fit.</h2>
+        </div>
+        <div class="grid three">
+          <a class="panel-link" href="pydantic-validator-v2-migration.html">
+            <article class="page-panel">
+              <p class="offer-label">Exact query page</p>
+              <h3>Fix <code>@validator(...)</code></h3>
+              <p>Built for the direct validator-to-field_validator migration path inside the supported subset.</p>
+            </article>
+          </a>
+          <a class="panel-link" href="pydantic-basesettings-migration.html">
+            <article class="page-panel">
+              <p class="offer-label">Exact query page</p>
+              <h3>Fix <code>BaseSettings</code></h3>
+              <p>Use this page when your repo still imports settings from the old package path.</p>
+            </article>
+          </a>
+          <a class="panel-link" href="pydantic-root-validator-pre-migration.html">
+            <article class="page-panel">
+              <p class="offer-label">Exact query page</p>
+              <h3>Fix pre <code>root_validator</code></h3>
+              <p>Built for the narrow supported pre root-validator migration, not the full deprecated surface.</p>
+            </article>
+          </a>
         </div>
       </section>
     </main>

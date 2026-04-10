@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#08111f" />
+    <title>Fix @validator for Pydantic v2 | pydantic-v2-porter</title>
+    <meta
+      name="description"
+      content="Qualify and fix simple @validator migrations for Pydantic v2 with a free fit scan and a paid apply pack only when the repo fits the documented subset."
+    />
+    <link
+      rel="canonical"
+      href="https://zippertools.org/pydantic-validator-v2-migration.html"
+    />
+    <meta
+      property="og:url"
+      content="https://zippertools.org/pydantic-validator-v2-migration.html"
+    />
+    <meta
+      property="og:image"
+      content="https://zippertools.org/og-preview.svg"
+    />
+    <meta property="og:site_name" content="sa20-pack" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="config.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap nav">
+        <a class="brand" href="index.html">sa20-pack</a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="pricing.html">Pricing</a>
+          <a href="demo.html">Demo</a>
+          <a href="policies.html">Policies</a>
+          <a href="#" data-repo-link>Repo</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="page-title">
+        <p class="kicker">Pydantic issue page</p>
+        <h1>Fix simple <code>@validator(...)</code> patterns for Pydantic v2.</h1>
+        <p>
+          This page is for the narrow supported validator subset: direct imports,
+          exact two-parameter classmethod signatures, and predictable decorator
+          rewrites that can be validated instead of guessed.
+        </p>
+        <ul class="eyebrow-list">
+          <li><a href="pydantic-v2-migration-pack.html">Pack details</a></li>
+          <li><a href="pydantic-basesettings-migration.html">Also see BaseSettings</a></li>
+          <li><a href="pydantic-root-validator-pre-migration.html">Also see pre root_validator</a></li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <div class="grid two">
+          <section class="page-panel">
+            <h2>What changes</h2>
+            <pre class="code-block">Before
+@validator("email")
+def normalize_email(cls, value):
+    return value.strip().lower()
+
+After
+@field_validator("email")
+@classmethod
+def normalize_email(cls, value):
+    return value.strip().lower()</pre>
+          </section>
+          <section class="page-panel">
+            <h2>Buying rule</h2>
+            <p>
+              Use the public fit scan first. Buy the pack only when the repo
+              stays inside the documented validator subset and the manual bucket
+              is still expensive enough to justify the one-time pack.
+            </p>
+            <div class="link-row">
+              <a class="button secondary" href="pydantic-v2-migration-pack.html"
+                >Read pack details</a
+              >
+              <a class="button" href="#" data-pydantic-link
+                >Open Pydantic pack checkout</a
+              >
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="callout">
+          <h2>Do not buy based on this page alone</h2>
+          <p>
+            If your validators lean on <code>values</code>, <code>each_item</code>,
+            alias-heavy imports, or broader signature behavior, the free fit scan
+            should decide the fit, not this example.
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

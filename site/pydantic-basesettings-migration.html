@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#08111f" />
+    <title>Fix BaseSettings for Pydantic v2 | pydantic-v2-porter</title>
+    <meta
+      name="description"
+      content="Qualify and fix BaseSettings migrations for Pydantic v2 with a free fit scan and a paid apply pack for the documented settings subset."
+    />
+    <link
+      rel="canonical"
+      href="https://zippertools.org/pydantic-basesettings-migration.html"
+    />
+    <meta
+      property="og:url"
+      content="https://zippertools.org/pydantic-basesettings-migration.html"
+    />
+    <meta
+      property="og:image"
+      content="https://zippertools.org/og-preview.svg"
+    />
+    <meta property="og:site_name" content="sa20-pack" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="config.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap nav">
+        <a class="brand" href="index.html">sa20-pack</a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="pricing.html">Pricing</a>
+          <a href="demo.html">Demo</a>
+          <a href="policies.html">Policies</a>
+          <a href="#" data-repo-link>Repo</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="page-title">
+        <p class="kicker">Pydantic issue page</p>
+        <h1>Move <code>BaseSettings</code> to <code>pydantic-settings</code> cleanly.</h1>
+        <p>
+          This is one of the clearest Pydantic v2 migration breakages: settings
+          code that still imports <code>BaseSettings</code> from the old package
+          path instead of the supported v2 split.
+        </p>
+        <ul class="eyebrow-list">
+          <li><a href="pydantic-v2-migration-pack.html">Pack details</a></li>
+          <li><a href="pydantic-validator-v2-migration.html">Also see validator rewrites</a></li>
+          <li><a href="pydantic-root-validator-pre-migration.html">Also see pre root_validator</a></li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <div class="grid two">
+          <section class="page-panel">
+            <h2>What changes</h2>
+            <pre class="code-block">Before
+from pydantic import BaseSettings
+
+After
+from pydantic_settings import BaseSettings</pre>
+          </section>
+          <section class="page-panel">
+            <h2>Buying rule</h2>
+            <p>
+              Buy the pack only after the fit scan shows the repo is inside the
+              documented settings/config subset and the remaining cleanup is still
+              worth paying to automate.
+            </p>
+            <div class="link-row">
+              <a class="button secondary" href="pydantic-v2-migration-pack.html"
+                >Read pack details</a
+              >
+              <a class="button" href="#" data-pydantic-link
+                >Open Pydantic pack checkout</a
+              >
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="callout">
+          <h2>Do not buy based on this page alone</h2>
+          <p>
+            If your settings layer is bundled with unsupported validator
+            signatures or removed config keys, the free fit scan should decide
+            the fit, not this one example.
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
