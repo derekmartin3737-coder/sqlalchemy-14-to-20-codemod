@@ -37,7 +37,7 @@ whether the repo is a fit before paying.
 
 Product name: **`sa20-pack Edge-Case Migration Pack`**
 
-Launch target: **$299 per team**
+Launch price: **$99 per team**
 
 What it adds:
 
@@ -57,7 +57,21 @@ What the buyer is really paying for:
 
 Product name: **`sa20-pack Preset Bundle`**
 
-Launch target: **$149 per team**
+Launch price: **$49 per team**
+
+### Pydantic apply pack
+
+Product name: **`pydantic-v2-porter Apply Pack`**
+
+Launch price: **$99 per team**
+
+What it includes:
+
+- safe validator rewrites
+- `BaseSettings` migration support
+- supported `root_validator(pre=True)` rewrites
+- safe config conversion for the documented subset
+- fail-closed unsupported findings
 
 What it includes:
 
