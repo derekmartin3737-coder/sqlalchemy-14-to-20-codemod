@@ -37,9 +37,9 @@ whether the repo is a fit before paying.
 
 Product name: **`sa20-pack Edge-Case Migration Pack`**
 
-List price: **$299 per team**
+List price: **$299.99 per team**
 
-Launch price: **$99 per team**
+Launch price: **$99.99 per team**
 
 What it adds:
 
@@ -59,9 +59,9 @@ What the buyer is really paying for:
 
 Product name: **`sa20-pack Preset Bundle`**
 
-List price: **$149 per team**
+List price: **$149.99 per team**
 
-Launch price: **$49 per team**
+Launch price: **$49.99 per team**
 
 What it includes:
 
@@ -80,9 +80,9 @@ What it does not include:
 
 Product name: **`pydantic-v2-porter Apply Pack`**
 
-List price: **$249 per team**
+List price: **$249.99 per team**
 
-Launch price: **$99 per team**
+Launch price: **$99.99 per team**
 
 What it includes:
 
