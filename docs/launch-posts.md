@@ -194,3 +194,153 @@ If this is the breakage you are hitting, start here:
 3. Link the issue page first, not the checkout page.
 4. Record the thread in the launch log.
 5. Watch which issue pages actually earn impressions and clicks.
+
+## Current Outreach Targets (2026-04-12)
+
+Use these first. They are closer to real migration pain than a generic
+"check out my tool" blast.
+
+### Owned Post 1: DEV Community
+
+Channel:
+https://dev.to/t/python/
+
+Title:
+SQLAlchemy 1.4 -> 2.0 migration tool for repetitive legacy patterns
+
+Body:
+
+I built a scanner-first SQLAlchemy 1.4 -> 2.0 migration tool for a narrow
+documented subset of legacy patterns.
+
+It is intentionally not a full "AI migration" promise. It handles supported
+patterns like:
+
+- `select([..])`
+- `session.query(Model).get(pk)`
+- simple string relationship joins
+- simple string loader options
+- legacy declarative imports
+- simple DML constructor keyword rewrites
+
+Unsupported patterns stay visible in a manual-review bucket, so the free scan
+can tell you whether a repo is even a fit before you pay for anything.
+
+Overview:
+https://zippertools.org/sqlalchemy-migration-tool.html
+
+### Owned Post 2: GitHub Discussion In Our Repo
+
+Why this one matters:
+GitHub Discussions is explicitly meant for announcements, questions, and
+ongoing community conversation around a repository.
+
+Source:
+https://docs.github.com/discussions/collaborating-with-your-community-using-discussions/about-discussions
+
+Suggested title:
+SQLAlchemy 1.4 -> 2.0 migration pain tracker and free scan
+
+Suggested body:
+
+If you are upgrading a SQLAlchemy 1.4 codebase and keep running into old
+legacy Core or ORM patterns, reply with the exact warning or API shape.
+
+The current public scanner covers a narrow safe subset and intentionally sends
+unsupported cases to manual review instead of guessing.
+
+Broad overview:
+https://zippertools.org/sqlalchemy-migration-tool.html
+
+Exact issue pages:
+- https://zippertools.org/sqlalchemy-query-get-migration.html
+- https://zippertools.org/sqlalchemy-select-list-migration.html
+- https://zippertools.org/sqlalchemy-string-join-migration.html
+- https://zippertools.org/sqlalchemy-joinedload-string-migration.html
+- https://zippertools.org/sqlalchemy-insert-values-migration.html
+- https://zippertools.org/sqlalchemy-declarative-import-migration.html
+
+### Reply Target 1: Apache Airflow Query Migration Thread
+
+Thread:
+https://github.com/apache/airflow/issues/59402
+
+Why it fits:
+The issue is specifically about removing deprecated `Query` usage during the
+SQLAlchemy 2.0 transition.
+
+Reply:
+
+If helpful, I built a narrow scanner-first tool for a few of the repetitive
+SQLAlchemy 1.4 -> 2.0 cleanups that show up inside these migrations.
+
+It does not try to automate full `Query -> select()` conversion, but it does
+cover supported legacy patterns like `session.query(Model).get(pk)` plus some
+string join / loader / DML cleanup, and it pushes unsupported cases into a
+manual-review bucket instead of guessing.
+
+Broad overview:
+https://zippertools.org/sqlalchemy-migration-tool.html
+
+Exact `Query.get()` page:
+https://zippertools.org/sqlalchemy-query-get-migration.html
+
+### Reply Target 2: Apache Airflow Deprecation Tracker
+
+Thread:
+https://github.com/apache/airflow/issues/28723
+
+Why it fits:
+The body already contains exact warnings that match supported pages, including
+string loader-path warnings and list-style `select()` warnings.
+
+Reply:
+
+Some of the warnings in this tracker line up with a narrow scanner-first tool
+I built for repetitive SQLAlchemy 1.4 -> 2.0 cleanup.
+
+It only handles a documented safe subset, but two of the exact pain points in
+this issue are already covered:
+
+- list-style `select([..])`
+- simple string loader / relationship paths when the root entity is obvious
+
+I would still start with the free scan and let the unsupported bucket decide
+fit instead of assuming broad coverage.
+
+Overview:
+https://zippertools.org/sqlalchemy-migration-tool.html
+
+Exact pages:
+https://zippertools.org/sqlalchemy-select-list-migration.html
+https://zippertools.org/sqlalchemy-joinedload-string-migration.html
+
+### Reply Target 3: Flask-SQLAlchemy Migration Thread
+
+Thread:
+https://github.com/pallets-eco/flask-sqlalchemy/issues/1010
+
+Why it fits:
+The thread is directly about moving away from `session.query(Model)` during the
+SQLAlchemy 2.0 transition.
+
+Reply:
+
+If it helps anyone working through the legacy API cleanup side of this, I
+built a narrow SQLAlchemy 1.4 -> 2.0 migration scanner that qualifies a repo
+before any paid step.
+
+It is not a broad `Query -> select()` migration promise, but it does help on
+documented legacy patterns that tend to travel with this work, and it leaves
+unsupported cases visible instead of faking confidence.
+
+Broad overview:
+https://zippertools.org/sqlalchemy-migration-tool.html
+
+### Avoid For Cold Promotion
+
+Python Discourse explicitly says spam or blatant self-promotion will be
+removed, so do not use it for a cold launch blast.
+
+Source:
+https://discuss.python.org/guidelines
