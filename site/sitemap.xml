@@ -37,6 +37,9 @@
     <loc>https://zippertools.org/sqlalchemy-query-get-migration.html</loc>
   </url>
   <url>
+    <loc>https://zippertools.org/sqlalchemy-session-query-migration.html</loc>
+  </url>
+  <url>
     <loc>https://zippertools.org/sqlalchemy-select-list-migration.html</loc>
   </url>
   <url>
@@ -53,5 +56,8 @@
   </url>
   <url>
     <loc>https://zippertools.org/sqlalchemy-insert-values-migration.html</loc>
+  </url>
+  <url>
+    <loc>https://zippertools.org/sqlalchemy-engine-execute-removed.html</loc>
   </url>
 </urlset>

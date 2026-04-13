@@ -72,6 +72,7 @@
         </p>
         <ul class="eyebrow-list">
           <li><a href="sqlalchemy-migration-tool.html">SQLAlchemy migration tool overview</a></li>
+          <li><a href="sqlalchemy-session-query-migration.html">session.query migration</a></li>
           <li><a href="sqlalchemy-query-get-migration.html">Query.get() migration</a></li>
           <li><a href="sqlalchemy-select-list-migration.html">select([..]) migration</a></li>
           <li><a href="sqlalchemy-declarative-import-migration.html">Declarative import migration</a></li>
@@ -183,6 +184,14 @@
             unsupported bucket, then buy the pack only if the report shows a
             repo that fits published scope. That keeps the buying rule simple
             and makes the spend easy to defend to an engineering manager.
+          </p>
+          <p>
+            If your repo is dominated by
+            <a href="sqlalchemy-engine-execute-removed.html"
+              ><code>engine.execute(...)</code></a
+            >
+            or broader Query-shape rewrites, treat that as a manual-review
+            signal, not automatic fit.
           </p>
         </div>
       </section>

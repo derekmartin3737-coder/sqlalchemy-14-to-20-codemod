@@ -60,11 +60,13 @@ The storefront now has exact-problem landing pages for the highest-signal
 queries we already support:
 
 - [SQLAlchemy migration tool overview](site/sqlalchemy-migration-tool.html)
+- [`session.query` migration](site/sqlalchemy-session-query-migration.html)
 - [`session.query(...).get()` migration](site/sqlalchemy-query-get-migration.html)
 - [`select([columns])` migration](site/sqlalchemy-select-list-migration.html)
 - [`declarative_base` import migration](site/sqlalchemy-declarative-import-migration.html)
 - [`join("addresses")` migration](site/sqlalchemy-string-join-migration.html)
 - [`joinedload("addresses")` migration](site/sqlalchemy-joinedload-string-migration.html)
+- [`engine.execute(...)` removed](site/sqlalchemy-engine-execute-removed.html)
 - [`insert(table, values=...)` migration](site/sqlalchemy-insert-values-migration.html)
 
 The storefront also carries Pydantic v2 migration pages for the documented

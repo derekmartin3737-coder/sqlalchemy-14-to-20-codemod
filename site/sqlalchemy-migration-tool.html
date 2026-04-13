@@ -62,6 +62,7 @@
         </p>
         <ul class="eyebrow-list">
           <li><a href="sqlalchemy-14-to-20-migration-pack.html">Pack details</a></li>
+          <li><a href="sqlalchemy-session-query-migration.html">session.query migration</a></li>
           <li><a href="sqlalchemy-query-get-migration.html">Query.get() migration</a></li>
           <li><a href="sqlalchemy-select-list-migration.html">select([..]) migration</a></li>
           <li><a href="sqlalchemy-declarative-import-migration.html">Declarative import migration</a></li>
@@ -112,6 +113,16 @@
           <h2>Exact issue pages are still the fastest path from pain to fit.</h2>
         </div>
         <div class="grid three">
+          <a class="panel-link" href="sqlalchemy-session-query-migration.html">
+            <article class="page-panel">
+              <p class="offer-label">Exact query page</p>
+              <h3>Fix <code>session.query</code> migration</h3>
+              <p>
+                Start here when the exact Query-era breakage is still unclear
+                and needs narrowing first.
+              </p>
+            </article>
+          </a>
           <a class="panel-link" href="sqlalchemy-query-get-migration.html">
             <article class="page-panel">
               <p class="offer-label">Exact query page</p>
@@ -188,6 +199,16 @@
               <p>
                 Useful when the repo still carries simple constructor-keyword
                 DML calls into the 2.0 migration.
+              </p>
+            </article>
+          </a>
+          <a class="panel-link" href="sqlalchemy-engine-execute-removed.html">
+            <article class="page-panel">
+              <p class="offer-label">Manual-review page</p>
+              <h3>Handle <code>engine.execute(...)</code></h3>
+              <p>
+                Use this page when the repo hits a high-signal unsupported
+                breakage and you need the truthful boundary.
               </p>
             </article>
           </a>

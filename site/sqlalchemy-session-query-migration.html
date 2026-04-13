@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#08111f" />
+    <title>SQLAlchemy 2.0 session.query migration guide | sa20-pack</title>
+    <meta
+      name="description"
+      content="If you searched for SQLAlchemy 2.0 session.query migration, narrow the exact breakage first: Query.get, string joins, string loader paths, and broader Query cleanup have different buying rules."
+    />
+    <link
+      rel="canonical"
+      href="https://zippertools.org/sqlalchemy-session-query-migration.html"
+    />
+    <meta
+      property="og:url"
+      content="https://zippertools.org/sqlalchemy-session-query-migration.html"
+    />
+    <meta
+      property="og:image"
+      content="https://zippertools.org/og-preview.svg"
+    />
+    <meta property="og:site_name" content="sa20-pack" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="config.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap nav">
+        <a class="brand" href="index.html">sa20-pack</a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="pricing.html">Pricing</a>
+          <a href="demo.html">Demo</a>
+          <a href="policies.html">Policies</a>
+          <a href="#" data-repo-link>Repo</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="page-title">
+        <p class="kicker">SQLAlchemy issue page</p>
+        <h1>If you searched for <code>session.query</code> migration, narrow the exact breakage before you buy anything.</h1>
+        <p>
+          A lot of teams say "session.query is deprecated" when the real pain is
+          one of a few narrower changes around the old <code>Query</code> API:
+          <code>Query.get()</code>, string relationship joins, string loader
+          paths, or broader query-shape rewrites. sa20-pack is intentionally not
+          a full <code>Query -&gt; select()</code> migration promise.
+        </p>
+        <ul class="eyebrow-list">
+          <li><a href="sqlalchemy-migration-tool.html">SQLAlchemy migration tool overview</a></li>
+          <li><a href="sqlalchemy-14-to-20-migration-pack.html">Pack details</a></li>
+          <li><a href="sqlalchemy-query-get-migration.html">Exact Query.get page</a></li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <div class="grid two">
+          <section class="page-panel">
+            <h2>What people usually mean</h2>
+            <ul class="clean">
+              <li><code>session.query(Model).get(pk)</code></li>
+              <li><code>session.query(Model).join("relationship")</code></li>
+              <li><code>session.query(Model).options(joinedload("relationship"))</code></li>
+              <li>broader <code>Query</code> helper removal outside current pack scope</li>
+            </ul>
+          </section>
+          <section class="page-panel">
+            <h2>Buying rule</h2>
+            <p>
+              Run the free scan first. Buy the pack when the report shows
+              supported patterns clustered together. Do not buy if your repo is
+              mostly asking for a broad <code>Query -&gt; select()</code> rewrite.
+            </p>
+            <div class="link-row">
+              <a class="button secondary" href="#" data-free-link
+                >Run the free scan</a
+              >
+              <a class="button" href="#" data-pack-link>Open pack checkout</a>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="grid three">
+          <a class="panel-link" href="sqlalchemy-query-get-migration.html">
+            <article class="page-panel">
+              <p class="offer-label">Exact query page</p>
+              <h3>Fix <code>Query.get()</code></h3>
+              <p>Use this when the real blocker is <code>session.query(...).get()</code>.</p>
+            </article>
+          </a>
+          <a class="panel-link" href="sqlalchemy-string-join-migration.html">
+            <article class="page-panel">
+              <p class="offer-label">Exact query page</p>
+              <h3>Fix string <code>join()</code></h3>
+              <p>Use this when the repo still joins by relationship name strings.</p>
+            </article>
+          </a>
+          <a class="panel-link" href="sqlalchemy-joinedload-string-migration.html">
+            <article class="page-panel">
+              <p class="offer-label">Exact query page</p>
+              <h3>Fix string loader paths</h3>
+              <p>Use this when the migration pain is old <code>joinedload("...")</code> calls.</p>
+            </article>
+          </a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="callout">
+          <h2>What this page is not saying</h2>
+          <p>
+            <code>session.query</code> itself is not the whole problem. This
+            page exists to route search traffic to the exact issue page that
+            matches the repo, not to blur different SQLAlchemy 2.0 changes into
+            one fake promise.
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

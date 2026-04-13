@@ -112,6 +112,8 @@ Use the exact-problem page first and the product page second.
   `https://zippertools.org/sqlalchemy-migration-tool.html`
 - `Query.get()` page:
   `https://zippertools.org/sqlalchemy-query-get-migration.html`
+- `session.query` page:
+  `https://zippertools.org/sqlalchemy-session-query-migration.html`
 - `select([..])` page:
   `https://zippertools.org/sqlalchemy-select-list-migration.html`
 - declarative import page:
@@ -122,6 +124,8 @@ Use the exact-problem page first and the product page second.
   `https://zippertools.org/sqlalchemy-joinedload-string-migration.html`
 - joinedload_all page:
   `https://zippertools.org/sqlalchemy-joinedload-all-migration.html`
+- `engine.execute(...)` page:
+  `https://zippertools.org/sqlalchemy-engine-execute-removed.html`
 - DML keyword page:
   `https://zippertools.org/sqlalchemy-insert-values-migration.html`
 
