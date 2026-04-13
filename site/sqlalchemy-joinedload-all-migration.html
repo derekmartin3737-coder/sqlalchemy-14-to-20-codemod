@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#08111f" />
+    <title>Retire joinedload_all for SQLAlchemy 2.0 | sa20-pack</title>
+    <meta
+      name="description"
+      content="Handle joinedload_all deprecation more safely during SQLAlchemy 1.4 to 2.0 migration: separate supported loader cleanup from duplicate-join and manual-review cases, and run the free scan first."
+    />
+    <link
+      rel="canonical"
+      href="https://zippertools.org/sqlalchemy-joinedload-all-migration.html"
+    />
+    <meta
+      property="og:url"
+      content="https://zippertools.org/sqlalchemy-joinedload-all-migration.html"
+    />
+    <meta
+      property="og:image"
+      content="https://zippertools.org/og-preview.svg"
+    />
+    <meta property="og:site_name" content="sa20-pack" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="config.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap nav">
+        <a class="brand" href="index.html">sa20-pack</a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="pricing.html">Pricing</a>
+          <a href="demo.html">Demo</a>
+          <a href="policies.html">Policies</a>
+          <a href="#" data-repo-link>Repo</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="page-title">
+        <p class="kicker">SQLAlchemy issue page</p>
+        <h1>Retire <code>joinedload_all(...)</code> without pretending duplicate joins are a one-line rewrite.</h1>
+        <p>
+          Teams usually hit this during the SQLAlchemy 1.4 to 2.0 move when old
+          eager-loading paths collide with manual <code>join()</code> calls,
+          <code>contains_eager()</code>, aliases, or deeper path semantics.
+          sa20-pack keeps that boundary explicit: automate the supported loader
+          cleanup, and leave the risky query-shape cases visible for follow-up.
+        </p>
+        <ul class="eyebrow-list">
+          <li><a href="sqlalchemy-14-to-20-migration-pack.html">Pack details</a></li>
+          <li><a href="sqlalchemy-joinedload-string-migration.html">Also see joinedload strings</a></li>
+          <li><a href="sqlalchemy-migration-tool.html">SQLAlchemy migration tool overview</a></li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <div class="grid two">
+          <section class="page-panel">
+            <h2>What teams are usually moving toward</h2>
+            <pre class="code-block">Before
+joinedload_all("children.school")
+joinedload_all("children.teacher")
+
+After
+joinedload(Parent.children).joinedload(Child.school)
+joinedload(Parent.children).joinedload(Child.teacher)</pre>
+          </section>
+          <section class="page-panel">
+            <h2>Buying rule</h2>
+            <p>
+              Run the free scan first. Buy the pack when
+              <code>joinedload_all(...)</code> cleanup appears beside other
+              supported loader and query findings, and the remaining manual
+              bucket is still expensive enough to justify a pack.
+            </p>
+            <div class="link-row">
+              <a class="button secondary" href="#" data-free-link
+                >Run the free scan</a
+              >
+              <a class="button" href="#" data-pack-link>Open pack checkout</a>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="callout">
+          <h2>Do not buy based on this page alone</h2>
+          <p>
+            Queries that already mix manual <code>join()</code>,
+            <code>contains_eager()</code>, alias-heavy loaders, or duplicate-join
+            avoidance still need deliberate review. This storefront does not
+            claim to auto-resolve broader eager-loading semantics just because
+            <code>joinedload_all(...)</code> appears in the repo.
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
