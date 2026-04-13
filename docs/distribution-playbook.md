@@ -39,7 +39,7 @@ Examples for the root SQLAlchemy product:
 - `sqlalchemy upgrade codemod`
 
 The site now has dedicated landing pages for the first three issue-shaped
-queries above.
+queries above, plus a broader category page for `sqlalchemy migration tool`.
 
 Examples for the Pydantic pack:
 

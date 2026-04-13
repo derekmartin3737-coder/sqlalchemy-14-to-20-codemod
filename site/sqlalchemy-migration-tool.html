@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#08111f" />
+    <title>SQLAlchemy Migration Tool for 1.4 to 2.0 | sa20-pack</title>
+    <meta
+      name="description"
+      content="Use a free SQLAlchemy migration tool to qualify legacy 1.4 to 2.0 patterns, then buy the apply pack only when the repo fits the documented subset."
+    />
+    <link
+      rel="canonical"
+      href="https://zippertools.org/sqlalchemy-migration-tool.html"
+    />
+    <meta
+      property="og:url"
+      content="https://zippertools.org/sqlalchemy-migration-tool.html"
+    />
+    <meta
+      property="og:image"
+      content="https://zippertools.org/og-preview.svg"
+    />
+    <meta property="og:site_name" content="sa20-pack" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "SQLAlchemy Migration Tool for 1.4 to 2.0",
+        "description": "Use a free SQLAlchemy migration tool to qualify legacy 1.4 to 2.0 patterns, then buy the apply pack only when the repo fits the documented subset.",
+        "url": "https://zippertools.org/sqlalchemy-migration-tool.html"
+      }
+    </script>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="config.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap nav">
+        <a class="brand" href="index.html">sa20-pack</a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="pricing.html">Pricing</a>
+          <a href="demo.html">Demo</a>
+          <a href="policies.html">Policies</a>
+          <a href="#" data-repo-link>Repo</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="page-title">
+        <p class="kicker">SQLAlchemy category page</p>
+        <h1>A SQLAlchemy migration tool for the 1.4 to 2.0 breakages teams keep fixing by hand.</h1>
+        <p>
+          Start with the free scan. It qualifies whether the repo fits the
+          documented SQLAlchemy 1.4 to 2.0 subset, shows the supported
+          candidates, and leaves unsupported work visible before you spend
+          money on the apply pack.
+        </p>
+        <ul class="eyebrow-list">
+          <li><a href="sqlalchemy-14-to-20-migration-pack.html">Pack details</a></li>
+          <li><a href="sqlalchemy-query-get-migration.html">Query.get() migration</a></li>
+          <li><a href="sqlalchemy-select-list-migration.html">select([..]) migration</a></li>
+          <li><a href="sqlalchemy-declarative-import-migration.html">Declarative import migration</a></li>
+        </ul>
+        <div class="badge-row">
+          <span class="badge">SQLAlchemy 1.4 -> 2.0</span>
+          <span class="badge">Free scan first</span>
+          <span class="badge">Launch price $99.99</span>
+          <span class="badge">No hosted API</span>
+        </div>
+        <div class="actions">
+          <a class="button secondary" href="#" data-free-link
+            >Run the free scan first</a
+          >
+          <a class="button" href="#" data-pack-link>Open pack checkout</a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="grid two">
+          <section class="page-panel">
+            <h2>What this SQLAlchemy migration tool handles today</h2>
+            <ul class="clean">
+              <li><code>select([..])</code> list syntax rewrites</li>
+              <li><code>session.query(Model).get(pk)</code> rewrites</li>
+              <li>simple string relationship <code>join()</code> cleanup</li>
+              <li>simple string loader option cleanup</li>
+              <li>legacy DML constructor keyword rewrites</li>
+              <li>legacy declarative import moves</li>
+            </ul>
+          </section>
+          <section class="page-panel">
+            <h2>What it does not claim</h2>
+            <ul class="clean">
+              <li>full <code>Query</code> to <code>select()</code> migration</li>
+              <li><code>engine.execute(...)</code> automation</li>
+              <li>transaction semantics cleanup</li>
+              <li>async migration support</li>
+              <li>guesses through custom wrappers or ambiguous behavior</li>
+            </ul>
+          </section>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="kicker">Start narrower</p>
+          <h2>Exact issue pages are still the fastest path from pain to fit.</h2>
+        </div>
+        <div class="grid three">
+          <a class="panel-link" href="sqlalchemy-query-get-migration.html">
+            <article class="page-panel">
+              <p class="offer-label">Exact query page</p>
+              <h3>Fix <code>session.query(...).get()</code></h3>
+              <p>
+                Use this page when the upgrade is blocked by the move from
+                <code>Query.get()</code> to <code>Session.get()</code>.
+              </p>
+            </article>
+          </a>
+          <a class="panel-link" href="sqlalchemy-select-list-migration.html">
+            <article class="page-panel">
+              <p class="offer-label">Exact query page</p>
+              <h3>Fix <code>select([columns])</code></h3>
+              <p>
+                Built for the legacy list-style <code>select()</code> calls that
+                still show up in 2.0 upgrades.
+              </p>
+            </article>
+          </a>
+          <a
+            class="panel-link"
+            href="sqlalchemy-declarative-import-migration.html"
+          >
+            <article class="page-panel">
+              <p class="offer-label">Exact query page</p>
+              <h3>Fix declarative imports</h3>
+              <p>
+                Useful when the repo still carries the old declarative import
+                paths through the ORM migration.
+              </p>
+            </article>
+          </a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="callout">
+          <h2>Buying rule</h2>
+          <p>
+            Treat this as a repo-qualification tool first and a paid product
+            second. Run the free scan, inspect the supported candidates and
+            unsupported findings, then buy the pack only if the remaining
+            manual bucket is still expensive enough to justify it.
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

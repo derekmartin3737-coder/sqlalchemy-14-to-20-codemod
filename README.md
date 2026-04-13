@@ -59,6 +59,7 @@ See [quickstart](docs/quickstart.md).
 The storefront now has exact-problem landing pages for the highest-signal
 queries we already support:
 
+- [SQLAlchemy migration tool overview](site/sqlalchemy-migration-tool.html)
 - [`session.query(...).get()` migration](site/sqlalchemy-query-get-migration.html)
 - [`select([columns])` migration](site/sqlalchemy-select-list-migration.html)
 - [`declarative_base` import migration](site/sqlalchemy-declarative-import-migration.html)
