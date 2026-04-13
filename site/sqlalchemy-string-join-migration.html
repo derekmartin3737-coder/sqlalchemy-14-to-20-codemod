@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#08111f" />
+    <title>Fix session.query(...).join(&quot;addresses&quot;) for SQLAlchemy 2.0 | sa20-pack</title>
+    <meta
+      name="description"
+      content="Qualify and fix simple string relationship joins like session.query(...).join(&quot;addresses&quot;) during SQLAlchemy 1.4 to 2.0 migration with a free scan first."
+    />
+    <link
+      rel="canonical"
+      href="https://zippertools.org/sqlalchemy-string-join-migration.html"
+    />
+    <meta
+      property="og:url"
+      content="https://zippertools.org/sqlalchemy-string-join-migration.html"
+    />
+    <meta
+      property="og:image"
+      content="https://zippertools.org/og-preview.svg"
+    />
+    <meta property="og:site_name" content="sa20-pack" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="config.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap nav">
+        <a class="brand" href="index.html">sa20-pack</a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="pricing.html">Pricing</a>
+          <a href="demo.html">Demo</a>
+          <a href="policies.html">Policies</a>
+          <a href="#" data-repo-link>Repo</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="page-title">
+        <p class="kicker">SQLAlchemy issue page</p>
+        <h1>Fix <code>session.query(...).join("addresses")</code> without manually tracing every relationship.</h1>
+        <p>
+          This page targets the supported simple string relationship join path:
+          when the root entity is obvious, the pack can qualify and rewrite the
+          old string join into an attribute-based join.
+        </p>
+        <ul class="eyebrow-list">
+          <li><a href="sqlalchemy-14-to-20-migration-pack.html">Pack details</a></li>
+          <li><a href="sqlalchemy-joinedload-string-migration.html">Also see joinedload strings</a></li>
+          <li><a href="sqlalchemy-migration-tool.html">SQLAlchemy migration tool overview</a></li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <div class="grid two">
+          <section class="page-panel">
+            <h2>What changes</h2>
+            <pre class="code-block">Before
+session.query(User).join("addresses")
+
+After
+session.query(User).join(User.addresses)</pre>
+          </section>
+          <section class="page-panel">
+            <h2>Buying rule</h2>
+            <p>
+              Run the free scan first. Buy the pack when this pattern shows up
+              with other supported SQLAlchemy breakages and the remaining manual
+              bucket is still worth paying to shrink.
+            </p>
+            <div class="link-row">
+              <a class="button secondary" href="#" data-free-link
+                >Run the free scan</a
+              >
+              <a class="button" href="#" data-pack-link>Open pack checkout</a>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="callout">
+          <h2>Do not buy based on this page alone</h2>
+          <p>
+            This supported path is for simple string relationship names when the
+            root entity is obvious. Multi-hop joins, alias-heavy query shapes,
+            or broader <code>Query</code> cleanup still need the free scan to
+            decide whether the repo actually fits.
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

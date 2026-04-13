@@ -35,10 +35,13 @@ Examples for the root SQLAlchemy product:
 - `session.query get sqlalchemy 2.0`
 - `select([columns]) sqlalchemy 2.0`
 - `declarative_base sqlalchemy 2.0 import`
+- `join("addresses") sqlalchemy 2.0`
+- `joinedload("addresses") sqlalchemy 2.0`
+- `insert(table, values=...) sqlalchemy 2.0`
 - `sqlalchemy 1.4 to 2.0 migration tool`
 - `sqlalchemy upgrade codemod`
 
-The site now has dedicated landing pages for the first three issue-shaped
+The site now has dedicated landing pages for six issue-shaped SQLAlchemy
 queries above, plus a broader category page for `sqlalchemy migration tool`.
 
 Examples for the Pydantic pack:

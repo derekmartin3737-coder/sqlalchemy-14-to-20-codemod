@@ -42,4 +42,13 @@
   <url>
     <loc>https://zippertools.org/sqlalchemy-declarative-import-migration.html</loc>
   </url>
+  <url>
+    <loc>https://zippertools.org/sqlalchemy-string-join-migration.html</loc>
+  </url>
+  <url>
+    <loc>https://zippertools.org/sqlalchemy-joinedload-string-migration.html</loc>
+  </url>
+  <url>
+    <loc>https://zippertools.org/sqlalchemy-insert-values-migration.html</loc>
+  </url>
 </urlset>

@@ -63,6 +63,9 @@ queries we already support:
 - [`session.query(...).get()` migration](site/sqlalchemy-query-get-migration.html)
 - [`select([columns])` migration](site/sqlalchemy-select-list-migration.html)
 - [`declarative_base` import migration](site/sqlalchemy-declarative-import-migration.html)
+- [`join("addresses")` migration](site/sqlalchemy-string-join-migration.html)
+- [`joinedload("addresses")` migration](site/sqlalchemy-joinedload-string-migration.html)
+- [`insert(table, values=...)` migration](site/sqlalchemy-insert-values-migration.html)
 
 The storefront also carries Pydantic v2 migration pages for the documented
 supported subset:
@@ -116,6 +119,7 @@ The command fails if required launch assets are missing or if
 - [Launch log](docs/launch-log.md)
 - [KPI dashboard](docs/kpi-dashboard.md)
 - [Distribution playbook](docs/distribution-playbook.md)
+- [Launch posts](docs/launch-posts.md)
 - [Packaging](docs/packaging.md)
 - [Release checklist](docs/release-checklist.md)
 - [Limitations](docs/limitations.md)
