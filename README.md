@@ -6,6 +6,20 @@ reports, and commercial-pack docs.
 
 Website: [zippertools.org](https://zippertools.org/)
 
+## Start With The Exact Breakage
+
+| Problem | Page |
+| --- | --- |
+| `OptionEngine` has no `execute` | [Fix the OptionEngine execute error](https://zippertools.org/sqlalchemy/optionengine-execute-error/) |
+| `Engine` has no `execute` | [Fix the Engine execute error](https://zippertools.org/sqlalchemy/engine-attribute-error-execute/) |
+| `Query.get()` warnings | [Fix LegacyAPIWarning for Query.get](https://zippertools.org/sqlalchemy/legacyapiwarning-query-get/) |
+| `select([..])` legacy syntax | [Fix legacy select warnings](https://zippertools.org/sqlalchemy/select-legacy-mode-warning/) |
+| `joinedload_all` removal | [Fix joinedload_all migration issues](https://zippertools.org/sqlalchemy/joinedload-all-nameerror/) |
+| Unsure where to start | [SQLAlchemy 2.0 migration triage checklist](https://zippertools.org/sqlalchemy/sqlalchemy-20-triage-checklist/) |
+| Automation or manual migration | [Manual migration vs codemod](https://zippertools.org/sqlalchemy/sqlalchemy-manual-vs-codemod/) |
+| Pydantic `BaseSettings` import error | [Fix BaseSettings import errors](https://zippertools.org/pydantic/basesettings-import-error/) |
+| Pydantic `@validator` warnings | [Fix Pydantic validator deprecation warnings](https://zippertools.org/pydantic/validator-deprecation-warning/) |
+
 It is deliberately opinionated:
 
 - free scanner first
@@ -56,25 +70,25 @@ See [quickstart](docs/quickstart.md).
 
 ## Searchable issue pages
 
-The storefront now has exact-problem landing pages for the highest-signal
-queries we already support:
+The storefront has exact-problem landing pages for the highest-signal queries
+we already support:
 
-- [SQLAlchemy migration tool overview](site/sqlalchemy-migration-tool.html)
-- [`session.query` migration](site/sqlalchemy-session-query-migration.html)
-- [`session.query(...).get()` migration](site/sqlalchemy-query-get-migration.html)
-- [`select([columns])` migration](site/sqlalchemy-select-list-migration.html)
-- [`declarative_base` import migration](site/sqlalchemy-declarative-import-migration.html)
-- [`join("addresses")` migration](site/sqlalchemy-string-join-migration.html)
-- [`joinedload("addresses")` migration](site/sqlalchemy-joinedload-string-migration.html)
-- [`engine.execute(...)` removed](site/sqlalchemy-engine-execute-removed.html)
-- [`insert(table, values=...)` migration](site/sqlalchemy-insert-values-migration.html)
+- [SQLAlchemy migration tool overview](https://zippertools.org/products/sa20-pack/)
+- [`session.query` migration](https://zippertools.org/sqlalchemy/session-query-migration/)
+- [`session.query(...).get()` migration](https://zippertools.org/sqlalchemy/session-query-get/)
+- [`select([columns])` migration](https://zippertools.org/sqlalchemy/select-list-syntax/)
+- [`declarative_base` import migration](https://zippertools.org/sqlalchemy/declarative-imports/)
+- [`join("addresses")` migration](https://zippertools.org/sqlalchemy/string-join-paths/)
+- [`joinedload("addresses")` migration](https://zippertools.org/sqlalchemy/string-loader-options/)
+- [`engine.execute(...)` removed](https://zippertools.org/sqlalchemy/engine-execute-removed/)
+- [`insert(table, values=...)` migration](https://zippertools.org/sqlalchemy/insert-values-kwargs/)
 
 The storefront also carries Pydantic v2 migration pages for the documented
 supported subset:
 
-- [`@validator(...)` migration](site/pydantic-validator-v2-migration.html)
-- [`BaseSettings` migration](site/pydantic-basesettings-migration.html)
-- [`root_validator(pre=True)` migration](site/pydantic-root-validator-pre-migration.html)
+- [`@validator(...)` migration](https://zippertools.org/pydantic/validator-to-field-validator/)
+- [`BaseSettings` migration](https://zippertools.org/pydantic/basesettings-import-error/)
+- [`root_validator(pre=True)` migration](https://zippertools.org/pydantic/root-validator-pre/)
 
 ## Launch check
 
