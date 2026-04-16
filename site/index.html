@@ -34,6 +34,38 @@
         "description": "Free scanner and paid apply pack for narrow SQLAlchemy 1.4 to 2.0 legacy breakages."
       }
     </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Why not just use the SQLAlchemy migration guide?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You still should. This tool exists to remove the repetitive edits and leave the dangerous parts visible for deliberate follow-up by the repo owner."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I know whether the SQLAlchemy 2.0 migration worked?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The free scan report shows supported candidates and unsupported findings. The paid apply pack adds validation results and the post-run migration report."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What if my repo is outside current SQLAlchemy migration coverage?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Use the free scan first. If the unsupported bucket is still faster to fix by hand, do not buy. If the unsupported patterns are the recurring expensive ones, that is where the paid layer helps."
+            }
+          }
+        ]
+      }
+    </script>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="stylesheet" href="styles.css" />
