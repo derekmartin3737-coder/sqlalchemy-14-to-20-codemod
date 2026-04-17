@@ -191,26 +191,40 @@ And the migration runner itself should produce a structured report showing:
 - The tracked public repo is now being split into community scanners only so
   public GitHub establishes trust without exposing the full commercial apply
   engines.
+- Discovery is the active bottleneck. The daily control room now lives in
+  `docs/traffic-war-room.md`, with priority URLs, Search Console fields,
+  decision rules, and the current 1000 qualified visits/day gap.
+- `https://zippertools.org/proof/sqlalchemy-public-proof/` is now live as the
+  SQLAlchemy trust asset, linked from the homepage, README, SQLAlchemy product
+  page, and SQLAlchemy exact-problem pages.
+- `scripts/audit_site_urls.py` and `tests/test_site_url_audit.py` now guard
+  sitemap URLs, clean canonicals, and internal links so redirect-related Search
+  Console rejection issues are caught before resubmission.
+- As of 2026-04-16, the updated site has been deployed through Cloudflare
+  Worker version `7d617057-a41c-41d0-a7c5-674d0bf9267f`, IndexNow submission
+  has run, and the local site URL audit, live URL audit, and full pytest suite
+  pass.
+- `scripts/cloudflare_traffic_snapshot.mjs` now reads Cloudflare GraphQL
+  analytics from environment variables and reports total page views, qualified
+  guide/product/proof visits, and `/go/...` checkout requests.
+- The 2026-04-16 21:24 PDT Cloudflare snapshot showed `1173` page views and
+  `942` qualified visits in the prior 24 hours; checkout intent was still thin
+  at `5` `/go/...` requests.
 
 ## Next Steps
 
-1. Use the new "Before New Features" section in `docs/max-revenue-todo.md` as
-   the current operating queue.
-2. Keep the sole-proprietor / no-LLC path explicit, and resolve seller-name /
-   assumed-business-name questions before first paid launch.
-3. Keep `site/config.js` in sync with the live checkout provider; the root
-   storefront now uses Payhip links for product 1, product 2, and product 3.
-4. Keep the paid layer software-only: edge-case pack plus preset bundle, with
-   no service dependency or human coding offer.
-5. Finalize the paid SKUs, deliverable format, analytics path, and legal sanity
-   checks before expanding coverage again.
-6. Decide whether to keep the compile-based build step or add a clean
-   wheel/sdist packaging path as a separate verified command.
-7. Expand transform coverage into the next most common removed legacy helpers.
-8. Turn the paid edge-case split from docs into actual packaged downloadable
-   offers.
-9. Keep full-repo public proof running, not just public-file proof, before
-   starting product 4.
-10. Keep the currently published Payhip files pointed at genuinely private
-    commercial ZIPs before treating checkout as real paid delivery.
-11. Keep this file updated as decisions harden or blockers appear.
+1. In Google Search Console, inspect the priority URLs in
+   `docs/traffic-war-room.md`, confirm Google-selected canonicals, and request
+   indexing only for final clean URLs.
+2. In Bing Webmaster Tools, re-submit the same clean priority URLs and sitemap
+   set.
+3. Edit controllable public replies so they point to canonical clean URLs, not
+   old `.html` aliases.
+4. Update the GitHub repo About section with the live site URL and exact-intent
+   SQLAlchemy migration topics.
+5. Add only 1-2 more exact-fit public replies where the target page directly
+   answers the thread.
+6. Watch indexed page count, impressions, clicks, product-page visits, and
+   `/go/...` requests over a 3-7 day window before changing price or product
+   scope again.
+7. Keep this file updated as decisions harden or blockers appear.

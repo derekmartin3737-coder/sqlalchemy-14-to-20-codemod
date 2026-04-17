@@ -1,4 +1,4 @@
-# Store Products
+﻿# Store Products
 
 Last updated: 2026-04-09
 
@@ -49,13 +49,13 @@ Suggested confirmation modal:
   `Download the package, read the install guide first, and keep your report from the free scan nearby.`
 - Button text: `Open install guide`
 - Button link:
-  `https://zippertools.org/success.html`
+  `https://zippertools.org/success`
 
 Suggested receipt email button:
 
 - Button text: `Open install guide`
 - Destination:
-  `https://zippertools.org/success.html`
+  `https://zippertools.org/success`
 
 ## Product 2
 
@@ -101,13 +101,13 @@ Suggested confirmation modal:
   `Download the bundle, review the included rollout notes, and keep your free scan report nearby while applying it.`
 - Button text: `Open install guide`
 - Button link:
-  `https://zippertools.org/success.html`
+  `https://zippertools.org/success`
 
 Suggested receipt email button:
 
 - Button text: `Open install guide`
 - Destination:
-  `https://zippertools.org/success.html`
+  `https://zippertools.org/success`
 
 ## Product 3
 

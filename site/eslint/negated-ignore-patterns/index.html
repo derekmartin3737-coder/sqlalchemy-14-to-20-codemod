@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Why negated ignore patterns need manual review in flat config migration | Zipper Tools</title>
+    <meta name="description" content="Understand why negated ignore rules belong in manual review instead of a guessed flat-config translation." />
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+    <link rel="canonical" href="https://zippertools.org/eslint/negated-ignore-patterns/" />
+    <meta property="og:title" content="Why negated ignore patterns need manual review in flat config migration" />
+    <meta property="og:description" content="Understand why negated ignore rules belong in manual review instead of a guessed flat-config translation." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://zippertools.org/eslint/negated-ignore-patterns/" />
+    <meta property="og:image" content="https://zippertools.org/og-preview.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Why negated ignore patterns need manual review in flat config migration" />
+    <meta name="twitter:description" content="Understand why negated ignore rules belong in manual review instead of a guessed flat-config translation." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../styles.css" />
+    <script src="../../config.js"></script>
+    <script defer src="../../app.js"></script>
+    <script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Zipper Tools",
+    "url": "https://zippertools.org/"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Why negated ignore patterns need manual review in flat config migration",
+    "description": "Understand why negated ignore rules belong in manual review instead of a guessed flat-config translation.",
+    "url": "https://zippertools.org/eslint/negated-ignore-patterns/",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Zipper Tools",
+      "url": "https://zippertools.org/"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://zippertools.org/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Guides",
+        "item": "https://zippertools.org/guides/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "ESLint Migration Guides",
+        "item": "https://zippertools.org/eslint/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "Why negated ignore patterns need manual review in flat config migration",
+        "item": "https://zippertools.org/eslint/negated-ignore-patterns/"
+      }
+    ]
+  }
+]
+    </script>
+  </head>
+  <body>
+    <header class="site-header"><div class="wrap nav"><a class="brand" href="/">Zipper Tools</a><nav class="nav-links" aria-label="Primary"><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="/policies">Policies</a><a href="#" data-repo-link>Repo</a></nav></div></header>
+    <main class="wrap">
+      <section class="warning" id="launch-warning" aria-live="polite"></section>
+      <section class="page-title">
+        <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/guides/">Guides</a></li><li><a href="/eslint/">ESLint Migration Guides</a></li><li aria-current="page">Why negated ignore patterns need manual review in flat config migration</li></ol></nav>
+        <p class="kicker">ESLint Migration Guides</p>
+        <h1>Why negated ignore patterns need manual review in flat config migration</h1>
+        <p>Understand why negated ignore rules belong in manual review instead of a guessed flat-config translation.</p>
+      </section>
+
+      <section class="section">
+        <div class="grid two">
+          <article class="page-panel">
+            <p class="kicker">Search intent</p>
+            <h2>negated ignore patterns flat config</h2>
+            <p>Simple ignore rules can move mechanically. Negated patterns need a closer read.</p>
+          </article>
+          <article class="page-panel">
+            <p class="kicker">Direct answer</p>
+            <h2>What changes</h2>
+            <p>Treat negated ignore patterns as manual review. The target flat config behavior depends on how the rest of the ignore list is supposed to interact.</p>
+          </article>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-heading"><p class="kicker">Example</p><h2>Before and after</h2></div>
+        <div class="grid two">
+          <article class="page-panel"><h3>Before</h3><pre class="code-block"><code>dist/
+!dist/keep.js
+</code></pre></article>
+          <article class="page-panel"><h3>After</h3><pre class="code-block"><code># manual review required
+# negated ignore patterns are outside the deterministic flat-config subset
+</code></pre></article>
+        </div>
+      </section>
+      <section class="section">
+        <div class="grid three">
+          <article class="page-panel"><h3>Typical symptoms</h3><ul class="clean"><li>The repo already uses exceptions inside .eslintignore or ignorePatterns.</li><li>A guessed migration can silently change which files are linted.</li><li>Teams want a clean stop signal instead of a risky translation.</li></ul></article>
+          <article class="page-panel"><h3>What the product covers</h3><ul class="clean"><li>Explicit unsupported ignore-pattern findings.</li><li>Cross-links to the supported .eslintignore migration page.</li><li>Repo-fit guidance before buying the flat-config pack.</li></ul></article>
+          <article class="page-panel"><h3>Manual-review boundary</h3><ul class="clean"><li>Rebuilding the intended include/exclude behavior in flat config.</li><li>Ignore rules mixed with multiple config sources.</li><li>Repos that already started a custom flat-config migration.</li></ul></article>
+        </div>
+      </section>
+      <section class="section">
+        <div class="grid two">
+          <article class="page-panel">
+            <h3>Keep the migration narrow</h3>
+            <p>Use the exact-problem guides as a triage layer, then decide whether the repo is inside the supported subset.</p>
+            <div class="page-actions">
+              <a class="button" href="/products/flatconfig-lift/">Open the matching product page</a>
+              <a class="button secondary" href="#" data-free-link>Run the free scan first</a>
+
+            </div>
+          </article>
+          <article class="page-panel">
+            <h3>Related guides</h3>
+            <div class="topic-list"><a class="topic-card" href="/eslint/eslintrc-to-flat-config/"><strong>How to migrate .eslintrc to eslint.config.cjs with FlatCompat</strong><span>Convert static .eslintrc JSON or YAML into eslint.config.cjs without executing JS logic.</span></a><a class="topic-card" href="/eslint/package-json-eslintconfig/"><strong>How to migrate package.json eslintConfig to flat config</strong><span>Convert static package.json eslintConfig blocks into flat config without evaluating JS.</span></a><a class="topic-card" href="/eslint/eslintrc-js-unsupported/"><strong>Why .eslintrc.js is a manual-review case for flat config migration</strong><span>Understand why JS-backed ESLint configs are out of scope for deterministic flat-config migration.</span></a></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <article class="page-panel">
+          <h3>More fixes in this product</h3>
+          <p class="quick-links"><a href="/eslint/eslintrc-to-flat-config/">Migrate .eslintrc to eslint.config.cjs with FlatCompat</a>, <a href="/eslint/package-json-eslintconfig/">Migrate package.json eslintConfig to flat config</a>, <a href="/eslint/eslintrc-js-unsupported/">Why .eslintrc.js is a manual-review case</a>, <a href="/eslint/eslintignore-migration/">Move .eslintignore patterns into flat config</a>, <a href="/eslint/multiple-legacy-configs/">Why multiple legacy ESLint config sources block flat config migration</a>, <a href="/eslint/existing-flat-config/">What to do when eslint.config.* already exists</a>, <a href="/eslint/env-globals-flat-config/">Migrate env and globals to flat config</a>, <a href="/eslint/overrides-flat-config/">Migrate overrides to flat config arrays</a></p>
+          <p><a href="/products/flatconfig-lift/">View all flatconfig-lift guides</a></p>
+        </article>
+      </section>
+
+    </main>
+    <footer class="site-footer"><div class="wrap footer-grid"><div><p class="footer-title">Zipper Tools</p><p class="caption">Exact-problem migration guides and narrow codemod products.</p></div><div class="footer-links"><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="#" data-repo-link>GitHub repo</a><a href="#" data-contact-link>Contact</a></div><p class="caption footer-note">Questions: <a href="#" data-contact-link><span data-contact-email>email</span></a></p></div></footer>
+  </body>
+</html>

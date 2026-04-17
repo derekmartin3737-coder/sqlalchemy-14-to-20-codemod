@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Migrate package.json eslintConfig to flat config | Zipper Tools</title>
+    <meta name="description" content="Convert static package.json eslintConfig blocks into flat config without evaluating JS." />
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+    <link rel="canonical" href="https://zippertools.org/eslint/package-json-eslintconfig/" />
+    <meta property="og:title" content="Migrate package.json eslintConfig to flat config" />
+    <meta property="og:description" content="Convert static package.json eslintConfig blocks into flat config without evaluating JS." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://zippertools.org/eslint/package-json-eslintconfig/" />
+    <meta property="og:image" content="https://zippertools.org/og-preview.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Migrate package.json eslintConfig to flat config" />
+    <meta name="twitter:description" content="Convert static package.json eslintConfig blocks into flat config without evaluating JS." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../styles.css" />
+    <script src="../../config.js"></script>
+    <script defer src="../../app.js"></script>
+    <script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Zipper Tools",
+    "url": "https://zippertools.org/"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Migrate package.json eslintConfig to flat config",
+    "description": "Convert static package.json eslintConfig blocks into flat config without evaluating JS.",
+    "url": "https://zippertools.org/eslint/package-json-eslintconfig/",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Zipper Tools",
+      "url": "https://zippertools.org/"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://zippertools.org/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Guides",
+        "item": "https://zippertools.org/guides/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "ESLint Migration Guides",
+        "item": "https://zippertools.org/eslint/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "How to migrate package.json eslintConfig to flat config",
+        "item": "https://zippertools.org/eslint/package-json-eslintconfig/"
+      }
+    ]
+  }
+]
+    </script>
+  </head>
+  <body>
+    <header class="site-header"><div class="wrap nav"><a class="brand" href="/">Zipper Tools</a><nav class="nav-links" aria-label="Primary"><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="/policies">Policies</a><a href="#" data-repo-link>Repo</a></nav></div></header>
+    <main class="wrap">
+      <section class="warning" id="launch-warning" aria-live="polite"></section>
+      <section class="page-title">
+        <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/guides/">Guides</a></li><li><a href="/eslint/">ESLint Migration Guides</a></li><li aria-current="page">How to migrate package.json eslintConfig to flat config</li></ol></nav>
+        <p class="kicker">ESLint Migration Guides</p>
+        <h1>How to migrate package.json eslintConfig to flat config</h1>
+        <p>Convert static package.json eslintConfig blocks into flat config without evaluating JS.</p>
+      </section>
+
+      <section class="section">
+        <div class="grid two">
+          <article class="page-panel">
+            <p class="kicker">Search intent</p>
+            <h2>package.json eslintConfig flat config</h2>
+            <p>package.json eslintConfig is a good automation target because the source is structured data.</p>
+          </article>
+          <article class="page-panel">
+            <p class="kicker">Direct answer</p>
+            <h2>What changes</h2>
+            <p>When the repo exposes one static eslintConfig source in package.json, the bridge file can be generated cleanly.</p>
+          </article>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-heading"><p class="kicker">Example</p><h2>Before and after</h2></div>
+        <div class="grid two">
+          <article class="page-panel"><h3>Before</h3><pre class="code-block"><code>&quot;eslintConfig&quot;: {
+  &quot;extends&quot;: [&quot;eslint:recommended&quot;],
+  &quot;env&quot;: {&quot;node&quot;: true}
+}
+</code></pre></article>
+          <article class="page-panel"><h3>After</h3><pre class="code-block"><code>module.exports = [
+  ...compat.config({
+    extends: [&quot;eslint:recommended&quot;],
+    env: { node: true },
+  }),
+];
+</code></pre></article>
+        </div>
+      </section>
+      <section class="section">
+        <div class="grid three">
+          <article class="page-panel"><h3>Typical symptoms</h3><ul class="clean"><li>The repo never had a standalone .eslintrc file.</li><li>Teams need a deterministic config export before plugin cleanup.</li><li>Reviewers want to know whether multiple config sources block the easy path.</li></ul></article>
+          <article class="page-panel"><h3>What the product covers</h3><ul class="clean"><li>Static package.json eslintConfig discovery and reporting.</li><li>Generated FlatCompat bridge in the supported subset.</li><li>Manual-review findings for multiple config sources.</li></ul></article>
+          <article class="page-panel"><h3>Manual-review boundary</h3><ul class="clean"><li>Multiple ESLint config sources in one repo.</li><li>Existing flat config files.</li><li>JS-driven config logic outside static data.</li></ul></article>
+        </div>
+      </section>
+      <section class="section">
+        <div class="grid two">
+          <article class="page-panel">
+            <h3>Keep the migration narrow</h3>
+            <p>Use the exact-problem guides as a triage layer, then decide whether the repo is inside the supported subset.</p>
+            <div class="page-actions">
+              <a class="button" href="/products/flatconfig-lift/">Open the matching product page</a>
+              <a class="button secondary" href="#" data-free-link>Run the free scan first</a>
+
+            </div>
+          </article>
+          <article class="page-panel">
+            <h3>Related guides</h3>
+            <div class="topic-list"><a class="topic-card" href="/eslint/eslintrc-to-flat-config/"><strong>How to migrate .eslintrc to eslint.config.cjs with FlatCompat</strong><span>Convert static .eslintrc JSON or YAML into eslint.config.cjs without executing JS logic.</span></a><a class="topic-card" href="/eslint/eslintrc-js-unsupported/"><strong>Why .eslintrc.js is a manual-review case for flat config migration</strong><span>Understand why JS-backed ESLint configs are out of scope for deterministic flat-config migration.</span></a><a class="topic-card" href="/eslint/eslintignore-migration/"><strong>How to move .eslintignore patterns into flat config</strong><span>Carry straightforward .eslintignore and ignorePatterns entries into flat config while keeping the hard cases explicit.</span></a></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <article class="page-panel">
+          <h3>More fixes in this product</h3>
+          <p class="quick-links"><a href="/eslint/eslintrc-to-flat-config/">Migrate .eslintrc to eslint.config.cjs with FlatCompat</a>, <a href="/eslint/eslintrc-js-unsupported/">Why .eslintrc.js is a manual-review case</a>, <a href="/eslint/eslintignore-migration/">Move .eslintignore patterns into flat config</a>, <a href="/eslint/negated-ignore-patterns/">Why negated ignore patterns need manual review</a>, <a href="/eslint/multiple-legacy-configs/">Why multiple legacy ESLint config sources block flat config migration</a>, <a href="/eslint/existing-flat-config/">What to do when eslint.config.* already exists</a>, <a href="/eslint/env-globals-flat-config/">Migrate env and globals to flat config</a>, <a href="/eslint/overrides-flat-config/">Migrate overrides to flat config arrays</a></p>
+          <p><a href="/products/flatconfig-lift/">View all flatconfig-lift guides</a></p>
+        </article>
+      </section>
+
+    </main>
+    <footer class="site-footer"><div class="wrap footer-grid"><div><p class="footer-title">Zipper Tools</p><p class="caption">Exact-problem migration guides and narrow codemod products.</p></div><div class="footer-links"><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="#" data-repo-link>GitHub repo</a><a href="#" data-contact-link>Contact</a></div><p class="caption footer-note">Questions: <a href="#" data-contact-link><span data-contact-email>email</span></a></p></div></footer>
+  </body>
+</html>

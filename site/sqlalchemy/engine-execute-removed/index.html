@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fix engine.execute(...) removal in SQLAlchemy 2.0 | Zipper Tools</title>
+    <meta name="description" content="Fix engine.execute removals and OptionEngine errors without pretending the replacement is always trivial." />
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+    <link rel="canonical" href="https://zippertools.org/sqlalchemy/engine-execute-removed/" />
+    <meta property="og:title" content="Fix engine.execute(...) removal in SQLAlchemy 2.0" />
+    <meta property="og:description" content="Fix engine.execute removals and OptionEngine errors without pretending the replacement is always trivial." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://zippertools.org/sqlalchemy/engine-execute-removed/" />
+    <meta property="og:image" content="https://zippertools.org/og-preview.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Fix engine.execute(...) removal in SQLAlchemy 2.0" />
+    <meta name="twitter:description" content="Fix engine.execute removals and OptionEngine errors without pretending the replacement is always trivial." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../styles.css" />
+    <script src="../../config.js"></script>
+    <script defer src="../../app.js"></script>
+    <script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Zipper Tools",
+    "url": "https://zippertools.org/"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Fix engine.execute(...) removal in SQLAlchemy 2.0",
+    "description": "Fix engine.execute removals and OptionEngine errors without pretending the replacement is always trivial.",
+    "url": "https://zippertools.org/sqlalchemy/engine-execute-removed/",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Zipper Tools",
+      "url": "https://zippertools.org/"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://zippertools.org/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Guides",
+        "item": "https://zippertools.org/guides/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "SQLAlchemy Migration Guides",
+        "item": "https://zippertools.org/sqlalchemy/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "How to fix engine.execute(...) removal in SQLAlchemy 2.0",
+        "item": "https://zippertools.org/sqlalchemy/engine-execute-removed/"
+      }
+    ]
+  }
+]
+    </script>
+  </head>
+  <body>
+    <header class="site-header"><div class="wrap nav"><a class="brand" href="/">Zipper Tools</a><nav class="nav-links" aria-label="Primary"><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="/policies">Policies</a><a href="#" data-repo-link>Repo</a></nav></div></header>
+    <main class="wrap">
+      <section class="warning" id="launch-warning" aria-live="polite"></section>
+      <section class="page-title">
+        <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/guides/">Guides</a></li><li><a href="/sqlalchemy/">SQLAlchemy Migration Guides</a></li><li aria-current="page">How to fix engine.execute(...) removal in SQLAlchemy 2.0</li></ol></nav>
+        <p class="kicker">SQLAlchemy Migration Guides</p>
+        <h1>How to fix engine.execute(...) removal in SQLAlchemy 2.0</h1>
+        <p>Fix engine.execute removals and OptionEngine errors without pretending the replacement is always trivial.</p>
+      </section>
+
+      <section class="section">
+        <div class="grid two">
+          <article class="page-panel">
+            <p class="kicker">Search intent</p>
+            <h2>engine.execute removed sqlalchemy 2.0</h2>
+            <p>This is a real migration pain point because there is not one safe automatic replacement.</p>
+          </article>
+          <article class="page-panel">
+            <p class="kicker">Direct answer</p>
+            <h2>What changes</h2>
+            <p>Move execution onto a Connection or Session and make transaction boundaries explicit. That is why honest tooling buckets engine.execute(...) as manual review.</p>
+          </article>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-heading"><p class="kicker">Example</p><h2>Before and after</h2></div>
+        <div class="grid two">
+          <article class="page-panel"><h3>Before</h3><pre class="code-block"><code>result = engine.execute(&quot;SELECT id FROM users&quot;)
+rows = engine.execute(stmt).fetchall()
+</code></pre></article>
+          <article class="page-panel"><h3>After</h3><pre class="code-block"><code>from sqlalchemy import text
+
+with engine.connect() as conn:
+    result = conn.execute(text(&quot;SELECT id FROM users&quot;))
+    rows = conn.execute(stmt).fetchall()
+</code></pre></article>
+        </div>
+      </section>
+      <section class="section">
+        <div class="grid three">
+          <article class="page-panel"><h3>Typical symptoms</h3><ul class="clean"><li>OptionEngine and execute errors after the 2.0 bump.</li><li>Old helpers still call engine.execute(...).</li><li>Teams need a clear manual-review signal.</li></ul></article>
+          <article class="page-panel"><h3>What the product covers</h3><ul class="clean"><li>Detection and classification of engine.execute(...) usage.</li><li>Repo reporting for the manual bucket.</li><li>Links to related SQLAlchemy guides.</li></ul></article>
+          <article class="page-panel"><h3>Manual-review boundary</h3><ul class="clean"><li>Choosing Connection versus Session.</li><li>Raw SQL that needs text(...).</li><li>Pandas and helper wrappers around execution.</li></ul></article>
+        </div>
+      </section>
+      <section class="section">
+        <div class="grid two">
+          <article class="page-panel">
+            <h3>Keep the migration narrow</h3>
+            <p>Use the exact-problem guides as a triage layer, then decide whether the repo is inside the supported subset.</p>
+            <div class="page-actions">
+              <a class="button" href="/products/sa20-pack/">Open the matching product page</a>
+              <a class="button secondary" href="#" data-free-link>Run the free scan first</a>
+              <a class="button secondary" href="/proof/sqlalchemy-public-proof/">Read public proof</a>
+            </div>
+          </article>
+          <article class="page-panel">
+            <h3>Related guides</h3>
+            <div class="topic-list"><a class="topic-card" href="/sqlalchemy/session-query-get/"><strong>How to replace session.query(...).get(...) in SQLAlchemy 2.0</strong><span>Fix Query.get migrations and move identity lookups onto Session.get(...).</span></a><a class="topic-card" href="/sqlalchemy/session-query-migration/"><strong>What to do with session.query(...) during a SQLAlchemy 2.0 migration</strong><span>Separate the easy Query cleanup from the broader Query-to-select refactor work.</span></a><a class="topic-card" href="/sqlalchemy/joinedload-all-removed/"><strong>How to clean up joinedload_all(...) during a SQLAlchemy 2.0 migration</strong><span>Replace joinedload_all(...) with mapped-attribute loader options and bucket the hard cases honestly.</span></a></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <article class="page-panel">
+          <h3>More fixes in this product</h3>
+          <p class="quick-links"><a href="/sqlalchemy/session-query-get/">Replace session.query(...).get(...)</a>, <a href="/sqlalchemy/session-query-migration/">Session.query migration guide</a>, <a href="/sqlalchemy/joinedload-all-removed/">Clean up joinedload_all(...)</a>, <a href="/sqlalchemy/select-list-syntax/">Fix select([..]) list syntax</a>, <a href="/sqlalchemy/string-join-paths/">Replace string join paths</a>, <a href="/sqlalchemy/string-loader-options/">Replace string loader options</a>, <a href="/sqlalchemy/declarative-imports/">Move sqlalchemy.ext.declarative imports to sqlalchemy.orm</a>, <a href="/sqlalchemy/insert-values-kwargs/">Replace insert(..., values=...)</a></p>
+          <p><a href="/products/sa20-pack/">View all sa20-pack guides</a></p>
+        </article>
+      </section>
+
+    </main>
+    <footer class="site-footer"><div class="wrap footer-grid"><div><p class="footer-title">Zipper Tools</p><p class="caption">Exact-problem migration guides and narrow codemod products.</p></div><div class="footer-links"><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="#" data-repo-link>GitHub repo</a><a href="#" data-contact-link>Contact</a></div><p class="caption footer-note">Questions: <a href="#" data-contact-link><span data-contact-email>email</span></a></p></div></footer>
+  </body>
+</html>

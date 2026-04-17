@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Why multiple legacy ESLint config sources block flat config migration | Zipper Tools</title>
+    <meta name="description" content="If a repo has more than one legacy ESLint config source, the deterministic migration path should stop for manual review." />
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+    <link rel="canonical" href="https://zippertools.org/eslint/multiple-legacy-configs/" />
+    <meta property="og:title" content="Why multiple legacy ESLint config sources block flat config migration" />
+    <meta property="og:description" content="If a repo has more than one legacy ESLint config source, the deterministic migration path should stop for manual review." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://zippertools.org/eslint/multiple-legacy-configs/" />
+    <meta property="og:image" content="https://zippertools.org/og-preview.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Why multiple legacy ESLint config sources block flat config migration" />
+    <meta name="twitter:description" content="If a repo has more than one legacy ESLint config source, the deterministic migration path should stop for manual review." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../styles.css" />
+    <script src="../../config.js"></script>
+    <script defer src="../../app.js"></script>
+    <script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Zipper Tools",
+    "url": "https://zippertools.org/"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Why multiple legacy ESLint config sources block flat config migration",
+    "description": "If a repo has more than one legacy ESLint config source, the deterministic migration path should stop for manual review.",
+    "url": "https://zippertools.org/eslint/multiple-legacy-configs/",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Zipper Tools",
+      "url": "https://zippertools.org/"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://zippertools.org/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Guides",
+        "item": "https://zippertools.org/guides/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "ESLint Migration Guides",
+        "item": "https://zippertools.org/eslint/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "Why multiple legacy ESLint config sources block flat config migration",
+        "item": "https://zippertools.org/eslint/multiple-legacy-configs/"
+      }
+    ]
+  }
+]
+    </script>
+  </head>
+  <body>
+    <header class="site-header"><div class="wrap nav"><a class="brand" href="/">Zipper Tools</a><nav class="nav-links" aria-label="Primary"><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="/policies">Policies</a><a href="#" data-repo-link>Repo</a></nav></div></header>
+    <main class="wrap">
+      <section class="warning" id="launch-warning" aria-live="polite"></section>
+      <section class="page-title">
+        <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/guides/">Guides</a></li><li><a href="/eslint/">ESLint Migration Guides</a></li><li aria-current="page">Why multiple legacy ESLint config sources block flat config migration</li></ol></nav>
+        <p class="kicker">ESLint Migration Guides</p>
+        <h1>Why multiple legacy ESLint config sources block flat config migration</h1>
+        <p>If a repo has more than one legacy ESLint config source, the deterministic migration path should stop for manual review.</p>
+      </section>
+
+      <section class="section">
+        <div class="grid two">
+          <article class="page-panel">
+            <p class="kicker">Search intent</p>
+            <h2>multiple ESLint config sources flat config migration</h2>
+            <p>One static config source is a fit. Multiple overlapping sources are not a clean automatic migration target.</p>
+          </article>
+          <article class="page-panel">
+            <p class="kicker">Direct answer</p>
+            <h2>What changes</h2>
+            <p>Keep multiple legacy ESLint config sources in manual review. The first job is deciding which source is authoritative before generating a flat config bridge.</p>
+          </article>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-heading"><p class="kicker">Example</p><h2>Before and after</h2></div>
+        <div class="grid two">
+          <article class="page-panel"><h3>Before</h3><pre class="code-block"><code>.eslintrc.json
+package.json#eslintConfig
+</code></pre></article>
+          <article class="page-panel"><h3>After</h3><pre class="code-block"><code># manual review required
+# choose the authoritative legacy config source before migration
+</code></pre></article>
+        </div>
+      </section>
+      <section class="section">
+        <div class="grid three">
+          <article class="page-panel"><h3>Typical symptoms</h3><ul class="clean"><li>The repo has both .eslintrc data and package.json eslintConfig.</li><li>Teams want one pass that qualifies repo fit before generating anything.</li><li>Reviewers need a clear reason why the flat-config pack stopped.</li></ul></article>
+          <article class="page-panel"><h3>What the product covers</h3><ul class="clean"><li>Explicit multiple-config-sources findings.</li><li>Cross-links to the supported .eslintrc and package.json pages.</li><li>Repo-fit guidance before buying the flat-config pack.</li></ul></article>
+          <article class="page-panel"><h3>Manual-review boundary</h3><ul class="clean"><li>Choosing the real source of truth.</li><li>Merging overlapping rules and ignores.</li><li>Repos that also already have eslint.config.* files.</li></ul></article>
+        </div>
+      </section>
+      <section class="section">
+        <div class="grid two">
+          <article class="page-panel">
+            <h3>Keep the migration narrow</h3>
+            <p>Use the exact-problem guides as a triage layer, then decide whether the repo is inside the supported subset.</p>
+            <div class="page-actions">
+              <a class="button" href="/products/flatconfig-lift/">Open the matching product page</a>
+              <a class="button secondary" href="#" data-free-link>Run the free scan first</a>
+
+            </div>
+          </article>
+          <article class="page-panel">
+            <h3>Related guides</h3>
+            <div class="topic-list"><a class="topic-card" href="/eslint/eslintrc-to-flat-config/"><strong>How to migrate .eslintrc to eslint.config.cjs with FlatCompat</strong><span>Convert static .eslintrc JSON or YAML into eslint.config.cjs without executing JS logic.</span></a><a class="topic-card" href="/eslint/package-json-eslintconfig/"><strong>How to migrate package.json eslintConfig to flat config</strong><span>Convert static package.json eslintConfig blocks into flat config without evaluating JS.</span></a><a class="topic-card" href="/eslint/eslintrc-js-unsupported/"><strong>Why .eslintrc.js is a manual-review case for flat config migration</strong><span>Understand why JS-backed ESLint configs are out of scope for deterministic flat-config migration.</span></a></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <article class="page-panel">
+          <h3>More fixes in this product</h3>
+          <p class="quick-links"><a href="/eslint/eslintrc-to-flat-config/">Migrate .eslintrc to eslint.config.cjs with FlatCompat</a>, <a href="/eslint/package-json-eslintconfig/">Migrate package.json eslintConfig to flat config</a>, <a href="/eslint/eslintrc-js-unsupported/">Why .eslintrc.js is a manual-review case</a>, <a href="/eslint/eslintignore-migration/">Move .eslintignore patterns into flat config</a>, <a href="/eslint/negated-ignore-patterns/">Why negated ignore patterns need manual review</a>, <a href="/eslint/existing-flat-config/">What to do when eslint.config.* already exists</a>, <a href="/eslint/env-globals-flat-config/">Migrate env and globals to flat config</a>, <a href="/eslint/overrides-flat-config/">Migrate overrides to flat config arrays</a></p>
+          <p><a href="/products/flatconfig-lift/">View all flatconfig-lift guides</a></p>
+        </article>
+      </section>
+
+    </main>
+    <footer class="site-footer"><div class="wrap footer-grid"><div><p class="footer-title">Zipper Tools</p><p class="caption">Exact-problem migration guides and narrow codemod products.</p></div><div class="footer-links"><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="#" data-repo-link>GitHub repo</a><a href="#" data-contact-link>Contact</a></div><p class="caption footer-note">Questions: <a href="#" data-contact-link><span data-contact-email>email</span></a></p></div></footer>
+  </body>
+</html>

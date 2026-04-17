@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Why configured @validate_arguments needs manual review in Pydantic v2 | Zipper Tools</title>
+    <meta name="description" content="Configured validate_arguments decorators are outside the current deterministic migration subset." />
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+    <link rel="canonical" href="https://zippertools.org/pydantic/validate-arguments-configured/" />
+    <meta property="og:title" content="Why configured @validate_arguments needs manual review in Pydantic v2" />
+    <meta property="og:description" content="Configured validate_arguments decorators are outside the current deterministic migration subset." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://zippertools.org/pydantic/validate-arguments-configured/" />
+    <meta property="og:image" content="https://zippertools.org/og-preview.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Why configured @validate_arguments needs manual review in Pydantic v2" />
+    <meta name="twitter:description" content="Configured validate_arguments decorators are outside the current deterministic migration subset." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../styles.css" />
+    <script src="../../config.js"></script>
+    <script defer src="../../app.js"></script>
+    <script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Zipper Tools",
+    "url": "https://zippertools.org/"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Why configured @validate_arguments needs manual review in Pydantic v2",
+    "description": "Configured validate_arguments decorators are outside the current deterministic migration subset.",
+    "url": "https://zippertools.org/pydantic/validate-arguments-configured/",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Zipper Tools",
+      "url": "https://zippertools.org/"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://zippertools.org/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Guides",
+        "item": "https://zippertools.org/guides/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Pydantic Migration Guides",
+        "item": "https://zippertools.org/pydantic/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "Why configured @validate_arguments needs manual review in Pydantic v2",
+        "item": "https://zippertools.org/pydantic/validate-arguments-configured/"
+      }
+    ]
+  }
+]
+    </script>
+  </head>
+  <body>
+    <header class="site-header"><div class="wrap nav"><a class="brand" href="/">Zipper Tools</a><nav class="nav-links" aria-label="Primary"><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="/policies">Policies</a><a href="#" data-repo-link>Repo</a></nav></div></header>
+    <main class="wrap">
+      <section class="warning" id="launch-warning" aria-live="polite"></section>
+      <section class="page-title">
+        <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/guides/">Guides</a></li><li><a href="/pydantic/">Pydantic Migration Guides</a></li><li aria-current="page">Why configured @validate_arguments needs manual review in Pydantic v2</li></ol></nav>
+        <p class="kicker">Pydantic Migration Guides</p>
+        <h1>Why configured @validate_arguments needs manual review in Pydantic v2</h1>
+        <p>Configured validate_arguments decorators are outside the current deterministic migration subset.</p>
+      </section>
+
+      <section class="section">
+        <div class="grid two">
+          <article class="page-panel">
+            <p class="kicker">Search intent</p>
+            <h2>validate_arguments kwargs pydantic v2</h2>
+            <p>Bare validate_arguments is a clean rename. Configured validate_arguments is not.</p>
+          </article>
+          <article class="page-panel">
+            <p class="kicker">Direct answer</p>
+            <h2>What changes</h2>
+            <p>Keep configured @validate_arguments decorators in manual review. The replacement depends on the decorator options and call-site behavior.</p>
+          </article>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-heading"><p class="kicker">Example</p><h2>Before and after</h2></div>
+        <div class="grid two">
+          <article class="page-panel"><h3>Before</h3><pre class="code-block"><code>from pydantic import validate_arguments
+
+@validate_arguments(config={&quot;arbitrary_types_allowed&quot;: True})
+def create_user(user) -&gt; None:
+    ...
+</code></pre></article>
+          <article class="page-panel"><h3>After</h3><pre class="code-block"><code># manual review required
+# configured validate_arguments decorators are outside the supported subset
+</code></pre></article>
+        </div>
+      </section>
+      <section class="section">
+        <div class="grid three">
+          <article class="page-panel"><h3>Typical symptoms</h3><ul class="clean"><li>The repo already moved beyond bare validate_arguments usage.</li><li>Teams want the porter to distinguish easy decorator renames from the harder cases.</li><li>Reviewers need an explicit report entry for configured decorator usage.</li></ul></article>
+          <article class="page-panel"><h3>What the product covers</h3><ul class="clean"><li>Explicit unsupported-validate-arguments findings for configured decorators.</li><li>Cross-links to the supported bare validate_arguments page.</li><li>Repo-fit guidance before buying the porter.</li></ul></article>
+          <article class="page-panel"><h3>Manual-review boundary</h3><ul class="clean"><li>Decorator config options that change runtime behavior.</li><li>Wrapped or aliased decorator usage.</li><li>Files bundled with unsupported validator signatures or config migrations.</li></ul></article>
+        </div>
+      </section>
+      <section class="section">
+        <div class="grid two">
+          <article class="page-panel">
+            <h3>Keep the migration narrow</h3>
+            <p>Use the exact-problem guides as a triage layer, then decide whether the repo is inside the supported subset.</p>
+            <div class="page-actions">
+              <a class="button" href="/products/pydantic-v2-porter/">Open the matching product page</a>
+              <a class="button secondary" href="#" data-free-link>Run the free scan first</a>
+
+            </div>
+          </article>
+          <article class="page-panel">
+            <h3>Related guides</h3>
+            <div class="topic-list"><a class="topic-card" href="/pydantic/validator-to-field-validator/"><strong>How to replace @validator with @field_validator in Pydantic v2</strong><span>Fix simple Pydantic validator migrations and keep signature-heavy cases out of the automatic path.</span></a><a class="topic-card" href="/pydantic/basesettings-moved/"><strong>How to move BaseSettings to pydantic-settings in Pydantic v2</strong><span>Fix BaseSettings migrations for Pydantic v2 and keep config cleanup inside the supported subset.</span></a><a class="topic-card" href="/pydantic/config-to-model-config/"><strong>How to convert Config to model_config in Pydantic v2</strong><span>Convert safe nested Config classes into model_config and refuse removed keys.</span></a></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <article class="page-panel">
+          <h3>More fixes in this product</h3>
+          <p class="quick-links"><a href="/pydantic/validator-to-field-validator/">Replace @validator with @field_validator</a>, <a href="/pydantic/basesettings-moved/">Move BaseSettings to pydantic-settings</a>, <a href="/pydantic/config-to-model-config/">Convert Config to model_config</a>, <a href="/pydantic/validate-arguments/">Replace validate_arguments with validate_call</a>, <a href="/pydantic/root-validator-pre/">Replace @root_validator(pre=True) with @model_validator(mode=&quot;before&quot;)</a>, <a href="/pydantic/root-validator-post/">Why post root validators need manual review</a>, <a href="/pydantic/pydantic-v1-imports/">Move pydantic.v1 imports onto pydantic</a>, <a href="/pydantic/config-fields-removed/">Why Config.fields is a manual-review case</a></p>
+          <p><a href="/products/pydantic-v2-porter/">View all pydantic-v2-porter guides</a></p>
+        </article>
+      </section>
+
+    </main>
+    <footer class="site-footer"><div class="wrap footer-grid"><div><p class="footer-title">Zipper Tools</p><p class="caption">Exact-problem migration guides and narrow codemod products.</p></div><div class="footer-links"><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="#" data-repo-link>GitHub repo</a><a href="#" data-contact-link>Contact</a></div><p class="caption footer-note">Questions: <a href="#" data-contact-link><span data-contact-email>email</span></a></p></div></footer>
+  </body>
+</html>

@@ -6,6 +6,8 @@ reports, and commercial-pack docs.
 
 Website: [zippertools.org](https://zippertools.org/)
 
+Public proof: [SQLAlchemy migration proof on public files](https://zippertools.org/proof/sqlalchemy-public-proof/)
+
 ## Start With The Exact Breakage
 
 | Problem | Page |
@@ -74,6 +76,7 @@ The storefront has exact-problem landing pages for the highest-signal queries
 we already support:
 
 - [SQLAlchemy migration tool overview](https://zippertools.org/products/sa20-pack/)
+- [SQLAlchemy public proof](https://zippertools.org/proof/sqlalchemy-public-proof/)
 - [`session.query` migration](https://zippertools.org/sqlalchemy/session-query-migration/)
 - [`session.query(...).get()` migration](https://zippertools.org/sqlalchemy/session-query-get/)
 - [`select([columns])` migration](https://zippertools.org/sqlalchemy/select-list-syntax/)

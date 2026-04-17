@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SQLAlchemy public proof | Zipper Tools</title>
+    <meta name="description" content="Public SQLAlchemy migration proof for the supported sa20-pack subset, including validated supported files and fail-closed manual-review examples." />
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+    <link rel="canonical" href="https://zippertools.org/proof/sqlalchemy-public-proof/" />
+    <meta property="og:title" content="SQLAlchemy public proof" />
+    <meta property="og:description" content="Public SQLAlchemy migration proof for the supported sa20-pack subset, including validated supported files and fail-closed manual-review examples." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://zippertools.org/proof/sqlalchemy-public-proof/" />
+    <meta property="og:image" content="https://zippertools.org/og-preview.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SQLAlchemy public proof" />
+    <meta name="twitter:description" content="Public SQLAlchemy migration proof for the supported sa20-pack subset, including validated supported files and fail-closed manual-review examples." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../styles.css" />
+    <script src="../../config.js"></script>
+    <script defer src="../../app.js"></script>
+    <script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Zipper Tools",
+    "url": "https://zippertools.org/"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "SQLAlchemy public proof",
+    "description": "Public SQLAlchemy migration proof for the supported sa20-pack subset, including validated supported files and fail-closed manual-review examples.",
+    "url": "https://zippertools.org/proof/sqlalchemy-public-proof/",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Zipper Tools",
+      "url": "https://zippertools.org/"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://zippertools.org/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "sa20-pack",
+        "item": "https://zippertools.org/products/sa20-pack/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Public proof",
+        "item": "https://zippertools.org/proof/sqlalchemy-public-proof/"
+      }
+    ]
+  }
+]
+    </script>
+  </head>
+  <body>
+    <header class="site-header"><div class="wrap nav"><a class="brand" href="/">Zipper Tools</a><nav class="nav-links" aria-label="Primary"><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="/policies">Policies</a><a href="#" data-repo-link>Repo</a></nav></div></header>
+    <main class="wrap">
+      <section class="warning" id="launch-warning" aria-live="polite"></section>
+      <section class="page-title">
+        <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/products/sa20-pack/">sa20-pack</a></li><li aria-current="page">Public proof</li></ol></nav>
+        <p class="kicker">Public proof</p>
+        <h1>SQLAlchemy migration proof on public files</h1>
+        <p>Public SQLAlchemy migration proof for the supported sa20-pack subset, including validated supported files and fail-closed manual-review examples.</p>
+      </section>
+
+      <section class="section">
+        <div class="grid three">
+          <article class="page-panel">
+            <h2>3 supported public-file passes</h2>
+            <p>Copied public inputs landed inside the documented SQLAlchemy automation subset.</p>
+          </article>
+          <article class="page-panel">
+            <h2>2 blocked manual-review cases</h2>
+            <p>Risky execution and query-shape patterns were reported instead of guessed through.</p>
+          </article>
+          <article class="page-panel">
+            <h2>0 broad migration promises</h2>
+            <p>The proof covers the narrow legacy query and syntax subset, not every SQLAlchemy 2.0 change.</p>
+          </article>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-heading"><p class="kicker">Supported examples</p><h2>Public files that matched the automation subset</h2></div>
+        <div class="grid three"><article class="page-panel"><h3><a href="https://github.com/Bogdanp/flask_dramatiq_example/blob/a2f2c2baf7bdd7e1044ec6d241556f6333a6e397/app.py">Bogdanp/flask_dramatiq_example</a></h3><p>Query.get plus declarative import cleanup</p><p class="caption">supported and validated on copied public input</p></article><article class="page-panel"><h3><a href="https://github.com/dunossauro/live-de-python/blob/c0c83d3cb1271b0e55de2f83ad3a2aa4a57b53a8/codigo/Live011/core_select.py">dunossauro/live-de-python</a></h3><p>select([table]) list syntax cleanup</p><p class="caption">supported and validated on copied public input</p></article><article class="page-panel"><h3><a href="https://github.com/nylas/sync-engine/blob/b91b94b9a0033be4199006eb234d270779a04443/inbox/transactions/search.py">nylas/sync-engine</a></h3><p>Query.get plus string loader cleanup</p><p class="caption">supported and validated on copied public input</p></article></div>
+      </section>
+      <section class="section">
+        <div class="section-heading"><p class="kicker">Fail-closed examples</p><h2>Public files that stayed in manual review</h2></div>
+        <div class="grid two"><article class="page-panel"><h3><a href="https://github.com/nylas/sync-engine/blob/b91b94b9a0033be4199006eb234d270779a04443/inbox/ignition.py">nylas/sync-engine</a></h3><p>engine.execute(...)</p><p class="caption">manual_review_required</p></article><article class="page-panel"><h3><a href="https://github.com/teamclairvoyant/airflow-maintenance-dags/blob/fe592a5cb90508804b589652ef7fedc624bff595/db-cleanup/airflow-db-cleanup.py">teamclairvoyant/airflow-maintenance-dags</a></h3><p>Query.from_self()</p><p class="caption">manual_review_required</p></article></div>
+      </section>
+      <section class="section">
+        <div class="grid two">
+          <article class="page-panel">
+            <h2>What this proves</h2>
+            <ul class="clean">
+              <li>Direct Query.get, select list, declarative import, and simple loader cleanup can be classified on real public input.</li>
+              <li>Unsafe execution and query-shape patterns stay visible as manual-review findings.</li>
+              <li>The free scanner is the qualification step before any paid apply pack.</li>
+            </ul>
+          </article>
+          <article class="page-panel">
+            <h2>What it does not prove</h2>
+            <ul class="clean">
+              <li>Full engine.execute(...) automation.</li>
+              <li>Full Query API migration to select().</li>
+              <li>Package, test, or database integration success for every repo with one supported snippet.</li>
+            </ul>
+            <div class="page-actions">
+              <a class="button" href="/products/sa20-pack/">Open sa20-pack</a>
+              <a class="button secondary" href="#" data-free-link>Run the free scan first</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+    </main>
+    <footer class="site-footer"><div class="wrap footer-grid"><div><p class="footer-title">Zipper Tools</p><p class="caption">Exact-problem migration guides and narrow codemod products.</p></div><div class="footer-links"><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="#" data-repo-link>GitHub repo</a><a href="#" data-contact-link>Contact</a></div><p class="caption footer-note">Questions: <a href="#" data-contact-link><span data-contact-email>email</span></a></p></div></footer>
+  </body>
+</html>

@@ -2,6 +2,10 @@
 
 Use this file as the weekly progress log after launch.
 
+For the daily indexing and qualified-traffic control room, use
+[`traffic-war-room.md`](traffic-war-room.md). This file stays weekly; the war
+room handles page-by-page Search Console checks.
+
 ## Weekly Snapshot Template
 
 | Week ending | Site visitors | Free CTA clicks | Paid CTA clicks | Orders | Revenue | Refunds | Payouts received | GitHub views | GitHub clones | Release downloads | Notes |

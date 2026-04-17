@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ESLint Migration Guides | Zipper Tools</title>
+    <meta name="description" content="Exact-problem pages for static ESLint config migration." />
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+    <link rel="canonical" href="https://zippertools.org/eslint/" />
+    <meta property="og:title" content="ESLint Migration Guides" />
+    <meta property="og:description" content="Exact-problem pages for static ESLint config migration." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://zippertools.org/eslint/" />
+    <meta property="og:image" content="https://zippertools.org/og-preview.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ESLint Migration Guides" />
+    <meta name="twitter:description" content="Exact-problem pages for static ESLint config migration." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="../config.js"></script>
+    <script defer src="../app.js"></script>
+    <script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Zipper Tools",
+    "url": "https://zippertools.org/"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "ESLint Migration Guides",
+    "description": "Exact-problem pages for static ESLint config migration.",
+    "url": "https://zippertools.org/eslint/",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Zipper Tools",
+      "url": "https://zippertools.org/"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://zippertools.org/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Guides",
+        "item": "https://zippertools.org/guides/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "ESLint Migration Guides",
+        "item": "https://zippertools.org/eslint/"
+      }
+    ]
+  }
+]
+    </script>
+  </head>
+  <body>
+    <header class="site-header"><div class="wrap nav"><a class="brand" href="/">Zipper Tools</a><nav class="nav-links" aria-label="Primary"><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="/policies">Policies</a><a href="#" data-repo-link>Repo</a></nav></div></header>
+    <main class="wrap">
+      <section class="warning" id="launch-warning" aria-live="polite"></section>
+      <section class="page-title">
+        <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/guides/">Guides</a></li><li aria-current="page">ESLint Migration Guides</li></ol></nav>
+        <p class="kicker">Guides</p>
+        <h1>ESLint Migration Guides</h1>
+        <p>Exact-problem pages for static ESLint config migration.</p>
+      </section>
+
+      <section class="section">
+        <div class="section-heading"><p class="kicker">Problem pages</p><h2>Exact-problem pages for static ESLint config migration.</h2></div>
+        <div class="page-actions"><a class="button secondary" href="/products/flatconfig-lift/">Open flatconfig-lift</a></div>
+        <div class="topic-list"><a class="topic-card" href="/eslint/eslintrc-to-flat-config/"><strong>How to migrate .eslintrc to eslint.config.cjs with FlatCompat</strong><span>Convert static .eslintrc JSON or YAML into eslint.config.cjs without executing JS logic.</span></a><a class="topic-card" href="/eslint/package-json-eslintconfig/"><strong>How to migrate package.json eslintConfig to flat config</strong><span>Convert static package.json eslintConfig blocks into flat config without evaluating JS.</span></a><a class="topic-card" href="/eslint/eslintrc-js-unsupported/"><strong>Why .eslintrc.js is a manual-review case for flat config migration</strong><span>Understand why JS-backed ESLint configs are out of scope for deterministic flat-config migration.</span></a><a class="topic-card" href="/eslint/eslintignore-migration/"><strong>How to move .eslintignore patterns into flat config</strong><span>Carry straightforward .eslintignore and ignorePatterns entries into flat config while keeping the hard cases explicit.</span></a><a class="topic-card" href="/eslint/negated-ignore-patterns/"><strong>Why negated ignore patterns need manual review in flat config migration</strong><span>Understand why negated ignore rules belong in manual review instead of a guessed flat-config translation.</span></a><a class="topic-card" href="/eslint/multiple-legacy-configs/"><strong>Why multiple legacy ESLint config sources block flat config migration</strong><span>If a repo has more than one legacy ESLint config source, the deterministic migration path should stop for manual review.</span></a><a class="topic-card" href="/eslint/existing-flat-config/"><strong>What to do when eslint.config.* already exists</strong><span>If the repo already has eslint.config.js, .cjs, or .mjs, the static legacy-config migration path should stop for manual review.</span></a><a class="topic-card" href="/eslint/env-globals-flat-config/"><strong>How to migrate env and globals settings to ESLint flat config</strong><span>Move env and globals from legacy config into the flat config languageOptions object.</span></a><a class="topic-card" href="/eslint/overrides-flat-config/"><strong>How to migrate ESLint overrides to flat config arrays</strong><span>Overrides in legacy config become separate array elements in flat config.</span></a><a class="topic-card" href="/eslint/parser-options-flat-config/"><strong>How to migrate parserOptions to ESLint flat config</strong><span>Move parserOptions into languageOptions.parserOptions in flat config.</span></a></div>
+      </section>
+
+    </main>
+    <footer class="site-footer"><div class="wrap footer-grid"><div><p class="footer-title">Zipper Tools</p><p class="caption">Exact-problem migration guides and narrow codemod products.</p></div><div class="footer-links"><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="#" data-repo-link>GitHub repo</a><a href="#" data-contact-link>Contact</a></div><p class="caption footer-note">Questions: <a href="#" data-contact-link><span data-contact-email>email</span></a></p></div></footer>
+  </body>
+</html>

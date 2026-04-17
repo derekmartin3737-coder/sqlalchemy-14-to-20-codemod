@@ -1,4 +1,4 @@
-# Launch Posts
+﻿# Launch Posts
 
 ## Short Community Post
 
@@ -109,25 +109,25 @@ Do not post language that implies:
 Use the exact-problem page first and the product page second.
 
 - Broad category page:
-  `https://zippertools.org/sqlalchemy-migration-tool.html`
+  `https://zippertools.org/products/sa20-pack/`
 - `Query.get()` page:
-  `https://zippertools.org/sqlalchemy-query-get-migration.html`
+  `https://zippertools.org/sqlalchemy/session-query-get/`
 - `session.query` page:
-  `https://zippertools.org/sqlalchemy-session-query-migration.html`
+  `https://zippertools.org/sqlalchemy/session-query-migration/`
 - `select([..])` page:
-  `https://zippertools.org/sqlalchemy-select-list-migration.html`
+  `https://zippertools.org/sqlalchemy/select-list-syntax/`
 - declarative import page:
-  `https://zippertools.org/sqlalchemy-declarative-import-migration.html`
+  `https://zippertools.org/sqlalchemy/declarative-imports/`
 - string join page:
-  `https://zippertools.org/sqlalchemy-string-join-migration.html`
+  `https://zippertools.org/sqlalchemy/string-join-paths/`
 - string loader page:
-  `https://zippertools.org/sqlalchemy-joinedload-string-migration.html`
+  `https://zippertools.org/sqlalchemy/string-loader-options/`
 - joinedload_all page:
-  `https://zippertools.org/sqlalchemy-joinedload-all-migration.html`
+  `https://zippertools.org/sqlalchemy/joinedload-all-removed/`
 - `engine.execute(...)` page:
-  `https://zippertools.org/sqlalchemy-engine-execute-removed.html`
+  `https://zippertools.org/sqlalchemy/engine-execute-removed/`
 - DML keyword page:
-  `https://zippertools.org/sqlalchemy-insert-values-migration.html`
+  `https://zippertools.org/sqlalchemy/insert-values-kwargs/`
 
 ## Exact-Problem Outreach Posts
 
@@ -141,7 +141,7 @@ It starts with a free scan, only automates the documented safe subset, and
 pushes unsupported cases into a manual-review bucket instead of guessing.
 
 Issue page:
-https://zippertools.org/sqlalchemy-string-join-migration.html
+https://zippertools.org/sqlalchemy/string-join-paths/
 
 ### Post For String Loader Options
 
@@ -153,7 +153,7 @@ rewrites the supported loader-option cases, and leaves dotted or ambiguous
 paths visible instead of pretending they are safe.
 
 Issue page:
-https://zippertools.org/sqlalchemy-joinedload-string-migration.html
+https://zippertools.org/sqlalchemy/string-loader-options/
 
 ### Post For DML Constructor Keywords
 
@@ -166,7 +166,7 @@ boring edits, emit a machine-readable report, and tell you when the repo still
 needs deliberate manual review.
 
 Issue page:
-https://zippertools.org/sqlalchemy-insert-values-migration.html
+https://zippertools.org/sqlalchemy/insert-values-kwargs/
 
 ### Post For Broad SQLAlchemy Migration Queries
 
@@ -178,7 +178,7 @@ Run the free scan first, inspect the supported candidates and unsupported
 bucket, then buy the apply pack only if the repo actually fits.
 
 Overview:
-https://zippertools.org/sqlalchemy-migration-tool.html
+https://zippertools.org/products/sa20-pack/
 
 ## Reply Template For Public Threads
 
@@ -233,7 +233,7 @@ Unsupported patterns stay visible in a manual-review bucket, so the free scan
 can tell you whether a repo is even a fit before you pay for anything.
 
 Overview:
-https://zippertools.org/sqlalchemy-migration-tool.html
+https://zippertools.org/products/sa20-pack/
 
 ### Owned Post 2: GitHub Discussion In Our Repo
 
@@ -256,15 +256,15 @@ The current public scanner covers a narrow safe subset and intentionally sends
 unsupported cases to manual review instead of guessing.
 
 Broad overview:
-https://zippertools.org/sqlalchemy-migration-tool.html
+https://zippertools.org/products/sa20-pack/
 
 Exact issue pages:
-- https://zippertools.org/sqlalchemy-query-get-migration.html
-- https://zippertools.org/sqlalchemy-select-list-migration.html
-- https://zippertools.org/sqlalchemy-string-join-migration.html
-- https://zippertools.org/sqlalchemy-joinedload-string-migration.html
-- https://zippertools.org/sqlalchemy-insert-values-migration.html
-- https://zippertools.org/sqlalchemy-declarative-import-migration.html
+- https://zippertools.org/sqlalchemy/session-query-get/
+- https://zippertools.org/sqlalchemy/select-list-syntax/
+- https://zippertools.org/sqlalchemy/string-join-paths/
+- https://zippertools.org/sqlalchemy/string-loader-options/
+- https://zippertools.org/sqlalchemy/insert-values-kwargs/
+- https://zippertools.org/sqlalchemy/declarative-imports/
 
 ### Reply Target 1: SQLAlchemy joinedload_all Discussion
 
@@ -289,7 +289,7 @@ does separate supported loader cleanup from the cases that still need manual
 review before anyone buys the pack.
 
 Exact page:
-https://zippertools.org/sqlalchemy-joinedload-all-migration.html
+https://zippertools.org/sqlalchemy/joinedload-all-removed/
 
 ### Reply Target 2: SQLAlchemy Incremental Type-System Discussion
 
@@ -313,7 +313,7 @@ unsupported cases visible instead of pretending the whole migration is
 automated.
 
 Overview:
-https://zippertools.org/sqlalchemy-migration-tool.html
+https://zippertools.org/products/sa20-pack/
 
 ### Avoid: SQLAlchemy DeclarativeMeta Metaclass Discussion
 

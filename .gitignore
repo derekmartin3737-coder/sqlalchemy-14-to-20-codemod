@@ -1,5 +1,6 @@
 .pytest_cache/
 .pytest_tmp/
+pytest_tmp/
 pytest-cache-files-*/
 test_runs/
 .mypy_cache/
@@ -16,6 +17,13 @@ build_tmp/
 __pycache__/
 .venv/
 node_modules/
+.claude/
+.npm-cache/
+.wrangler/
+.wrangler-dryrun/
+cloudflare-mcp-server/
+dist_test/
+site-build-*/
 migration-report.json
 demo-report.json
 !products/flatconfig-lift/demo-report.json
