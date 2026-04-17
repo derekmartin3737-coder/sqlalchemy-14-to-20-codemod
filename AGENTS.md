@@ -219,6 +219,10 @@ And the migration runner itself should produce a structured report showing:
   `/go/pydantic-v2-porter`; SQLAlchemy pages use the tracked free-scan route;
   product pages now lead with a narrow decision block and tracked buy/proof
   links.
+- The Cloudflare storefront now uses a Worker wrapper instead of static assets
+  only, so runtime secrets can be added. Payhip webhooks should point to
+  `https://zippertools.org/payhip/webhook`, with `PAYHIP_API_KEY` stored as a
+  Cloudflare Worker secret. Setup notes live in `docs/payhip-webhook.md`.
 - GitHub repo About is now updated with the `https://zippertools.org/` website,
   narrow scanner-first SQLAlchemy migration description, and exact-intent
   migration topics.
