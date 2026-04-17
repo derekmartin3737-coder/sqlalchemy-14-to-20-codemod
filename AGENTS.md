@@ -201,7 +201,7 @@ And the migration runner itself should produce a structured report showing:
   sitemap URLs, clean canonicals, and internal links so redirect-related Search
   Console rejection issues are caught before resubmission.
 - As of 2026-04-16, the updated site has been deployed through Cloudflare
-  Worker version `7d617057-a41c-41d0-a7c5-674d0bf9267f`, IndexNow submission
+  Worker version `5a131c9b-ff57-4713-904a-a976e486f3b1`, IndexNow submission
   has run, and the local site URL audit, live URL audit, and full pytest suite
   pass.
 - `scripts/cloudflare_traffic_snapshot.mjs` now reads Cloudflare GraphQL
