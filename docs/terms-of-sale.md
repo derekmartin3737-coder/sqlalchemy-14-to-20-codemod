@@ -2,15 +2,15 @@
 
 Last updated: 2026-04-06
 
-These terms apply to paid `sa20-pack` digital products sold through the public
-checkout links.
+These terms apply to paid Zipper Tools digital migration products sold through
+the public checkout links.
 
 ## What is being sold
 
-The seller offers:
+The seller may offer:
 
-- a one-time paid migration pack
-- a one-time preset bundle
+- one-time paid migration packs
+- one-time preset or rollout bundles
 
 Each product includes only the scope described on the pricing page and related
 docs at the time of purchase.

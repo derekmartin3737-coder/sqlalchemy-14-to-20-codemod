@@ -7,8 +7,8 @@
 | Capability | Free scan | Edge-case pack | Preset bundle | Pydantic apply pack |
 | --- | --- | --- | --- | --- |
 | Public CLI | Yes | Yes | Uses public CLI outputs | Uses public fit scan outputs |
-| Core deterministic transforms | Yes | Yes | Uses public CLI outputs | No |
-| Diff preview | Yes | Yes | Uses public CLI outputs | No |
+| Core deterministic transforms | Yes | Yes | Uses public CLI outputs | Yes |
+| Diff preview | Yes | Yes | Uses public CLI outputs | Yes |
 | JSON migration report | Yes | Yes, plus richer buyer docs | Uses public CLI outputs plus richer templates | Yes, plus richer buyer docs |
 | Manual-review findings | Yes | Yes | Uses public CLI outputs plus rollout guidance | Yes |
 | Wider edge-case coverage | No | Yes | No | No |
@@ -37,9 +37,7 @@ whether the repo is a fit before paying.
 
 Product name: **`sa20-pack Edge-Case Migration Pack`**
 
-List price: **$299.99 per team**
-
-Launch price: **$99.99 per team**
+Current checkout price: **$299.99 per team**
 
 What it adds:
 
@@ -59,9 +57,7 @@ What the buyer is really paying for:
 
 Product name: **`sa20-pack Preset Bundle`**
 
-List price: **$149.99 per team**
-
-Launch price: **$49.99 per team**
+Current checkout price: **$149.99 per team**
 
 What it includes:
 
@@ -80,9 +76,7 @@ What it does not include:
 
 Product name: **`pydantic-v2-porter Apply Pack`**
 
-List price: **$249.99 per team**
-
-Launch price: **$99.99 per team**
+Current checkout price: **$249.99 per team**
 
 What it includes:
 

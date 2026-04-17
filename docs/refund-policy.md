@@ -2,9 +2,9 @@
 
 Last updated: 2026-04-06
 
-This policy covers paid digital products sold for `sa20-pack`.
+This policy covers paid Zipper Tools digital migration products.
 
-## One-time migration pack
+## One-time migration packs
 
 If the delivered paid pack materially fails to match the published supported
 scope, contact the seller within 14 days of purchase and include the order
@@ -14,11 +14,11 @@ Refunds are evaluated against the published scope, limitations, and support
 boundary. A repo being outside the published coverage is not a hidden defect if
 that limitation was already stated clearly before purchase.
 
-## Preset bundle
+## Preset and rollout bundles
 
-If the delivered preset bundle materially fails to match the published scope,
-contact the seller within 14 days of purchase and include the order reference
-plus the specific scope mismatch.
+If the delivered preset or rollout bundle materially fails to match the
+published scope, contact the seller within 14 days of purchase and include the
+order reference plus the specific scope mismatch.
 
 ## What improves refund outcomes
 

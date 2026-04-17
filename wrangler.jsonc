@@ -2,6 +2,16 @@
   "name": "sa20-pack",
   "main": "worker/index.mjs",
   "compatibility_date": "2026-04-06",
+  "routes": [
+    {
+      "pattern": "zippertools.org",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.zippertools.org",
+      "custom_domain": true
+    }
+  ],
   "assets": {
     "binding": "ASSETS",
     "directory": "./site",

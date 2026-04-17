@@ -12,11 +12,14 @@ const QUALIFIED_PREFIXES = [
 ];
 
 function parseArgs(argv) {
-  const args = { hours: 24, limit: 1000 };
+  const args = { hours: 24, limit: 1000, offsetHours: 0 };
   for (let index = 2; index < argv.length; index += 1) {
     const item = argv[index];
     if (item === "--hours") {
       args.hours = Number(argv[index + 1]);
+      index += 1;
+    } else if (item === "--offset-hours") {
+      args.offsetHours = Number(argv[index + 1]);
       index += 1;
     } else if (item === "--limit") {
       args.limit = Number(argv[index + 1]);
@@ -30,6 +33,9 @@ function parseArgs(argv) {
   }
   if (!Number.isInteger(args.limit) || args.limit <= 0) {
     throw new Error("--limit must be a positive integer");
+  }
+  if (!Number.isFinite(args.offsetHours) || args.offsetHours < 0) {
+    throw new Error("--offset-hours must be zero or a positive number");
   }
   return args;
 }
@@ -81,7 +87,7 @@ async function main() {
   const args = parseArgs(process.argv);
   const token = requireEnv("CLOUDFLARE_API_TOKEN");
   const zoneTag = requireEnv("CLOUDFLARE_ZONE_ID");
-  const until = new Date();
+  const until = new Date(Date.now() - args.offsetHours * 60 * 60 * 1000);
   const since = new Date(until.getTime() - args.hours * 60 * 60 * 1000);
   const variables = {
     zoneTag,
@@ -153,6 +159,7 @@ async function main() {
     sinceUtc: since.toISOString(),
     untilUtc: until.toISOString(),
     hours: args.hours,
+    offsetHours: args.offsetHours,
     totals,
     qualified: {
       visits: qualified.reduce((sum, group) => sum + group.visits, 0),

@@ -2,7 +2,7 @@
 
 Last updated: 2026-04-06
 
-`sa20-pack` support is intentionally bounded.
+Zipper Tools product support is intentionally bounded.
 
 ## Free support
 
