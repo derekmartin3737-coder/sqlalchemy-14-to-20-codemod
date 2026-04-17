@@ -76,7 +76,7 @@ Use one diagnosis per page.
 | --- | --- | --- | --- |
 | 1 | GSC audit for priority URLs, resubmit only final clean URLs | pending | Do manually in Search Console. |
 | 2 | Edit controllable public replies to canonical URLs | pending | Use clean URLs, never `.html`. |
-| 3 | Sharpen GitHub topics and repo discovery wording | pending | Connector may not expose topic writes. |
+| 3 | Sharpen GitHub topics and repo discovery wording | done | Repo About now points to `https://zippertools.org/` and uses exact-intent migration topics. |
 | 4 | Publish one proof asset | done | `/proof/sqlalchemy-public-proof/` links supported and fail-closed public-file examples. |
 | 5 | Place one exact-fit outreach reply | pending | One canonical URL, exact problem only. |
 | 6 | Recheck GSC and diagnose each priority page | pending | Pick the next lever by bucket. |
@@ -95,3 +95,4 @@ Use one diagnosis per page.
 | --- | --- | --- | --- |
 | 2026-04-16 | War-room tracker created; sitemap/canonical audit added to repo workflow; SQLAlchemy public proof page added. | Pending GSC baseline. | Start with indexing and proof, not more pages. |
 | 2026-04-16 21:24 PDT | Cloudflare GraphQL snapshot added via `scripts/cloudflare_traffic_snapshot.mjs`. | `1173` page views, `942` qualified visits, `84` product visits, `6` proof visits, `5` `/go` requests in prior `24` hours. | Raw 1000/day is reached, qualified visits are close, checkout intent is still thin; next lever is indexing attribution and product-to-checkout trust. |
+| 2026-04-16 22:03 PDT | GitHub repo About description, website, and topics updated. | Public repo now carries the same narrow SQLAlchemy migration positioning as the storefront. | Keep all future public links pointed at canonical clean URLs. |

@@ -210,6 +210,9 @@ And the migration runner itself should produce a structured report showing:
 - The 2026-04-16 21:24 PDT Cloudflare snapshot showed `1173` page views and
   `942` qualified visits in the prior 24 hours; checkout intent was still thin
   at `5` `/go/...` requests.
+- GitHub repo About is now updated with the `https://zippertools.org/` website,
+  narrow scanner-first SQLAlchemy migration description, and exact-intent
+  migration topics.
 
 ## Next Steps
 
