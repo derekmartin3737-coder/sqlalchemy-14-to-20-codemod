@@ -201,7 +201,7 @@ And the migration runner itself should produce a structured report showing:
   sitemap URLs, clean canonicals, and internal links so redirect-related Search
   Console rejection issues are caught before resubmission.
 - As of 2026-04-16, the updated site has been deployed through Cloudflare
-  Worker version `5a131c9b-ff57-4713-904a-a976e486f3b1`, IndexNow submission
+  Worker version `3a69b325-0b4d-40e9-b9b0-e081dc9227bd`, IndexNow submission
   has run, and the local site URL audit, live URL audit, and full pytest suite
   pass.
 - `scripts/cloudflare_traffic_snapshot.mjs` now reads Cloudflare GraphQL
@@ -210,6 +210,15 @@ And the migration runner itself should produce a structured report showing:
 - The 2026-04-16 21:24 PDT Cloudflare snapshot showed `1173` page views and
   `942` qualified visits in the prior 24 hours; checkout intent was still thin
   at `5` `/go/...` requests.
+- The 2026-04-16 22:22 PDT Cloudflare snapshot showed `1446` page views and
+  `1311` qualified visits in the prior 24 hours; the raw traffic goal is now
+  crossed in Cloudflare, but checkout/free-scan intent remains the active
+  bottleneck at `4` `/go/...` requests.
+- Product-to-intent tracking has been repaired: static homepage/pricing CTAs
+  now route through `/go/free-scan`, `/go/sa20-pack`, `/go/sa20-preset`, and
+  `/go/pydantic-v2-porter`; SQLAlchemy pages use the tracked free-scan route;
+  product pages now lead with a narrow decision block and tracked buy/proof
+  links.
 - GitHub repo About is now updated with the `https://zippertools.org/` website,
   narrow scanner-first SQLAlchemy migration description, and exact-intent
   migration topics.
@@ -225,8 +234,8 @@ And the migration runner itself should produce a structured report showing:
    set.
 3. Edit controllable public replies so they point to canonical clean URLs, not
    old `.html` aliases.
-4. Update the GitHub repo About section with the live site URL and exact-intent
-   SQLAlchemy migration topics.
+4. Watch `/go/free-scan` and product-specific `/go/...` requests against
+   product visits for the next 24 hours before changing pricing.
 5. Add only 1-2 more exact-fit public replies where the target page directly
    answers the thread.
 6. Watch indexed page count, impressions, clicks, product-page visits, and

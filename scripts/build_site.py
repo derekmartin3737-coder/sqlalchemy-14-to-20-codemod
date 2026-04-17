@@ -58,8 +58,20 @@ PAYHIP_CHECKOUTS = {
     "pydantic-v2-porter": "https://pay.zippertools.org/b/KamA1?utm_source=zippertools&utm_medium=site&utm_campaign=checkout&utm_content=pydantic-v2-porter",
 }
 
+REPO_URL = "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod"
+FREE_SCAN_URL = (
+    f"{REPO_URL}/blob/main/docs/quickstart.md"
+    "?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=quickstart"
+)
+RELEASE_URL = (
+    f"{REPO_URL}/releases/tag/v0.1.0"
+    "?utm_source=zippertools&utm_medium=site&utm_campaign=trust&utm_content=v0.1.0"
+)
+
 REDIRECTS = (
     ("/favicon.ico", "/favicon.svg", 301),
+    ("/go/free-scan", FREE_SCAN_URL, 302),
+    ("/go/github-release", RELEASE_URL, 302),
     ("/go/sa20-pack", PAYHIP_CHECKOUTS["sa20-pack"], 302),
     ("/go/sa20-preset", PAYHIP_CHECKOUTS["sa20-preset"], 302),
     ("/go/pydantic-v2-porter", PAYHIP_CHECKOUTS["pydantic-v2-porter"], 302),
@@ -321,7 +333,9 @@ def clean_generated_text(value: str) -> str:
 def render_guide(guide: GuidePage) -> tuple[str, str]:
     path = f"{guide.family}/{guide.slug}/index.html"
     proof_cta = ""
+    qualification_cta = ""
     if guide.product_slug == "sa20-pack":
+        qualification_cta = '<a class="button secondary" href="/go/free-scan">Run the free scan first</a>'
         proof_cta = (
             f'<a class="button secondary" href="{relative_href(path, "proof/sqlalchemy-public-proof/index.html")}">'
             "Read public proof</a>"
@@ -388,7 +402,7 @@ def render_guide(guide: GuidePage) -> tuple[str, str]:
             <p>Use the exact-problem guides as a triage layer, then decide whether the repo is inside the supported subset.</p>
             <div class="page-actions">
               <a class="button" href="{relative_href(path, f'products/{guide.product_slug}/index.html')}">Open the matching product page</a>
-              <a class="button secondary" href="#" data-free-link>Run the free scan first</a>
+              {qualification_cta}
               {proof_cta}
             </div>
           </article>
@@ -479,9 +493,13 @@ def render_guides_hub(grouped: dict[str, list[GuidePage]]) -> tuple[str, str]:
 def render_product(product: ProductPage) -> tuple[str, str]:
     path = f"products/{product.slug}/index.html"
     proof_link = ""
+    proof_href = ""
+    release_link = ""
     if product.slug == "sa20-pack":
+        proof_href = relative_href(path, "proof/sqlalchemy-public-proof/index.html")
+        release_link = '<a href="/go/github-release">v0.1.0 release</a>'
         proof_link = (
-            f'<a class="button secondary" href="{relative_href(path, "proof/sqlalchemy-public-proof/index.html")}">'
+            f'<a class="button secondary" href="{proof_href}">'
             "Read public proof</a>"
         )
     guides = [guide for guide in GUIDES if guide.slug in product.guide_slugs]
@@ -494,15 +512,85 @@ def render_product(product: ProductPage) -> tuple[str, str]:
         f'<a class="button secondary" href="#" data-doc-path="{escape(doc_path)}">{escape(label)}</a>'
         for label, doc_path in product.docs
     )
+    small_doc_items = product.docs[1:3] if proof_href else product.docs[:2]
+    docs_small_links = "".join(
+        f'<a href="#" data-doc-path="{escape(doc_path)}">{escape(label)}</a>'
+        for label, doc_path in small_doc_items
+    )
     checkout_link = ""
     if product.checkout_path:
+        price_suffix = f" - ${escape(product.price)}" if product.price else ""
         checkout_link = (
             f'<a class="button" href="{escape(product.checkout_path)}">'
-            f"Buy {escape(product.name)}</a>"
-            '<a class="button secondary" href="#" data-free-link>'
-            "Run the free scan first</a>"
+            f"Buy {escape(product.name)}{price_suffix}</a>"
         )
+        if product.slug == "sa20-pack":
+            checkout_link += '<a class="button secondary" href="/go/free-scan">Run the free scan first</a>'
+    else:
+        checkout_link = '<span class="button disabled">Checkout not listed yet</span>'
+
+    price_line = (
+        f'<p class="price-line">One-time download: <strong>${escape(product.price)}</strong>.</p>'
+        if product.price
+        else '<p class="price-line">Checkout is not listed yet.</p>'
+    )
+    if product.slug == "sa20-pack":
+        decision_heading = "Run the scan, then buy only if the report fits."
+        decision_copy = (
+            "Use the public scanner before checkout. If the report finds repeated supported "
+            "SQLAlchemy cleanup, the paid download is the apply step for that documented subset."
+        )
+        primary_action = '<a class="button" href="/go/free-scan">Run the free scan first</a>'
+        secondary_action = (
+            f'<a class="button secondary" href="{escape(product.checkout_path)}">'
+            f"Buy {escape(product.name)} - ${escape(product.price)}</a>"
+        )
+    elif product.checkout_path:
+        decision_heading = "Check the subset, then buy the download."
+        decision_copy = (
+            "Use the public proof and product docs to confirm the repo matches the narrow supported "
+            "subset. The checkout is for a downloadable apply pack, not a custom migration service."
+        )
+        primary_action = (
+            f'<a class="button" href="{escape(product.checkout_path)}">'
+            f"Buy {escape(product.name)} - ${escape(product.price)}</a>"
+        )
+        secondary_action = docs_links
+    else:
+        decision_heading = "Use the proof before treating this as purchasable."
+        decision_copy = (
+            "This page is still useful for qualifying the static-config subset, but the paid checkout "
+            "is not listed here yet."
+        )
+        primary_action = docs_links
+        secondary_action = ""
+    proof_small_link = f'<a href="{proof_href}">Public proof</a>' if proof_href else ""
+    small_links = "".join(
+        item for item in (proof_small_link, release_link, docs_small_links) if item
+    )
+    small_links_html = f'<div class="small-links">{small_links}</div>' if small_links else ""
+
     body = f"""
+      <section class="section">
+        <article class="conversion-panel">
+          <div class="conversion-copy">
+            <p class="kicker">Decision step</p>
+            <h2>{escape(decision_heading)}</h2>
+            <p>{escape(decision_copy)}</p>
+            <ul class="clean decision-list">
+              <li>Deterministic transforms first.</li>
+              <li>Unsupported cases stay visible as manual-review findings.</li>
+              <li>No broad promise of a full upgrade migration.</li>
+            </ul>
+            {price_line}
+          </div>
+          <div class="conversion-actions">
+            {primary_action}
+            {secondary_action}
+            {small_links_html}
+          </div>
+        </article>
+      </section>
       <section class="section">
         <div class="grid two">
           <article class="page-panel">
@@ -664,7 +752,7 @@ def render_sqlalchemy_public_proof() -> tuple[str, str]:
             </ul>
             <div class="page-actions">
               <a class="button" href="{relative_href(path, "products/sa20-pack/index.html")}">Open sa20-pack</a>
-              <a class="button secondary" href="#" data-free-link>Run the free scan first</a>
+              <a class="button secondary" href="/go/free-scan">Run the free scan first</a>
             </div>
           </article>
         </div>

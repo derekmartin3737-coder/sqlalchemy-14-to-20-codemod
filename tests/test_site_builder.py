@@ -63,6 +63,9 @@ def test_generated_redirects_preserve_legacy_paths_and_track_checkout() -> None:
     assert "/sqlalchemy-preset-bundle.html /pricing 301" in redirects_text
     assert "/pydantic-basesettings-migration.html /pydantic/basesettings-moved/ 301" in redirects_text
     assert "/products/sa20-pack/index.html /products/sa20-pack/ 301" in redirects_text
+    assert "/go/free-scan https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/blob/main/docs/quickstart.md" in redirects_text
+    assert "utm_campaign=free_scan" in redirects_text
+    assert "/go/github-release https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/releases/tag/v0.1.0" in redirects_text
     assert "/go/sa20-pack https://pay.zippertools.org/b/QimJ6" in redirects_text
     assert "utm_content=sa20-pack 302" in redirects_text
     assert "/optionengine-object-has-no-attribute-execute /sqlalchemy/optionengine-execute-error/ 301" in redirects_text
@@ -79,7 +82,10 @@ def test_product_pages_link_to_trackable_checkout_routes() -> None:
 
     assert 'href="/go/sa20-pack"' in sa20_text
     assert 'href="/go/pydantic-v2-porter"' in pydantic_text
+    assert 'href="/go/free-scan"' in sa20_text
     assert "Run the free scan first" in sa20_text
+    assert "Buy sa20-pack - $299.99" in sa20_text
+    assert "Buy pydantic-v2-porter - $249.99" in pydantic_text
     assert 'href="/proof/sqlalchemy-public-proof/"' in sa20_text
 
 
@@ -100,6 +106,7 @@ def test_static_indexable_pages_use_clean_canonicals_and_links() -> None:
     pricing_text = Path("site/pricing.html").read_text(encoding="utf-8")
     demo_text = Path("site/demo.html").read_text(encoding="utf-8")
     index_text = Path("site/index.html").read_text(encoding="utf-8")
+    config_text = Path("site/config.js").read_text(encoding="utf-8")
 
     assert 'href="https://zippertools.org/pricing"' in pricing_text
     assert 'content="https://zippertools.org/pricing"' in pricing_text
@@ -107,6 +114,10 @@ def test_static_indexable_pages_use_clean_canonicals_and_links() -> None:
     assert 'content="https://zippertools.org/demo"' in demo_text
     assert 'href="pricing.html"' not in index_text
     assert 'href="sqlalchemy-migration-tool.html"' not in index_text
+    assert 'freeStartUrl: "/go/free-scan"' in config_text
+    assert 'paidPackUrl: "/go/sa20-pack"' in config_text
+    assert 'presetBundleUrl: "/go/sa20-preset"' in config_text
+    assert 'pydanticPackUrl: "/go/pydantic-v2-porter"' in config_text
 
 
 def test_indexnow_payload_uses_generated_manifest_groups() -> None:

@@ -9,6 +9,16 @@
       "status": 301
     },
     {
+      "source": "/go/free-scan",
+      "target": "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/blob/main/docs/quickstart.md?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=quickstart",
+      "status": 302
+    },
+    {
+      "source": "/go/github-release",
+      "target": "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/releases/tag/v0.1.0?utm_source=zippertools&utm_medium=site&utm_campaign=trust&utm_content=v0.1.0",
+      "status": 302
+    },
+    {
       "source": "/go/sa20-pack",
       "target": "https://pay.zippertools.org/b/QimJ6?utm_source=zippertools&utm_medium=site&utm_campaign=checkout&utm_content=sa20-pack",
       "status": 302

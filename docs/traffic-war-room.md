@@ -11,10 +11,12 @@ Do not use homepage visits or bot-heavy request counts as the main signal.
 - Baseline from 2026-04-15 01:03-21:03 PDT: `128` Cloudflare visits in
   `20` hours, roughly `154` visits/day extrapolated.
 - Goal: `1000` qualified visits/day.
-- Latest Cloudflare snapshot from 2026-04-16 21:24 PDT: `1173` page views and
-  `942` qualified visits in the previous `24` hours.
-- Remaining qualified-visit gap: roughly `58` visits/day, but Search Console
-  still has to confirm organic indexing and impressions.
+- Latest Cloudflare snapshot from 2026-04-16 22:22 PDT: `1446` page views and
+  `1311` qualified visits in the previous `24` hours.
+- Remaining qualified-visit gap: `0` in Cloudflare's raw site analytics, but
+  Search Console still has to confirm organic indexing and impressions.
+- Current bottleneck: product/proof traffic is present, but tracked intent is
+  still thin at `4` `/go/...` requests in the latest 24-hour snapshot.
 
 ## Daily Morning Checklist
 
@@ -97,3 +99,5 @@ Use one diagnosis per page.
 | 2026-04-16 21:24 PDT | Cloudflare GraphQL snapshot added via `scripts/cloudflare_traffic_snapshot.mjs`. | `1173` page views, `942` qualified visits, `84` product visits, `6` proof visits, `5` `/go` requests in prior `24` hours. | Raw 1000/day is reached, qualified visits are close, checkout intent is still thin; next lever is indexing attribution and product-to-checkout trust. |
 | 2026-04-16 22:03 PDT | GitHub repo About description, website, and topics updated. | Public repo now carries the same narrow SQLAlchemy migration positioning as the storefront. | Keep all future public links pointed at canonical clean URLs. |
 | 2026-04-16 22:08 PDT | GitHub release `v0.1.0` created for the public scanner/discovery baseline. | Release URL: `https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/releases/tag/v0.1.0`. | Use the release as a public trust marker, not as a broad migration claim. |
+| 2026-04-16 22:21 PDT | Product-to-intent repair deployed through Cloudflare Worker version `3a69b325-0b4d-40e9-b9b0-e081dc9227bd`. | Static buttons now route through `/go/free-scan`, `/go/sa20-pack`, `/go/sa20-preset`, and `/go/pydantic-v2-porter`; product pages now lead with a decision block and tracked CTAs. | Compare `/go/free-scan` and product-specific `/go/...` requests over the next 24 hours before changing pricing. |
+| 2026-04-16 22:22 PDT | Cloudflare 24-hour snapshot after the conversion repair. | `1446` page views, `1311` qualified visits, `106` product visits, `13` proof visits, `4` `/go/...` requests. | The traffic goal is crossed in Cloudflare, so the operating metric is now tracked intent per product visit. |
