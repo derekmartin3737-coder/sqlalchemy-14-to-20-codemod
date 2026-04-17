@@ -3,10 +3,13 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+from typing import Any
 from urllib import request
 
+# ruff: noqa: E501
 
-def build_payload(manifest: dict[str, object], groups: list[str]) -> dict[str, object]:
+
+def build_payload(manifest: dict[str, Any], groups: list[str]) -> dict[str, Any]:
     url_list: list[str] = []
     for group in groups:
         url_list.extend(manifest["urls"][group])

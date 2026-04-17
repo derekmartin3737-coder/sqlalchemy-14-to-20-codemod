@@ -6,6 +6,8 @@ from pathlib import Path
 from scripts.build_site import build_site
 from scripts.submit_indexnow import build_payload
 
+# ruff: noqa: E501
+
 
 def test_build_site_generates_sitemaps_and_indexnow_key() -> None:
     tmp_path = Path.cwd() / "site"

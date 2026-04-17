@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+# ruff: noqa: E501
+
 SITE_NAME = "Zipper Tools"
 SITE_URL = "https://zippertools.org"
 INDEXNOW_KEY = "66d2924ff8a74b898f29b91e27b2fce8"

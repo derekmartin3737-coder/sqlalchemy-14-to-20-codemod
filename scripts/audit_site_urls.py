@@ -6,10 +6,12 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
+from collections.abc import Iterable
 from dataclasses import dataclass
 from html.parser import HTMLParser
 from pathlib import Path
-from typing import Iterable
+
+# ruff: noqa: E501
 
 
 DEFAULT_BASE_URL = "https://zippertools.org"

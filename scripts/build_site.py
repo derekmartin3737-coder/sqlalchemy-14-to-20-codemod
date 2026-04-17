@@ -3,37 +3,31 @@ from __future__ import annotations
 import argparse
 import json
 import posixpath
+import sys
 from collections import defaultdict
+from collections.abc import Iterable
 from dataclasses import asdict
 from datetime import date
 from html import escape
 from pathlib import Path, PurePosixPath
-from typing import Iterable
+from typing import Any
 
 if __package__ in {None, ""}:
-    from site_catalog import (  # type: ignore[no-redef]
-        FAMILY_DESCRIPTIONS,
-        FAMILY_TITLES,
-        GUIDES,
-        INDEXNOW_KEY,
-        PRODUCTS,
-        SITE_NAME,
-        SITE_URL,
-        GuidePage,
-        ProductPage,
-    )
-else:
-    from scripts.site_catalog import (
-        FAMILY_DESCRIPTIONS,
-        FAMILY_TITLES,
-        GUIDES,
-        INDEXNOW_KEY,
-        PRODUCTS,
-        SITE_NAME,
-        SITE_URL,
-        GuidePage,
-        ProductPage,
-    )
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from scripts.site_catalog import (
+    FAMILY_DESCRIPTIONS,
+    FAMILY_TITLES,
+    GUIDES,
+    INDEXNOW_KEY,
+    PRODUCTS,
+    SITE_NAME,
+    SITE_URL,
+    GuidePage,
+    ProductPage,
+)
+
+# ruff: noqa: E501
 
 INDEXABLE_STATIC_PAGES = (
     ("", "Home"),
@@ -808,7 +802,7 @@ def write_redirects(output_dir: Path, redirects: Iterable[tuple[str, str, int]])
     (output_dir / "_redirects").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
-def build_site(output_dir: Path) -> dict[str, object]:
+def build_site(output_dir: Path) -> dict[str, Any]:
     grouped: dict[str, list[GuidePage]] = defaultdict(list)
     for guide in GUIDES:
         grouped[guide.family].append(guide)
