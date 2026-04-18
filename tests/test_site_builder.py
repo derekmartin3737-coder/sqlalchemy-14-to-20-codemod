@@ -82,9 +82,12 @@ def test_product_pages_link_to_trackable_checkout_routes() -> None:
     sa20_text = (tmp_path / "products" / "sa20-pack" / "index.html").read_text(encoding="utf-8")
     pydantic_text = (tmp_path / "products" / "pydantic-v2-porter" / "index.html").read_text(encoding="utf-8")
 
-    assert 'href="/go/sa20-pack"' in sa20_text
-    assert 'href="/go/pydantic-v2-porter"' in pydantic_text
-    assert 'href="/go/free-scan"' in sa20_text
+    assert 'href="/go/sa20-pack/product-products-sa20-pack"' in sa20_text
+    assert (
+        'href="/go/pydantic-v2-porter/product-products-pydantic-v2-porter"'
+        in pydantic_text
+    )
+    assert 'href="/go/free-scan/product-products-sa20-pack"' in sa20_text
     assert "Run the free scan first" in sa20_text
     assert "Buy sa20-pack - $299.99" in sa20_text
     assert "Buy pydantic-v2-porter - $249.99" in pydantic_text

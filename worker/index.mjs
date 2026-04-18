@@ -1,11 +1,114 @@
 const MAX_WEBHOOK_BYTES = 64 * 1024;
 const PAYHIP_WEBHOOK_PATH = "/payhip/webhook";
+const GO_ROUTES = {
+  "/go/free-scan": {
+    kind: "free_scan",
+    label: "free-scan",
+    target:
+      "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/blob/main/docs/quickstart.md?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=quickstart",
+  },
+  "/go/github-release": {
+    kind: "trust",
+    label: "github-release",
+    target:
+      "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/releases/tag/v0.1.0?utm_source=zippertools&utm_medium=site&utm_campaign=trust&utm_content=v0.1.0",
+  },
+  "/go/sa20-pack": {
+    kind: "checkout",
+    label: "sa20-pack",
+    target:
+      "https://pay.zippertools.org/b/QimJ6?utm_source=zippertools&utm_medium=site&utm_campaign=checkout&utm_content=sa20-pack",
+  },
+  "/go/sa20-preset": {
+    kind: "checkout",
+    label: "sa20-preset",
+    target:
+      "https://pay.zippertools.org/b/wh2Ro?utm_source=zippertools&utm_medium=site&utm_campaign=checkout&utm_content=sa20-preset",
+  },
+  "/go/pydantic-v2-porter": {
+    kind: "checkout",
+    label: "pydantic-v2-porter",
+    target:
+      "https://pay.zippertools.org/b/KamA1?utm_source=zippertools&utm_medium=site&utm_campaign=checkout&utm_content=pydantic-v2-porter",
+  },
+};
 
 function jsonResponse(value, init = {}) {
   const headers = new Headers(init.headers);
   headers.set("content-type", "application/json; charset=utf-8");
   headers.set("cache-control", "no-store");
   return new Response(JSON.stringify(value), { ...init, headers });
+}
+
+function matchGoRoute(pathname) {
+  const candidates = Object.entries(GO_ROUTES).sort(
+    ([left], [right]) => right.length - left.length,
+  );
+  for (const [basePath, route] of candidates) {
+    if (pathname === basePath) {
+      return { basePath, route, source: "unknown" };
+    }
+    if (pathname.startsWith(`${basePath}/`)) {
+      const source = pathname.slice(basePath.length + 1) || "unknown";
+      return { basePath, route, source };
+    }
+  }
+  return null;
+}
+
+function appendTrackingParam(target, source) {
+  const url = new URL(target);
+  if (source && source !== "unknown") {
+    url.searchParams.set("utm_term", source.slice(0, 120));
+  }
+  return url.toString();
+}
+
+function writeConversionEvent(env, event) {
+  console.log("conversion_route", JSON.stringify(event));
+  if (env.CONVERSION_EVENTS?.writeDataPoint) {
+    env.CONVERSION_EVENTS.writeDataPoint({
+      blobs: [
+        event.kind,
+        event.label,
+        event.source,
+        event.path,
+        event.country,
+        event.refererHost,
+      ],
+      doubles: [Date.now()],
+      indexes: [event.label],
+    });
+  }
+}
+
+function handleGoRoute(request, env, match) {
+  const url = new URL(request.url);
+  const referer = request.headers.get("referer") || "";
+  let refererHost = "";
+  try {
+    refererHost = referer ? new URL(referer).host : "";
+  } catch {
+    refererHost = "";
+  }
+
+  const event = {
+    kind: match.route.kind,
+    label: match.route.label,
+    source: match.source,
+    path: url.pathname,
+    method: request.method,
+    country: request.cf?.country || "",
+    colo: request.cf?.colo || "",
+    refererHost,
+  };
+  writeConversionEvent(env, event);
+
+  const headers = new Headers({
+    location: appendTrackingParam(match.route.target, match.source),
+    "cache-control": "no-store",
+  });
+  return new Response(null, { status: 302, headers });
 }
 
 function hexToBytes(value) {
@@ -121,6 +224,11 @@ export default {
     const url = new URL(request.url);
     if (url.pathname === PAYHIP_WEBHOOK_PATH) {
       return handlePayhipWebhook(request, env);
+    }
+
+    const goRoute = matchGoRoute(url.pathname);
+    if (goRoute) {
+      return handleGoRoute(request, env, goRoute);
     }
 
     return env.ASSETS.fetch(request);

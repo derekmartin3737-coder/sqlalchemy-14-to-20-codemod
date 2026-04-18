@@ -253,6 +253,27 @@ def product_schema(product: ProductPage, path: str) -> dict[str, object]:
     return schema
 
 
+def software_application_schema(product: ProductPage, path: str) -> dict[str, object]:
+    schema: dict[str, object] = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": product.name,
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Windows, macOS, Linux",
+        "description": product.description,
+        "url": canonical_url(path),
+    }
+    if product.price:
+        schema["offers"] = {
+            "@type": "Offer",
+            "price": product.price,
+            "priceCurrency": product.currency,
+            "availability": f"https://schema.org/{product.availability}",
+            "url": canonical_url(path),
+        }
+    return schema
+
+
 def faq_schema(items: tuple[tuple[str, str], ...]) -> dict[str, object]:
     return {
         "@context": "https://schema.org",
@@ -277,6 +298,19 @@ def code_block(value: str) -> str:
 
 def product_by_slug(slug: str) -> ProductPage | None:
     return next((product for product in PRODUCTS if product.slug == slug), None)
+
+
+def tracking_source(path: str, context: str) -> str:
+    normalized = path.strip("/")
+    normalized = normalized.removesuffix("/index.html").removesuffix(".html")
+    normalized = normalized.replace("/", "-") or "home"
+    return f"{context}-{normalized}"[:120]
+
+
+def tracked_go_path(path: str, source: str) -> str:
+    if not path.startswith("/go/"):
+        return path
+    return f"{path}/{source}"
 
 
 def product_purchase_details(product: ProductPage) -> dict[str, tuple[str, ...]]:
@@ -330,6 +364,8 @@ def render_purchase_panel(product: ProductPage, path: str, *, context: str) -> s
         return ""
 
     details = product_purchase_details(product)
+    source = tracking_source(path, context)
+    checkout_path = tracked_go_path(product.checkout_path, source)
     product_href = relative_href(path, f"products/{product.slug}/index.html")
     proof_action = ""
     if product.slug == "sa20-pack":
@@ -381,7 +417,7 @@ def render_purchase_panel(product: ProductPage, path: str, *, context: str) -> s
             </div>
           </div>
           <div class="page-actions purchase-actions">
-            <a class="button" href="{escape(product.checkout_path)}">Buy {escape(product.name)} - ${escape(product.price)}</a>
+            <a class="button" href="{escape(checkout_path)}">Buy {escape(product.name)} - ${escape(product.price)}</a>
             {secondary_action}
           </div>
         </article>
@@ -417,6 +453,26 @@ def render_faq_section(items: tuple[tuple[str, str], ...]) -> str:
           <h2>Fast answers before you decide</h2>
           <div class="faq-list">
             {''.join(f'<div><h3>{escape(question)}</h3><p>{escape(answer)}</p></div>' for question, answer in items)}
+          </div>
+        </article>
+      </section>"""
+
+
+def render_direct_fix_section(guide: GuidePage) -> str:
+    manual_boundary = " ".join(guide.manual_review[:2])
+    return f"""      <section class="section">
+        <article class="page-panel answer-panel">
+          <p class="kicker">Start here</p>
+          <div class="answer-grid">
+            <div>
+              <h2>The safe first move</h2>
+              <p>{escape(guide.answer)}</p>
+              <p class="caption">Stop before automation when: {escape(manual_boundary)}</p>
+            </div>
+            <div>
+              <h3>Target shape</h3>
+              {code_block(guide.after_code)}
+            </div>
           </div>
         </article>
       </section>"""
@@ -496,7 +552,10 @@ def render_guide(guide: GuidePage) -> tuple[str, str]:
     proof_cta = ""
     qualification_cta = ""
     if guide.product_slug == "sa20-pack":
-        qualification_cta = '<a class="button secondary" href="/go/free-scan">Run the free scan first</a>'
+        qualification_cta = (
+            f'<a class="button secondary" href="{tracked_go_path("/go/free-scan", tracking_source(path, "guide"))}">'
+            "Run the free scan first</a>"
+        )
         proof_cta = (
             f'<a class="button secondary" href="{relative_href(path, "proof/sqlalchemy-public-proof/index.html")}">'
             "Read public proof</a>"
@@ -534,6 +593,7 @@ def render_guide(guide: GuidePage) -> tuple[str, str]:
     )
     extra_sections = f"{render_faq_section(faq_items)}{guide_purchase_html}{more_fixes_html}"
     body = f"""
+{render_direct_fix_section(guide)}
       <section class="section">
         <div class="grid two">
           <article class="page-panel">
@@ -659,6 +719,9 @@ def render_guides_hub(grouped: dict[str, list[GuidePage]]) -> tuple[str, str]:
 
 def render_product(product: ProductPage) -> tuple[str, str]:
     path = f"products/{product.slug}/index.html"
+    product_source = tracking_source(path, "product")
+    checkout_path = tracked_go_path(product.checkout_path, product_source)
+    free_scan_path = tracked_go_path("/go/free-scan", product_source)
     proof_link = ""
     proof_href = ""
     release_link = ""
@@ -688,11 +751,14 @@ def render_product(product: ProductPage) -> tuple[str, str]:
     if product.checkout_path:
         price_suffix = f" - ${escape(product.price)}" if product.price else ""
         checkout_link = (
-            f'<a class="button" href="{escape(product.checkout_path)}">'
+            f'<a class="button" href="{escape(checkout_path)}">'
             f"Buy {escape(product.name)}{price_suffix}</a>"
         )
         if product.slug == "sa20-pack":
-            checkout_link += '<a class="button secondary" href="/go/free-scan">Run the free scan first</a>'
+            checkout_link += (
+                f'<a class="button secondary" href="{free_scan_path}">'
+                "Run the free scan first</a>"
+            )
     else:
         checkout_link = '<span class="button disabled">Checkout not listed yet</span>'
 
@@ -707,9 +773,9 @@ def render_product(product: ProductPage) -> tuple[str, str]:
             "Use the public scanner before checkout. If the report finds repeated supported "
             "SQLAlchemy cleanup, the paid download is the apply step for that documented subset."
         )
-        primary_action = '<a class="button" href="/go/free-scan">Run the free scan first</a>'
+        primary_action = f'<a class="button" href="{free_scan_path}">Run the free scan first</a>'
         secondary_action = (
-            f'<a class="button secondary" href="{escape(product.checkout_path)}">'
+            f'<a class="button secondary" href="{escape(checkout_path)}">'
             f"Buy {escape(product.name)} - ${escape(product.price)}</a>"
         )
     elif product.checkout_path:
@@ -719,7 +785,7 @@ def render_product(product: ProductPage) -> tuple[str, str]:
             "subset. The checkout is for a downloadable apply pack, not a custom migration service."
         )
         primary_action = (
-            f'<a class="button" href="{escape(product.checkout_path)}">'
+            f'<a class="button" href="{escape(checkout_path)}">'
             f"Buy {escape(product.name)} - ${escape(product.price)}</a>"
         )
         secondary_action = docs_links
@@ -795,7 +861,10 @@ def render_product(product: ProductPage) -> tuple[str, str]:
         heading=f"{product.name} for {product.family}",
         body=body,
         crumbs=[("index.html", "Home"), ("products/index.html", "Products"), (path, product.name)],
-        schemas=[product_schema(product, path)],
+        schemas=[
+            product_schema(product, path),
+            software_application_schema(product, path),
+        ],
     )
     return path, html
 

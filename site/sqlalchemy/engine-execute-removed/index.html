@@ -114,6 +114,27 @@
       </section>
 
       <section class="section">
+        <article class="page-panel answer-panel">
+          <p class="kicker">Start here</p>
+          <div class="answer-grid">
+            <div>
+              <h2>The safe first move</h2>
+              <p>Move execution onto a Connection or Session and make transaction boundaries explicit. That is why honest tooling buckets engine.execute(...) as manual review.</p>
+              <p class="caption">Stop before automation when: Choosing Connection versus Session. Raw SQL that needs text(...).</p>
+            </div>
+            <div>
+              <h3>Target shape</h3>
+              <pre class="code-block"><code>from sqlalchemy import text
+
+with engine.connect() as conn:
+    result = conn.execute(text(&quot;SELECT id FROM users&quot;))
+    rows = conn.execute(stmt).fetchall()
+</code></pre>
+            </div>
+          </div>
+        </article>
+      </section>
+      <section class="section">
         <div class="grid two">
           <article class="page-panel">
             <p class="kicker">Search intent</p>
@@ -155,7 +176,7 @@ with engine.connect() as conn:
             <p>Use the exact-problem guides as a triage layer, then decide whether the repo is inside the supported subset.</p>
             <div class="page-actions">
               <a class="button" href="/products/sa20-pack/">Open the matching product page</a>
-              <a class="button secondary" href="/go/free-scan">Run the free scan first</a>
+              <a class="button secondary" href="/go/free-scan/guide-sqlalchemy-engine-execute-removed">Run the free scan first</a>
               <a class="button secondary" href="/proof/sqlalchemy-public-proof/">Read public proof</a>
             </div>
           </article>
@@ -193,7 +214,7 @@ with engine.connect() as conn:
             </div>
           </div>
           <div class="page-actions purchase-actions">
-            <a class="button" href="/go/sa20-pack">Buy sa20-pack - $299.99</a>
+            <a class="button" href="/go/sa20-pack/guide-sqlalchemy-engine-execute-removed">Buy sa20-pack - $299.99</a>
             <a class="button secondary" href="/products/sa20-pack/">Check product fit</a><a class="button secondary" href="/proof/sqlalchemy-public-proof/">Read proof</a>
           </div>
         </article>

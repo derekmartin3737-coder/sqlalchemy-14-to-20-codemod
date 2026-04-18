@@ -114,6 +114,33 @@
       </section>
 
       <section class="section">
+        <article class="page-panel answer-panel">
+          <p class="kicker">Start here</p>
+          <div class="answer-grid">
+            <div>
+              <h2>The safe first move</h2>
+              <p>Move env settings to languageOptions.globals using the globals package, and move globals directly into languageOptions.globals.</p>
+              <p class="caption">Stop before automation when: Dynamic env selection based on file patterns. Overlapping globals from multiple sources.</p>
+            </div>
+            <div>
+              <h3>Target shape</h3>
+              <pre class="code-block"><code>const globals = require(&quot;globals&quot;);
+
+module.exports = [{
+  languageOptions: {
+    globals: {
+      ...globals.browser,
+      ...globals.node,
+      myGlobal: &quot;readonly&quot;,
+    },
+  },
+}];
+</code></pre>
+            </div>
+          </div>
+        </article>
+      </section>
+      <section class="section">
         <div class="grid two">
           <article class="page-panel">
             <p class="kicker">Search intent</p>

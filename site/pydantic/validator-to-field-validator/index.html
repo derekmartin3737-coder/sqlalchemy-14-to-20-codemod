@@ -114,6 +114,30 @@
       </section>
 
       <section class="section">
+        <article class="page-panel answer-panel">
+          <p class="kicker">Start here</p>
+          <div class="answer-grid">
+            <div>
+              <h2>The safe first move</h2>
+              <p>If the validator uses the supported direct-import path and the simple classmethod signature, the clean rewrite is @field_validator.</p>
+              <p class="caption">Stop before automation when: Validators that use values, field, config, each_item, or always. Alias-heavy imports.</p>
+            </div>
+            <div>
+              <h3>Target shape</h3>
+              <pre class="code-block"><code>from pydantic import BaseModel, field_validator
+
+class UserModel(BaseModel):
+    email: str
+
+    @field_validator(&quot;email&quot;)
+    def normalize_email(cls, value: str) -&gt; str:
+        return value.strip().lower()
+</code></pre>
+            </div>
+          </div>
+        </article>
+      </section>
+      <section class="section">
         <div class="grid two">
           <article class="page-panel">
             <p class="kicker">Search intent</p>
@@ -202,7 +226,7 @@ class UserModel(BaseModel):
             </div>
           </div>
           <div class="page-actions purchase-actions">
-            <a class="button" href="/go/pydantic-v2-porter">Buy pydantic-v2-porter - $249.99</a>
+            <a class="button" href="/go/pydantic-v2-porter/guide-pydantic-validator-to-field-validator">Buy pydantic-v2-porter - $249.99</a>
             <a class="button secondary" href="/products/pydantic-v2-porter/">Check product fit</a><a class="button secondary" href="#" data-doc-path="products/pydantic-v2-porter/docs/public-proof.md">Read proof</a>
           </div>
         </article>

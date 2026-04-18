@@ -22,6 +22,12 @@
         return;
       }
 
+      const currentHref = element.getAttribute("href") || "";
+      if (value.startsWith("/go/") && currentHref.startsWith(`${value}/`)) {
+        element.href = currentHref;
+        return;
+      }
+
       element.href = value;
     });
   }

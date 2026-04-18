@@ -114,6 +114,29 @@
       </section>
 
       <section class="section">
+        <article class="page-panel answer-panel">
+          <p class="kicker">Start here</p>
+          <div class="answer-grid">
+            <div>
+              <h2>The safe first move</h2>
+              <p>Use ConfigDict and model_config for supported keys like extra, from_attributes, populate_by_name, and json_schema_extra.</p>
+              <p class="caption">Stop before automation when: Config.fields and other removed keys. Dynamic Config attributes.</p>
+            </div>
+            <div>
+              <h3>Target shape</h3>
+              <pre class="code-block"><code>from pydantic import ConfigDict
+
+class User(BaseModel):
+    model_config = ConfigDict(
+        from_attributes=True,
+        populate_by_name=True,
+    )
+</code></pre>
+            </div>
+          </div>
+        </article>
+      </section>
+      <section class="section">
         <div class="grid two">
           <article class="page-panel">
             <p class="kicker">Search intent</p>
@@ -197,7 +220,7 @@ class User(BaseModel):
             </div>
           </div>
           <div class="page-actions purchase-actions">
-            <a class="button" href="/go/pydantic-v2-porter">Buy pydantic-v2-porter - $249.99</a>
+            <a class="button" href="/go/pydantic-v2-porter/guide-pydantic-config-class-deprecated-warning">Buy pydantic-v2-porter - $249.99</a>
             <a class="button secondary" href="/products/pydantic-v2-porter/">Check product fit</a><a class="button secondary" href="#" data-doc-path="products/pydantic-v2-porter/docs/public-proof.md">Read proof</a>
           </div>
         </article>

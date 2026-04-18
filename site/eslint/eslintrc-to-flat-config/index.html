@@ -114,6 +114,31 @@
       </section>
 
       <section class="section">
+        <article class="page-panel answer-panel">
+          <p class="kicker">Start here</p>
+          <div class="answer-grid">
+            <div>
+              <h2>The safe first move</h2>
+              <p>If the source config is static JSON or YAML data, the bridge file can be generated deterministically.</p>
+              <p class="caption">Stop before automation when: .eslintrc.js, .cjs, or .mjs logic. Repos that already have eslint.config.*.</p>
+            </div>
+            <div>
+              <h3>Target shape</h3>
+              <pre class="code-block"><code>const { FlatCompat } = require(&quot;@eslint/eslintrc&quot;);
+const compat = new FlatCompat();
+
+module.exports = [
+  ...compat.config({
+    extends: [&quot;eslint:recommended&quot;],
+    rules: { &quot;no-console&quot;: &quot;warn&quot; },
+  }),
+];
+</code></pre>
+            </div>
+          </div>
+        </article>
+      </section>
+      <section class="section">
         <div class="grid two">
           <article class="page-panel">
             <p class="kicker">Search intent</p>

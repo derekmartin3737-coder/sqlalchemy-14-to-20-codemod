@@ -852,6 +852,22 @@ li {
   margin-bottom: 0;
 }
 
+.answer-panel {
+  border-color: rgba(125, 211, 252, 0.34);
+}
+
+.answer-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(280px, 1.18fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.answer-grid h2,
+.answer-grid h3 {
+  margin-top: 0;
+}
+
 .purchase-panel {
   border-color: rgba(34, 197, 94, 0.38);
 }
@@ -910,6 +926,10 @@ li {
   .conversion-panel {
     grid-template-columns: 1fr;
     padding: 20px;
+  }
+
+  .answer-grid {
+    grid-template-columns: 1fr;
   }
 
   .purchase-columns {

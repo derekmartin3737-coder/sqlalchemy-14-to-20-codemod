@@ -114,6 +114,26 @@
       </section>
 
       <section class="section">
+        <article class="page-panel answer-panel">
+          <p class="kicker">Start here</p>
+          <div class="answer-grid">
+            <div>
+              <h2>The safe first move</h2>
+              <p>Replace Extra.forbid (and Extra.allow, Extra.ignore) with the string literal &#x27;forbid&#x27;, &#x27;allow&#x27;, or &#x27;ignore&#x27; in model_config.</p>
+              <p class="caption">Stop before automation when: Dynamic extra config based on runtime logic. Files with other unsupported Config keys.</p>
+            </div>
+            <div>
+              <h3>Target shape</h3>
+              <pre class="code-block"><code>from pydantic import BaseModel, ConfigDict
+
+class Strict(BaseModel):
+    model_config = ConfigDict(extra=&quot;forbid&quot;)
+</code></pre>
+            </div>
+          </div>
+        </article>
+      </section>
+      <section class="section">
         <div class="grid two">
           <article class="page-panel">
             <p class="kicker">Search intent</p>
@@ -195,7 +215,7 @@ class Strict(BaseModel):
             </div>
           </div>
           <div class="page-actions purchase-actions">
-            <a class="button" href="/go/pydantic-v2-porter">Buy pydantic-v2-porter - $249.99</a>
+            <a class="button" href="/go/pydantic-v2-porter/guide-pydantic-extra-forbid">Buy pydantic-v2-porter - $249.99</a>
             <a class="button secondary" href="/products/pydantic-v2-porter/">Check product fit</a><a class="button secondary" href="#" data-doc-path="products/pydantic-v2-porter/docs/public-proof.md">Read proof</a>
           </div>
         </article>

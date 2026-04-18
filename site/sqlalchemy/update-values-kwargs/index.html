@@ -114,6 +114,27 @@
       </section>
 
       <section class="section">
+        <article class="page-panel answer-panel">
+          <p class="kicker">Start here</p>
+          <div class="answer-grid">
+            <div>
+              <h2>The safe first move</h2>
+              <p>Build the update statement first, then chain .where(expr) and .values({...}) on it.</p>
+              <p class="caption">Stop before automation when: Helper wrappers that compute where clauses indirectly. Generated code where the update call is assembled dynamically.</p>
+            </div>
+            <div>
+              <h3>Target shape</h3>
+              <pre class="code-block"><code>stmt = (
+    update(user_table)
+    .where(user_table.c.id == user_id)
+    .values({&quot;name&quot;: name})
+)
+</code></pre>
+            </div>
+          </div>
+        </article>
+      </section>
+      <section class="section">
         <div class="grid two">
           <article class="page-panel">
             <p class="kicker">Search intent</p>
@@ -158,7 +179,7 @@
             <p>Use the exact-problem guides as a triage layer, then decide whether the repo is inside the supported subset.</p>
             <div class="page-actions">
               <a class="button" href="/products/sa20-pack/">Open the matching product page</a>
-              <a class="button secondary" href="/go/free-scan">Run the free scan first</a>
+              <a class="button secondary" href="/go/free-scan/guide-sqlalchemy-update-values-kwargs">Run the free scan first</a>
               <a class="button secondary" href="/proof/sqlalchemy-public-proof/">Read public proof</a>
             </div>
           </article>
@@ -196,7 +217,7 @@
             </div>
           </div>
           <div class="page-actions purchase-actions">
-            <a class="button" href="/go/sa20-pack">Buy sa20-pack - $299.99</a>
+            <a class="button" href="/go/sa20-pack/guide-sqlalchemy-update-values-kwargs">Buy sa20-pack - $299.99</a>
             <a class="button secondary" href="/products/sa20-pack/">Check product fit</a><a class="button secondary" href="/proof/sqlalchemy-public-proof/">Read proof</a>
           </div>
         </article>
