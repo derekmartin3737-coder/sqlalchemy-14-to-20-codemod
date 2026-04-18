@@ -41,6 +41,36 @@
   },
   {
     "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the safest fix for joinedload_all removed sqlalchemy 2.0?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use joinedload(...) with mapped attributes when the relationship path is obvious. Stop when aliasing or dotted paths make the replacement unclear."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can joinedload_all removed sqlalchemy 2.0 be automated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Automate only the supported subset: Simple joinedload_all(...) replacements. Cross-links to string loader cleanup pages. Fail-closed reporting when the path is not straightforward. Keep these cases in manual review: Alias-heavy loading. Dotted paths tied to query shape. contains_eager and custom join interactions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I buy sa20-pack?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use sa20-pack only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       {
@@ -135,6 +165,14 @@ query = query.options(joinedload(User.addresses))
         </div>
       </section>
       <section class="section">
+        <article class="page-panel">
+          <p class="kicker">FAQ</p>
+          <h2>Fast answers before you decide</h2>
+          <div class="faq-list">
+            <div><h3>What is the safest fix for joinedload_all removed sqlalchemy 2.0?</h3><p>Use joinedload(...) with mapped attributes when the relationship path is obvious. Stop when aliasing or dotted paths make the replacement unclear.</p></div><div><h3>Can joinedload_all removed sqlalchemy 2.0 be automated?</h3><p>Automate only the supported subset: Simple joinedload_all(...) replacements. Cross-links to string loader cleanup pages. Fail-closed reporting when the path is not straightforward. Keep these cases in manual review: Alias-heavy loading. Dotted paths tied to query shape. contains_eager and custom join interactions.</p></div><div><h3>When should I buy sa20-pack?</h3><p>Use sa20-pack only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset.</p></div>
+          </div>
+        </article>
+      </section>      <section class="section">
         <article class="page-panel purchase-panel">
           <p class="kicker">Purchase fit</p>
           <h2>If this problem repeats across the repo, qualify the paid pack.</h2>

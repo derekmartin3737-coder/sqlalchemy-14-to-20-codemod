@@ -41,6 +41,36 @@
   },
   {
     "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the safest fix for eslint parserOptions flat config?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Move parserOptions settings like ecmaVersion and sourceType into languageOptions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can eslint parserOptions flat config be automated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Automate only the supported subset: Static parserOptions in JSON/YAML configs. ecmaVersion and sourceType migration. Integration with FlatCompat bridge generation. Keep these cases in manual review: Custom parser configurations beyond standard options. TypeScript parser settings that need @typescript-eslint/parser. Repos with JS-backed parser logic."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I buy flatconfig-lift?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use flatconfig-lift only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       {
@@ -140,7 +170,15 @@
           </article>
         </div>
       </section>
-
+      <section class="section">
+        <article class="page-panel">
+          <p class="kicker">FAQ</p>
+          <h2>Fast answers before you decide</h2>
+          <div class="faq-list">
+            <div><h3>What is the safest fix for eslint parserOptions flat config?</h3><p>Move parserOptions settings like ecmaVersion and sourceType into languageOptions.</p></div><div><h3>Can eslint parserOptions flat config be automated?</h3><p>Automate only the supported subset: Static parserOptions in JSON/YAML configs. ecmaVersion and sourceType migration. Integration with FlatCompat bridge generation. Keep these cases in manual review: Custom parser configurations beyond standard options. TypeScript parser settings that need @typescript-eslint/parser. Repos with JS-backed parser logic.</p></div><div><h3>When should I buy flatconfig-lift?</h3><p>Use flatconfig-lift only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset.</p></div>
+          </div>
+        </article>
+      </section>
       <section class="section">
         <article class="page-panel">
           <h3>More fixes in this product</h3>

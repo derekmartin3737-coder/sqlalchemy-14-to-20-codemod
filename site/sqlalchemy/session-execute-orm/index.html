@@ -41,6 +41,36 @@
   },
   {
     "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the safest fix for session.execute result scalars sqlalchemy 2.0?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Call .scalars() on the Result to get ORM entity rows, then .all() or iterate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can session.execute result scalars sqlalchemy 2.0 be automated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Automate only the supported subset: Detection of legacy result-access patterns. .scalars() insertion for ORM entity queries. Cross-links to the select syntax cleanup page. Keep these cases in manual review: Mixed column and entity queries that need custom unpacking. Result-shape changes tied to broader query redesign. Helpers that already wrap result processing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I buy sa20-pack?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use sa20-pack only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       {
@@ -131,6 +161,14 @@
         </div>
       </section>
       <section class="section">
+        <article class="page-panel">
+          <p class="kicker">FAQ</p>
+          <h2>Fast answers before you decide</h2>
+          <div class="faq-list">
+            <div><h3>What is the safest fix for session.execute result scalars sqlalchemy 2.0?</h3><p>Call .scalars() on the Result to get ORM entity rows, then .all() or iterate.</p></div><div><h3>Can session.execute result scalars sqlalchemy 2.0 be automated?</h3><p>Automate only the supported subset: Detection of legacy result-access patterns. .scalars() insertion for ORM entity queries. Cross-links to the select syntax cleanup page. Keep these cases in manual review: Mixed column and entity queries that need custom unpacking. Result-shape changes tied to broader query redesign. Helpers that already wrap result processing.</p></div><div><h3>When should I buy sa20-pack?</h3><p>Use sa20-pack only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset.</p></div>
+          </div>
+        </article>
+      </section>      <section class="section">
         <article class="page-panel purchase-panel">
           <p class="kicker">Purchase fit</p>
           <h2>If this problem repeats across the repo, qualify the paid pack.</h2>

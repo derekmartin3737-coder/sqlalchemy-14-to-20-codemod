@@ -41,6 +41,36 @@
   },
   {
     "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the safest fix for eslint overrides flat config?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Each override becomes a separate config object in the array with its own files pattern."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can eslint overrides flat config be automated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Automate only the supported subset: Static override patterns in JSON/YAML configs. FlatCompat handling of simple overrides. Cross-links to the ignore pattern migration. Keep these cases in manual review: Complex nested overrides with multiple extends. Overrides that depend on JS logic. Repos with multiple config sources."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I buy flatconfig-lift?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use flatconfig-lift only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       {
@@ -142,7 +172,15 @@
           </article>
         </div>
       </section>
-
+      <section class="section">
+        <article class="page-panel">
+          <p class="kicker">FAQ</p>
+          <h2>Fast answers before you decide</h2>
+          <div class="faq-list">
+            <div><h3>What is the safest fix for eslint overrides flat config?</h3><p>Each override becomes a separate config object in the array with its own files pattern.</p></div><div><h3>Can eslint overrides flat config be automated?</h3><p>Automate only the supported subset: Static override patterns in JSON/YAML configs. FlatCompat handling of simple overrides. Cross-links to the ignore pattern migration. Keep these cases in manual review: Complex nested overrides with multiple extends. Overrides that depend on JS logic. Repos with multiple config sources.</p></div><div><h3>When should I buy flatconfig-lift?</h3><p>Use flatconfig-lift only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset.</p></div>
+          </div>
+        </article>
+      </section>
       <section class="section">
         <article class="page-panel">
           <h3>More fixes in this product</h3>

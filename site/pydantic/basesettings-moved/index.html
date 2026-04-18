@@ -41,6 +41,36 @@
   },
   {
     "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the safest fix for BaseSettings moved pydantic v2?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Import BaseSettings from pydantic_settings and update supported Config keys when the settings class stays inside the safe subset."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can BaseSettings moved pydantic v2 be automated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Automate only the supported subset: Direct BaseSettings import moves. Connected safe Config-to-model_config cleanup. Cross-links to the model_config guide. Keep these cases in manual review: Removed config keys. Indirect imports and wrappers. Files that already depend on unsupported validator signatures."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I buy pydantic-v2-porter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use pydantic-v2-porter only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       {
@@ -137,6 +167,14 @@ class Settings(BaseSettings):
         </div>
       </section>
       <section class="section">
+        <article class="page-panel">
+          <p class="kicker">FAQ</p>
+          <h2>Fast answers before you decide</h2>
+          <div class="faq-list">
+            <div><h3>What is the safest fix for BaseSettings moved pydantic v2?</h3><p>Import BaseSettings from pydantic_settings and update supported Config keys when the settings class stays inside the safe subset.</p></div><div><h3>Can BaseSettings moved pydantic v2 be automated?</h3><p>Automate only the supported subset: Direct BaseSettings import moves. Connected safe Config-to-model_config cleanup. Cross-links to the model_config guide. Keep these cases in manual review: Removed config keys. Indirect imports and wrappers. Files that already depend on unsupported validator signatures.</p></div><div><h3>When should I buy pydantic-v2-porter?</h3><p>Use pydantic-v2-porter only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset.</p></div>
+          </div>
+        </article>
+      </section>      <section class="section">
         <article class="page-panel purchase-panel">
           <p class="kicker">Purchase fit</p>
           <h2>If this problem repeats across the repo, qualify the paid pack.</h2>

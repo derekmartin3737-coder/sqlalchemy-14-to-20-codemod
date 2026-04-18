@@ -41,6 +41,36 @@
   },
   {
     "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the safest fix for multiple ESLint config sources flat config migration?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Keep multiple legacy ESLint config sources in manual review. The first job is deciding which source is authoritative before generating a flat config bridge."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can multiple ESLint config sources flat config migration be automated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Automate only the supported subset: Explicit multiple-config-sources findings. Cross-links to the supported .eslintrc and package.json pages. Repo-fit guidance before buying the flat-config pack. Keep these cases in manual review: Choosing the real source of truth. Merging overlapping rules and ignores. Repos that also already have eslint.config.* files."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I buy flatconfig-lift?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use flatconfig-lift only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       {
@@ -132,7 +162,15 @@ package.json#eslintConfig
           </article>
         </div>
       </section>
-
+      <section class="section">
+        <article class="page-panel">
+          <p class="kicker">FAQ</p>
+          <h2>Fast answers before you decide</h2>
+          <div class="faq-list">
+            <div><h3>What is the safest fix for multiple ESLint config sources flat config migration?</h3><p>Keep multiple legacy ESLint config sources in manual review. The first job is deciding which source is authoritative before generating a flat config bridge.</p></div><div><h3>Can multiple ESLint config sources flat config migration be automated?</h3><p>Automate only the supported subset: Explicit multiple-config-sources findings. Cross-links to the supported .eslintrc and package.json pages. Repo-fit guidance before buying the flat-config pack. Keep these cases in manual review: Choosing the real source of truth. Merging overlapping rules and ignores. Repos that also already have eslint.config.* files.</p></div><div><h3>When should I buy flatconfig-lift?</h3><p>Use flatconfig-lift only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset.</p></div>
+          </div>
+        </article>
+      </section>
       <section class="section">
         <article class="page-panel">
           <h3>More fixes in this product</h3>

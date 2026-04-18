@@ -41,6 +41,36 @@
   },
   {
     "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the safest fix for 'OptionEngine' object has no attribute 'execute'?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Open an explicit connection, wrap raw SQL in text(...), and pass the Connection into code that still expects an executable object."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can 'OptionEngine' object has no attribute 'execute' be automated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Automate only the supported subset: Detection of engine and OptionEngine execution paths. Manual-review reporting for execution-boundary changes. Links to the broader engine.execute removal guide. Keep these cases in manual review: Transaction boundaries around writes. Third-party libraries that need version-compatible adapters. Raw SQL strings that should become text(...)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I buy sa20-pack?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use sa20-pack only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       {
@@ -136,6 +166,14 @@ with engine.connect() as conn:
         </div>
       </section>
       <section class="section">
+        <article class="page-panel">
+          <p class="kicker">FAQ</p>
+          <h2>Fast answers before you decide</h2>
+          <div class="faq-list">
+            <div><h3>What is the safest fix for &#x27;OptionEngine&#x27; object has no attribute &#x27;execute&#x27;?</h3><p>Open an explicit connection, wrap raw SQL in text(...), and pass the Connection into code that still expects an executable object.</p></div><div><h3>Can &#x27;OptionEngine&#x27; object has no attribute &#x27;execute&#x27; be automated?</h3><p>Automate only the supported subset: Detection of engine and OptionEngine execution paths. Manual-review reporting for execution-boundary changes. Links to the broader engine.execute removal guide. Keep these cases in manual review: Transaction boundaries around writes. Third-party libraries that need version-compatible adapters. Raw SQL strings that should become text(...).</p></div><div><h3>When should I buy sa20-pack?</h3><p>Use sa20-pack only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset.</p></div>
+          </div>
+        </article>
+      </section>      <section class="section">
         <article class="page-panel purchase-panel">
           <p class="kicker">Purchase fit</p>
           <h2>If this problem repeats across the repo, qualify the paid pack.</h2>

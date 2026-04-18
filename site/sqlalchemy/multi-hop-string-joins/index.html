@@ -41,6 +41,36 @@
   },
   {
     "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the safest fix for sqlalchemy join string multiple relationships 2.0?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Treat multi-hop string joins as manual review. The right mapped attribute chain depends on the surrounding entities and join shape."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can sqlalchemy join string multiple relationships 2.0 be automated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Automate only the supported subset: Detection and explicit reporting for multi-hop string joins. Cross-links to the supported simple string-join page. Repo-fit guidance before buying the SQLAlchemy pack. Keep these cases in manual review: Choosing the correct mapped attribute chain. Aliased joins and query-shape-dependent paths. Cases bundled with other removed Query helpers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I buy sa20-pack?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use sa20-pack only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       {
@@ -132,6 +162,14 @@
         </div>
       </section>
       <section class="section">
+        <article class="page-panel">
+          <p class="kicker">FAQ</p>
+          <h2>Fast answers before you decide</h2>
+          <div class="faq-list">
+            <div><h3>What is the safest fix for sqlalchemy join string multiple relationships 2.0?</h3><p>Treat multi-hop string joins as manual review. The right mapped attribute chain depends on the surrounding entities and join shape.</p></div><div><h3>Can sqlalchemy join string multiple relationships 2.0 be automated?</h3><p>Automate only the supported subset: Detection and explicit reporting for multi-hop string joins. Cross-links to the supported simple string-join page. Repo-fit guidance before buying the SQLAlchemy pack. Keep these cases in manual review: Choosing the correct mapped attribute chain. Aliased joins and query-shape-dependent paths. Cases bundled with other removed Query helpers.</p></div><div><h3>When should I buy sa20-pack?</h3><p>Use sa20-pack only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset.</p></div>
+          </div>
+        </article>
+      </section>      <section class="section">
         <article class="page-panel purchase-panel">
           <p class="kicker">Purchase fit</p>
           <h2>If this problem repeats across the repo, qualify the paid pack.</h2>

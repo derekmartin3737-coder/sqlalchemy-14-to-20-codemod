@@ -41,6 +41,36 @@
   },
   {
     "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the safest fix for select([ ]) sqlalchemy 2.0?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Drop the wrapper list and pass the columns or table directly into select(...)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can select([ ]) sqlalchemy 2.0 be automated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Automate only the supported subset: Deterministic select([..]) to select(..) rewrites. Repo reporting for the syntax bucket. Links to the broader SQLAlchemy guide set. Keep these cases in manual review: Calls already mixed with broader query redesign. Generated code that obscures the argument list. Files that also contain unsupported execution-path changes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I buy sa20-pack?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use sa20-pack only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       {
@@ -133,6 +163,14 @@ stmt = select(User.name, User.email)
         </div>
       </section>
       <section class="section">
+        <article class="page-panel">
+          <p class="kicker">FAQ</p>
+          <h2>Fast answers before you decide</h2>
+          <div class="faq-list">
+            <div><h3>What is the safest fix for select([ ]) sqlalchemy 2.0?</h3><p>Drop the wrapper list and pass the columns or table directly into select(...).</p></div><div><h3>Can select([ ]) sqlalchemy 2.0 be automated?</h3><p>Automate only the supported subset: Deterministic select([..]) to select(..) rewrites. Repo reporting for the syntax bucket. Links to the broader SQLAlchemy guide set. Keep these cases in manual review: Calls already mixed with broader query redesign. Generated code that obscures the argument list. Files that also contain unsupported execution-path changes.</p></div><div><h3>When should I buy sa20-pack?</h3><p>Use sa20-pack only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset.</p></div>
+          </div>
+        </article>
+      </section>      <section class="section">
         <article class="page-panel purchase-panel">
           <p class="kicker">Purchase fit</p>
           <h2>If this problem repeats across the repo, qualify the paid pack.</h2>

@@ -253,6 +253,24 @@ def product_schema(product: ProductPage, path: str) -> dict[str, object]:
     return schema
 
 
+def faq_schema(items: tuple[tuple[str, str], ...]) -> dict[str, object]:
+    return {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": question,
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": answer,
+                },
+            }
+            for question, answer in items
+        ],
+    }
+
+
 def code_block(value: str) -> str:
     return f'<pre class="code-block"><code>{escape(value)}</code></pre>'
 
@@ -370,6 +388,40 @@ def render_purchase_panel(product: ProductPage, path: str, *, context: str) -> s
       </section>"""
 
 
+def guide_faq_items(
+    guide: GuidePage,
+    product: ProductPage | None,
+) -> tuple[tuple[str, str], ...]:
+    product_name = product.name if product is not None else "the matching migration pack"
+    automation_answer = (
+        "Automate only the supported subset: "
+        + " ".join(guide.covers)
+        + " Keep these cases in manual review: "
+        + " ".join(guide.manual_review)
+    )
+    buy_answer = (
+        f"Use {product_name} only when this pattern repeats across enough files that manual cleanup is still costly. "
+        "Run the public scan or read the proof first, then buy only if the repo matches the documented subset."
+    )
+    return (
+        (f"What is the safest fix for {guide.search_term}?", guide.answer),
+        (f"Can {guide.search_term} be automated?", automation_answer),
+        (f"When should I buy {product_name}?", buy_answer),
+    )
+
+
+def render_faq_section(items: tuple[tuple[str, str], ...]) -> str:
+    return f"""      <section class="section">
+        <article class="page-panel">
+          <p class="kicker">FAQ</p>
+          <h2>Fast answers before you decide</h2>
+          <div class="faq-list">
+            {''.join(f'<div><h3>{escape(question)}</h3><p>{escape(answer)}</p></div>' for question, answer in items)}
+          </div>
+        </article>
+      </section>"""
+
+
 def layout(
     *,
     path: str,
@@ -440,6 +492,7 @@ def clean_generated_text(value: str) -> str:
 def render_guide(guide: GuidePage) -> tuple[str, str]:
     path = f"{guide.family}/{guide.slug}/index.html"
     product = product_by_slug(guide.product_slug)
+    faq_items = guide_faq_items(guide, product)
     proof_cta = ""
     qualification_cta = ""
     if guide.product_slug == "sa20-pack":
@@ -479,7 +532,7 @@ def render_guide(guide: GuidePage) -> tuple[str, str]:
         if product is not None
         else ""
     )
-    extra_sections = f"{guide_purchase_html}{more_fixes_html}"
+    extra_sections = f"{render_faq_section(faq_items)}{guide_purchase_html}{more_fixes_html}"
     body = f"""
       <section class="section">
         <div class="grid two">
@@ -541,7 +594,7 @@ def render_guide(guide: GuidePage) -> tuple[str, str]:
             (f"{guide.family}/index.html", FAMILY_TITLES[guide.family]),
             (path, guide.h1),
         ],
-        schemas=[],
+        schemas=[faq_schema(faq_items)],
     )
     return path, html
 

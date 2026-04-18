@@ -41,6 +41,36 @@
   },
   {
     "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the safest fix for 'Engine' object has no attribute 'execute'?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use engine.connect() or engine.begin(), then execute on the returned Connection. Do not blindly replace engine.execute with session.execute."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can 'Engine' object has no attribute 'execute' be automated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Automate only the supported subset: Detection of removed engine.execute calls. Separation of read and write examples. Fail-closed reporting when transaction semantics are unclear. Keep these cases in manual review: Choosing connect() versus begin(). Implicit autocommit replacements. Helper APIs that hide the engine object."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I buy sa20-pack?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use sa20-pack only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       {
@@ -136,6 +166,14 @@ with engine.begin() as conn:
         </div>
       </section>
       <section class="section">
+        <article class="page-panel">
+          <p class="kicker">FAQ</p>
+          <h2>Fast answers before you decide</h2>
+          <div class="faq-list">
+            <div><h3>What is the safest fix for &#x27;Engine&#x27; object has no attribute &#x27;execute&#x27;?</h3><p>Use engine.connect() or engine.begin(), then execute on the returned Connection. Do not blindly replace engine.execute with session.execute.</p></div><div><h3>Can &#x27;Engine&#x27; object has no attribute &#x27;execute&#x27; be automated?</h3><p>Automate only the supported subset: Detection of removed engine.execute calls. Separation of read and write examples. Fail-closed reporting when transaction semantics are unclear. Keep these cases in manual review: Choosing connect() versus begin(). Implicit autocommit replacements. Helper APIs that hide the engine object.</p></div><div><h3>When should I buy sa20-pack?</h3><p>Use sa20-pack only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset.</p></div>
+          </div>
+        </article>
+      </section>      <section class="section">
         <article class="page-panel purchase-panel">
           <p class="kicker">Purchase fit</p>
           <h2>If this problem repeats across the repo, qualify the paid pack.</h2>

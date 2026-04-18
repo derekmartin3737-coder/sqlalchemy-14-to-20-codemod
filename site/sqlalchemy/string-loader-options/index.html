@@ -41,6 +41,36 @@
   },
   {
     "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the safest fix for joinedload string path sqlalchemy 2.0?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For straightforward paths, replace the string with the mapped attribute, like joinedload(User.addresses)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can joinedload string path sqlalchemy 2.0 be automated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Automate only the supported subset: Simple joinedload/lazyload/selectinload/subqueryload string cleanup. Mapped-attribute replacements when the root entity is obvious. Cross-links to the dotted-path and joinedload_all manual buckets. Keep these cases in manual review: Dotted paths like joinedload(\"orders.items\"). contains_eager and duplicate-join interactions. Cases where the owning entity is not obvious from the local code."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I buy sa20-pack?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use sa20-pack only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       {
@@ -133,6 +163,14 @@ query = query.options(selectinload(User.orders))
         </div>
       </section>
       <section class="section">
+        <article class="page-panel">
+          <p class="kicker">FAQ</p>
+          <h2>Fast answers before you decide</h2>
+          <div class="faq-list">
+            <div><h3>What is the safest fix for joinedload string path sqlalchemy 2.0?</h3><p>For straightforward paths, replace the string with the mapped attribute, like joinedload(User.addresses).</p></div><div><h3>Can joinedload string path sqlalchemy 2.0 be automated?</h3><p>Automate only the supported subset: Simple joinedload/lazyload/selectinload/subqueryload string cleanup. Mapped-attribute replacements when the root entity is obvious. Cross-links to the dotted-path and joinedload_all manual buckets. Keep these cases in manual review: Dotted paths like joinedload(&quot;orders.items&quot;). contains_eager and duplicate-join interactions. Cases where the owning entity is not obvious from the local code.</p></div><div><h3>When should I buy sa20-pack?</h3><p>Use sa20-pack only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset.</p></div>
+          </div>
+        </article>
+      </section>      <section class="section">
         <article class="page-panel purchase-panel">
           <p class="kicker">Purchase fit</p>
           <h2>If this problem repeats across the repo, qualify the paid pack.</h2>

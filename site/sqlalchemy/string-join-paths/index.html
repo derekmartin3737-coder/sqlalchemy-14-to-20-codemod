@@ -41,6 +41,36 @@
   },
   {
     "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the safest fix for sqlalchemy join string relationship 2.0?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "When the root entity is obvious, replace the string path with the mapped attribute, like User.addresses or User.orders."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can sqlalchemy join string relationship 2.0 be automated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Automate only the supported subset: Simple join(\"relationship\") rewrites. Simple outerjoin(\"relationship\") rewrites. Reporting for the string-join cleanup bucket. Keep these cases in manual review: Multi-hop joins like join(\"orders\", \"items\"). Alias-heavy query builders. Cases where the root entity is not obvious from the call site."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I buy sa20-pack?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use sa20-pack only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       {
@@ -133,6 +163,14 @@ query = query.outerjoin(User.orders)
         </div>
       </section>
       <section class="section">
+        <article class="page-panel">
+          <p class="kicker">FAQ</p>
+          <h2>Fast answers before you decide</h2>
+          <div class="faq-list">
+            <div><h3>What is the safest fix for sqlalchemy join string relationship 2.0?</h3><p>When the root entity is obvious, replace the string path with the mapped attribute, like User.addresses or User.orders.</p></div><div><h3>Can sqlalchemy join string relationship 2.0 be automated?</h3><p>Automate only the supported subset: Simple join(&quot;relationship&quot;) rewrites. Simple outerjoin(&quot;relationship&quot;) rewrites. Reporting for the string-join cleanup bucket. Keep these cases in manual review: Multi-hop joins like join(&quot;orders&quot;, &quot;items&quot;). Alias-heavy query builders. Cases where the root entity is not obvious from the call site.</p></div><div><h3>When should I buy sa20-pack?</h3><p>Use sa20-pack only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset.</p></div>
+          </div>
+        </article>
+      </section>      <section class="section">
         <article class="page-panel purchase-panel">
           <p class="kicker">Purchase fit</p>
           <h2>If this problem repeats across the repo, qualify the paid pack.</h2>

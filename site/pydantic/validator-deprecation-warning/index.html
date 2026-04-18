@@ -41,6 +41,36 @@
   },
   {
     "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the safest fix for PydanticDeprecatedSince20 validator field_validator?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use @field_validator for simple field validators, but stop when the validator depends on values, field, config, each_item, or always."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can PydanticDeprecatedSince20 validator field_validator be automated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Automate only the supported subset: Simple @validator to @field_validator rewrites. Import cleanup for field_validator. Manual-review findings for signature-heavy cases. Keep these cases in manual review: values, field, or config parameters. each_item=True or always=True behavior. Validators that change model-level semantics."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I buy pydantic-v2-porter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use pydantic-v2-porter only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       {
@@ -142,6 +172,14 @@ class User(BaseModel):
         </div>
       </section>
       <section class="section">
+        <article class="page-panel">
+          <p class="kicker">FAQ</p>
+          <h2>Fast answers before you decide</h2>
+          <div class="faq-list">
+            <div><h3>What is the safest fix for PydanticDeprecatedSince20 validator field_validator?</h3><p>Use @field_validator for simple field validators, but stop when the validator depends on values, field, config, each_item, or always.</p></div><div><h3>Can PydanticDeprecatedSince20 validator field_validator be automated?</h3><p>Automate only the supported subset: Simple @validator to @field_validator rewrites. Import cleanup for field_validator. Manual-review findings for signature-heavy cases. Keep these cases in manual review: values, field, or config parameters. each_item=True or always=True behavior. Validators that change model-level semantics.</p></div><div><h3>When should I buy pydantic-v2-porter?</h3><p>Use pydantic-v2-porter only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset.</p></div>
+          </div>
+        </article>
+      </section>      <section class="section">
         <article class="page-panel purchase-panel">
           <p class="kicker">Purchase fit</p>
           <h2>If this problem repeats across the repo, qualify the paid pack.</h2>

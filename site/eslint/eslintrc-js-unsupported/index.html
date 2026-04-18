@@ -41,6 +41,36 @@
   },
   {
     "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the safest fix for .eslintrc.js flat config migration?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Treat .eslintrc.js and its cousins as a repo-fit boundary. The honest move is to detect them, report them, and leave them untouched."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can .eslintrc.js flat config migration be automated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Automate only the supported subset: Explicit unsupported-js-config findings. Fast repo qualification before buying the flat-config pack. Links to the supported static-config guides. Keep these cases in manual review: Any JS config that computes env, plugins, or rules. Module imports inside the config file. Repos that already started a custom flat config migration."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I buy flatconfig-lift?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use flatconfig-lift only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       {
@@ -134,7 +164,15 @@
           </article>
         </div>
       </section>
-
+      <section class="section">
+        <article class="page-panel">
+          <p class="kicker">FAQ</p>
+          <h2>Fast answers before you decide</h2>
+          <div class="faq-list">
+            <div><h3>What is the safest fix for .eslintrc.js flat config migration?</h3><p>Treat .eslintrc.js and its cousins as a repo-fit boundary. The honest move is to detect them, report them, and leave them untouched.</p></div><div><h3>Can .eslintrc.js flat config migration be automated?</h3><p>Automate only the supported subset: Explicit unsupported-js-config findings. Fast repo qualification before buying the flat-config pack. Links to the supported static-config guides. Keep these cases in manual review: Any JS config that computes env, plugins, or rules. Module imports inside the config file. Repos that already started a custom flat config migration.</p></div><div><h3>When should I buy flatconfig-lift?</h3><p>Use flatconfig-lift only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset.</p></div>
+          </div>
+        </article>
+      </section>
       <section class="section">
         <article class="page-panel">
           <h3>More fixes in this product</h3>

@@ -41,6 +41,36 @@
   },
   {
     "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the safest fix for Config to model_config pydantic v2?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Move supported Config values into model_config and rename the keys that have a direct Pydantic v2 equivalent."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can Config to model_config pydantic v2 be automated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Automate only the supported subset: Supported Config to model_config conversion. Known key renames in the safe subset. Manual-review findings for removed or unsupported keys. Keep these cases in manual review: Removed config keys. Config logic that depends on project-specific behavior. Alias-heavy imports in the same file."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I buy pydantic-v2-porter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use pydantic-v2-porter only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       {
@@ -136,6 +166,14 @@
         </div>
       </section>
       <section class="section">
+        <article class="page-panel">
+          <p class="kicker">FAQ</p>
+          <h2>Fast answers before you decide</h2>
+          <div class="faq-list">
+            <div><h3>What is the safest fix for Config to model_config pydantic v2?</h3><p>Move supported Config values into model_config and rename the keys that have a direct Pydantic v2 equivalent.</p></div><div><h3>Can Config to model_config pydantic v2 be automated?</h3><p>Automate only the supported subset: Supported Config to model_config conversion. Known key renames in the safe subset. Manual-review findings for removed or unsupported keys. Keep these cases in manual review: Removed config keys. Config logic that depends on project-specific behavior. Alias-heavy imports in the same file.</p></div><div><h3>When should I buy pydantic-v2-porter?</h3><p>Use pydantic-v2-porter only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset.</p></div>
+          </div>
+        </article>
+      </section>      <section class="section">
         <article class="page-panel purchase-panel">
           <p class="kicker">Purchase fit</p>
           <h2>If this problem repeats across the repo, qualify the paid pack.</h2>

@@ -877,6 +877,20 @@ li {
   margin-top: 20px;
 }
 
+.faq-list {
+  display: grid;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.faq-list h3 {
+  margin: 0 0 8px;
+}
+
+.faq-list p {
+  margin: 0;
+}
+
 .table code,
 .clean code {
   color: #dbeafe;

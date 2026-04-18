@@ -41,6 +41,36 @@
   },
   {
     "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the safest fix for validate_arguments validate_call pydantic v2?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The direct decorator rename is validate_call. Stop when the decorator is wrapped or aliased."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can validate_arguments validate_call pydantic v2 be automated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Automate only the supported subset: Direct validate_arguments to validate_call rewrites. Reporting for exactly where the decorator still appears. Links to the other direct-import Pydantic pages. Keep these cases in manual review: Aliased decorator imports. Decorator wrappers. Files bundled with unsupported validator signatures."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I buy pydantic-v2-porter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use pydantic-v2-porter only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       {
@@ -139,6 +169,14 @@ def create_user(email: str, age: int) -&gt; None:
         </div>
       </section>
       <section class="section">
+        <article class="page-panel">
+          <p class="kicker">FAQ</p>
+          <h2>Fast answers before you decide</h2>
+          <div class="faq-list">
+            <div><h3>What is the safest fix for validate_arguments validate_call pydantic v2?</h3><p>The direct decorator rename is validate_call. Stop when the decorator is wrapped or aliased.</p></div><div><h3>Can validate_arguments validate_call pydantic v2 be automated?</h3><p>Automate only the supported subset: Direct validate_arguments to validate_call rewrites. Reporting for exactly where the decorator still appears. Links to the other direct-import Pydantic pages. Keep these cases in manual review: Aliased decorator imports. Decorator wrappers. Files bundled with unsupported validator signatures.</p></div><div><h3>When should I buy pydantic-v2-porter?</h3><p>Use pydantic-v2-porter only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset.</p></div>
+          </div>
+        </article>
+      </section>      <section class="section">
         <article class="page-panel purchase-panel">
           <p class="kicker">Purchase fit</p>
           <h2>If this problem repeats across the repo, qualify the paid pack.</h2>

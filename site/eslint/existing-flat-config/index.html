@@ -41,6 +41,36 @@
   },
   {
     "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the safest fix for existing eslint.config flat config migration?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Treat existing eslint.config.* files as manual review. The next step depends on whether the flat config is authoritative, partial, or mid-migration."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can existing eslint.config flat config migration be automated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Automate only the supported subset: Explicit existing-flat-config findings. Cross-links to the supported static legacy-config pages. Repo-fit guidance before buying the flat-config pack. Keep these cases in manual review: Deciding whether the existing flat config is authoritative. Cleaning up mixed legacy and flat-config states. Repos that also have JS-backed legacy configs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I buy flatconfig-lift?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use flatconfig-lift only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       {
@@ -132,7 +162,15 @@
           </article>
         </div>
       </section>
-
+      <section class="section">
+        <article class="page-panel">
+          <p class="kicker">FAQ</p>
+          <h2>Fast answers before you decide</h2>
+          <div class="faq-list">
+            <div><h3>What is the safest fix for existing eslint.config flat config migration?</h3><p>Treat existing eslint.config.* files as manual review. The next step depends on whether the flat config is authoritative, partial, or mid-migration.</p></div><div><h3>Can existing eslint.config flat config migration be automated?</h3><p>Automate only the supported subset: Explicit existing-flat-config findings. Cross-links to the supported static legacy-config pages. Repo-fit guidance before buying the flat-config pack. Keep these cases in manual review: Deciding whether the existing flat config is authoritative. Cleaning up mixed legacy and flat-config states. Repos that also have JS-backed legacy configs.</p></div><div><h3>When should I buy flatconfig-lift?</h3><p>Use flatconfig-lift only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset.</p></div>
+          </div>
+        </article>
+      </section>
       <section class="section">
         <article class="page-panel">
           <h3>More fixes in this product</h3>

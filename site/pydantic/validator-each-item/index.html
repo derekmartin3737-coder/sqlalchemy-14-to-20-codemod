@@ -41,6 +41,36 @@
   },
   {
     "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the safest fix for validator each_item pydantic v2?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Treat validator(each_item=True) as manual review. The replacement depends on how item-level validation should be expressed in the target model."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can validator each_item pydantic v2 be automated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Automate only the supported subset: Explicit unsupported-validator-each-item findings. Cross-links to the supported @validator to @field_validator page. Repo-fit guidance before running the paid porter. Keep these cases in manual review: Choosing the right item-level validation expression in v2. Validators that also depend on values, field, or config. Files with other unsupported decorator signatures."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I buy pydantic-v2-porter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use pydantic-v2-porter only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       {
@@ -139,6 +169,14 @@ class Payload(BaseModel):
         </div>
       </section>
       <section class="section">
+        <article class="page-panel">
+          <p class="kicker">FAQ</p>
+          <h2>Fast answers before you decide</h2>
+          <div class="faq-list">
+            <div><h3>What is the safest fix for validator each_item pydantic v2?</h3><p>Treat validator(each_item=True) as manual review. The replacement depends on how item-level validation should be expressed in the target model.</p></div><div><h3>Can validator each_item pydantic v2 be automated?</h3><p>Automate only the supported subset: Explicit unsupported-validator-each-item findings. Cross-links to the supported @validator to @field_validator page. Repo-fit guidance before running the paid porter. Keep these cases in manual review: Choosing the right item-level validation expression in v2. Validators that also depend on values, field, or config. Files with other unsupported decorator signatures.</p></div><div><h3>When should I buy pydantic-v2-porter?</h3><p>Use pydantic-v2-porter only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset.</p></div>
+          </div>
+        </article>
+      </section>      <section class="section">
         <article class="page-panel purchase-panel">
           <p class="kicker">Purchase fit</p>
           <h2>If this problem repeats across the repo, qualify the paid pack.</h2>

@@ -41,6 +41,36 @@
   },
   {
     "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the safest fix for Field const removed pydantic v2?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Replace Field(const=True, default=value) with a Literal type annotation. This changes the validation behavior."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can Field const removed pydantic v2 be automated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Automate only the supported subset: Detection and reporting of Field(const=True) usage. Guidance on the Literal type replacement. Cross-links to other Field parameter changes. Keep these cases in manual review: Choosing the right Literal type for the constant. Fields where the const behavior interacts with validation. Files with other removed Field parameters."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I buy pydantic-v2-porter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use pydantic-v2-porter only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       {
@@ -138,6 +168,14 @@ class Config(BaseModel):
         </div>
       </section>
       <section class="section">
+        <article class="page-panel">
+          <p class="kicker">FAQ</p>
+          <h2>Fast answers before you decide</h2>
+          <div class="faq-list">
+            <div><h3>What is the safest fix for Field const removed pydantic v2?</h3><p>Replace Field(const=True, default=value) with a Literal type annotation. This changes the validation behavior.</p></div><div><h3>Can Field const removed pydantic v2 be automated?</h3><p>Automate only the supported subset: Detection and reporting of Field(const=True) usage. Guidance on the Literal type replacement. Cross-links to other Field parameter changes. Keep these cases in manual review: Choosing the right Literal type for the constant. Fields where the const behavior interacts with validation. Files with other removed Field parameters.</p></div><div><h3>When should I buy pydantic-v2-porter?</h3><p>Use pydantic-v2-porter only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset.</p></div>
+          </div>
+        </article>
+      </section>      <section class="section">
         <article class="page-panel purchase-panel">
           <p class="kicker">Purchase fit</p>
           <h2>If this problem repeats across the repo, qualify the paid pack.</h2>

@@ -41,6 +41,36 @@
   },
   {
     "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the safest fix for PydanticDeprecatedSince20 class Config model_config?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use ConfigDict and model_config for supported keys like extra, from_attributes, populate_by_name, and json_schema_extra."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can PydanticDeprecatedSince20 class Config model_config be automated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Automate only the supported subset: Safe Config to model_config conversion. Supported key renames. Manual-review findings for removed Config keys. Keep these cases in manual review: Config.fields and other removed keys. Dynamic Config attributes. Config behavior coupled to custom validators."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I buy pydantic-v2-porter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use pydantic-v2-porter only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       {
@@ -140,6 +170,14 @@ class User(BaseModel):
         </div>
       </section>
       <section class="section">
+        <article class="page-panel">
+          <p class="kicker">FAQ</p>
+          <h2>Fast answers before you decide</h2>
+          <div class="faq-list">
+            <div><h3>What is the safest fix for PydanticDeprecatedSince20 class Config model_config?</h3><p>Use ConfigDict and model_config for supported keys like extra, from_attributes, populate_by_name, and json_schema_extra.</p></div><div><h3>Can PydanticDeprecatedSince20 class Config model_config be automated?</h3><p>Automate only the supported subset: Safe Config to model_config conversion. Supported key renames. Manual-review findings for removed Config keys. Keep these cases in manual review: Config.fields and other removed keys. Dynamic Config attributes. Config behavior coupled to custom validators.</p></div><div><h3>When should I buy pydantic-v2-porter?</h3><p>Use pydantic-v2-porter only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset.</p></div>
+          </div>
+        </article>
+      </section>      <section class="section">
         <article class="page-panel purchase-panel">
           <p class="kicker">Purchase fit</p>
           <h2>If this problem repeats across the repo, qualify the paid pack.</h2>

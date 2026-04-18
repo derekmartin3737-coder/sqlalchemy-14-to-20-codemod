@@ -41,6 +41,36 @@
   },
   {
     "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the safest fix for SQLAlchemy 2.0 migration checklist?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Start with direct syntax cleanup, report execution-boundary changes, and leave broad Query-to-select rewrites for a deliberate stage."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can SQLAlchemy 2.0 migration checklist be automated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Automate only the supported subset: A practical order for migration cleanup. Which pages map to each decision bucket. A scanner-first way to qualify product fit. Keep these cases in manual review: Application-specific transaction rules. Result-shape changes from ORM query rewrites. Migrations that require domain knowledge."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I buy sa20-pack?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use sa20-pack only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       {
@@ -136,6 +166,14 @@ later stage: broad Query-to-select redesign
         </div>
       </section>
       <section class="section">
+        <article class="page-panel">
+          <p class="kicker">FAQ</p>
+          <h2>Fast answers before you decide</h2>
+          <div class="faq-list">
+            <div><h3>What is the safest fix for SQLAlchemy 2.0 migration checklist?</h3><p>Start with direct syntax cleanup, report execution-boundary changes, and leave broad Query-to-select rewrites for a deliberate stage.</p></div><div><h3>Can SQLAlchemy 2.0 migration checklist be automated?</h3><p>Automate only the supported subset: A practical order for migration cleanup. Which pages map to each decision bucket. A scanner-first way to qualify product fit. Keep these cases in manual review: Application-specific transaction rules. Result-shape changes from ORM query rewrites. Migrations that require domain knowledge.</p></div><div><h3>When should I buy sa20-pack?</h3><p>Use sa20-pack only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset.</p></div>
+          </div>
+        </article>
+      </section>      <section class="section">
         <article class="page-panel purchase-panel">
           <p class="kicker">Purchase fit</p>
           <h2>If this problem repeats across the repo, qualify the paid pack.</h2>

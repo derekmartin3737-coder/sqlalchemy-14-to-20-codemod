@@ -41,6 +41,36 @@
   },
   {
     "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the safest fix for package.json eslintConfig flat config?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "When the repo exposes one static eslintConfig source in package.json, the bridge file can be generated cleanly."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can package.json eslintConfig flat config be automated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Automate only the supported subset: Static package.json eslintConfig discovery and reporting. Generated FlatCompat bridge in the supported subset. Manual-review findings for multiple config sources. Keep these cases in manual review: Multiple ESLint config sources in one repo. Existing flat config files. JS-driven config logic outside static data."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I buy flatconfig-lift?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use flatconfig-lift only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       {
@@ -138,7 +168,15 @@
           </article>
         </div>
       </section>
-
+      <section class="section">
+        <article class="page-panel">
+          <p class="kicker">FAQ</p>
+          <h2>Fast answers before you decide</h2>
+          <div class="faq-list">
+            <div><h3>What is the safest fix for package.json eslintConfig flat config?</h3><p>When the repo exposes one static eslintConfig source in package.json, the bridge file can be generated cleanly.</p></div><div><h3>Can package.json eslintConfig flat config be automated?</h3><p>Automate only the supported subset: Static package.json eslintConfig discovery and reporting. Generated FlatCompat bridge in the supported subset. Manual-review findings for multiple config sources. Keep these cases in manual review: Multiple ESLint config sources in one repo. Existing flat config files. JS-driven config logic outside static data.</p></div><div><h3>When should I buy flatconfig-lift?</h3><p>Use flatconfig-lift only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset.</p></div>
+          </div>
+        </article>
+      </section>
       <section class="section">
         <article class="page-panel">
           <h3>More fixes in this product</h3>

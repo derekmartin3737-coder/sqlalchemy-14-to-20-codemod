@@ -41,6 +41,36 @@
   },
   {
     "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the safest fix for SQLAlchemy 2.0 codemod vs manual migration?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use a codemod for direct, syntax-aware changes. Keep transaction boundaries, alias-heavy loaders, and broad query redesign in manual review."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can SQLAlchemy 2.0 codemod vs manual migration be automated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Automate only the supported subset: A decision framework for codemod fit. Examples of safe and blocked buckets. Product positioning without broad migration promises. Keep these cases in manual review: Business logic hidden in query construction. Runtime-only behavior changes. Validation failures after automated cleanup."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I buy sa20-pack?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use sa20-pack only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       {
@@ -137,6 +167,14 @@ codemod only:
         </div>
       </section>
       <section class="section">
+        <article class="page-panel">
+          <p class="kicker">FAQ</p>
+          <h2>Fast answers before you decide</h2>
+          <div class="faq-list">
+            <div><h3>What is the safest fix for SQLAlchemy 2.0 codemod vs manual migration?</h3><p>Use a codemod for direct, syntax-aware changes. Keep transaction boundaries, alias-heavy loaders, and broad query redesign in manual review.</p></div><div><h3>Can SQLAlchemy 2.0 codemod vs manual migration be automated?</h3><p>Automate only the supported subset: A decision framework for codemod fit. Examples of safe and blocked buckets. Product positioning without broad migration promises. Keep these cases in manual review: Business logic hidden in query construction. Runtime-only behavior changes. Validation failures after automated cleanup.</p></div><div><h3>When should I buy sa20-pack?</h3><p>Use sa20-pack only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset.</p></div>
+          </div>
+        </article>
+      </section>      <section class="section">
         <article class="page-panel purchase-panel">
           <p class="kicker">Purchase fit</p>
           <h2>If this problem repeats across the repo, qualify the paid pack.</h2>
