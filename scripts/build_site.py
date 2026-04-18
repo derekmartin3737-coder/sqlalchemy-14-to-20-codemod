@@ -257,6 +257,119 @@ def code_block(value: str) -> str:
     return f'<pre class="code-block"><code>{escape(value)}</code></pre>'
 
 
+def product_by_slug(slug: str) -> ProductPage | None:
+    return next((product for product in PRODUCTS if product.slug == slug), None)
+
+
+def product_purchase_details(product: ProductPage) -> dict[str, tuple[str, ...]]:
+    if product.slug == "sa20-pack":
+        return {
+            "buy_if": (
+                "The free scan shows repeated Query.get, select([..]), string join, string loader, declarative import, or DML constructor findings.",
+                "The remaining supported cleanup is still expensive enough to justify a one-time software download.",
+                "The team can run the migration on a branch and validate locally before merge.",
+            ),
+            "includes": (
+                "Installable local CLI apply pack.",
+                "Preview/apply modes, diff output, and JSON migration report.",
+                "Coverage notes, rollout checklist, manager summary, and buyer terms.",
+            ),
+            "reassurance": (
+                "One-time Payhip checkout with digital delivery.",
+                "No hosted API, no repo upload, and no production credentials needed.",
+                "Scope-match refund review within 14 days.",
+            ),
+        }
+    if product.slug == "pydantic-v2-porter":
+        return {
+            "buy_if": (
+                "The repo has direct pydantic or pydantic.v1 imports, BaseSettings usage, safe Config blocks, or simple validators.",
+                "The migration pain is repetitive v1-to-v2 cleanup, not a custom semantic rewrite.",
+                "The team accepts manual-review findings for alias-heavy imports and signature-heavy validators.",
+            ),
+            "includes": (
+                "Installable local CLI apply pack.",
+                "Supported validator, settings, import, and config rewrites.",
+                "Demo report, public proof, coverage notes, rollout checklist, and buyer terms.",
+            ),
+            "reassurance": (
+                "One-time Payhip checkout with digital delivery.",
+                "No hosted API, no repo upload, and no production credentials needed.",
+                "Scope-match refund review within 14 days.",
+            ),
+        }
+    return {
+        "buy_if": product.who_it_is_for,
+        "includes": product.proof_points,
+        "reassurance": (
+            "Use proof and docs before treating this as a purchase candidate.",
+        ),
+    }
+
+
+def render_purchase_panel(product: ProductPage, path: str, *, context: str) -> str:
+    if not product.checkout_path or not product.price:
+        return ""
+
+    details = product_purchase_details(product)
+    product_href = relative_href(path, f"products/{product.slug}/index.html")
+    proof_action = ""
+    if product.slug == "sa20-pack":
+        proof_action = (
+            f'<a class="button secondary" href="{relative_href(path, "proof/sqlalchemy-public-proof/index.html")}">'
+            "Read proof</a>"
+        )
+    elif product.docs:
+        proof_action = (
+            f'<a class="button secondary" href="#" data-doc-path="{escape(product.docs[0][1])}">'
+            "Read proof</a>"
+        )
+
+    heading = (
+        "Turn fit into a purchase decision."
+        if context == "product"
+        else "If this problem repeats across the repo, qualify the paid pack."
+    )
+    intro = (
+        "The checkout should be the next step only when the buyer can point to a repeated supported pattern and a clear validation path."
+        if context == "product"
+        else "One matching page is not enough by itself. Buy only when the same supported pattern appears often enough that manual cleanup is still costly."
+    )
+    secondary_action = (
+        f'<a class="button secondary" href="{product_href}">Check product fit</a>'
+        if context != "product"
+        else proof_action
+    )
+    if context != "product" and proof_action:
+        secondary_action += proof_action
+
+    return f"""      <section class="section">
+        <article class="page-panel purchase-panel">
+          <p class="kicker">Purchase fit</p>
+          <h2>{escape(heading)}</h2>
+          <p>{escape(intro)}</p>
+          <div class="purchase-columns">
+            <div>
+              <h3>Buy if</h3>
+              <ul class="clean">{''.join(f'<li>{escape(item)}</li>' for item in details["buy_if"])}</ul>
+            </div>
+            <div>
+              <h3>What the ZIP includes</h3>
+              <ul class="clean">{''.join(f'<li>{escape(item)}</li>' for item in details["includes"])}</ul>
+            </div>
+            <div>
+              <h3>Before checkout</h3>
+              <ul class="clean">{''.join(f'<li>{escape(item)}</li>' for item in details["reassurance"])}</ul>
+            </div>
+          </div>
+          <div class="page-actions purchase-actions">
+            <a class="button" href="{escape(product.checkout_path)}">Buy {escape(product.name)} - ${escape(product.price)}</a>
+            {secondary_action}
+          </div>
+        </article>
+      </section>"""
+
+
 def layout(
     *,
     path: str,
@@ -326,6 +439,7 @@ def clean_generated_text(value: str) -> str:
 
 def render_guide(guide: GuidePage) -> tuple[str, str]:
     path = f"{guide.family}/{guide.slug}/index.html"
+    product = product_by_slug(guide.product_slug)
     proof_cta = ""
     qualification_cta = ""
     if guide.product_slug == "sa20-pack":
@@ -360,6 +474,12 @@ def render_guide(guide: GuidePage) -> tuple[str, str]:
           <p><a href="{relative_href(path, f'products/{guide.product_slug}/index.html')}">View all {guide.product_slug} guides</a></p>
         </article>
       </section>"""
+    guide_purchase_html = (
+        render_purchase_panel(product, path, context="guide")
+        if product is not None
+        else ""
+    )
+    extra_sections = f"{guide_purchase_html}{more_fixes_html}"
     body = f"""
       <section class="section">
         <div class="grid two">
@@ -406,7 +526,7 @@ def render_guide(guide: GuidePage) -> tuple[str, str]:
           </article>
         </div>
       </section>
-{more_fixes_html}
+{extra_sections}
 """
     html = layout(
         path=path,
@@ -563,6 +683,9 @@ def render_product(product: ProductPage) -> tuple[str, str]:
         item for item in (proof_small_link, release_link, docs_small_links) if item
     )
     small_links_html = f'<div class="small-links">{small_links}</div>' if small_links else ""
+    purchase_section = render_purchase_panel(product, path, context="product")
+    if purchase_section:
+        purchase_section = f"\n{purchase_section}"
 
     body = f"""
       <section class="section">
@@ -584,7 +707,7 @@ def render_product(product: ProductPage) -> tuple[str, str]:
             {small_links_html}
           </div>
         </article>
-      </section>
+      </section>{purchase_section}
       <section class="section">
         <div class="grid two">
           <article class="page-panel">
