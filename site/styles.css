@@ -856,6 +856,10 @@ li {
   border-color: rgba(125, 211, 252, 0.34);
 }
 
+.bridge-panel {
+  border-color: rgba(96, 165, 250, 0.34);
+}
+
 .answer-grid {
   display: grid;
   grid-template-columns: minmax(0, 0.82fr) minmax(280px, 1.18fr);

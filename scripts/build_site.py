@@ -62,6 +62,12 @@ RELEASE_URL = (
     "?utm_source=zippertools&utm_medium=site&utm_campaign=trust&utm_content=v0.1.0"
 )
 
+PRICING_SECTION_IDS = {
+    "sa20-pack": "sa20-pack",
+    "sa20-preset": "sa20-preset",
+    "pydantic-v2-porter": "pydantic-v2-porter",
+}
+
 REDIRECTS = (
     ("/favicon.ico", "/favicon.svg", 301),
     ("/go/free-scan", FREE_SCAN_URL, 302),
@@ -313,6 +319,23 @@ def tracked_go_path(path: str, source: str) -> str:
     return f"{path}/{source}"
 
 
+def product_page_path(product: ProductPage) -> str:
+    return f"products/{product.slug}/index.html"
+
+
+def product_proof_path(product: ProductPage) -> str:
+    if product.slug == "sa20-pack":
+        return "proof/sqlalchemy-public-proof/index.html"
+    return f"proof/{product.slug}/index.html"
+
+
+def pricing_section_href(path: str, product: ProductPage) -> str | None:
+    anchor = PRICING_SECTION_IDS.get(product.slug)
+    if anchor is None:
+        return None
+    return f'{relative_href(path, "pricing.html")}#{anchor}'
+
+
 def product_purchase_details(product: ProductPage) -> dict[str, tuple[str, ...]]:
     if product.slug == "sa20-pack":
         return {
@@ -366,18 +389,17 @@ def render_purchase_panel(product: ProductPage, path: str, *, context: str) -> s
     details = product_purchase_details(product)
     source = tracking_source(path, context)
     checkout_path = tracked_go_path(product.checkout_path, source)
-    product_href = relative_href(path, f"products/{product.slug}/index.html")
-    proof_action = ""
-    if product.slug == "sa20-pack":
-        proof_action = (
-            f'<a class="button secondary" href="{relative_href(path, "proof/sqlalchemy-public-proof/index.html")}">'
-            "Read proof</a>"
-        )
-    elif product.docs:
-        proof_action = (
-            f'<a class="button secondary" href="#" data-doc-path="{escape(product.docs[0][1])}">'
-            "Read proof</a>"
-        )
+    product_href = relative_href(path, product_page_path(product))
+    proof_href = relative_href(path, product_proof_path(product))
+    proof_action = (
+        f'<a class="button secondary" href="{proof_href}">Read proof</a>'
+    )
+    pricing_href = pricing_section_href(path, product)
+    pricing_action = (
+        f'<a class="button secondary" href="{pricing_href}">See pricing</a>'
+        if pricing_href
+        else ""
+    )
 
     heading = (
         "Turn fit into a purchase decision."
@@ -389,13 +411,28 @@ def render_purchase_panel(product: ProductPage, path: str, *, context: str) -> s
         if context == "product"
         else "One matching page is not enough by itself. Buy only when the same supported pattern appears often enough that manual cleanup is still costly."
     )
-    secondary_action = (
-        f'<a class="button secondary" href="{product_href}">Check product fit</a>'
-        if context != "product"
-        else proof_action
-    )
-    if context != "product" and proof_action:
-        secondary_action += proof_action
+    if context != "product":
+        primary_action = (
+            f'<a class="button" href="{product_href}">Open product fit and price</a>'
+        )
+        secondary_actions = "".join(
+            action
+            for action in (
+                pricing_action,
+                proof_action,
+                f'<a class="button secondary" href="{escape(checkout_path)}">Direct checkout</a>',
+            )
+            if action
+        )
+    else:
+        primary_action = (
+            f'<a class="button" href="{escape(checkout_path)}">Buy {escape(product.name)} - ${escape(product.price)}</a>'
+        )
+        secondary_actions = "".join(
+            action
+            for action in (proof_action, pricing_action)
+            if action
+        )
 
     return f"""      <section class="section">
         <article class="page-panel purchase-panel">
@@ -417,8 +454,8 @@ def render_purchase_panel(product: ProductPage, path: str, *, context: str) -> s
             </div>
           </div>
           <div class="page-actions purchase-actions">
-            <a class="button" href="{escape(checkout_path)}">Buy {escape(product.name)} - ${escape(product.price)}</a>
-            {secondary_action}
+            {primary_action}
+            {secondary_actions}
           </div>
         </article>
       </section>"""
@@ -475,6 +512,53 @@ def render_direct_fix_section(guide: GuidePage) -> str:
             </div>
           </div>
         </article>
+      </section>"""
+
+
+def render_evaluation_path_section(
+    guide: GuidePage,
+    product: ProductPage | None,
+    path: str,
+) -> str:
+    if product is None:
+        return ""
+
+    details = product_purchase_details(product)
+    product_href = relative_href(path, product_page_path(product))
+    proof_href = relative_href(path, product_proof_path(product))
+    pricing_href = pricing_section_href(path, product)
+    price_line = (
+        f"Current listed price: ${escape(product.price)} one time."
+        if product.price
+        else "Current listed price is not published on the pricing page yet."
+    )
+    extra_action = ""
+    if product.slug == "sa20-pack":
+        extra_action = (
+            f'<a class="button secondary" href="{relative_href(path, "demo.html")}">See demo report</a>'
+        )
+    return f"""      <section class="section">
+        <div class="grid two">
+          <article class="page-panel bridge-panel">
+            <p class="kicker">Decision path</p>
+            <h2>If this repeats across the repo, open the evaluation pages next.</h2>
+            <p>{escape(product.summary)}</p>
+            <ul class="clean">
+              {''.join(f'<li>{escape(item)}</li>' for item in details["buy_if"][:2])}
+            </ul>
+          </article>
+          <article class="page-panel bridge-panel">
+            <p class="kicker">Before checkout</p>
+            <h2>Product fit, proof, and price should all be one click away.</h2>
+            <p>{escape(price_line)}</p>
+            <div class="page-actions">
+              <a class="button" href="{product_href}">Open product page</a>
+              {f'<a class="button secondary" href="{pricing_href}">See pricing</a>' if pricing_href else ''}
+              <a class="button secondary" href="{proof_href}">Read proof</a>
+              {extra_action}
+            </div>
+          </article>
+        </div>
       </section>"""
 
 
@@ -615,6 +699,7 @@ def render_guide(guide: GuidePage) -> tuple[str, str]:
           <article class="page-panel"><h3>After</h3>{code_block(guide.after_code)}</article>
         </div>
       </section>
+{render_evaluation_path_section(guide, product, path)}
       <section class="section">
         <div class="grid three">
           <article class="page-panel"><h3>Typical symptoms</h3><ul class="clean">{''.join(f'<li>{escape(item)}</li>' for item in guide.symptoms)}</ul></article>
@@ -722,16 +807,13 @@ def render_product(product: ProductPage) -> tuple[str, str]:
     product_source = tracking_source(path, "product")
     checkout_path = tracked_go_path(product.checkout_path, product_source)
     free_scan_path = tracked_go_path("/go/free-scan", product_source)
-    proof_link = ""
-    proof_href = ""
+    proof_href = relative_href(path, product_proof_path(product))
+    proof_link = (
+        f'<a class="button secondary" href="{proof_href}">Read public proof</a>'
+    )
     release_link = ""
     if product.slug == "sa20-pack":
-        proof_href = relative_href(path, "proof/sqlalchemy-public-proof/index.html")
         release_link = '<a href="/go/github-release">v0.1.0 release</a>'
-        proof_link = (
-            f'<a class="button secondary" href="{proof_href}">'
-            "Read public proof</a>"
-        )
     guides = [guide for guide in GUIDES if guide.slug in product.guide_slugs]
     guide_cards = "".join(
         f'<a class="topic-card" href="{relative_href(path, f"{guide.family}/{guide.slug}/index.html")}">'
@@ -788,7 +870,12 @@ def render_product(product: ProductPage) -> tuple[str, str]:
             f'<a class="button" href="{escape(checkout_path)}">'
             f"Buy {escape(product.name)} - ${escape(product.price)}</a>"
         )
-        secondary_action = docs_links
+        secondary_action = (
+            f'<a class="button secondary" href="{pricing_section_href(path, product)}">See pricing</a>'
+            if pricing_section_href(path, product)
+            else ""
+        )
+        secondary_action += proof_link
     else:
         decision_heading = "Use the proof before treating this as purchasable."
         decision_copy = (
@@ -798,8 +885,15 @@ def render_product(product: ProductPage) -> tuple[str, str]:
         primary_action = docs_links
         secondary_action = ""
     proof_small_link = f'<a href="{proof_href}">Public proof</a>' if proof_href else ""
+    pricing_small_link = (
+        f'<a href="{pricing_section_href(path, product)}">Pricing</a>'
+        if pricing_section_href(path, product)
+        else ""
+    )
     small_links = "".join(
-        item for item in (proof_small_link, release_link, docs_small_links) if item
+        item
+        for item in (proof_small_link, pricing_small_link, release_link, docs_small_links)
+        if item
     )
     small_links_html = f'<div class="small-links">{small_links}</div>' if small_links else ""
     purchase_section = render_purchase_panel(product, path, context="product")
@@ -1010,6 +1104,86 @@ def render_sqlalchemy_public_proof() -> tuple[str, str]:
     return path, html
 
 
+def render_generic_product_proof(product: ProductPage) -> tuple[str, str]:
+    path = product_proof_path(product)
+    guides = [guide for guide in GUIDES if guide.slug in product.guide_slugs][:8]
+    guide_cards = "".join(
+        f'<a class="topic-card" href="{relative_href(path, f"{guide.family}/{guide.slug}/index.html")}">'
+        f"<strong>{escape(guide.h1)}</strong><span>{escape(guide.description)}</span></a>"
+        for guide in guides
+    )
+    docs_links = "".join(
+        f'<a class="button secondary" href="#" data-doc-path="{escape(doc_path)}">{escape(label)}</a>'
+        for label, doc_path in product.docs
+    )
+    pricing_button = (
+        f'<a class="button secondary" href="{pricing_section_href(path, product)}">See pricing</a>'
+        if pricing_section_href(path, product)
+        else ""
+    )
+    product_button = (
+        f'<a class="button" href="{relative_href(path, product_page_path(product))}">Open {escape(product.name)}</a>'
+    )
+    body = f"""
+      <section class="section">
+        <div class="grid three">
+          <article class="page-panel">
+            <h2>{len(guides)} exact-problem pages</h2>
+            <p>The proof page is tied to specific migration error pages, not a generic refactor promise.</p>
+          </article>
+          <article class="page-panel">
+            <h2>{len(product.proof_points)} fit signals</h2>
+            <p>The product stays inside the supported subset and keeps fail-closed boundaries visible.</p>
+          </article>
+          <article class="page-panel">
+            <h2>{len(product.not_for)} stop signals</h2>
+            <p>The proof is also a way to say no before a buyer spends money on the wrong repo.</p>
+          </article>
+        </div>
+      </section>
+      <section class="section">
+        <div class="grid two">
+          <article class="page-panel">
+            <h2>What this proof covers</h2>
+            <ul class="clean">{''.join(f'<li>{escape(item)}</li>' for item in product.proof_points)}</ul>
+          </article>
+          <article class="page-panel">
+            <h2>What stays out of scope</h2>
+            <ul class="clean">{''.join(f'<li>{escape(item)}</li>' for item in product.not_for)}</ul>
+          </article>
+        </div>
+      </section>
+      <section class="section">
+        <div class="grid two">
+          <article class="page-panel">
+            <h2>Start from the live problem pages</h2>
+            <div class="topic-list">{guide_cards}</div>
+          </article>
+          <article class="page-panel">
+            <h2>Decision path</h2>
+            <p>{escape(product.summary)}</p>
+            <div class="page-actions">
+              {product_button}
+              {pricing_button}
+              {docs_links}
+            </div>
+          </article>
+        </div>
+      </section>
+"""
+    html = layout(
+        path=path,
+        title=f"{product.name} proof and fit",
+        description=f"Public proof and fit boundaries for {product.name}, including supported scope and exact-problem entry pages.",
+        kicker="Public proof",
+        heading=f"{product.name} proof and fit",
+        body=body,
+        crumbs=[("index.html", "Home"), (product_page_path(product), product.name), (path, "Public proof")],
+        schemas=[],
+    )
+    return path, html
+
+
 def write_sitemap(output_dir: Path, filename: str, urls: Iterable[str], lastmod: str) -> None:
     items = "".join(f"<url><loc>{escape(url)}</loc><lastmod>{lastmod}</lastmod></url>" for url in urls)
     xml = '<?xml version="1.0" encoding="UTF-8"?>' + '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + items + "</urlset>"
@@ -1052,7 +1226,14 @@ def build_site(output_dir: Path) -> dict[str, Any]:
     for guide in GUIDES:
         grouped[guide.family].append(guide)
 
-    proof_pages = [render_sqlalchemy_public_proof()]
+    proof_pages = [
+        render_sqlalchemy_public_proof(),
+        *[
+            render_generic_product_proof(product)
+            for product in PRODUCTS
+            if product.slug != "sa20-pack"
+        ],
+    ]
     pages = [
         render_guides_hub(grouped),
         render_products_hub(),

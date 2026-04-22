@@ -161,6 +161,29 @@ query = query.options(joinedload(User.addresses))
         </div>
       </section>
       <section class="section">
+        <div class="grid two">
+          <article class="page-panel bridge-panel">
+            <p class="kicker">Decision path</p>
+            <h2>If this repeats across the repo, open the evaluation pages next.</h2>
+            <p>Start with the free scan, inspect the report, and only move to the paid pack if the repo is close enough that repetitive cleanup is still expensive.</p>
+            <ul class="clean">
+              <li>The free scan shows repeated Query.get, select([..]), string join, string loader, declarative import, or DML constructor findings.</li><li>The remaining supported cleanup is still expensive enough to justify a one-time software download.</li>
+            </ul>
+          </article>
+          <article class="page-panel bridge-panel">
+            <p class="kicker">Before checkout</p>
+            <h2>Product fit, proof, and price should all be one click away.</h2>
+            <p>Current listed price: $299.99 one time.</p>
+            <div class="page-actions">
+              <a class="button" href="/products/sa20-pack/">Open product page</a>
+              <a class="button secondary" href="/pricing#sa20-pack">See pricing</a>
+              <a class="button secondary" href="/proof/sqlalchemy-public-proof/">Read proof</a>
+              <a class="button secondary" href="/demo">See demo report</a>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section class="section">
         <div class="grid three">
           <article class="page-panel"><h3>Typical symptoms</h3><ul class="clean"><li>Loader options still use string paths.</li><li>Teams want to know which paths are easy cleanup.</li><li>Reviewers do not want a guessed loader strategy rewrite.</li></ul></article>
           <article class="page-panel"><h3>What the product covers</h3><ul class="clean"><li>Simple joinedload_all(...) replacements.</li><li>Cross-links to string loader cleanup pages.</li><li>Fail-closed reporting when the path is not straightforward.</li></ul></article>
@@ -212,8 +235,8 @@ query = query.options(joinedload(User.addresses))
             </div>
           </div>
           <div class="page-actions purchase-actions">
-            <a class="button" href="/go/sa20-pack/guide-sqlalchemy-joinedload-all-removed">Buy sa20-pack - $299.99</a>
-            <a class="button secondary" href="/products/sa20-pack/">Check product fit</a><a class="button secondary" href="/proof/sqlalchemy-public-proof/">Read proof</a>
+            <a class="button" href="/products/sa20-pack/">Open product fit and price</a>
+            <a class="button secondary" href="/pricing#sa20-pack">See pricing</a><a class="button secondary" href="/proof/sqlalchemy-public-proof/">Read proof</a><a class="button secondary" href="/go/sa20-pack/guide-sqlalchemy-joinedload-all-removed">Direct checkout</a>
           </div>
         </article>
       </section>

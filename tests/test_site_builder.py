@@ -16,11 +16,14 @@ def test_build_site_generates_sitemaps_and_indexnow_key() -> None:
     assert (tmp_path / "guides" / "index.html").exists()
     assert (tmp_path / "products" / "index.html").exists()
     assert (tmp_path / "proof" / "sqlalchemy-public-proof" / "index.html").exists()
+    assert (tmp_path / "proof" / "pydantic-v2-porter" / "index.html").exists()
+    assert (tmp_path / "proof" / "flatconfig-lift" / "index.html").exists()
     assert (tmp_path / "sitemap.xml").exists()
     assert (tmp_path / "sitemap-problem-pages.xml").exists()
     assert len(manifest["guides"]) >= 50
     assert len(manifest["urls"]["guides"]) >= 50
     assert "https://zippertools.org/proof/sqlalchemy-public-proof/" in manifest["urls"]["proof"]
+    assert "https://zippertools.org/proof/pydantic-v2-porter/" in manifest["urls"]["proof"]
     assert (tmp_path / f"{manifest['indexnow_key']}.txt").read_text(encoding="utf-8") == manifest["indexnow_key"]
 
 
@@ -33,6 +36,7 @@ def test_generated_guide_has_canonical_and_breadcrumb_schema() -> None:
     assert '"@type": "BreadcrumbList"' in guide_text
     assert "How to fix engine.execute(...) removal in SQLAlchemy 2.0" in guide_text
     assert 'href="/products/sa20-pack/"' in guide_text
+    assert 'href="/pricing#sa20-pack"' in guide_text
     assert 'href="/favicon.svg" type="image/svg+xml"' in guide_text
 
 
@@ -92,6 +96,8 @@ def test_product_pages_link_to_trackable_checkout_routes() -> None:
     assert "Buy sa20-pack - $299.99" in sa20_text
     assert "Buy pydantic-v2-porter - $249.99" in pydantic_text
     assert 'href="/proof/sqlalchemy-public-proof/"' in sa20_text
+    assert 'href="/proof/pydantic-v2-porter/"' in pydantic_text
+    assert 'href="/pricing#pydantic-v2-porter"' in pydantic_text
 
 
 def test_generated_links_and_sitemaps_use_clean_public_urls() -> None:
@@ -139,6 +145,6 @@ def test_indexnow_payload_uses_generated_manifest_groups() -> None:
 
     proof_payload = build_payload(manifest, ["proof"])
 
-    assert proof_payload["urlList"] == [
-        "https://zippertools.org/proof/sqlalchemy-public-proof/"
-    ]
+    assert "https://zippertools.org/proof/sqlalchemy-public-proof/" in proof_payload["urlList"]
+    assert "https://zippertools.org/proof/pydantic-v2-porter/" in proof_payload["urlList"]
+    assert "https://zippertools.org/proof/flatconfig-lift/" in proof_payload["urlList"]

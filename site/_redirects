@@ -82,6 +82,8 @@
 /products/index.html /products/ 301
 /products/pydantic-v2-porter/index.html /products/pydantic-v2-porter/ 301
 /products/sa20-pack/index.html /products/sa20-pack/ 301
+/proof/flatconfig-lift/index.html /proof/flatconfig-lift/ 301
+/proof/pydantic-v2-porter/index.html /proof/pydantic-v2-porter/ 301
 /proof/sqlalchemy-public-proof/index.html /proof/sqlalchemy-public-proof/ 301
 /pydantic/basesettings-import-error/index.html /pydantic/basesettings-import-error/ 301
 /pydantic/basesettings-moved/index.html /pydantic/basesettings-moved/ 301

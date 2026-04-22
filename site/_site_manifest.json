@@ -424,6 +424,16 @@
       "status": 301
     },
     {
+      "source": "/proof/flatconfig-lift/index.html",
+      "target": "/proof/flatconfig-lift/",
+      "status": 301
+    },
+    {
+      "source": "/proof/pydantic-v2-porter/index.html",
+      "target": "/proof/pydantic-v2-porter/",
+      "status": 301
+    },
+    {
       "source": "/proof/sqlalchemy-public-proof/index.html",
       "target": "/proof/sqlalchemy-public-proof/",
       "status": 301
@@ -649,7 +659,7 @@
       "status": 301
     }
   ],
-  "generated_on": "2026-04-18",
+  "generated_on": "2026-04-22",
   "urls": {
     "static": [
       "https://zippertools.org/",
@@ -657,7 +667,9 @@
       "https://zippertools.org/demo",
       "https://zippertools.org/guides/",
       "https://zippertools.org/products/",
-      "https://zippertools.org/proof/sqlalchemy-public-proof/"
+      "https://zippertools.org/proof/sqlalchemy-public-proof/",
+      "https://zippertools.org/proof/pydantic-v2-porter/",
+      "https://zippertools.org/proof/flatconfig-lift/"
     ],
     "hubs": [
       "https://zippertools.org/guides/",
@@ -725,7 +737,9 @@
       "https://zippertools.org/products/flatconfig-lift/"
     ],
     "proof": [
-      "https://zippertools.org/proof/sqlalchemy-public-proof/"
+      "https://zippertools.org/proof/sqlalchemy-public-proof/",
+      "https://zippertools.org/proof/pydantic-v2-porter/",
+      "https://zippertools.org/proof/flatconfig-lift/"
     ]
   },
   "products": [
