@@ -4,16 +4,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#08111f" />
-    <title>SQLAlchemy 1.4 to 2.0 Migration Tool | sa20-pack</title>
+    <title>SQLAlchemy 1.4 to 2.0 Migration Cleanup | Zipper Tools</title>
     <meta
       name="description"
-      content="Free scanner and paid apply pack for narrow SQLAlchemy 1.4 to 2.0 legacy breakages, with buyer-visible reports and explicit limits."
+      content="Run a local SQLAlchemy migration scan, review supported cleanup patterns, and choose an automated fit report, cleanup pack, or preset bundle."
     />
     <link rel="canonical" href="https://zippertools.org/" />
-    <meta property="og:title" content="sa20-pack" />
+    <meta property="og:title" content="Zipper Tools" />
     <meta
       property="og:description"
-      content="Free scanner and paid apply pack for narrow SQLAlchemy 1.4 to 2.0 legacy breakages."
+      content="Local migration scan, example reports, deterministic cleanup packs, and automated fit reports for SQLAlchemy 1.4 to 2.0 migration work."
     />
     <meta
       property="og:url"
@@ -23,15 +23,15 @@
       property="og:image"
       content="https://zippertools.org/og-preview.svg"
     />
-    <meta property="og:site_name" content="sa20-pack" />
+    <meta property="og:site_name" content="Zipper Tools" />
     <meta property="og:type" content="website" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "name": "sa20-pack",
+        "name": "Zipper Tools",
         "url": "https://zippertools.org/",
-        "description": "Free scanner and paid apply pack for narrow SQLAlchemy 1.4 to 2.0 legacy breakages."
+        "description": "Local migration scan, example reports, deterministic cleanup packs, and automated fit reports for SQLAlchemy migration work."
       }
     </script>
     <script type="application/ld+json">
@@ -75,8 +75,9 @@
   <body>
     <header class="site-header">
       <div class="wrap nav">
-        <a class="brand" href="/">sa20-pack</a>
+        <a class="brand" href="/">Zipper Tools</a>
         <nav class="nav-links" aria-label="Primary">
+          <a href="/scan">Scan</a>
           <a href="/pricing">Pricing</a>
           <a href="/demo">Demo</a>
           <a href="/policies">Policies</a>
@@ -90,28 +91,27 @@
 
       <section class="lead hero-panel">
         <p class="kicker">SQLAlchemy 1.4 -> 2.0</p>
-        <h1>Deterministic migration for the legacy patterns teams fix by hand.</h1>
+        <h1>Find and clean up the boring SQLAlchemy 2.0 migration patterns in your repo.</h1>
         <p class="subhead">
-          Run the free scan on a real repo. See the supported candidates, a
-          machine-generated migration report, and the unsupported patterns that
-          still need follow-up before buying the apply pack.
+          Run a local scan to identify supported migration patterns. If your
+          repo has repeated safe candidates, use the paid workflow to apply
+          deterministic rewrites locally or start with a $99 automated fit report.
         </p>
         <div class="badge-row">
-          <span class="badge">Deterministic AST transforms</span>
-          <span class="badge">Fail-closed unsupported findings</span>
-          <span class="badge">Validation after every run</span>
-          <span class="badge">CLI and GitHub Action</span>
+          <span class="badge">Runs locally</span>
+          <span class="badge">No source upload</span>
+          <span class="badge">Deterministic rewrites</span>
+          <span class="badge">Manual-review flags</span>
         </div>
         <div class="actions">
-          <a class="button" href="/go/free-scan/home-hero" data-free-link>Run the free scan first</a>
-          <a class="button secondary" href="/go/sa20-pack/home-hero" data-pack-link
-            >Buy the wider edge-case pack</a
-          >
-          <a class="button secondary" href="/go/sa20-preset/home-hero" data-bundle-link
-            >Get the preset bundle</a
+          <a class="button" href="/go/free-scan/home-hero" data-free-link>Run the Free Scan</a>
+          <a class="button secondary" href="#example-workflow">View Example Report</a>
+          <a class="button secondary" href="/go/fit-report/home-hero" data-fit-report-link
+            >Open the $99 Automated Fit Report</a
           >
         </div>
         <div class="small-links">
+          <a href="/scan">Use the outreach scan page</a>
           <a href="/products/sa20-pack/"
             >Read the SQLAlchemy migration tool overview</a
           >
@@ -120,21 +120,21 @@
           >
         </div>
         <p class="caption">
-          Not a generic AI refactor tool. Narrow coverage, explicit limits, and
-          buyer-visible proof.
+          Built for teams that want the repetitive SQLAlchemy cleanup separated
+          from the risky migration decisions.
         </p>
         <div class="proof-strip">
           <div class="proof-item">
-            <strong>preview_only</strong>
-            <span>public repo stays scanner-first</span>
+            <strong>38</strong>
+            <span>example supported findings</span>
+          </div>
+          <div class="proof-item">
+            <strong>6</strong>
+            <span>example manual-review findings</span>
           </div>
           <div class="proof-item">
             <strong>0</strong>
-            <span>unsupported findings in the public happy-path demo</span>
-          </div>
-          <div class="proof-item">
-            <strong>3</strong>
-            <span>live downloadable products with one-time checkout</span>
+            <span>files uploaded from your repo</span>
           </div>
         </div>
       </section>
@@ -324,6 +324,46 @@
 
       <section class="section">
         <div class="section-heading">
+          <p class="kicker">Trust signals</p>
+          <h2>A narrow, maintained engineering tool.</h2>
+        </div>
+        <div class="grid three">
+          <article class="trust-card">
+            <h3>Founder note</h3>
+            <p>
+              Built by Derek Martin as a deliberately small migration product:
+              automate repeated safe cleanup, expose manual-review areas, and
+              avoid broad migration promises.
+            </p>
+          </article>
+          <article class="trust-card">
+            <h3>Maintained proof</h3>
+            <p>
+              Last updated 2026-04-30. The public repo, release, demo fixture,
+              and proof pages are linked before the checkout path.
+            </p>
+            <div class="small-links">
+              <a href="/go/github-release">GitHub release</a>
+              <a href="/proof/sqlalchemy-public-proof/">Public proof</a>
+            </div>
+          </article>
+          <article class="trust-card">
+            <h3>Buyer safety</h3>
+            <p>
+              Runs locally, uploads no source code, uses deterministic
+              transforms instead of AI-generated rewrites, and keeps limitations
+              visible before purchase.
+            </p>
+            <div class="small-links">
+              <a href="/policies">Refund and support policy</a>
+              <a href="#" data-contact-link>Support email</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
           <p class="kicker">How it works</p>
           <h2>Run a real repo through the same path a buyer will use.</h2>
         </div>
@@ -352,23 +392,28 @@
         </div>
       </section>
 
-      <section class="section">
+      <section class="section" id="example-workflow">
         <div class="section-heading">
           <p class="kicker">Proof</p>
-          <h2>Every run ends with a report, not a shrug.</h2>
+          <h2>Example: SQLAlchemy 1.4 to 2.0 scan.</h2>
         </div>
         <div class="grid two">
           <div class="report-card">
             <p class="report-label">Sample fit report</p>
             <pre class="report-preview">Status: preview_only
-Files scanned: 5
-Files changed: 0
-Transforms applied: 6
-Unsupported findings: 0
-Overall confidence: 0.935</pre>
+Supported findings: 38
+Manual-review findings: 6
+Files uploaded: 0
+Recommended next step: preview deterministic rewrites</pre>
           </div>
           <div>
-            <h3>What buyers can verify immediately</h3>
+            <h3>Before/after diff preview</h3>
+            <pre class="code-block">- user = session.query(User).get(user_id)
++ user = session.get(User, user_id)
+
+- stmt = select([User.id, User.email])
++ stmt = select(User.id, User.email)</pre>
+            <h3>What buyers can verify before purchase</h3>
             <ul class="clean">
               <li>which supported candidates were found</li>
               <li>which patterns were left for follow-up</li>
@@ -376,16 +421,16 @@ Overall confidence: 0.935</pre>
             </ul>
             <div class="metric-strip">
               <div class="metric">
-                <strong>5</strong>
-                <span>demo files scanned</span>
+                <strong>38</strong>
+                <span>supported cleanup findings</span>
               </div>
               <div class="metric">
                 <strong>6</strong>
-                <span>deterministic transforms</span>
+                <span>manual-review findings</span>
               </div>
               <div class="metric">
-                <strong>0.935</strong>
-                <span>overall demo confidence</span>
+                <strong>0</strong>
+                <span>repo files uploaded</span>
               </div>
             </div>
           </div>
@@ -424,13 +469,13 @@ Overall confidence: 0.935</pre>
 
       <section class="section">
         <div class="section-heading">
-          <p class="kicker">Commercial path</p>
-          <h2>Start with the public scanner. Buy only if the remaining work is real.</h2>
+          <p class="kicker">Next step</p>
+          <h2>Pick the smallest step that matches your report.</h2>
         </div>
-        <div class="grid three">
+        <div class="grid four">
           <section class="offer">
             <p class="offer-label">Free</p>
-            <h3>Scan and qualify</h3>
+            <h3>Free Scan</h3>
             <p>
               Run the public CLI, inspect the report, and see whether the repo
               is a fit before spending money.
@@ -441,38 +486,46 @@ Overall confidence: 0.935</pre>
             >
           </section>
           <section class="offer">
-            <p class="offer-label">One-time pack</p>
-            <h3>Wider edge-case coverage</h3>
+            <p class="offer-label">$99</p>
+            <h3>Automated Fit Report</h3>
             <p>
-              Add broader deterministic coverage, richer reporting, and tighter
-              rollout docs for teams that want fewer repeated follow-up edits.
+              Run a software-only add-on against the local scan output to get
+              supported-pattern counts, manual-review risk buckets, and a
+              buy/do-not-buy recommendation.
+            </p>
+            <a class="button secondary" href="/go/fit-report/home-offer" data-fit-report-link
+              >Open fit report details</a
+            >
+          </section>
+          <section class="offer">
+            <p class="offer-label">$299.99</p>
+            <h3>Cleanup Pack</h3>
+            <p>
+              Apply deterministic rewrites locally for the documented
+              SQLAlchemy cleanup subset, with reports, rollback notes, and
+              manual-review flags.
             </p>
             <a class="button secondary" href="/go/sa20-pack/home-offer" data-pack-link
-              >Open paid pack checkout</a
+              >Open cleanup pack checkout</a
             >
             <div class="small-links">
               <a href="/products/sa20-pack/"
                 >Read the SQLAlchemy migration tool overview</a
               >
-              <a href="/products/sa20-pack/"
-                >Read the pack details</a
-              >
             </div>
           </section>
           <section class="offer">
-            <p class="offer-label">Downloadable add-on</p>
-            <h3>Preset bundle</h3>
+            <p class="offer-label">$149.99</p>
+            <h3>Migration Preset Bundle</h3>
             <p>
-              Add downloadable repo presets, rollout docs, and richer report
-              templates for teams that want a more repeatable migration path.
+              Add downloadable presets, report templates, and rollout notes for
+              teams that want a more repeatable software-only migration path.
             </p>
             <a class="button secondary" href="/go/sa20-preset/home-offer" data-bundle-link
               >Open preset bundle checkout</a
             >
             <div class="small-links">
-              <a href="/pricing"
-                >Read the preset bundle details</a
-              >
+              <a href="/pricing">Compare all options</a>
             </div>
           </section>
         </div>
@@ -486,14 +539,14 @@ Overall confidence: 0.935</pre>
         <div class="grid two">
           <section class="offer">
             <p class="offer-label">Python migration pack</p>
-            <h3>pydantic-v2-porter</h3>
+            <h3>Pydantic v1 to v2 Migration Cleanup Pack</h3>
             <p>
-              Commercial apply pack for the documented Pydantic v1 to v2 subset:
+              Commercial cleanup pack for the documented Pydantic v1 to v2 subset:
               safe validator, config, and settings rewrites with fail-closed
               unsupported findings.
             </p>
             <a class="button secondary" href="/go/pydantic-v2-porter/home-offer" data-pydantic-link
-              >Open Pydantic pack checkout</a
+              >Open Pydantic cleanup pack checkout</a
             >
             <div class="small-links">
               <a href="/products/pydantic-v2-porter/"
@@ -509,8 +562,8 @@ Overall confidence: 0.935</pre>
             <h3>Same buying rule</h3>
             <p>
               Run the free fit scan first, buy only for the documented subset,
-              and use the downloadable pack locally without a hosted API or a
-              human service dependency.
+              and use the downloadable pack locally without a hosted API or any
+              human-in-the-loop delivery.
             </p>
           </section>
         </div>
@@ -586,13 +639,14 @@ Overall confidence: 0.935</pre>
     <footer class="site-footer">
       <div class="wrap footer-grid">
         <div>
-          <p class="footer-title">sa20-pack</p>
+          <p class="footer-title">Zipper Tools</p>
           <p class="caption">
-            Free scanner plus paid apply pack for the boring SQLAlchemy
+            Free scanner plus paid cleanup workflow for the boring SQLAlchemy
             breakages.
           </p>
         </div>
         <div class="footer-links">
+          <a href="/scan">Scan</a>
           <a href="/pricing">Pricing</a>
           <a href="/demo">Demo</a>
           <a href="/policies">Policies</a>

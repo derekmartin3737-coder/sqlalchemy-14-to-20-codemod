@@ -8,9 +8,9 @@ access, and legal readiness starts in the "Go-Live Stack Decisions" section
 near the bottom of this file. That lower section is now the authoritative
 checklist for getting from here to a live company that can accept purchases.
 
-Note: Payhip is now the active checkout provider. Older Lemon Squeezy items
-remain in this file as historical research or fallback notes unless explicitly
-updated.
+Note: Stripe Checkout is now the active checkout provider for new orders. Older
+Payhip and Lemon Squeezy items remain in this file only as historical research
+or fallback notes unless explicitly updated.
 
 Priority labels:
 
@@ -23,10 +23,10 @@ Priority labels:
 
 - [x] Public repo is live.
 - [x] Public website is live.
-- [x] Payhip store is live.
-- [x] Payout path is configured.
-- [x] First three products are live on Payhip.
-- [x] `site/config.js` has live checkout URLs for the exposed products.
+- [x] Stripe Checkout Worker routes are implemented.
+- [ ] Stripe payout path is configured and verified.
+- [ ] Stripe live-mode checkout has been tested end to end.
+- [x] `site/config.js` routes exposed products through `/go/...`.
 
 ## Before New Features
 
@@ -218,12 +218,12 @@ Current stack in practice:
 - public storefront: Cloudflare storefront at `zippertools.org`
 - backup entrypoint: GitHub Pages redirect
 - website analytics: Cloudflare Web Analytics path
-- checkout and merchant of record: Payhip digital-product checkout
-- payout path: configured and verified
-- revenue analytics: Payhip dashboard
+- checkout: Stripe Checkout through the Cloudflare Worker
+- payout path: configure and verify in Stripe
+- revenue analytics: Stripe dashboard
 - free adoption analytics: GitHub repo traffic, GitHub release downloads, later
   PyPI download proxies if we publish there
-- fallback checkout if Payhip blocks us later: Gumroad
+- fallback checkout if Stripe blocks us later: Gumroad or Polar
 
 Current best future storefront stack if we want a cleaner commerce host without
 paid infrastructure:
@@ -256,7 +256,7 @@ Go-live is only complete when all of these are true:
 
 - [x] public website is live on a free public URL
 - [x] free repo is public and usable
-- [x] paid checkout is live and can accept real purchases
+- [ ] Stripe live checkout is live and can accept real purchases
 - [x] payout path is configured and verified
 - [ ] website traffic analytics are visibly confirmed in the dashboard
 - [ ] order and revenue analytics are visibly confirmed in the dashboard
@@ -324,7 +324,7 @@ Go-live is only complete when all of these are true:
 
 - [x] Use Cloudflare Web Analytics as the live traffic analytics source.
 - [ ] Confirm we can see unique visitors, page views, referrers, and trends.
-- [x] Use Payhip dashboards for orders, revenue, refunds, and payouts.
+- [x] Use Stripe dashboards for orders, revenue, refunds, disputes, and payouts.
 - [x] Use GitHub repo traffic and release downloads as free-tier adoption
   proxies.
 - [ ] If we publish to PyPI later, add PyPI download proxies to the weekly KPI
@@ -343,11 +343,11 @@ Go-live is only complete when all of these are true:
 
 ## P0 - Checkout, Payout Access, and Fulfillment
 
-- [x] Keep the Payhip store live and the payout path configured.
+- [x] Keep Stripe account access and payout path configured.
 - [x] Configure the payout method currently approved by the account.
 - [ ] Write down the real payout schedule and payout threshold so there is no
   surprise after first sale.
-- [ ] Set up Gumroad only as a fallback if Payhip onboarding or payout setup
+- [ ] Set up Gumroad only as a fallback if Stripe onboarding or payout setup
   blocks us.
 - [ ] Finalize the free offer:
   public CLI, public GitHub Action, basic report, limited coverage.
@@ -355,13 +355,13 @@ Go-live is only complete when all of these are true:
   wider edge-case coverage, richer reports, presets, and better docs.
 - [ ] Finalize the preset-bundle offer as a second downloadable SKU with a
   real versioned artifact.
-- [x] Create the hosted paid-pack product in Payhip.
-- [x] Create the preset-bundle product in Payhip.
-- [x] Create the Pydantic apply-pack product in Payhip.
+- [x] Add Stripe checkout metadata for the paid pack.
+- [x] Add Stripe checkout metadata for the preset bundle.
+- [x] Add Stripe checkout metadata for the Pydantic apply pack.
 - [ ] Define the paid deliverable format:
   versioned ZIP, private wheel, add-on pack, or private release asset.
-- [ ] Prefer automatic artifact delivery through the checkout platform over
-  manual email fulfillment.
+- [ ] Prefer automatic artifact delivery through `/stripe/delivery` over manual
+  email fulfillment.
 - [ ] Create install/update instructions for the paid pack.
 - [ ] Test one complete fulfillment path from checkout success to buyer
   download.

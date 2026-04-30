@@ -1,6 +1,6 @@
 # Claims and Safeguards
 
-Last updated: 2026-04-07
+Last updated: 2026-04-30
 
 This is the practical launch guardrail document for `sa20-pack`.
 
@@ -13,7 +13,7 @@ This is not legal advice.
 - require the free scan before paid purchase
 - fail closed on unsupported patterns
 - treat validation failures as failures, not soft wins
-- keep paid offers software-only
+- keep paid offers software-only and autonomous
 
 ## Claims we can make
 
@@ -26,6 +26,9 @@ This is not legal advice.
   configured.
 - The product is a narrow helper for one upgrade path, not a full migration
   service.
+- The $99 fit-report offer, if listed, must be an autonomous software add-on
+  that runs on local scanner output. It must not require a person to review a
+  customer's repo or report.
 
 ## Claims we must not make
 
@@ -35,6 +38,8 @@ This is not legal advice.
 - compatibility with every SQLAlchemy codebase
 - no manual review required
 - no engineering judgment required
+- that any human-assisted migration, consulting, or PR service is part of the
+  product
 
 ## Required public qualifiers
 
@@ -45,6 +50,8 @@ Keep these ideas visible in site copy, product copy, and launch posts:
 - validation results must be read before claiming success
 - buyers should use version control and backups
 - run the free scan first
+- paid offers must remain downloadable or autonomous software workflows, not
+  custom service engagements
 
 ## Seller identity safeguard
 
@@ -86,4 +93,5 @@ Pause launch if any of these are still unclear:
 - paid deliverable is not ready for automatic delivery
 - refund and support boundaries are not published
 - checkout links are live but success/cancel paths are broken
+- Stripe Checkout or post-payment delivery fails live testing
 - there is no written answer for what happens when validation fails

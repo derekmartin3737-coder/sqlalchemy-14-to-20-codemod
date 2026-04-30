@@ -61,10 +61,10 @@
       },
       {
         "@type": "Question",
-        "name": "When should I buy flatconfig-lift?",
+        "name": "When should I buy ESLint Flat Config Migration Cleanup Pack?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Use flatconfig-lift only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset."
+          "text": "Use ESLint Flat Config Migration Cleanup Pack only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first. If the report shows ten or more supported findings, buy the pack or use the $99 automated fit report add-on; if unsupported findings dominate, keep the work manual."
         }
       }
     ]
@@ -103,7 +103,7 @@
     </script>
   </head>
   <body>
-    <header class="site-header"><div class="wrap nav"><a class="brand" href="/">Zipper Tools</a><nav class="nav-links" aria-label="Primary"><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="/policies">Policies</a><a href="#" data-repo-link>Repo</a></nav></div></header>
+    <header class="site-header"><div class="wrap nav"><a class="brand" href="/">Zipper Tools</a><nav class="nav-links" aria-label="Primary"><a href="/scan">Scan</a><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="/policies">Policies</a><a href="#" data-repo-link>Repo</a></nav></div></header>
     <main class="wrap">
       <section class="warning" id="launch-warning" aria-live="polite"></section>
       <section class="page-title">
@@ -128,6 +128,31 @@
 # choose the authoritative legacy config source before migration
 </code></pre>
             </div>
+          </div>
+        </article>
+      </section>
+      <section class="section">
+        <article class="conversion-panel">
+          <div class="conversion-copy">
+            <p class="kicker">Repo fit check</p>
+            <h2>Want to know if your repo has this pattern?</h2>
+            <p>Run the scanner locally first. If the report shows 10+ supported findings for this kind of cleanup, compare the paid workflow or use the $99 automated fit report before buying the full pack.</p>
+            <ul class="clean decision-list">
+              <li>Local scan; no repository upload.</li>
+              <li>Supported findings are separated from manual-review findings.</li>
+              <li>Buy only when the repeated pattern is worth automating.</li>
+            </ul>
+          </div>
+          <div class="conversion-actions">
+            <a class="button" href="/go/flatconfig-free-scan/guide-scan-eslint-multiple-legacy-configs">Run the free local scanner</a>
+            <a class="button secondary" href="/demo">View example report</a>
+            <a class="button secondary" href="/go/fit-report/guide-scan-eslint-multiple-legacy-configs">Open the $99 automated fit report</a>
+            <a class="button secondary" href="/products/flatconfig-lift/">See when to buy</a>
+            <pre class="code-block"><code>Example scan summary
+supported_findings: 38
+manual_review_findings: 6
+files_uploaded: 0
+confidence: reviewable</code></pre>
           </div>
         </article>
       </section>
@@ -164,6 +189,7 @@ package.json#eslintConfig
             <p>This product exists for the static-config subset. It does not pretend to evaluate JS config logic.</p>
             <ul class="clean">
               <li>Teams migrating static .eslintrc JSON or YAML configs.</li><li>Repos that still store eslintConfig inside package.json.</li>
+              <li>If the scan output is ambiguous, use the $99 automated fit report before buying the full pack.</li>
             </ul>
           </article>
           <article class="page-panel bridge-panel">
@@ -172,6 +198,7 @@ package.json#eslintConfig
             <p>Current listed price is not published on the pricing page yet.</p>
             <div class="page-actions">
               <a class="button" href="/products/flatconfig-lift/">Open product page</a>
+              <a class="button secondary" href="/go/fit-report/guide-fit-eslint-multiple-legacy-configs">Open the $99 automated fit report</a>
 
               <a class="button secondary" href="/proof/flatconfig-lift/">Read proof</a>
 
@@ -208,7 +235,7 @@ package.json#eslintConfig
           <p class="kicker">FAQ</p>
           <h2>Fast answers before you decide</h2>
           <div class="faq-list">
-            <div><h3>What is the safest fix for multiple ESLint config sources flat config migration?</h3><p>Keep multiple legacy ESLint config sources in manual review. The first job is deciding which source is authoritative before generating a flat config bridge.</p></div><div><h3>Can multiple ESLint config sources flat config migration be automated?</h3><p>Automate only the supported subset: Explicit multiple-config-sources findings. Cross-links to the supported .eslintrc and package.json pages. Repo-fit guidance before buying the flat-config pack. Keep these cases in manual review: Choosing the real source of truth. Merging overlapping rules and ignores. Repos that also already have eslint.config.* files.</p></div><div><h3>When should I buy flatconfig-lift?</h3><p>Use flatconfig-lift only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset.</p></div>
+            <div><h3>What is the safest fix for multiple ESLint config sources flat config migration?</h3><p>Keep multiple legacy ESLint config sources in manual review. The first job is deciding which source is authoritative before generating a flat config bridge.</p></div><div><h3>Can multiple ESLint config sources flat config migration be automated?</h3><p>Automate only the supported subset: Explicit multiple-config-sources findings. Cross-links to the supported .eslintrc and package.json pages. Repo-fit guidance before buying the flat-config pack. Keep these cases in manual review: Choosing the real source of truth. Merging overlapping rules and ignores. Repos that also already have eslint.config.* files.</p></div><div><h3>When should I buy ESLint Flat Config Migration Cleanup Pack?</h3><p>Use ESLint Flat Config Migration Cleanup Pack only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first. If the report shows ten or more supported findings, buy the pack or use the $99 automated fit report add-on; if unsupported findings dominate, keep the work manual.</p></div>
           </div>
         </article>
       </section>
@@ -216,11 +243,11 @@ package.json#eslintConfig
         <article class="page-panel">
           <h3>More fixes in this product</h3>
           <p class="quick-links"><a href="/eslint/eslintrc-to-flat-config/">Migrate .eslintrc to eslint.config.cjs with FlatCompat</a>, <a href="/eslint/package-json-eslintconfig/">Migrate package.json eslintConfig to flat config</a>, <a href="/eslint/eslintrc-js-unsupported/">Why .eslintrc.js is a manual-review case</a>, <a href="/eslint/eslintignore-migration/">Move .eslintignore patterns into flat config</a>, <a href="/eslint/negated-ignore-patterns/">Why negated ignore patterns need manual review</a>, <a href="/eslint/existing-flat-config/">What to do when eslint.config.* already exists</a>, <a href="/eslint/env-globals-flat-config/">Migrate env and globals to flat config</a>, <a href="/eslint/overrides-flat-config/">Migrate overrides to flat config arrays</a></p>
-          <p><a href="/products/flatconfig-lift/">View all flatconfig-lift guides</a></p>
+          <p><a href="/products/flatconfig-lift/">View all ESLint Flat Config Migration Cleanup Pack guides</a></p>
         </article>
       </section>
 
     </main>
-    <footer class="site-footer"><div class="wrap footer-grid"><div><p class="footer-title">Zipper Tools</p><p class="caption">Exact-problem migration guides and narrow codemod products.</p></div><div class="footer-links"><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="#" data-repo-link>GitHub repo</a><a href="#" data-contact-link>Contact</a></div><p class="caption footer-note">Questions: <a href="#" data-contact-link><span data-contact-email>email</span></a></p></div></footer>
+    <footer class="site-footer"><div class="wrap footer-grid"><div><p class="footer-title">Zipper Tools</p><p class="caption">Exact-problem migration guides and narrow codemod products.</p></div><div class="footer-links"><a href="/scan">Scan</a><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="#" data-repo-link>GitHub repo</a><a href="#" data-contact-link>Contact</a></div><p class="caption footer-note">Questions: <a href="#" data-contact-link><span data-contact-email>email</span></a></p></div></footer>
   </body>
 </html>

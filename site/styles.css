@@ -227,6 +227,10 @@ li {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
+.four {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
 .metric-strip {
   display: flex;
   flex-wrap: wrap;
@@ -474,6 +478,14 @@ main {
 .page-title > * {
   position: relative;
   z-index: 1;
+}
+
+.hero-panel h1 {
+  max-width: 18ch;
+}
+
+.page-title h1 {
+  max-width: 20ch;
 }
 
 .page-title {
@@ -805,6 +817,12 @@ li {
   margin-top: 0;
 }
 
+.conversion-actions .code-block {
+  width: 100%;
+  margin-top: 4px;
+  font-size: 0.88rem;
+}
+
 .conversion-actions .small-links {
   margin-top: 6px;
 }
@@ -914,6 +932,11 @@ li {
 .table code,
 .clean code {
   color: #dbeafe;
+}
+
+.table-wrap {
+  margin-top: 18px;
+  overflow-x: auto;
 }
 
 @media (max-width: 720px) {

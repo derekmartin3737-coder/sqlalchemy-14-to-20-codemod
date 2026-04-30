@@ -123,11 +123,11 @@ and the highest-volume SQLAlchemy pages were still below `25` visits each.
 
 Fixes shipped immediately after that read:
 
-- live checkout placeholders were replaced with Payhip-backed `/go/...` routes
+- live checkout placeholders were replaced with tracked `/go/...` routes
 - root-level legacy SQLAlchemy and Pydantic landing URLs were redirected to the
   current canonical guide/product pages
 - product pages now include direct checkout CTAs
-- the policy page now names Payhip instead of the previous checkout provider
+- the policy page now names the active checkout provider
 - `favicon.ico` no longer returns a 404
 
 The working query-to-page map now lives in `site/_site_manifest.json`, which

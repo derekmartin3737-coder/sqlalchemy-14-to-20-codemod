@@ -22,15 +22,26 @@
         <p class="kicker">Success</p>
         <h1>Purchase received.</h1>
         <p>
-          Your receipt and download details should come from Payhip. If the
-          delivery link does not arrive, use the contact path below and include
-          the order reference.
+          Stripe confirmed the checkout. Use the delivery button to open the
+          purchased software bundle after the payment session is verified.
         </p>
         <div class="actions">
-          <a class="button" href="/">Back to home</a>
+          <a class="button" id="delivery-link" href="/pricing">Open delivery</a>
+          <a class="button secondary" href="/">Back to home</a>
           <a class="button secondary" href="#" data-contact-link>Contact support</a>
         </div>
       </section>
     </main>
+    <script>
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var sessionId = params.get("session_id");
+        var link = document.getElementById("delivery-link");
+        if (!link || !sessionId) {
+          return;
+        }
+        link.href = "/stripe/delivery?session_id=" + encodeURIComponent(sessionId);
+      })();
+    </script>
   </body>
 </html>

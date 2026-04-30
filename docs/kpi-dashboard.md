@@ -17,10 +17,10 @@ room handles page-by-page Search Console checks.
 - site visitors: Cloudflare Web Analytics
 - free CTA clicks: optional manual estimate until click tracking exists
 - paid CTA clicks: optional manual estimate until click tracking exists
-- orders: Payhip
-- revenue: Payhip
-- refunds: Payhip
-- payouts received: payout provider and Payhip payout history
+- orders: Stripe
+- revenue: Stripe
+- refunds: Stripe
+- payouts received: Stripe payout history
 - GitHub views/clones: GitHub traffic
 - release downloads: GitHub Releases
 

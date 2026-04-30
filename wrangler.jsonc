@@ -15,9 +15,18 @@
   "assets": {
     "binding": "ASSETS",
     "directory": "./site",
+    "run_worker_first": [
+      "/__stripe_paid_assets/*"
+    ],
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
   },
+  "kv_namespaces": [
+    {
+      "binding": "PAID_ARTIFACTS",
+      "id": "2793e25033794739a412fd2a4324c744"
+    }
+  ],
   "observability": {
     "enabled": true
   }

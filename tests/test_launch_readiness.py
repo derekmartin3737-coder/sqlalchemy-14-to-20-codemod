@@ -9,6 +9,7 @@ from sa20_pack.launch_readiness import check_launch_readiness
 def _required_relative_paths() -> tuple[str, ...]:
     return (
         "site/index.html",
+        "site/scan.html",
         "site/pricing.html",
         "site/demo.html",
         "site/policies.html",
@@ -20,6 +21,7 @@ def _required_relative_paths() -> tuple[str, ...]:
         "wrangler.jsonc",
         "README.md",
         "docs/deployment.md",
+        "docs/stripe-checkout.md",
         "docs/company-setup.md",
         "docs/claims-safeguards.md",
         "docs/launch-readiness.md",
@@ -86,6 +88,7 @@ def test_launch_readiness_detects_placeholders() -> None:
                 '  paidPackUrl: "https://store.example.com/pack",',
                 '  presetBundleUrl: "https://store.example.com/bundle",',
                 '  pydanticPackUrl: "https://store.example.com/pydantic",',
+                '  fitReportUrl: "https://store.example.com/fit-report",',
                 '  cloudflareAnalyticsToken: "",',
                 "};",
             ]
@@ -98,6 +101,7 @@ def test_launch_readiness_detects_placeholders() -> None:
         "paidPackUrl",
         "presetBundleUrl",
         "pydanticPackUrl",
+        "fitReportUrl",
     ]
 
 
@@ -114,6 +118,7 @@ def test_launch_readiness_passes_with_live_values() -> None:
                 '  paidPackUrl: "https://store.sa20pack.test/pack",',
                 '  presetBundleUrl: "https://store.sa20pack.test/bundle",',
                 '  pydanticPackUrl: "https://store.sa20pack.test/pydantic",',
+                '  fitReportUrl: "https://store.sa20pack.test/fit-report",',
                 '  cloudflareAnalyticsToken: "cf-token-123",',
                 "};",
             ]

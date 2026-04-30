@@ -10,6 +10,20 @@ const QUALIFIED_PREFIXES = [
   "/demo",
   "/pricing",
 ];
+const STRIPE_CHECKOUT_PREFIXES = [
+  "/go/sa20-pack",
+  "/go/sa20-preset",
+  "/go/pydantic-v2-porter",
+];
+const FIT_REPORT_GO_PREFIXES = [
+  "/go/fit-report",
+  "/go/fit-review",
+];
+const FREE_SCAN_PREFIXES = [
+  "/go/free-scan",
+  "/go/pydantic-free-scan",
+  "/go/flatconfig-free-scan",
+];
 
 function parseArgs(argv) {
   const args = { hours: 24, limit: 1000, offsetHours: 0 };
@@ -72,8 +86,28 @@ function isQualifiedPath(path) {
   return QUALIFIED_PREFIXES.some((prefix) => path === prefix || path.startsWith(prefix));
 }
 
+function isPathUnder(path, prefix) {
+  return path === prefix || path.startsWith(`${prefix}/`);
+}
+
+function isStripeCheckoutPath(path) {
+  return STRIPE_CHECKOUT_PREFIXES.some((prefix) => isPathUnder(path, prefix));
+}
+
+function isFitReportPath(path) {
+  return FIT_REPORT_GO_PREFIXES.some((prefix) => isPathUnder(path, prefix));
+}
+
+function isFreeScanPath(path) {
+  return FREE_SCAN_PREFIXES.some((prefix) => isPathUnder(path, prefix));
+}
+
 function classify(path) {
-  if (path.startsWith("/go/")) return "go";
+  if (isStripeCheckoutPath(path)) return "stripe_checkout";
+  if (isFitReportPath(path)) return "fit_report";
+  if (isFreeScanPath(path)) return "free_scan";
+  if (isPathUnder(path, "/go/github-release")) return "trust";
+  if (path.startsWith("/go/")) return "go_other";
   if (path.startsWith("/products/")) return "products";
   if (path.startsWith("/proof/")) return "proof";
   if (path.startsWith("/sqlalchemy/")) return "sqlalchemy";
@@ -147,6 +181,10 @@ async function main() {
   const goPaths = pathGroups
     .filter((group) => group.path.startsWith("/go/"))
     .sort((left, right) => right.requests - left.requests);
+  const checkoutGoPaths = goPaths.filter((group) => isStripeCheckoutPath(group.path));
+  const fitReportGoPaths = goPaths.filter((group) => isFitReportPath(group.path));
+  const freeScanPaths = goPaths.filter((group) => isFreeScanPath(group.path));
+  const trustPaths = goPaths.filter((group) => isPathUnder(group.path, "/go/github-release"));
 
   const classTotals = {};
   for (const group of [...qualified, ...goPaths]) {
@@ -168,7 +206,22 @@ async function main() {
       topPaths: qualified.sort(sortByVisitsThenRequests).slice(0, 25),
     },
     checkout: {
+      totalRequests: checkoutGoPaths.reduce((sum, group) => sum + group.requests, 0),
+      paths: checkoutGoPaths,
+    },
+    fitReport: {
+      totalRequests: fitReportGoPaths.reduce((sum, group) => sum + group.requests, 0),
+      paths: fitReportGoPaths,
+    },
+    goRoutes: {
       totalRequests: goPaths.reduce((sum, group) => sum + group.requests, 0),
+      stripeCheckoutRequests: checkoutGoPaths.reduce(
+        (sum, group) => sum + group.requests,
+        0,
+      ),
+      freeScanRequests: freeScanPaths.reduce((sum, group) => sum + group.requests, 0),
+      fitReportRequests: fitReportGoPaths.reduce((sum, group) => sum + group.requests, 0),
+      trustRequests: trustPaths.reduce((sum, group) => sum + group.requests, 0),
       paths: goPaths,
     },
   };

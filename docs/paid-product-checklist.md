@@ -46,12 +46,12 @@ The pack does not clear launch unless every required item below is true.
 
 - Checkout product type is allowed under the active provider policy.
 - Checkout product tax category matches the actual product.
-- Product file uploaded to the active checkout provider is the private ZIP, not
-  a public artifact.
-- Checkout button points to the correct hosted checkout URL.
+- Product paid ZIP exists in the private `PAID_ARTIFACTS` KV namespace and is
+  not tracked in git.
+- Checkout button points to the correct `/go/...` Stripe checkout route.
 - Confirmation and receipt buttons point to public guidance, not public code.
 - Success and cancel pages work.
-- Product price is consistent across site copy, Payhip, and docs.
+- Product price is consistent across site copy, Stripe Worker metadata, and docs.
 
 ## 5. Verification Gate
 

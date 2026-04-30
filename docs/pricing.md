@@ -4,17 +4,14 @@
 
 ## Free vs paid at a glance
 
-| Capability | Free scan | Edge-case pack | Preset bundle | Pydantic apply pack |
+| Capability | Free scan | $99 automated fit report | Cleanup pack | Preset bundle |
 | --- | --- | --- | --- | --- |
-| Public CLI | Yes | Yes | Uses public CLI outputs | Uses public fit scan outputs |
-| Core deterministic transforms | Yes | Yes | Uses public CLI outputs | Yes |
-| Diff preview | Yes | Yes | Uses public CLI outputs | Yes |
-| JSON migration report | Yes | Yes, plus richer buyer docs | Uses public CLI outputs plus richer templates | Yes, plus richer buyer docs |
-| Manual-review findings | Yes | Yes | Uses public CLI outputs plus rollout guidance | Yes |
-| Wider edge-case coverage | No | Yes | No | No |
-| Preset bundles | No | Included | Yes | No |
-| Manager summary | No | Yes | Yes | Yes |
-| Rollout checklist | Basic public docs | Yes | Yes | Yes |
+| Public/local CLI | Yes | Reads scanner output locally | Yes | Uses scanner output locally |
+| Core deterministic transforms | Yes | No code changes | Yes | Uses scanner output |
+| Diff preview | Yes | Summarizes candidates | Yes | Uses scanner output |
+| JSON migration report | Yes | Adds buyer-fit summary | Yes, plus buyer docs | Uses public CLI outputs plus richer templates |
+| Manual-review findings | Yes | Summarizes risk buckets | Yes | Uses public CLI outputs plus rollout guidance |
+| Preset/rollout guidance | Basic public docs | Automated recommendation | Yes | Yes |
 | Human service dependency | No | No | No | No |
 | Full custom migration service | No | No | No | No |
 
@@ -33,19 +30,38 @@ Use the public repo, CLI, and GitHub Action for:
 The point of the free tier is qualification and trust. A buyer should know
 whether the repo is a fit before paying.
 
-### One-time edge-case pack
+### $99 automated fit report
 
-Product name: **`sa20-pack Edge-Case Migration Pack`**
+Product name: **`Automated Migration Fit Report Add-on`**
+
+Current checkout price: **$99 per team**
+
+What it adds:
+
+- a local report summarizer for the free scanner JSON
+- supported-pattern summary
+- manual-review risk summary
+- autonomous recommendation to use the cleanup pack, use the preset bundle, or do not buy
+
+What it does not include:
+
+- human review
+- custom coding
+- guaranteed migration success
+
+### SQLAlchemy cleanup pack
+
+Product name: **`SQLAlchemy 1.4 to 2.0 Migration Cleanup Pack`**
 
 Current checkout price: **$299.99 per team**
 
 What it adds:
 
-- wider edge-case coverage
-- more SQLAlchemy pattern presets
-- richer reports and rollout checklists
+- deterministic local rewrites for the documented SQLAlchemy subset
+- before/after diff preview and apply workflow
+- JSON reports, rollback notes, and rollout checklists
 - manager-facing migration summary
-- enterprise-safe docs/templates
+- supported rewrite table and manual-review flags
 
 What the buyer is really paying for:
 
@@ -53,9 +69,9 @@ What the buyer is really paying for:
 - clearer unsupported buckets
 - tighter rollout confidence
 
-### Preset bundle
+### Migration Preset Bundle
 
-Product name: **`sa20-pack Preset Bundle`**
+Product name: **`Migration Preset Bundle`**
 
 Current checkout price: **$149.99 per team**
 
@@ -72,9 +88,9 @@ What it does not include:
 - custom coding by a person
 - guaranteed full migration ownership
 
-### Pydantic apply pack
+### Pydantic cleanup pack
 
-Product name: **`pydantic-v2-porter Apply Pack`**
+Product name: **`Pydantic v1 to v2 Migration Cleanup Pack`**
 
 Current checkout price: **$249.99 per team**
 
@@ -106,7 +122,7 @@ engine.
 Do not buy if:
 
 - you have not run the free scan yet
-- your repo needs a full custom migration service
+- your repo needs human consulting or a custom migration service
 - your repo depends on unsupported patterns being auto-rewritten today
 - you expect the paid pack to guarantee a passing application without manual
   review
@@ -132,4 +148,4 @@ The paid pack still does not promise:
 - transaction-semantics decisions for legacy execution paths
 - every repo-specific rollout decision
 - custom framework wrappers that hide SQLAlchemy internals
-- full-service debugging of application-specific failures
+- human debugging of application-specific failures

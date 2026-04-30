@@ -143,20 +143,19 @@ And the migration runner itself should produce a structured report showing:
   Cloudflare without re-entering static asset settings by hand.
 - `site/config.js` is now populated with the current seller name, contact email,
   and public GitHub repo URL.
-- Payhip is now the active checkout provider and has live unlisted product
-  links for the first three products.
+- Stripe Checkout is now the active checkout direction for new orders, driven
+  by the Cloudflare Worker instead of external product pages.
 - Store-product copy, fulfillment docs, release checklist, repo-fit checklist,
   preset-bundle checklist, legal checklist, lead tracker, and launch log now
   exist.
 - Claims-and-safeguards docs now exist, and the public/legal copy has been
   tightened to avoid broad guarantees.
-- `site/config.js` now points the storefront at the live Payhip links for:
-  - `sa20-pack Edge-Case Migration Pack`: `https://pay.zippertools.org/b/QimJ6`
-  - `sa20-pack Preset Bundle`: `https://pay.zippertools.org/b/wh2Ro`
-- The third product is live on Payhip as:
-  - `pydantic-v2-porter Apply Pack`: `https://pay.zippertools.org/b/KamA1`
-- Payhip custom-domain checkout is now active on `https://pay.zippertools.org/`
-  so the storefront no longer needs to send buyers to raw `payhip.com` links.
+- `site/config.js` now points the storefront at tracked `/go/...` routes for
+  Stripe-controlled checkout:
+  - `/go/sa20-pack`
+  - `/go/sa20-preset`
+  - `/go/pydantic-v2-porter`
+  - `/go/fit-report`
 - Repo launch/legal docs now exist for deployment, company setup, policies, KPI
   tracking, and launch readiness.
 - `sa20_pack.launch_readiness` now checks for missing launch assets and
@@ -220,9 +219,8 @@ And the migration runner itself should produce a structured report showing:
   product pages now lead with a narrow decision block and tracked buy/proof
   links.
 - The Cloudflare storefront now uses a Worker wrapper instead of static assets
-  only, so runtime secrets can be added. Payhip webhooks should point to
-  `https://zippertools.org/payhip/webhook`, with `PAYHIP_API_KEY` stored as a
-  Cloudflare Worker secret. Setup notes live in `docs/payhip-webhook.md`.
+  only, so Stripe Checkout Sessions and signed webhook handling can run from
+  runtime secrets. Stripe webhook setup notes live in `docs/stripe-checkout.md`.
 - GitHub repo About is now updated with the `https://zippertools.org/` website,
   narrow scanner-first SQLAlchemy migration description, and exact-intent
   migration topics.
@@ -234,15 +232,17 @@ And the migration runner itself should produce a structured report showing:
 1. In Google Search Console, inspect the priority URLs in
    `docs/traffic-war-room.md`, confirm Google-selected canonicals, and request
    indexing only for final clean URLs.
-2. In Bing Webmaster Tools, re-submit the same clean priority URLs and sitemap
+2. Complete the Stripe Dashboard setup in `docs/stripe-checkout.md`, add Worker
+   secrets, and test one Stripe checkout through `/stripe/delivery`.
+3. In Bing Webmaster Tools, re-submit the same clean priority URLs and sitemap
    set.
-3. Edit controllable public replies so they point to canonical clean URLs, not
+4. Edit controllable public replies so they point to canonical clean URLs, not
    old `.html` aliases.
-4. Watch `/go/free-scan` and product-specific `/go/...` requests against
+5. Watch `/go/free-scan` and product-specific `/go/...` requests against
    product visits for the next 24 hours before changing pricing.
-5. Add only 1-2 more exact-fit public replies where the target page directly
+6. Add only 1-2 more exact-fit public replies where the target page directly
    answers the thread.
-6. Watch indexed page count, impressions, clicks, product-page visits, and
+7. Watch indexed page count, impressions, clicks, product-page visits, and
    `/go/...` requests over a 3-7 day window before changing price or product
    scope again.
-7. Keep this file updated as decisions harden or blockers appear.
+8. Keep this file updated as decisions harden or blockers appear.

@@ -20,11 +20,11 @@ Keep the public repo as the trust layer.
 
 Distribute paid coverage as one of:
 
-- Payhip digital download ZIP
+- Stripe-gated private ZIP delivery
 - paid add-on package
 - customer-specific preset pack
 
-For the current launch plan, prefer the Payhip digital download ZIP path from
+For the current launch plan, prefer the Stripe-gated delivery path from
 [fulfillment.md](fulfillment.md)
 and use the tagged release path from
 [release-checklist.md](release-checklist.md)

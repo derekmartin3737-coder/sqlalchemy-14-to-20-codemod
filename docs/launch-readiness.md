@@ -18,7 +18,7 @@ ready to go public.
 ## External actions still required before live revenue
 
 - keep the Cloudflare storefront deployed and current
-- keep the Payhip product links current in `site/config.js`
+- keep the Stripe Worker secrets and paid KV artifact ZIPs current
 - enable storefront traffic analytics
 - make one real test purchase
 
@@ -37,14 +37,18 @@ Call the business live only after:
 ## Launch-day checks
 
 - homepage loads
+- scan page loads
 - pricing page loads
 - policy page loads
 - demo page loads
 - repo link works
 - free CTA works
 - paid CTA works
+- automated fit-report CTA works if exposed
+- no human-assisted migration or PR-service CTA is exposed
 - preset-bundle CTA works
 - pydantic-pack CTA works if exposed on the site
-- checkout provider pages load
+- Stripe Checkout pages load
+- `/stripe/delivery` verifies a paid test session before opening a product file
 - success/cancel pages work
 - policy docs match site copy

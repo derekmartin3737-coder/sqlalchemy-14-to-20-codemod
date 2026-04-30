@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#08111f" />
+    <title>Run a SQLAlchemy 2.0 Migration Scan | Zipper Tools</title>
+    <meta
+      name="description"
+      content="Run the free local SQLAlchemy migration scanner, view example output, and decide whether an automated fit report or cleanup pack is worth it."
+    />
+    <link rel="canonical" href="https://zippertools.org/scan" />
+    <meta property="og:title" content="Run a SQLAlchemy 2.0 Migration Scan" />
+    <meta
+      property="og:description"
+      content="Run this command, get a report, upload no repo files, then decide whether automation is worth it."
+    />
+    <meta property="og:url" content="https://zippertools.org/scan" />
+    <meta property="og:image" content="https://zippertools.org/og-preview.svg" />
+    <meta property="og:site_name" content="Zipper Tools" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="config.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap nav">
+        <a class="brand" href="/">Zipper Tools</a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="/scan">Scan</a>
+          <a href="/guides/">Guides</a>
+          <a href="/products/">Products</a>
+          <a href="/pricing">Pricing</a>
+          <a href="/demo">Demo</a>
+          <a href="/policies">Policies</a>
+          <a href="#" data-repo-link>Repo</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="warning" id="launch-warning" aria-live="polite"></section>
+
+      <section class="page-title">
+        <p class="kicker">Free local scan</p>
+        <h1>Run this command. Get this report. Upload no repo files.</h1>
+        <p>
+          Use the scanner as the first step for SQLAlchemy 1.4 to 2.0 cleanup.
+          The report tells you whether repeated safe candidates exist before
+          you spend money on an automated fit report, cleanup pack, or preset
+          bundle.
+        </p>
+        <div class="badge-row">
+          <span class="badge">Local-only</span>
+          <span class="badge">No source upload</span>
+          <span class="badge">Manual-review flags</span>
+          <span class="badge">Last updated 2026-04-30</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="grid two">
+          <article class="page-panel">
+            <p class="kicker">Install</p>
+            <h2>Start from the public repo</h2>
+            <pre class="code-block">python -m pip install sa20-pack</pre>
+            <div class="page-actions">
+              <a class="button" href="/go/free-scan/scan-install" data-free-link>Open quickstart</a>
+              <a class="button secondary" href="#" data-repo-link>View GitHub repo</a>
+            </div>
+          </article>
+          <article class="page-panel">
+            <p class="kicker">Scan</p>
+            <h2>Run against a local checkout</h2>
+            <pre class="code-block">python -m sa20_pack.cli path/to/repo --report migration-report.json</pre>
+            <p class="caption">
+              Keep the report with your branch notes. Do not send private
+              source code through support.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="example-output">
+        <div class="section-heading">
+          <p class="kicker">Example output</p>
+          <h2>Decide from evidence, not a checkout page.</h2>
+        </div>
+        <div class="grid two">
+          <article class="report-card">
+            <p class="report-label">migration-report.json summary</p>
+            <pre class="report-preview">supported_findings: 38
+manual_review_findings: 6
+files_uploaded: 0
+recommended_next_step: preview deterministic rewrites</pre>
+          </article>
+          <article class="page-panel">
+            <h3>When to buy</h3>
+            <ul class="clean">
+              <li>Use the $99 automated fit report if the scan output is promising but ambiguous.</li>
+              <li>Buy the cleanup pack if 10+ supported findings repeat across the repo.</li>
+              <li>Use the preset bundle if you want more repeatable rollout structure.</li>
+              <li>Do not buy if unsupported findings dominate the work.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="grid three">
+          <article class="offer">
+            <p class="offer-label">Free</p>
+            <h3>Run the scanner</h3>
+            <p>Find supported candidates and manual-review areas locally.</p>
+            <a class="button" href="/go/free-scan/scan-offer" data-free-link>Open quickstart</a>
+          </article>
+          <article class="offer">
+            <p class="offer-label">$99</p>
+            <h3>Automated Fit Report</h3>
+            <p>Run a software-only add-on against scanner output for a buy/do-not-buy recommendation.</p>
+            <a class="button secondary" href="/go/fit-report/scan-offer" data-fit-report-link>Open fit report details</a>
+          </article>
+          <article class="offer">
+            <p class="offer-label">$299.99</p>
+            <h3>Cleanup Pack</h3>
+            <p>Apply supported deterministic rewrites locally after fit is clear.</p>
+            <a class="button secondary" href="/go/sa20-pack/scan-offer" data-pack-link>Open cleanup pack</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="grid two">
+          <article class="page-panel">
+            <p class="kicker">FAQ</p>
+            <h2>What happens to my code?</h2>
+            <p>
+              The scan runs in your local checkout. The public path does not
+              upload repository files. No human review is required for the
+              scanner, fit report, preset bundle, or cleanup pack.
+            </p>
+          </article>
+          <article class="page-panel">
+            <p class="kicker">Scope</p>
+            <h2>What does the scanner look for?</h2>
+            <p>
+              The scanner is aimed at repeated SQLAlchemy cleanup patterns such
+              as Query.get, select list syntax, simple string joins/loaders, DML
+              constructor kwargs, and declarative import moves. Risky execution
+              and query-shape cases stay in manual review.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-grid">
+        <div>
+          <p class="footer-title">Zipper Tools</p>
+          <p class="caption">Local-first migration scanner and cleanup workflow.</p>
+        </div>
+        <div class="footer-links">
+          <a href="/">Home</a>
+          <a href="/pricing">Pricing</a>
+          <a href="/demo">Demo</a>
+          <a href="/policies">Policies</a>
+          <a href="#" data-contact-link>Contact</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

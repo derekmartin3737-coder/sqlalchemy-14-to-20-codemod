@@ -15,8 +15,10 @@ Do not use homepage visits or bot-heavy request counts as the main signal.
   `1311` qualified visits in the previous `24` hours.
 - Remaining qualified-visit gap: `0` in Cloudflare's raw site analytics, but
   Search Console still has to confirm organic indexing and impressions.
-- Current bottleneck: product/proof traffic is present, but tracked intent is
-  still thin at `4` `/go/...` requests in the latest 24-hour snapshot.
+- Current bottleneck: product/proof traffic is present, but paid Stripe
+  checkout intent is still thin. Compare paid `/go/sa20-pack`,
+  `/go/sa20-preset`, `/go/pydantic-v2-porter`, and `/go/fit-report` requests
+  against product visits, not total site traffic or free-scan clicks.
 
 ## Daily Morning Checklist
 
@@ -37,6 +39,17 @@ $env:CLOUDFLARE_API_TOKEN = "<token with zone analytics read>"
 $env:CLOUDFLARE_ZONE_ID = "<zippertools.org zone id>"
 node scripts\cloudflare_traffic_snapshot.mjs --hours 24
 ```
+
+Stripe checkout health check:
+
+```powershell
+node --check worker\index.mjs
+python -m pytest tests\test_worker_routes.py -p no:cacheprovider
+```
+
+Use this when paid `/go/...` requests look broken. The check verifies that the
+Worker creates Stripe Checkout Sessions and that post-payment delivery verifies
+the Stripe session before opening an artifact URL.
 
 ## Priority Pages
 
@@ -70,7 +83,18 @@ Use one diagnosis per page.
 - `product clicks, weak /go`: add proof and clearer deliverable language before
   checkout.
 - `/go rises, purchases weak`: review price framing, checkout trust, and whether
-  the page promise matches the Payhip product.
+  the page promise matches the Stripe checkout product.
+
+## Stripe Checkout Triage
+
+Stripe Checkout visits are not the same as Zipper Tools page views.
+
+- Cloudflare `/go/...` requests show checkout intent before Stripe conversion.
+- Stripe Checkout Sessions show whether visitors reached payment.
+- Stripe completed sessions show real purchases.
+- Webhook logs confirm whether checkout completion reached the Worker.
+- If Cloudflare shows paid `/go/...` requests but Stripe has no sessions,
+  inspect Worker logs and the `STRIPE_SECRET_KEY` secret first.
 
 ## Current Week Plan
 
@@ -100,4 +124,4 @@ Use one diagnosis per page.
 | 2026-04-16 22:03 PDT | GitHub repo About description, website, and topics updated. | Public repo now carries the same narrow SQLAlchemy migration positioning as the storefront. | Keep all future public links pointed at canonical clean URLs. |
 | 2026-04-16 22:08 PDT | GitHub release `v0.1.0` created for the public scanner/discovery baseline. | Release URL: `https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/releases/tag/v0.1.0`. | Use the release as a public trust marker, not as a broad migration claim. |
 | 2026-04-16 22:21 PDT | Product-to-intent repair deployed through Cloudflare Worker version `3a69b325-0b4d-40e9-b9b0-e081dc9227bd`. | Static buttons now route through `/go/free-scan`, `/go/sa20-pack`, `/go/sa20-preset`, and `/go/pydantic-v2-porter`; product pages now lead with a decision block and tracked CTAs. | Compare `/go/free-scan` and product-specific `/go/...` requests over the next 24 hours before changing pricing. |
-| 2026-04-16 22:22 PDT | Cloudflare 24-hour snapshot after the conversion repair. | `1446` page views, `1311` qualified visits, `106` product visits, `13` proof visits, `4` `/go/...` requests. | The traffic goal is crossed in Cloudflare, so the operating metric is now tracked intent per product visit. |
+| 2026-04-16 22:22 PDT | Cloudflare 24-hour snapshot after the conversion repair. | `1446` page views, `1311` qualified visits, `106` product visits, `13` proof visits, `4` `/go/...` requests. | The traffic goal is crossed in Cloudflare, so the operating metric is now paid checkout-route intent per product visit. |

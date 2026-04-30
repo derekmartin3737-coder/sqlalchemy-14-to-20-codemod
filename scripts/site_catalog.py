@@ -2019,10 +2019,10 @@ GUIDES: tuple[GuidePage, ...] = (
 PRODUCTS: tuple[ProductPage, ...] = (
     ProductPage(
         slug="sa20-pack",
-        name="sa20-pack",
+        name="SQLAlchemy 1.4 to 2.0 Migration Cleanup Pack",
         family="SQLAlchemy 1.4 -> 2.0",
-        description="Scanner-first SQLAlchemy migration product for high-frequency legacy query and execution API cleanup.",
-        summary="Start with the free scan, inspect the report, and only move to the paid pack if the repo is close enough that repetitive cleanup is still expensive.",
+        description="Deterministic local workflow for finding and cleaning up repeated SQLAlchemy 1.4 to 2.0 migration patterns.",
+        summary="Start with the free scan, inspect the report, and only move to the cleanup pack if the repo has repeated supported patterns that are still expensive to fix by hand.",
         who_it_is_for=(
             "Teams still cleaning up SQLAlchemy 1.4 legacy query patterns.",
             "Repos that still contain Query.get(...), select([..]), string joins, or string loader paths.",
@@ -2074,10 +2074,10 @@ PRODUCTS: tuple[ProductPage, ...] = (
     ),
     ProductPage(
         slug="pydantic-v2-porter",
-        name="pydantic-v2-porter",
+        name="Pydantic v1 to v2 Migration Cleanup Pack",
         family="Pydantic v1 -> v2",
-        description="Narrow, deterministic Pydantic v1 to v2 migration product for direct imports, safe validators, supported config keys, and BaseSettings moves.",
-        summary="The porter is strongest when the repo still uses direct pydantic imports and a clean validator/settings/config subset.",
+        description="Deterministic local cleanup pack for supported Pydantic v1 to v2 imports, validators, config, and BaseSettings moves.",
+        summary="The cleanup pack is strongest when the repo still uses direct pydantic imports and a clean validator/settings/config subset.",
         who_it_is_for=(
             "Teams upgrading direct pydantic imports to v2.",
             "Repos dominated by BaseSettings, safe Config, and simple validator cleanup.",
@@ -2122,9 +2122,9 @@ PRODUCTS: tuple[ProductPage, ...] = (
     ),
     ProductPage(
         slug="flatconfig-lift",
-        name="flatconfig-lift",
+        name="ESLint Flat Config Migration Cleanup Pack",
         family="ESLint legacy config -> flat config",
-        description="Static-config migration product for deterministic .eslintrc and package.json eslintConfig cleanup into flat config.",
+        description="Static-config migration cleanup pack for deterministic .eslintrc and package.json eslintConfig conversion into flat config.",
         summary="This product exists for the static-config subset. It does not pretend to evaluate JS config logic.",
         who_it_is_for=(
             "Teams migrating static .eslintrc JSON or YAML configs.",
@@ -2158,6 +2158,6 @@ PRODUCTS: tuple[ProductPage, ...] = (
             ("Commercial case", "products/flatconfig-lift/docs/commercial-case.md"),
             ("README", "products/flatconfig-lift/README.md"),
         ),
-        price="",  # Not yet listed on Payhip
+        price="",  # Not yet listed in Stripe checkout
     ),
 )

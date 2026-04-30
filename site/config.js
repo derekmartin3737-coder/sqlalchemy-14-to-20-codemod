@@ -6,5 +6,6 @@ window.SA20_SITE_CONFIG = {
   paidPackUrl: "/go/sa20-pack",
   presetBundleUrl: "/go/sa20-preset",
   pydanticPackUrl: "/go/pydantic-v2-porter",
+  fitReportUrl: "/go/fit-report",
   cloudflareAnalyticsToken: "",
 };

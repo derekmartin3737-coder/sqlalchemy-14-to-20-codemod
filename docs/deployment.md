@@ -30,21 +30,27 @@ Edit [`site/config.js`](../site/config.js) and replace:
 - `repoUrl`
 - `paidPackUrl`
 - `presetBundleUrl`
+- `pydanticPackUrl`
+- `fitReportUrl`
 
 Use [`site/config.example.js`](../site/config.example.js) as the reference format.
 
 ## 2. Keep the checkout products current
 
-In Payhip:
+Stripe Checkout is created by the Cloudflare Worker. Product names, prices,
+and checkout descriptions live in [`worker/index.mjs`](../worker/index.mjs).
 
-1. keep the product files current
-2. keep the product images current
-3. keep the Payhip product links in `site/config.js`
-4. leave the products unlisted if the public storefront should stay on
-   Cloudflare instead of Payhip
-5. if Payhip custom-domain checkout is active, prefer the branded
-   `pay.your-domain` product links in `site/config.js` over raw `payhip.com`
-   links
+Before sending paid traffic:
+
+1. set the Stripe test secrets from
+   [`stripe-checkout.md`](stripe-checkout.md)
+2. confirm all paid ZIPs exist in the `PAID_ARTIFACTS` Workers KV namespace
+3. deploy the Worker
+4. run a test checkout through each live `/go/...` route
+5. confirm no checkout screen shows inventory/scarcity text or tiny ZIP-size
+   framing
+6. confirm `/stripe/delivery` opens the matching paid artifact only after a
+   paid Checkout Session
 
 ## 3. Deploy the storefront
 
@@ -95,6 +101,6 @@ Before announcing anything:
 After launch, check:
 
 - Cloudflare Web Analytics for site traffic
-- Payhip for orders, revenue, refunds, and payouts
+- Stripe for orders, revenue, refunds, disputes, and payouts
 - GitHub traffic for repo views and clones
 - the manual KPI tracker in [kpi-dashboard.md](kpi-dashboard.md)

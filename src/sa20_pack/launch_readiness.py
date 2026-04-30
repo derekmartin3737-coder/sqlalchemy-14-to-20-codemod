@@ -11,6 +11,7 @@ PLACEHOLDER_PATTERN = re.compile(
 
 REQUIRED_SITE_FILES = (
     "site/index.html",
+    "site/scan.html",
     "site/pricing.html",
     "site/demo.html",
     "site/policies.html",
@@ -26,6 +27,7 @@ REQUIRED_SITE_FILES = (
 REQUIRED_DOC_FILES = (
     "README.md",
     "docs/deployment.md",
+    "docs/stripe-checkout.md",
     "docs/company-setup.md",
     "docs/claims-safeguards.md",
     "docs/launch-readiness.md",
@@ -55,6 +57,7 @@ REQUIRED_CONFIG_KEYS = (
     "paidPackUrl",
     "presetBundleUrl",
     "pydanticPackUrl",
+    "fitReportUrl",
 )
 
 

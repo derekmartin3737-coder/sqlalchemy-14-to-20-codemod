@@ -61,10 +61,10 @@
       },
       {
         "@type": "Question",
-        "name": "When should I buy sa20-pack?",
+        "name": "When should I buy SQLAlchemy 1.4 to 2.0 Migration Cleanup Pack?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Use sa20-pack only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset."
+          "text": "Use SQLAlchemy 1.4 to 2.0 Migration Cleanup Pack only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first. If the report shows ten or more supported findings, buy the pack or use the $99 automated fit report add-on; if unsupported findings dominate, keep the work manual."
         }
       }
     ]
@@ -103,7 +103,7 @@
     </script>
   </head>
   <body>
-    <header class="site-header"><div class="wrap nav"><a class="brand" href="/">Zipper Tools</a><nav class="nav-links" aria-label="Primary"><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="/policies">Policies</a><a href="#" data-repo-link>Repo</a></nav></div></header>
+    <header class="site-header"><div class="wrap nav"><a class="brand" href="/">Zipper Tools</a><nav class="nav-links" aria-label="Primary"><a href="/scan">Scan</a><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="/policies">Policies</a><a href="#" data-repo-link>Repo</a></nav></div></header>
     <main class="wrap">
       <section class="warning" id="launch-warning" aria-live="polite"></section>
       <section class="page-title">
@@ -128,6 +128,31 @@
 # replacement depends on the actual join path and root entity
 </code></pre>
             </div>
+          </div>
+        </article>
+      </section>
+      <section class="section">
+        <article class="conversion-panel">
+          <div class="conversion-copy">
+            <p class="kicker">Repo fit check</p>
+            <h2>Want to know if your repo has this pattern?</h2>
+            <p>Run the scanner locally first. If the report shows 10+ supported findings for this kind of cleanup, compare the paid workflow or use the $99 automated fit report before buying the full pack.</p>
+            <ul class="clean decision-list">
+              <li>Local scan; no repository upload.</li>
+              <li>Supported findings are separated from manual-review findings.</li>
+              <li>Buy only when the repeated pattern is worth automating.</li>
+            </ul>
+          </div>
+          <div class="conversion-actions">
+            <a class="button" href="/go/free-scan/guide-scan-sqlalchemy-multi-hop-string-joins">Run the free local scanner</a>
+            <a class="button secondary" href="/demo">View example report</a>
+            <a class="button secondary" href="/go/fit-report/guide-scan-sqlalchemy-multi-hop-string-joins">Open the $99 automated fit report</a>
+            <a class="button secondary" href="/products/sa20-pack/">See when to buy</a>
+            <pre class="code-block"><code>Example scan summary
+supported_findings: 38
+manual_review_findings: 6
+files_uploaded: 0
+confidence: reviewable</code></pre>
           </div>
         </article>
       </section>
@@ -160,17 +185,19 @@
           <article class="page-panel bridge-panel">
             <p class="kicker">Decision path</p>
             <h2>If this repeats across the repo, open the evaluation pages next.</h2>
-            <p>Start with the free scan, inspect the report, and only move to the paid pack if the repo is close enough that repetitive cleanup is still expensive.</p>
+            <p>Start with the free scan, inspect the report, and only move to the cleanup pack if the repo has repeated supported patterns that are still expensive to fix by hand.</p>
             <ul class="clean">
-              <li>The free scan shows repeated Query.get, select([..]), string join, string loader, declarative import, or DML constructor findings.</li><li>The remaining supported cleanup is still expensive enough to justify a one-time software download.</li>
+              <li>The free scan shows repeated Query.get, select([..]), string join, string loader, declarative import, or DML constructor findings.</li><li>The remaining supported cleanup is still expensive enough to justify a controlled local migration workflow.</li>
+              <li>If the scan output is ambiguous, use the $99 automated fit report before buying the full pack.</li>
             </ul>
           </article>
           <article class="page-panel bridge-panel">
             <p class="kicker">Before checkout</p>
             <h2>Product fit, proof, and price should all be one click away.</h2>
-            <p>Current listed price: $299.99 one time.</p>
+            <p>Published cleanup-pack price: $299.99 one time.</p>
             <div class="page-actions">
               <a class="button" href="/products/sa20-pack/">Open product page</a>
+              <a class="button secondary" href="/go/fit-report/guide-fit-sqlalchemy-multi-hop-string-joins">Open the $99 automated fit report</a>
               <a class="button secondary" href="/pricing#sa20-pack">See pricing</a>
               <a class="button secondary" href="/proof/sqlalchemy-public-proof/">Read proof</a>
               <a class="button secondary" href="/demo">See demo report</a>
@@ -207,31 +234,31 @@
           <p class="kicker">FAQ</p>
           <h2>Fast answers before you decide</h2>
           <div class="faq-list">
-            <div><h3>What is the safest fix for sqlalchemy join string multiple relationships 2.0?</h3><p>Treat multi-hop string joins as manual review. The right mapped attribute chain depends on the surrounding entities and join shape.</p></div><div><h3>Can sqlalchemy join string multiple relationships 2.0 be automated?</h3><p>Automate only the supported subset: Detection and explicit reporting for multi-hop string joins. Cross-links to the supported simple string-join page. Repo-fit guidance before buying the SQLAlchemy pack. Keep these cases in manual review: Choosing the correct mapped attribute chain. Aliased joins and query-shape-dependent paths. Cases bundled with other removed Query helpers.</p></div><div><h3>When should I buy sa20-pack?</h3><p>Use sa20-pack only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first, then buy only if the repo matches the documented subset.</p></div>
+            <div><h3>What is the safest fix for sqlalchemy join string multiple relationships 2.0?</h3><p>Treat multi-hop string joins as manual review. The right mapped attribute chain depends on the surrounding entities and join shape.</p></div><div><h3>Can sqlalchemy join string multiple relationships 2.0 be automated?</h3><p>Automate only the supported subset: Detection and explicit reporting for multi-hop string joins. Cross-links to the supported simple string-join page. Repo-fit guidance before buying the SQLAlchemy pack. Keep these cases in manual review: Choosing the correct mapped attribute chain. Aliased joins and query-shape-dependent paths. Cases bundled with other removed Query helpers.</p></div><div><h3>When should I buy SQLAlchemy 1.4 to 2.0 Migration Cleanup Pack?</h3><p>Use SQLAlchemy 1.4 to 2.0 Migration Cleanup Pack only when this pattern repeats across enough files that manual cleanup is still costly. Run the public scan or read the proof first. If the report shows ten or more supported findings, buy the pack or use the $99 automated fit report add-on; if unsupported findings dominate, keep the work manual.</p></div>
           </div>
         </article>
       </section>      <section class="section">
         <article class="page-panel purchase-panel">
           <p class="kicker">Purchase fit</p>
-          <h2>If this problem repeats across the repo, qualify the paid pack.</h2>
-          <p>One matching page is not enough by itself. Buy only when the same supported pattern appears often enough that manual cleanup is still costly.</p>
+          <h2>Choose the lowest-risk next step.</h2>
+          <p>One matching page is not enough by itself. Run the local scan, then use the automated fit report add-on or buy only when the same supported pattern appears often enough to matter.</p>
           <div class="purchase-columns">
             <div>
               <h3>Buy if</h3>
-              <ul class="clean"><li>The free scan shows repeated Query.get, select([..]), string join, string loader, declarative import, or DML constructor findings.</li><li>The remaining supported cleanup is still expensive enough to justify a one-time software download.</li><li>The team can run the migration on a branch and validate locally before merge.</li></ul>
+              <ul class="clean"><li>The free scan shows repeated Query.get, select([..]), string join, string loader, declarative import, or DML constructor findings.</li><li>The remaining supported cleanup is still expensive enough to justify a controlled local migration workflow.</li><li>The team can run the migration on a branch and validate locally before merge.</li></ul>
             </div>
             <div>
-              <h3>What the ZIP includes</h3>
-              <ul class="clean"><li>Installable local CLI apply pack.</li><li>Preview/apply modes, diff output, and JSON migration report.</li><li>Coverage notes, rollout checklist, manager summary, and buyer terms.</li></ul>
+              <h3>What the workflow includes</h3>
+              <ul class="clean"><li>Installable local CLI workflow, not a hosted black box.</li><li>Preview/apply modes, diff output, and JSON migration report.</li><li>Coverage notes, rollback checklist, manager summary, and buyer terms.</li></ul>
             </div>
             <div>
               <h3>Before checkout</h3>
-              <ul class="clean"><li>One-time Payhip checkout with digital delivery.</li><li>No hosted API, no repo upload, and no production credentials needed.</li><li>Scope-match refund review within 14 days.</li></ul>
+              <ul class="clean"><li>One-time Stripe checkout with automated digital delivery.</li><li>No hosted API, no repo upload, and no production credentials needed.</li><li>$99 automated fit report add-on is the lower-friction step when the scan output is ambiguous.</li><li>Scope-match refund review within 14 days.</li></ul>
             </div>
           </div>
           <div class="page-actions purchase-actions">
-            <a class="button" href="/products/sa20-pack/">Open product fit and price</a>
-            <a class="button secondary" href="/pricing#sa20-pack">See pricing</a><a class="button secondary" href="/proof/sqlalchemy-public-proof/">Read proof</a><a class="button secondary" href="/go/sa20-pack/guide-sqlalchemy-multi-hop-string-joins">Direct checkout</a>
+            <a class="button" href="/go/free-scan/guide-sqlalchemy-multi-hop-string-joins">Run the free local scanner</a>
+            <a class="button secondary" href="/products/sa20-pack/">Open product fit and price</a><a class="button secondary" href="/go/fit-report/guide-sqlalchemy-multi-hop-string-joins">Open the $99 automated fit report</a><a class="button secondary" href="/proof/sqlalchemy-public-proof/">Read proof</a><a class="button secondary" href="/pricing#sa20-pack">See pricing</a><a class="button secondary" href="/go/sa20-pack/guide-sqlalchemy-multi-hop-string-joins">Buy cleanup pack</a>
           </div>
         </article>
       </section>
@@ -239,11 +266,11 @@
         <article class="page-panel">
           <h3>More fixes in this product</h3>
           <p class="quick-links"><a href="/sqlalchemy/session-query-get/">Replace session.query(...).get(...)</a>, <a href="/sqlalchemy/session-query-migration/">Session.query migration guide</a>, <a href="/sqlalchemy/engine-execute-removed/">Fix engine.execute(...) removal</a>, <a href="/sqlalchemy/joinedload-all-removed/">Clean up joinedload_all(...)</a>, <a href="/sqlalchemy/select-list-syntax/">Fix select([..]) list syntax</a>, <a href="/sqlalchemy/string-join-paths/">Replace string join paths</a>, <a href="/sqlalchemy/string-loader-options/">Replace string loader options</a>, <a href="/sqlalchemy/declarative-imports/">Move sqlalchemy.ext.declarative imports to sqlalchemy.orm</a></p>
-          <p><a href="/products/sa20-pack/">View all sa20-pack guides</a></p>
+          <p><a href="/products/sa20-pack/">View all SQLAlchemy 1.4 to 2.0 Migration Cleanup Pack guides</a></p>
         </article>
       </section>
 
     </main>
-    <footer class="site-footer"><div class="wrap footer-grid"><div><p class="footer-title">Zipper Tools</p><p class="caption">Exact-problem migration guides and narrow codemod products.</p></div><div class="footer-links"><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="#" data-repo-link>GitHub repo</a><a href="#" data-contact-link>Contact</a></div><p class="caption footer-note">Questions: <a href="#" data-contact-link><span data-contact-email>email</span></a></p></div></footer>
+    <footer class="site-footer"><div class="wrap footer-grid"><div><p class="footer-title">Zipper Tools</p><p class="caption">Exact-problem migration guides and narrow codemod products.</p></div><div class="footer-links"><a href="/scan">Scan</a><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="#" data-repo-link>GitHub repo</a><a href="#" data-contact-link>Contact</a></div><p class="caption footer-note">Questions: <a href="#" data-contact-link><span data-contact-email>email</span></a></p></div></footer>
   </body>
 </html>

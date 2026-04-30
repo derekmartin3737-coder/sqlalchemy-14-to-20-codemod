@@ -134,6 +134,11 @@
     config.pydanticPackUrl,
     "Pydantic pack coming soon",
   );
+  setHref(
+    "[data-fit-report-link]",
+    config.fitReportUrl,
+    "Fit report coming soon",
+  );
 
   applyText("[data-seller-name]", config.sellerName, "the seller");
   applyText("[data-contact-email]", config.contactEmail, "contact email");

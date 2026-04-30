@@ -35,9 +35,9 @@ Current direction:
 
 ## Tax and checkout reality
 
-Payhip is the active storefront and checkout layer for the launch. That reduces
-infrastructure burden, but it does not remove your own income-tax and
-recordkeeping responsibilities as the seller.
+Stripe Checkout is the active checkout layer for new orders. It gives direct
+control over checkout copy and routing, but it does not remove your own tax,
+registration, and recordkeeping responsibilities as the seller.
 
 ## Identity and payout verification
 

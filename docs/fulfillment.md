@@ -1,6 +1,6 @@
 # Fulfillment
 
-Last updated: 2026-04-09
+Last updated: 2026-04-30
 
 This file locks the delivery path before the first real sale.
 
@@ -10,16 +10,21 @@ Use automatic delivery first. Do not make manual email fulfillment the default.
 
 Preferred delivery path:
 
-1. upload a versioned ZIP to Payhip
-2. include supporting links to docs already hosted on the public site or repo
-3. let Payhip handle the download path from the receipt and customer order page
+1. upload each paid artifact to the private Cloudflare Workers KV namespace
+   bound as `PAID_ARTIFACTS`
+2. let Stripe Checkout return buyers to `/success?session_id=...`
+3. let `/stripe/delivery` verify the paid Checkout Session
+4. stream the matching ZIP from the KV binding only after
+   payment verification
 
 Why this path:
 
-- zero required backend infrastructure
+- checkout copy and pricing stay repo-controlled
 - lower support burden
 - easier repeat purchases and updates
 - no private repo access required for normal buyers
+- no human delivery step after purchase
+- no hidden third-party download URL to keep in sync
 
 ## Paid pack artifact
 
@@ -72,14 +77,25 @@ Do not promise:
 - custom coding by a person
 - full migration completion
 
-## Payhip notes
+## Stripe delivery notes
 
-Payhip's live launch path for this repo is:
+Stripe is the checkout layer for new orders. The Worker owns the product
+catalog and delivery redirect:
 
-- products are downloadable digital goods
-- customers receive receipt and download access from the checkout flow
-- storefront-level redirects should stay off so buyers keep instant download
-  access after purchase
+- `/go/sa20-pack` creates a Stripe Checkout Session
+- `/go/sa20-preset` creates a Stripe Checkout Session
+- `/go/pydantic-v2-porter` creates a Stripe Checkout Session
+- `/go/fit-report` creates a Stripe Checkout Session
+- `/stripe/webhook` verifies Stripe webhook signatures
+- `/stripe/delivery` verifies the paid session before streaming the configured
+  paid KV artifact
 
-That makes Payhip the active zero-cost delivery layer for the paid
-downloadable offers in the current launch setup.
+Required KV artifact keys:
+
+- `sa20-pack-edge-case-pack.zip`
+- `sa20-pack-preset-bundle.zip`
+- `pydantic-v2-porter.zip`
+- `fit-report-add-on.zip`
+
+Do not enable a product route publicly until the matching KV key exists and
+`/stripe/delivery` can fetch it after a paid session.

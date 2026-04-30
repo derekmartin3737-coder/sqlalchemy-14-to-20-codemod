@@ -31,6 +31,7 @@ from scripts.site_catalog import (
 
 INDEXABLE_STATIC_PAGES = (
     ("", "Home"),
+    ("scan.html", "Scan"),
     ("pricing.html", "Pricing"),
     ("demo.html", "Demo"),
     ("guides/index.html", "Guides"),
@@ -38,6 +39,7 @@ INDEXABLE_STATIC_PAGES = (
 )
 
 STATIC_PAGE_PATHS = (
+    "scan.html",
     "pricing.html",
     "demo.html",
     "policies.html",
@@ -46,21 +48,24 @@ STATIC_PAGE_PATHS = (
     "404.html",
 )
 
-PAYHIP_CHECKOUTS = {
-    "sa20-pack": "https://pay.zippertools.org/b/QimJ6?utm_source=zippertools&utm_medium=site&utm_campaign=checkout&utm_content=sa20-pack",
-    "sa20-preset": "https://pay.zippertools.org/b/wh2Ro?utm_source=zippertools&utm_medium=site&utm_campaign=checkout&utm_content=sa20-preset",
-    "pydantic-v2-porter": "https://pay.zippertools.org/b/KamA1?utm_source=zippertools&utm_medium=site&utm_campaign=checkout&utm_content=pydantic-v2-porter",
-}
-
 REPO_URL = "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod"
 FREE_SCAN_URL = (
     f"{REPO_URL}/blob/main/docs/quickstart.md"
     "?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=quickstart"
 )
+PYDANTIC_FREE_SCAN_URL = (
+    f"{REPO_URL}/blob/main/products/pydantic-v2-porter/README.md"
+    "?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=pydantic-v2-porter"
+)
+FLATCONFIG_FREE_SCAN_URL = (
+    f"{REPO_URL}/blob/main/products/flatconfig-lift/README.md"
+    "?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=flatconfig-lift"
+)
 RELEASE_URL = (
     f"{REPO_URL}/releases/tag/v0.1.0"
     "?utm_source=zippertools&utm_medium=site&utm_campaign=trust&utm_content=v0.1.0"
 )
+FIT_REPORT_URL = "/pricing#fit-report"
 
 PRICING_SECTION_IDS = {
     "sa20-pack": "sa20-pack",
@@ -71,10 +76,16 @@ PRICING_SECTION_IDS = {
 REDIRECTS = (
     ("/favicon.ico", "/favicon.svg", 301),
     ("/go/free-scan", FREE_SCAN_URL, 302),
+    ("/go/pydantic-free-scan", PYDANTIC_FREE_SCAN_URL, 302),
+    ("/go/flatconfig-free-scan", FLATCONFIG_FREE_SCAN_URL, 302),
     ("/go/github-release", RELEASE_URL, 302),
-    ("/go/sa20-pack", PAYHIP_CHECKOUTS["sa20-pack"], 302),
-    ("/go/sa20-preset", PAYHIP_CHECKOUTS["sa20-preset"], 302),
-    ("/go/pydantic-v2-porter", PAYHIP_CHECKOUTS["pydantic-v2-porter"], 302),
+    ("/go/fit-report", FIT_REPORT_URL, 302),
+    ("/go/fit-review", FIT_REPORT_URL, 301),
+    ("/go/sa20-pack", "/pricing#sa20-pack", 302),
+    ("/go/sa20-preset", "/pricing#sa20-preset", 302),
+    ("/go/pydantic-v2-porter", "/pricing#pydantic-v2-porter", 302),
+    ("/sqlalchemy-2-migration-scan", "/scan", 301),
+    ("/sqlalchemy-2-migration-scan.html", "/scan", 301),
     ("/sqlalchemy-14-to-20-migration-pack", "/products/sa20-pack/", 301),
     ("/sqlalchemy-14-to-20-migration-pack.html", "/products/sa20-pack/", 301),
     ("/sqlalchemy-preset-bundle", "/pricing", 301),
@@ -171,6 +182,7 @@ def nav_html(path: str) -> str:
         '<header class="site-header"><div class="wrap nav">'
         f'<a class="brand" href="{relative_href(path, "index.html")}">Zipper Tools</a>'
         '<nav class="nav-links" aria-label="Primary">'
+        f'<a href="{relative_href(path, "scan.html")}">Scan</a>'
         f'<a href="{relative_href(path, "guides/index.html")}">Guides</a>'
         f'<a href="{relative_href(path, "products/index.html")}">Products</a>'
         f'<a href="{relative_href(path, "pricing.html")}">Pricing</a>'
@@ -187,6 +199,7 @@ def footer_html(path: str) -> str:
         '<p class="caption">Exact-problem migration guides and narrow codemod products.</p>'
         "</div>"
         '<div class="footer-links">'
+        f'<a href="{relative_href(path, "scan.html")}">Scan</a>'
         f'<a href="{relative_href(path, "guides/index.html")}">Guides</a>'
         f'<a href="{relative_href(path, "products/index.html")}">Products</a>'
         f'<a href="{relative_href(path, "pricing.html")}">Pricing</a>'
@@ -319,6 +332,16 @@ def tracked_go_path(path: str, source: str) -> str:
     return f"{path}/{source}"
 
 
+def free_scan_go_path(product: ProductPage | None, source: str) -> str:
+    if product is None:
+        return tracked_go_path("/go/free-scan", source)
+    if product.slug == "pydantic-v2-porter":
+        return tracked_go_path("/go/pydantic-free-scan", source)
+    if product.slug == "flatconfig-lift":
+        return tracked_go_path("/go/flatconfig-free-scan", source)
+    return tracked_go_path("/go/free-scan", source)
+
+
 def product_page_path(product: ProductPage) -> str:
     return f"products/{product.slug}/index.html"
 
@@ -341,17 +364,18 @@ def product_purchase_details(product: ProductPage) -> dict[str, tuple[str, ...]]
         return {
             "buy_if": (
                 "The free scan shows repeated Query.get, select([..]), string join, string loader, declarative import, or DML constructor findings.",
-                "The remaining supported cleanup is still expensive enough to justify a one-time software download.",
+                "The remaining supported cleanup is still expensive enough to justify a controlled local migration workflow.",
                 "The team can run the migration on a branch and validate locally before merge.",
             ),
             "includes": (
-                "Installable local CLI apply pack.",
+                "Installable local CLI workflow, not a hosted black box.",
                 "Preview/apply modes, diff output, and JSON migration report.",
-                "Coverage notes, rollout checklist, manager summary, and buyer terms.",
+                "Coverage notes, rollback checklist, manager summary, and buyer terms.",
             ),
             "reassurance": (
-                "One-time Payhip checkout with digital delivery.",
+                "One-time Stripe checkout with automated digital delivery.",
                 "No hosted API, no repo upload, and no production credentials needed.",
+                "$99 automated fit report add-on is the lower-friction step when the scan output is ambiguous.",
                 "Scope-match refund review within 14 days.",
             ),
         }
@@ -363,13 +387,14 @@ def product_purchase_details(product: ProductPage) -> dict[str, tuple[str, ...]]
                 "The team accepts manual-review findings for alias-heavy imports and signature-heavy validators.",
             ),
             "includes": (
-                "Installable local CLI apply pack.",
+                "Installable local CLI workflow, not a hosted black box.",
                 "Supported validator, settings, import, and config rewrites.",
-                "Demo report, public proof, coverage notes, rollout checklist, and buyer terms.",
+                "Demo report, public proof, coverage notes, rollback checklist, and buyer terms.",
             ),
             "reassurance": (
-                "One-time Payhip checkout with digital delivery.",
+                "One-time Stripe checkout with automated digital delivery.",
                 "No hosted API, no repo upload, and no production credentials needed.",
+                "$99 automated fit report add-on is the lower-friction step when the scan output is ambiguous.",
                 "Scope-match refund review within 14 days.",
             ),
         }
@@ -389,6 +414,8 @@ def render_purchase_panel(product: ProductPage, path: str, *, context: str) -> s
     details = product_purchase_details(product)
     source = tracking_source(path, context)
     checkout_path = tracked_go_path(product.checkout_path, source)
+    free_scan_path = free_scan_go_path(product, source)
+    fit_report_path = tracked_go_path("/go/fit-report", source)
     product_href = relative_href(path, product_page_path(product))
     proof_href = relative_href(path, product_proof_path(product))
     proof_action = (
@@ -401,36 +428,38 @@ def render_purchase_panel(product: ProductPage, path: str, *, context: str) -> s
         else ""
     )
 
-    heading = (
-        "Turn fit into a purchase decision."
-        if context == "product"
-        else "If this problem repeats across the repo, qualify the paid pack."
-    )
+    heading = "Choose the lowest-risk next step."
     intro = (
-        "The checkout should be the next step only when the buyer can point to a repeated supported pattern and a clear validation path."
+        "Checkout should come after evidence: a local report, repeated supported patterns, and a validation path the team can review."
         if context == "product"
-        else "One matching page is not enough by itself. Buy only when the same supported pattern appears often enough that manual cleanup is still costly."
+        else "One matching page is not enough by itself. Run the local scan, then use the automated fit report add-on or buy only when the same supported pattern appears often enough to matter."
     )
     if context != "product":
         primary_action = (
-            f'<a class="button" href="{product_href}">Open product fit and price</a>'
+            f'<a class="button" href="{free_scan_path}">Run the free local scanner</a>'
         )
         secondary_actions = "".join(
             action
             for action in (
-                pricing_action,
+                f'<a class="button secondary" href="{product_href}">Open product fit and price</a>',
+                f'<a class="button secondary" href="{fit_report_path}">Open the $99 automated fit report</a>',
                 proof_action,
-                f'<a class="button secondary" href="{escape(checkout_path)}">Direct checkout</a>',
+                pricing_action,
+                f'<a class="button secondary" href="{escape(checkout_path)}">Buy cleanup pack</a>',
             )
             if action
         )
     else:
         primary_action = (
-            f'<a class="button" href="{escape(checkout_path)}">Buy {escape(product.name)} - ${escape(product.price)}</a>'
+            f'<a class="button" href="{fit_report_path}">Open the $99 automated fit report</a>'
         )
         secondary_actions = "".join(
             action
-            for action in (proof_action, pricing_action)
+            for action in (
+                f'<a class="button secondary" href="{escape(checkout_path)}">Buy {escape(product.name)} - ${escape(product.price)}</a>',
+                proof_action,
+                pricing_action,
+            )
             if action
         )
 
@@ -445,7 +474,7 @@ def render_purchase_panel(product: ProductPage, path: str, *, context: str) -> s
               <ul class="clean">{''.join(f'<li>{escape(item)}</li>' for item in details["buy_if"])}</ul>
             </div>
             <div>
-              <h3>What the ZIP includes</h3>
+              <h3>What the workflow includes</h3>
               <ul class="clean">{''.join(f'<li>{escape(item)}</li>' for item in details["includes"])}</ul>
             </div>
             <div>
@@ -474,7 +503,7 @@ def guide_faq_items(
     )
     buy_answer = (
         f"Use {product_name} only when this pattern repeats across enough files that manual cleanup is still costly. "
-        "Run the public scan or read the proof first, then buy only if the repo matches the documented subset."
+        "Run the public scan or read the proof first. If the report shows ten or more supported findings, buy the pack or use the $99 automated fit report add-on; if unsupported findings dominate, keep the work manual."
     )
     return (
         (f"What is the safest fix for {guide.search_term}?", guide.answer),
@@ -515,6 +544,49 @@ def render_direct_fix_section(guide: GuidePage) -> str:
       </section>"""
 
 
+def render_problem_scan_cta(
+    guide: GuidePage,
+    product: ProductPage | None,
+    path: str,
+) -> str:
+    source = tracking_source(path, "guide-scan")
+    free_scan_path = free_scan_go_path(product, source)
+    fit_report_path = tracked_go_path("/go/fit-report", source)
+    product_href = (
+        relative_href(path, product_page_path(product))
+        if product is not None
+        else relative_href(path, "products/index.html")
+    )
+    report_preview = (
+        "Example scan summary\n"
+        "supported_findings: 38\n"
+        "manual_review_findings: 6\n"
+        "files_uploaded: 0\n"
+        "confidence: reviewable"
+    )
+    return f"""      <section class="section">
+        <article class="conversion-panel">
+          <div class="conversion-copy">
+            <p class="kicker">Repo fit check</p>
+            <h2>Want to know if your repo has this pattern?</h2>
+            <p>Run the scanner locally first. If the report shows 10+ supported findings for this kind of cleanup, compare the paid workflow or use the $99 automated fit report before buying the full pack.</p>
+            <ul class="clean decision-list">
+              <li>Local scan; no repository upload.</li>
+              <li>Supported findings are separated from manual-review findings.</li>
+              <li>Buy only when the repeated pattern is worth automating.</li>
+            </ul>
+          </div>
+          <div class="conversion-actions">
+            <a class="button" href="{free_scan_path}">Run the free local scanner</a>
+            <a class="button secondary" href="{relative_href(path, "demo.html")}">View example report</a>
+            <a class="button secondary" href="{fit_report_path}">Open the $99 automated fit report</a>
+            <a class="button secondary" href="{product_href}">See when to buy</a>
+            {code_block(report_preview)}
+          </div>
+        </article>
+      </section>"""
+
+
 def render_evaluation_path_section(
     guide: GuidePage,
     product: ProductPage | None,
@@ -527,8 +599,9 @@ def render_evaluation_path_section(
     product_href = relative_href(path, product_page_path(product))
     proof_href = relative_href(path, product_proof_path(product))
     pricing_href = pricing_section_href(path, product)
+    fit_report_path = tracked_go_path("/go/fit-report", tracking_source(path, "guide-fit"))
     price_line = (
-        f"Current listed price: ${escape(product.price)} one time."
+        f"Published cleanup-pack price: ${escape(product.price)} one time."
         if product.price
         else "Current listed price is not published on the pricing page yet."
     )
@@ -545,6 +618,7 @@ def render_evaluation_path_section(
             <p>{escape(product.summary)}</p>
             <ul class="clean">
               {''.join(f'<li>{escape(item)}</li>' for item in details["buy_if"][:2])}
+              <li>If the scan output is ambiguous, use the $99 automated fit report before buying the full pack.</li>
             </ul>
           </article>
           <article class="page-panel bridge-panel">
@@ -553,6 +627,7 @@ def render_evaluation_path_section(
             <p>{escape(price_line)}</p>
             <div class="page-actions">
               <a class="button" href="{product_href}">Open product page</a>
+              <a class="button secondary" href="{fit_report_path}">Open the $99 automated fit report</a>
               {f'<a class="button secondary" href="{pricing_href}">See pricing</a>' if pricing_href else ''}
               <a class="button secondary" href="{proof_href}">Read proof</a>
               {extra_action}
@@ -662,12 +737,13 @@ def render_guide(guide: GuidePage) -> tuple[str, str]:
     )
     more_fixes_html = ""
     if quick_links:
+        product_label = product.name if product is not None else guide.product_slug
         more_fixes_html = f"""
       <section class="section">
         <article class="page-panel">
           <h3>More fixes in this product</h3>
           <p class="quick-links">{quick_links}</p>
-          <p><a href="{relative_href(path, f'products/{guide.product_slug}/index.html')}">View all {guide.product_slug} guides</a></p>
+          <p><a href="{relative_href(path, f'products/{guide.product_slug}/index.html')}">View all {escape(product_label)} guides</a></p>
         </article>
       </section>"""
     guide_purchase_html = (
@@ -678,6 +754,7 @@ def render_guide(guide: GuidePage) -> tuple[str, str]:
     extra_sections = f"{render_faq_section(faq_items)}{guide_purchase_html}{more_fixes_html}"
     body = f"""
 {render_direct_fix_section(guide)}
+{render_problem_scan_cta(guide, product, path)}
       <section class="section">
         <div class="grid two">
           <article class="page-panel">
@@ -802,11 +879,113 @@ def render_guides_hub(grouped: dict[str, list[GuidePage]]) -> tuple[str, str]:
     return path, html
 
 
+def render_product_workflow_section(product: ProductPage, path: str) -> str:
+    if product.slug == "pydantic-v2-porter":
+        command = "python -m pydantic_v2_porter.cli path/to/repo --report migration-report.json"
+        report = (
+            "Scan complete\n"
+            "supported_findings: 24\n"
+            "manual_review_findings: 5\n"
+            "files_uploaded: 0\n"
+            "next_step: review diff preview"
+        )
+        diff = (
+            "- from pydantic import BaseSettings, validator\n"
+            "+ from pydantic import field_validator\n"
+            "+ from pydantic_settings import BaseSettings\n"
+            "\n"
+            "-     @validator(\"email\")\n"
+            "+     @field_validator(\"email\")\n"
+            "+     @classmethod"
+        )
+        rows = (
+            ("BaseSettings imports", "rewrite"),
+            ("simple @validator", "rewrite"),
+            ("safe class Config keys", "rewrite"),
+            ("signature-heavy validators", "manual review"),
+        )
+    elif product.slug == "flatconfig-lift":
+        command = "node products/flatconfig-lift/bin/flatconfig-lift.js path/to/repo --report migration-report.json"
+        report = (
+            "Scan complete\n"
+            "static_configs_found: 3\n"
+            "flat_config_generated: true\n"
+            "manual_review_findings: 2\n"
+            "files_uploaded: 0"
+        )
+        diff = (
+            "- .eslintrc.json\n"
+            "+ eslint.config.cjs\n"
+            "\n"
+            "+ const { FlatCompat } = require(\"@eslint/eslintrc\");\n"
+            "+ module.exports = [...compat.config(legacyConfig)];"
+        )
+        rows = (
+            ("static .eslintrc JSON/YAML", "rewrite"),
+            ("package.json eslintConfig", "rewrite"),
+            (".eslintignore", "migrate when simple"),
+            (".eslintrc.js logic", "manual review"),
+        )
+    else:
+        command = "python -m sa20_pack.cli path/to/repo --report migration-report.json"
+        report = (
+            "Scan complete\n"
+            "supported_findings: 38\n"
+            "manual_review_findings: 6\n"
+            "files_uploaded: 0\n"
+            "next_step: preview deterministic rewrites"
+        )
+        diff = (
+            "- user = session.query(User).get(user_id)\n"
+            "+ user = session.get(User, user_id)\n"
+            "\n"
+            "- stmt = select([User.id, User.email])\n"
+            "+ stmt = select(User.id, User.email)"
+        )
+        rows = (
+            ("Query.get primary-key lookups", "rewrite"),
+            ("select([..]) list syntax", "rewrite"),
+            ("simple string joins/loaders", "rewrite"),
+            ("engine.execute transaction choices", "manual review"),
+        )
+
+    table_rows = "".join(
+        f"<tr><td>{escape(pattern)}</td><td>{escape(status)}</td></tr>"
+        for pattern, status in rows
+    )
+    return f"""      <section class="section" id="example-workflow">
+        <div class="section-heading">
+          <p class="kicker">Example workflow</p>
+          <h2>See the migration deliverable before checkout.</h2>
+        </div>
+        <div class="grid two">
+          <article class="page-panel">
+            <h3>Local command</h3>
+            {code_block(command)}
+            <h3>Sample report</h3>
+            {code_block(report)}
+          </article>
+          <article class="page-panel">
+            <h3>Before/after diff preview</h3>
+            {code_block(diff)}
+            <p class="caption">The value is the controlled workflow: scan, preview, apply supported rewrites, review manual findings, and validate on your branch.</p>
+          </article>
+        </div>
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th>Pattern</th><th>Behavior</th></tr></thead>
+            <tbody>{table_rows}</tbody>
+          </table>
+        </div>
+      </section>"""
+
+
 def render_product(product: ProductPage) -> tuple[str, str]:
     path = f"products/{product.slug}/index.html"
     product_source = tracking_source(path, "product")
     checkout_path = tracked_go_path(product.checkout_path, product_source)
-    free_scan_path = tracked_go_path("/go/free-scan", product_source)
+    free_scan_path = free_scan_go_path(product, product_source)
+    fit_report_path = tracked_go_path("/go/fit-report", product_source)
     proof_href = relative_href(path, product_proof_path(product))
     proof_link = (
         f'<a class="button secondary" href="{proof_href}">Read public proof</a>'
@@ -834,46 +1013,55 @@ def render_product(product: ProductPage) -> tuple[str, str]:
         price_suffix = f" - ${escape(product.price)}" if product.price else ""
         checkout_link = (
             f'<a class="button" href="{escape(checkout_path)}">'
-            f"Buy {escape(product.name)}{price_suffix}</a>"
+            f"Buy cleanup pack{price_suffix}</a>"
         )
-        if product.slug == "sa20-pack":
-            checkout_link += (
-                f'<a class="button secondary" href="{free_scan_path}">'
-                "Run the free scan first</a>"
-            )
+        checkout_link += (
+            f'<a class="button secondary" href="{free_scan_path}">'
+            "Run the free scan first</a>"
+        )
+        checkout_link += (
+            f'<a class="button secondary" href="{fit_report_path}">'
+            "Open the $99 automated fit report</a>"
+        )
     else:
         checkout_link = '<span class="button disabled">Checkout not listed yet</span>'
 
     price_line = (
-        f'<p class="price-line">One-time download: <strong>${escape(product.price)}</strong>.</p>'
+        f'<p class="price-line">Published workflow price: <strong>${escape(product.price)}</strong>.</p>'
         if product.price
         else '<p class="price-line">Checkout is not listed yet.</p>'
     )
     if product.slug == "sa20-pack":
-        decision_heading = "Run the scan, then buy only if the report fits."
+        decision_heading = "Run the scan, then choose the right next step."
         decision_copy = (
             "Use the public scanner before checkout. If the report finds repeated supported "
-            "SQLAlchemy cleanup, the paid download is the apply step for that documented subset."
+            "SQLAlchemy cleanup, the paid workflow is the apply step for that documented subset. If fit is unclear, use the $99 automated fit report add-on."
         )
         primary_action = f'<a class="button" href="{free_scan_path}">Run the free scan first</a>'
         secondary_action = (
-            f'<a class="button secondary" href="{escape(checkout_path)}">'
-            f"Buy {escape(product.name)} - ${escape(product.price)}</a>"
+            f'<a class="button secondary" href="{fit_report_path}">Open the $99 automated fit report</a>'
+            f'<a class="button secondary" href="#example-workflow">View example workflow</a>'
+            f'<a class="button secondary" href="{escape(checkout_path)}">Buy cleanup pack - ${escape(product.price)}</a>'
         )
     elif product.checkout_path:
-        decision_heading = "Check the subset, then buy the download."
+        decision_heading = "Check the subset, then choose the right next step."
         decision_copy = (
             "Use the public proof and product docs to confirm the repo matches the narrow supported "
-            "subset. The checkout is for a downloadable apply pack, not a custom migration service."
+            "subset. The checkout is for a controlled local workflow, not a custom migration service."
         )
         primary_action = (
-            f'<a class="button" href="{escape(checkout_path)}">'
-            f"Buy {escape(product.name)} - ${escape(product.price)}</a>"
+            f'<a class="button" href="{free_scan_path}">Run the free scan first</a>'
         )
-        secondary_action = (
+        secondary_action = f'<a class="button secondary" href="{fit_report_path}">Open the $99 automated fit report</a>'
+        secondary_action += (
             f'<a class="button secondary" href="{pricing_section_href(path, product)}">See pricing</a>'
             if pricing_section_href(path, product)
             else ""
+        )
+        secondary_action += f'<a class="button secondary" href="#example-workflow">View example workflow</a>'
+        secondary_action += (
+            f'<a class="button secondary" href="{escape(checkout_path)}">'
+            f"Buy cleanup pack - ${escape(product.price)}</a>"
         )
         secondary_action += proof_link
     else:
@@ -896,6 +1084,7 @@ def render_product(product: ProductPage) -> tuple[str, str]:
         if item
     )
     small_links_html = f'<div class="small-links">{small_links}</div>' if small_links else ""
+    workflow_section = render_product_workflow_section(product, path)
     purchase_section = render_purchase_panel(product, path, context="product")
     if purchase_section:
         purchase_section = f"\n{purchase_section}"
@@ -920,7 +1109,8 @@ def render_product(product: ProductPage) -> tuple[str, str]:
             {small_links_html}
           </div>
         </article>
-      </section>{purchase_section}
+      </section>
+{workflow_section}{purchase_section}
       <section class="section">
         <div class="grid two">
           <article class="page-panel">
@@ -972,7 +1162,7 @@ def render_products_hub() -> tuple[str, str]:
     )
     body = f"""
       <section class="section">
-        <div class="section-heading"><p class="kicker">Products</p><h2>Narrow migration products with scanner-first qualification</h2></div>
+        <div class="section-heading"><p class="kicker">Products</p><h2>Migration workflows with scanner-first qualification</h2></div>
         <div class="topic-list">{cards}</div>
       </section>
 """
@@ -981,7 +1171,7 @@ def render_products_hub() -> tuple[str, str]:
         title="Migration Products",
         description="Scanner-first migration products for SQLAlchemy, Pydantic, and ESLint upgrade paths.",
         kicker="Products",
-        heading="Downloadable migration products",
+        heading="Migration cleanup products",
         body=body,
         crumbs=[("index.html", "Home"), (path, "Products")],
         schemas=[],
@@ -1073,7 +1263,7 @@ def render_sqlalchemy_public_proof() -> tuple[str, str]:
             <ul class="clean">
               <li>Direct Query.get, select list, declarative import, and simple loader cleanup can be classified on real public input.</li>
               <li>Unsafe execution and query-shape patterns stay visible as manual-review findings.</li>
-              <li>The free scanner is the qualification step before any paid apply pack.</li>
+              <li>The free scanner is the qualification step before any paid cleanup workflow.</li>
             </ul>
           </article>
           <article class="page-panel">
@@ -1084,7 +1274,7 @@ def render_sqlalchemy_public_proof() -> tuple[str, str]:
               <li>Package, test, or database integration success for every repo with one supported snippet.</li>
             </ul>
             <div class="page-actions">
-              <a class="button" href="{relative_href(path, "products/sa20-pack/index.html")}">Open sa20-pack</a>
+              <a class="button" href="{relative_href(path, "products/sa20-pack/index.html")}">Open SQLAlchemy cleanup pack</a>
               <a class="button secondary" href="/go/free-scan">Run the free scan first</a>
             </div>
           </article>
@@ -1094,11 +1284,11 @@ def render_sqlalchemy_public_proof() -> tuple[str, str]:
     html = layout(
         path=path,
         title="SQLAlchemy public proof",
-        description="Public SQLAlchemy migration proof for the supported sa20-pack subset, including validated supported files and fail-closed manual-review examples.",
+        description="Public SQLAlchemy migration proof for the supported cleanup subset, including validated supported files and fail-closed manual-review examples.",
         kicker="Public proof",
         heading="SQLAlchemy migration proof on public files",
         body=body,
-        crumbs=[("index.html", "Home"), ("products/sa20-pack/index.html", "sa20-pack"), (path, "Public proof")],
+        crumbs=[("index.html", "Home"), ("products/sa20-pack/index.html", "SQLAlchemy cleanup pack"), (path, "Public proof")],
         schemas=[],
     )
     return path, html

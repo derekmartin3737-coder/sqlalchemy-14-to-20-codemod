@@ -14,24 +14,54 @@
       "status": 302
     },
     {
+      "source": "/go/pydantic-free-scan",
+      "target": "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/blob/main/products/pydantic-v2-porter/README.md?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=pydantic-v2-porter",
+      "status": 302
+    },
+    {
+      "source": "/go/flatconfig-free-scan",
+      "target": "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/blob/main/products/flatconfig-lift/README.md?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=flatconfig-lift",
+      "status": 302
+    },
+    {
       "source": "/go/github-release",
       "target": "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/releases/tag/v0.1.0?utm_source=zippertools&utm_medium=site&utm_campaign=trust&utm_content=v0.1.0",
       "status": 302
     },
     {
+      "source": "/go/fit-report",
+      "target": "/pricing#fit-report",
+      "status": 302
+    },
+    {
+      "source": "/go/fit-review",
+      "target": "/pricing#fit-report",
+      "status": 301
+    },
+    {
       "source": "/go/sa20-pack",
-      "target": "https://pay.zippertools.org/b/QimJ6?utm_source=zippertools&utm_medium=site&utm_campaign=checkout&utm_content=sa20-pack",
+      "target": "/pricing#sa20-pack",
       "status": 302
     },
     {
       "source": "/go/sa20-preset",
-      "target": "https://pay.zippertools.org/b/wh2Ro?utm_source=zippertools&utm_medium=site&utm_campaign=checkout&utm_content=sa20-preset",
+      "target": "/pricing#sa20-preset",
       "status": 302
     },
     {
       "source": "/go/pydantic-v2-porter",
-      "target": "https://pay.zippertools.org/b/KamA1?utm_source=zippertools&utm_medium=site&utm_campaign=checkout&utm_content=pydantic-v2-porter",
+      "target": "/pricing#pydantic-v2-porter",
       "status": 302
+    },
+    {
+      "source": "/sqlalchemy-2-migration-scan",
+      "target": "/scan",
+      "status": 301
+    },
+    {
+      "source": "/sqlalchemy-2-migration-scan.html",
+      "target": "/scan",
+      "status": 301
     },
     {
       "source": "/sqlalchemy-14-to-20-migration-pack",
@@ -529,6 +559,11 @@
       "status": 301
     },
     {
+      "source": "/scan.html",
+      "target": "/scan",
+      "status": 301
+    },
+    {
       "source": "/sqlalchemy/declarative-imports/index.html",
       "target": "/sqlalchemy/declarative-imports/",
       "status": 301
@@ -659,10 +694,11 @@
       "status": 301
     }
   ],
-  "generated_on": "2026-04-22",
+  "generated_on": "2026-04-30",
   "urls": {
     "static": [
       "https://zippertools.org/",
+      "https://zippertools.org/scan",
       "https://zippertools.org/pricing",
       "https://zippertools.org/demo",
       "https://zippertools.org/guides/",
@@ -745,10 +781,10 @@
   "products": [
     {
       "slug": "sa20-pack",
-      "name": "sa20-pack",
+      "name": "SQLAlchemy 1.4 to 2.0 Migration Cleanup Pack",
       "family": "SQLAlchemy 1.4 -> 2.0",
-      "description": "Scanner-first SQLAlchemy migration product for high-frequency legacy query and execution API cleanup.",
-      "summary": "Start with the free scan, inspect the report, and only move to the paid pack if the repo is close enough that repetitive cleanup is still expensive.",
+      "description": "Deterministic local workflow for finding and cleaning up repeated SQLAlchemy 1.4 to 2.0 migration patterns.",
+      "summary": "Start with the free scan, inspect the report, and only move to the cleanup pack if the repo has repeated supported patterns that are still expensive to fix by hand.",
       "who_it_is_for": [
         "Teams still cleaning up SQLAlchemy 1.4 legacy query patterns.",
         "Repos that still contain Query.get(...), select([..]), string joins, or string loader paths.",
@@ -811,10 +847,10 @@
     },
     {
       "slug": "pydantic-v2-porter",
-      "name": "pydantic-v2-porter",
+      "name": "Pydantic v1 to v2 Migration Cleanup Pack",
       "family": "Pydantic v1 -> v2",
-      "description": "Narrow, deterministic Pydantic v1 to v2 migration product for direct imports, safe validators, supported config keys, and BaseSettings moves.",
-      "summary": "The porter is strongest when the repo still uses direct pydantic imports and a clean validator/settings/config subset.",
+      "description": "Deterministic local cleanup pack for supported Pydantic v1 to v2 imports, validators, config, and BaseSettings moves.",
+      "summary": "The cleanup pack is strongest when the repo still uses direct pydantic imports and a clean validator/settings/config subset.",
       "who_it_is_for": [
         "Teams upgrading direct pydantic imports to v2.",
         "Repos dominated by BaseSettings, safe Config, and simple validator cleanup.",
@@ -870,9 +906,9 @@
     },
     {
       "slug": "flatconfig-lift",
-      "name": "flatconfig-lift",
+      "name": "ESLint Flat Config Migration Cleanup Pack",
       "family": "ESLint legacy config -> flat config",
-      "description": "Static-config migration product for deterministic .eslintrc and package.json eslintConfig cleanup into flat config.",
+      "description": "Static-config migration cleanup pack for deterministic .eslintrc and package.json eslintConfig conversion into flat config.",
       "summary": "This product exists for the static-config subset. It does not pretend to evaluate JS config logic.",
       "who_it_is_for": [
         "Teams migrating static .eslintrc JSON or YAML configs.",
