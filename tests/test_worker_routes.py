@@ -1,6 +1,19 @@
 from __future__ import annotations
 
+import json
 import subprocess
+from pathlib import Path
+
+
+def test_cloudflare_assets_runs_worker_for_checkout_and_webhooks() -> None:
+    config = json.loads(Path("wrangler.jsonc").read_text(encoding="utf-8"))
+
+    assert set(config["assets"]["run_worker_first"]) >= {
+        "/go/*",
+        "/stripe/*",
+        "/payhip/*",
+        "/__stripe_paid_assets/*",
+    }
 
 
 def test_worker_tracks_source_tagged_go_routes() -> None:
