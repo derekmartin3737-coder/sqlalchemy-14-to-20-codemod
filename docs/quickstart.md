@@ -1,21 +1,19 @@
 # Quickstart
 
-## Install
+## Install and run
 
 ```bash
-python -m pip install sa20-pack
+python -m pip install "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/archive/refs/heads/main.zip"
+python -m sa20_pack.cli . --report migration-report.json
 ```
+
+If installation fails, retry from the GitHub quickstart or contact support at
+zippers3737@gmail.com.
 
 For local development in this repo:
 
 ```bash
 python -m pip install -e .[dev]
-```
-
-## Dry run
-
-```bash
-python -m sa20_pack.cli path/to/repo --report migration-report.json
 ```
 
 What you get:
