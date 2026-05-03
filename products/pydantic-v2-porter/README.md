@@ -51,7 +51,7 @@ Install from the public GitHub repo subproject and scan a local checkout:
 
 ```bash
 python -m pip install "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/archive/refs/heads/main.zip#subdirectory=products/pydantic-v2-porter"
-python -m pydantic_v2_porter.cli path/to/repo --report pydantic-v2-porter-report.json
+python -m pydantic_v2_porter.cli path/to/repo --report migration-report.json
 ```
 
 If installation fails, retry from the GitHub quickstart or contact support at
