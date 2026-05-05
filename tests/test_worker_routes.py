@@ -347,6 +347,42 @@ console.log(assetFetchCount);
     ]
 
 
+def test_cancel_page_title_uses_product_query() -> None:
+    script = """
+import worker from './worker/index.mjs';
+const env = {
+  ASSETS: {
+    fetch: async () =>
+      new Response(
+        '<!doctype html><title>Checkout canceled | Zipper Tools</title><h1>No charge was completed.</h1>',
+        { headers: { 'content-type': 'text/html; charset=utf-8' } },
+      ),
+  },
+};
+for (const product of ['fit-report', 'sa20-preset']) {
+  const response = await worker.fetch(
+    new Request(`https://zippertools.org/cancel?product=${product}`),
+    env,
+  );
+  console.log(response.status);
+  console.log((await response.text()).match(/<title>(.*?)<\\/title>/)[1]);
+}
+"""
+    result = subprocess.run(
+        ["node", "--input-type=module", "-e", script],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+
+    assert result.stdout.strip().splitlines() == [
+        "200",
+        "Checkout canceled | SQLAlchemy/Pydantic Fit Report Add-on",
+        "200",
+        "Checkout canceled | Migration Preset Bundle",
+    ]
+
+
 def test_stripe_webhook_verifies_signed_checkout_event() -> None:
     script = """
 import worker from './worker/index.mjs';

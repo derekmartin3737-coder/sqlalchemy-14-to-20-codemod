@@ -9,6 +9,7 @@ const STRIPE_CHECKOUT_SESSION_API_URL =
 const STRIPE_WEBHOOK_TOLERANCE_SECONDS = 5 * 60;
 const LEGACY_PAID_ASSET_PATH_PREFIX = "/__stripe_paid_assets/";
 const RETIRED_PAYHIP_PATH = "/payhip";
+const CANCEL_PATH = "/cancel";
 
 const DELIVERY_ARTIFACTS = {
   "fit-report": {
@@ -564,6 +565,31 @@ async function handleStripeDelivery(request, env) {
   });
 }
 
+async function handleCancelPage(request, env) {
+  const response = await env.ASSETS.fetch(request);
+  const contentType = response.headers.get("content-type") || "";
+  if (!contentType.includes("text/html")) {
+    return response;
+  }
+
+  const url = new URL(request.url);
+  const product = STRIPE_PRODUCTS[url.searchParams.get("product") || ""];
+  const title = product
+    ? `Checkout canceled | ${product.name}`
+    : "Checkout canceled | Zipper Tools";
+  const body = (await response.text()).replace(
+    /<title>.*?<\/title>/,
+    `<title>${title}</title>`,
+  );
+  const headers = new Headers(response.headers);
+  headers.set("cache-control", "no-store");
+  return new Response(body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -581,6 +607,9 @@ export default {
     }
     if (url.pathname === STRIPE_DELIVERY_PATH) {
       return handleStripeDelivery(request, env);
+    }
+    if (url.pathname === CANCEL_PATH) {
+      return handleCancelPage(request, env);
     }
 
     const goRoute = matchGoRoute(url.pathname);
