@@ -5,11 +5,90 @@
   Permissions-Policy: camera=(), geolocation=(), microphone=()
   Content-Security-Policy: default-src 'self'; img-src 'self' data:; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com; object-src 'none'; base-uri 'self'; frame-ancestors 'self'
 
+# Force HTML to revalidate every time so stale buyer-funnel copy
+# (e.g. retired checkout-provider language, stale price text, legacy CTAs)
+# cannot persist in client/edge caches once the build is deployed.
+# Cloudflare Assets serves HTML for both /path and /path.html via
+# auto-trailing-slash, so we need both forms.
+/*.html
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+  Expires: 0
+
+/
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+  Expires: 0
+
+/scan
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+  Expires: 0
+
+/pricing
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+  Expires: 0
+
+/demo
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+  Expires: 0
+
+/policies
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+  Expires: 0
+
+/products/*
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+  Expires: 0
+
+/sqlalchemy/*
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+  Expires: 0
+
+/pydantic/*
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+  Expires: 0
+
+/eslint/*
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+  Expires: 0
+
+/proof/*
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+  Expires: 0
+
+/guides/*
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+  Expires: 0
+
+# JS modules and the product catalog drive pricing copy at runtime, so they
+# must also revalidate on every page load.
+/app.js
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/product_catalog.mjs
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/config.js
+  Cache-Control: no-cache, no-store, must-revalidate
+
 /success.html
   X-Robots-Tag: noindex, follow
+  Cache-Control: no-cache, no-store, must-revalidate
 
 /cancel.html
   X-Robots-Tag: noindex, follow
+  Cache-Control: no-cache, no-store, must-revalidate
 
 /404.html
   X-Robots-Tag: noindex, follow
+  Cache-Control: no-cache, no-store, must-revalidate

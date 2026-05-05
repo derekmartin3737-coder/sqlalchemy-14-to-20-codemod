@@ -161,7 +161,7 @@ Paid commercial pack:
 - apply engine
 - broader transform coverage
 - richer rollout templates and presets
-- downloadable ZIP delivery through Payhip
+- automated Stripe Checkout with verified digital ZIP delivery
 
 ## License
 

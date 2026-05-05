@@ -705,6 +705,79 @@ li {
   border-bottom: 1px solid rgba(49, 68, 95, 0.64);
 }
 
+.pricing-table .recommended-row td {
+  background: rgba(34, 197, 94, 0.1);
+  color: var(--text);
+}
+
+.pricing-table strong,
+.fit-notes h3,
+.small-list strong {
+  color: var(--text);
+}
+
+.primary-choice {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.42fr);
+  gap: 24px;
+  align-items: center;
+  border-color: rgba(34, 197, 94, 0.62);
+  background:
+    linear-gradient(180deg, rgba(34, 197, 94, 0.12), rgba(34, 197, 94, 0) 42%),
+    var(--panel);
+}
+
+.primary-choice h2 {
+  font-size: clamp(1.8rem, 2vw, 2.2rem);
+}
+
+.choice-copy p:last-child,
+.choice-action p:last-child {
+  margin-bottom: 0;
+}
+
+.choice-action {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-left: 22px;
+  border-left: 1px solid rgba(34, 197, 94, 0.32);
+}
+
+.choice-action .button {
+  width: 100%;
+  margin-top: 0;
+}
+
+.fit-notes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.fit-notes h3 {
+  margin-bottom: 6px;
+}
+
+.fit-notes p {
+  margin: 0;
+}
+
+.pricing-option-grid .page-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing-option-grid .page-actions {
+  margin-top: auto;
+}
+
+.small-list {
+  margin-top: 12px;
+  font-size: 0.94rem;
+}
+
 .pill {
   display: inline-flex;
   align-items: center;
@@ -774,6 +847,91 @@ li {
   text-decoration: underline;
 }
 
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.catalog-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 100%;
+  padding: 20px;
+  border: 1px solid rgba(49, 68, 95, 0.74);
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.catalog-card h3,
+.catalog-card p {
+  margin: 0;
+}
+
+.catalog-card p {
+  color: var(--soft-text);
+}
+
+.catalog-card .button {
+  width: 100%;
+  margin-top: auto;
+}
+
+.catalog-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.status-label,
+.catalog-price {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  line-height: 1.2;
+}
+
+.status-label {
+  border: 1px solid rgba(88, 113, 145, 0.56);
+  color: var(--text);
+  font-weight: 700;
+}
+
+.status-label.available {
+  border-color: rgba(34, 197, 94, 0.5);
+  background: rgba(22, 59, 36, 0.82);
+  color: #bbf7d0;
+}
+
+.status-label.coming-soon {
+  border-color: rgba(252, 211, 77, 0.45);
+  background: rgba(37, 25, 11, 0.82);
+  color: #fde68a;
+}
+
+.status-label.proof-only {
+  border-color: rgba(125, 211, 252, 0.42);
+  background: rgba(14, 47, 67, 0.72);
+  color: #bae6fd;
+}
+
+.catalog-price {
+  justify-content: flex-end;
+  background: rgba(8, 16, 28, 0.66);
+  color: var(--soft-text);
+  text-align: right;
+}
+
+.proof-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .conversion-panel {
   display: grid;
   grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
@@ -817,6 +975,51 @@ li {
   margin-top: 0;
 }
 
+.primary-cta {
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(125, 211, 252, 0.2);
+}
+
+.secondary-cta-group {
+  display: grid;
+  gap: 8px;
+}
+
+.action-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.action-list li {
+  margin: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.decision-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 18px 0;
+}
+
+.cta-group-label {
+  margin: 0 0 2px;
+}
+
 .conversion-actions .code-block {
   width: 100%;
   margin-top: 4px;
@@ -825,6 +1028,16 @@ li {
 
 .conversion-actions .small-links {
   margin-top: 6px;
+}
+
+.product-hero-panel,
+.checkout-panel {
+  border-color: rgba(34, 197, 94, 0.5);
+}
+
+.deliverables-box,
+.use-fit-box {
+  border-color: rgba(125, 211, 252, 0.42);
 }
 
 .eyebrow-list {
@@ -957,6 +1170,19 @@ li {
 
   .answer-grid {
     grid-template-columns: 1fr;
+  }
+
+  .primary-choice,
+  .fit-notes,
+  .decision-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .choice-action {
+    padding-left: 0;
+    padding-top: 18px;
+    border-left: 0;
+    border-top: 1px solid rgba(34, 197, 94, 0.32);
   }
 
   .purchase-columns {

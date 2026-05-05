@@ -4,21 +4,21 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ESLint Flat Config Migration Cleanup Pack | Zipper Tools</title>
-    <meta name="description" content="Static-config migration cleanup pack for deterministic .eslintrc and package.json eslintConfig conversion into flat config." />
+    <meta name="description" content="A proof-first workflow for the narrow static-config subset: .eslintrc JSON/YAML, package.json eslintConfig, and simple ignore migration. Dynamic JS config logic stays out of the automatic path." />
     <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
     <link rel="canonical" href="https://zippertools.org/products/flatconfig-lift/" />
     <meta property="og:title" content="ESLint Flat Config Migration Cleanup Pack" />
-    <meta property="og:description" content="Static-config migration cleanup pack for deterministic .eslintrc and package.json eslintConfig conversion into flat config." />
+    <meta property="og:description" content="A proof-first workflow for the narrow static-config subset: .eslintrc JSON/YAML, package.json eslintConfig, and simple ignore migration. Dynamic JS config logic stays out of the automatic path." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://zippertools.org/products/flatconfig-lift/" />
     <meta property="og:image" content="https://zippertools.org/og-preview.svg" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="ESLint Flat Config Migration Cleanup Pack" />
-    <meta name="twitter:description" content="Static-config migration cleanup pack for deterministic .eslintrc and package.json eslintConfig conversion into flat config." />
+    <meta name="twitter:description" content="A proof-first workflow for the narrow static-config subset: .eslintrc JSON/YAML, package.json eslintConfig, and simple ignore migration. Dynamic JS config logic stays out of the automatic path." />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../../styles.css" />
     <script src="../../config.js"></script>
-    <script defer src="../../app.js"></script>
+    <script type="module" src="../../app.js"></script>
     <script type="application/ld+json">
 [
   {
@@ -31,7 +31,7 @@
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": "ESLint Flat Config Migration Cleanup Pack",
-    "description": "Static-config migration cleanup pack for deterministic .eslintrc and package.json eslintConfig conversion into flat config.",
+    "description": "A proof-first workflow for the narrow static-config subset: .eslintrc JSON/YAML, package.json eslintConfig, and simple ignore migration. Dynamic JS config logic stays out of the automatic path.",
     "url": "https://zippertools.org/products/flatconfig-lift/",
     "isPartOf": {
       "@type": "WebSite",
@@ -94,45 +94,62 @@
       <section class="page-title">
         <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/products/">Products</a></li><li aria-current="page">ESLint Flat Config Migration Cleanup Pack</li></ol></nav>
         <p class="kicker">Product</p>
-        <h1>ESLint Flat Config Migration Cleanup Pack for ESLint legacy config -&gt; flat config</h1>
-        <p>Static-config migration cleanup pack for deterministic .eslintrc and package.json eslintConfig conversion into flat config.</p>
+        <h1>Turn static legacy ESLint config into a flat-config starting point</h1>
+        <p>A proof-first workflow for the narrow static-config subset: .eslintrc JSON/YAML, package.json eslintConfig, and simple ignore migration. Dynamic JS config logic stays out of the automatic path.</p>
       </section>
 
       <section class="section">
-        <article class="conversion-panel">
+        <article class="conversion-panel product-hero-panel">
           <div class="conversion-copy">
-            <p class="kicker">Decision step</p>
-            <h2>Use the proof before treating this as purchasable.</h2>
-            <p>This page is still useful for qualifying the static-config subset, but the paid checkout is not listed here yet.</p>
+            <p class="kicker">Primary CTA</p>
+            <h2>Use the proof page to qualify static-config fit before this is listed.</h2>
+            <p>The public package identifies whether a repo belongs in the deterministic static-config subset; checkout is not listed for this product yet.</p>
             <ul class="clean decision-list">
-              <li>Deterministic transforms first.</li>
-              <li>Unsupported cases stay visible as manual-review findings.</li>
-              <li>No broad promise of a full upgrade migration.</li>
+              <li>Local workflow with no repo upload.</li>
+              <li>Previewable changes and a structured report.</li>
+              <li>Manual-review findings stay visible instead of hidden.</li>
             </ul>
             <p class="price-line">Checkout is not listed yet.</p>
           </div>
           <div class="conversion-actions">
-            <a class="button secondary" href="#" data-doc-path="products/flatconfig-lift/docs/public-proof.md">Public proof</a><a class="button secondary" href="#" data-doc-path="products/flatconfig-lift/docs/commercial-case.md">Commercial case</a><a class="button secondary" href="#" data-doc-path="products/flatconfig-lift/README.md">README</a>
+            <div class="primary-cta"><a class="button secondary" href="/proof/flatconfig-lift/">Read public proof</a></div>
+            <div class="secondary-cta-group">
+              <p class="caption cta-group-label">Secondary options</p>
+              <ul class="action-list"><li><a class="button secondary" href="/go/flatconfig-free-scan/product-products-flatconfig-lift">Run the free static-config scan</a><span class="sr-only">.</span></li><li><a class="button secondary" href="#" data-doc-path="products/flatconfig-lift/docs/commercial-case.md">Commercial case</a><span class="sr-only">.</span></li><li><a class="button secondary" href="#" data-doc-path="products/flatconfig-lift/README.md">README</a><span class="sr-only">.</span></li><li><a class="button secondary" href="#example-workflow">View example before/after</a><span class="sr-only">.</span></li></ul>
+            </div>
 
-            <div class="small-links"><a href="/proof/flatconfig-lift/">Public proof</a><a href="#" data-doc-path="products/flatconfig-lift/docs/commercial-case.md">Commercial case</a><a href="#" data-doc-path="products/flatconfig-lift/README.md">README</a></div>
           </div>
         </article>
       </section>
+      <section class="section">
+        <div class="grid two">
+          <article class="page-panel">
+            <h2>What this fixes</h2>
+            <ul class="clean"><li>Static .eslintrc JSON or YAML config discovery.</li><li>package.json eslintConfig discovery for repos that have not moved to flat config.</li><li>Simple ignore-pattern migration candidates.</li><li>Manual-review findings for JS config logic, multiple config sources, existing flat config, and negated ignores.</li></ul>
+          </article>
+          <article class="page-panel deliverables-box">
+            <h2>What this proof includes</h2>
+            <ul class="clean"><li>Public scanner and proof page for static legacy ESLint config fit.</li><li>Commercial-case notes for the FlatCompat bridge subset.</li><li>Planned commercial deliverable: generated eslint.config.cjs and dependency guidance for supported static configs.</li><li>Fail-closed reporting when the repo does not fit the static subset.</li></ul>
+          </article>
+        </div>
+      </section>
       <section class="section" id="example-workflow">
         <div class="section-heading">
-          <p class="kicker">Example workflow</p>
-          <h2>See the migration deliverable before checkout.</h2>
+          <p class="kicker">Example before/after</p>
+          <h2>See the deliverable shape before it is listed.</h2>
         </div>
         <div class="grid two">
           <article class="page-panel">
             <h3>Local command</h3>
-            <pre class="code-block"><code>node products/flatconfig-lift/bin/flatconfig-lift.js path/to/repo --report migration-report.json</code></pre>
+            <pre class="code-block"><code>python -m pip install &quot;https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/archive/refs/heads/main.zip#subdirectory=products/flatconfig-lift&quot;
+python -m flatconfig_lift.cli path/to/repo --report migration-report.json</code></pre>
+            <p class="caption">If installation fails, retry from the GitHub quickstart or contact support at zippers3737@gmail.com.</p>
             <h3>Sample report</h3>
             <pre class="code-block"><code>Scan complete
-static_configs_found: 3
-flat_config_generated: true
+supported_static_configs: 1
 manual_review_findings: 2
-files_uploaded: 0</code></pre>
+files_uploaded: 0
+next_step: generate FlatCompat bridge in paid pack</code></pre>
           </article>
           <article class="page-panel">
             <h3>Before/after diff preview</h3>
@@ -140,8 +157,10 @@ files_uploaded: 0</code></pre>
 + eslint.config.cjs
 
 + const { FlatCompat } = require(&quot;@eslint/eslintrc&quot;);
++ const legacyConfig = require(&quot;./.eslintrc.json&quot;);
++ const compat = new FlatCompat({ baseDirectory: __dirname });
 + module.exports = [...compat.config(legacyConfig)];</code></pre>
-            <p class="caption">The value is the controlled workflow: scan, preview, apply supported rewrites, review manual findings, and validate on your branch.</p>
+            <p class="caption">The public page is proof-first today; the commercial shape is a generated FlatCompat bridge for supported static configs.</p>
           </article>
         </div>
         <div class="table-wrap">
@@ -153,31 +172,59 @@ files_uploaded: 0</code></pre>
       </section>
       <section class="section">
         <div class="grid two">
-          <article class="page-panel">
-            <h2>What this product is for</h2>
-            <p>This product exists for the static-config subset. It does not pretend to evaluate JS config logic.</p>
-            <ul class="clean"><li>Teams migrating static .eslintrc JSON or YAML configs.</li><li>Repos that still store eslintConfig inside package.json.</li><li>Buyers who want a generated FlatCompat bridge instead of a hand-made first pass.</li></ul>
-            <div class="page-actions"><span class="button disabled">Checkout not listed yet</span></div>
+          <article class="page-panel use-fit-box">
+            <h2>Use this if</h2>
+            <ul class="clean"><li>Your repo still uses a static .eslintrc JSON/YAML file or package.json eslintConfig.</li><li>You want the first flat-config bridge pass before hand-tuning plugin behavior.</li><li>You are comfortable treating JS-backed config and plugin-specific behavior as manual review.</li></ul>
           </article>
           <article class="page-panel">
             <h2>Public proof and fit signals</h2>
             <ul class="clean"><li>Public proof covers static JSON and YAML configs from real public repos.</li><li>JS configs and existing flat config files are blocked instead of guessed through.</li><li>The bridge output stays close to the source config with machine-generated reporting.</li></ul>
-            <div class="page-actions"><a class="button secondary" href="/proof/flatconfig-lift/">Read public proof</a></div>
+            <div class="page-actions"><a class="button secondary" href="/proof/flatconfig-lift/">Read public proof</a><a class="button secondary" href="#" data-doc-path="products/flatconfig-lift/docs/commercial-case.md">Commercial case</a><a class="button secondary" href="#" data-doc-path="products/flatconfig-lift/README.md">README</a></div>
           </article>
         </div>
       </section>
       <section class="section">
+        <article class="page-panel">
+          <h2>Do not use this if</h2>
+          <ul class="clean"><li>Repos built around .eslintrc.js, .cjs, or .mjs logic.</li><li>Repos that already migrated to eslint.config.*.</li><li>Teams that want the tool to understand arbitrary plugin ecosystem behavior.</li></ul>
+        </article>
+      </section>
+      <section class="section">
         <div class="grid two">
-          <article class="page-panel"><h2>Exact-problem guides</h2><div class="topic-list"><a class="topic-card" href="/eslint/eslintrc-to-flat-config/"><strong>How to migrate .eslintrc to eslint.config.cjs with FlatCompat</strong><span>Convert static .eslintrc JSON or YAML into eslint.config.cjs without executing JS logic.</span></a><a class="topic-card" href="/eslint/package-json-eslintconfig/"><strong>How to migrate package.json eslintConfig to flat config</strong><span>Convert static package.json eslintConfig blocks into flat config without evaluating JS.</span></a><a class="topic-card" href="/eslint/eslintrc-js-unsupported/"><strong>Why .eslintrc.js is a manual-review case for flat config migration</strong><span>Understand why JS-backed ESLint configs are out of scope for deterministic flat-config migration.</span></a><a class="topic-card" href="/eslint/eslintignore-migration/"><strong>How to move .eslintignore patterns into flat config</strong><span>Carry straightforward .eslintignore and ignorePatterns entries into flat config while keeping the hard cases explicit.</span></a><a class="topic-card" href="/eslint/negated-ignore-patterns/"><strong>Why negated ignore patterns need manual review in flat config migration</strong><span>Understand why negated ignore rules belong in manual review instead of a guessed flat-config translation.</span></a><a class="topic-card" href="/eslint/multiple-legacy-configs/"><strong>Why multiple legacy ESLint config sources block flat config migration</strong><span>If a repo has more than one legacy ESLint config source, the deterministic migration path should stop for manual review.</span></a><a class="topic-card" href="/eslint/existing-flat-config/"><strong>What to do when eslint.config.* already exists</strong><span>If the repo already has eslint.config.js, .cjs, or .mjs, the static legacy-config migration path should stop for manual review.</span></a><a class="topic-card" href="/eslint/env-globals-flat-config/"><strong>How to migrate env and globals settings to ESLint flat config</strong><span>Move env and globals from legacy config into the flat config languageOptions object.</span></a><a class="topic-card" href="/eslint/overrides-flat-config/"><strong>How to migrate ESLint overrides to flat config arrays</strong><span>Overrides in legacy config become separate array elements in flat config.</span></a><a class="topic-card" href="/eslint/parser-options-flat-config/"><strong>How to migrate parserOptions to ESLint flat config</strong><span>Move parserOptions into languageOptions.parserOptions in flat config.</span></a></div></article>
           <article class="page-panel">
-            <h2>Do not use this for</h2>
-            <ul class="clean"><li>Repos built around .eslintrc.js, .cjs, or .mjs logic.</li><li>Repos that already migrated to eslint.config.*.</li><li>Teams that want the tool to understand arbitrary plugin ecosystem behavior.</li></ul>
-            <div class="page-actions"><a class="button secondary" href="#" data-doc-path="products/flatconfig-lift/docs/public-proof.md">Public proof</a><a class="button secondary" href="#" data-doc-path="products/flatconfig-lift/docs/commercial-case.md">Commercial case</a><a class="button secondary" href="#" data-doc-path="products/flatconfig-lift/README.md">README</a></div>
+            <h2>How delivery works</h2>
+            <ul class="clean"><li>Use the public README and proof page today; no checkout is listed for this product.</li><li>Run the scanner locally to decide whether the repo is in the static-config subset.</li><li>When listed, delivery should follow the same local ZIP workflow as the paid cleanup packs.</li></ul>
+          </article>
+          <article class="page-panel">
+            <h2>Refund/support note</h2>
+            <p>No purchase is available from this page yet, so there is no paid refund path. Use the proof, README, and contact link for fit questions.</p>
+            <p class="caption">Support: <a href="mailto:zippers3737@gmail.com" data-contact-link><span data-contact-email>zippers3737@gmail.com</span></a></p>
           </article>
         </div>
       </section>
+      <section class="section">
+        <article class="conversion-panel checkout-panel">
+          <div class="conversion-copy">
+            <p class="kicker">Checkout CTA</p>
+            <h2>Checkout is not listed yet</h2>
+            <p>Use the public proof and scanner to qualify the static-config subset before treating this as a purchase candidate.</p>
+          </div>
+          <div class="conversion-actions">
+            <div class="primary-cta"><span class="button disabled">Checkout not listed yet</span></div>
+            <div class="secondary-cta-group">
+              <p class="caption cta-group-label">Secondary options</p>
+              <ul class="action-list"><li><a class="button secondary" href="/proof/flatconfig-lift/">Read public proof</a><span class="sr-only">.</span></li><li><a class="button secondary" href="/go/flatconfig-free-scan/product-products-flatconfig-lift">Run the free static-config scan</a><span class="sr-only">.</span></li><li><a class="button secondary" href="#" data-doc-path="products/flatconfig-lift/docs/commercial-case.md">Commercial case</a><span class="sr-only">.</span></li><li><a class="button secondary" href="#" data-doc-path="products/flatconfig-lift/README.md">README</a><span class="sr-only">.</span></li></ul>
+            </div>
+            <p class="small">No checkout is listed for this proof page yet.</p>
+          </div>
+        </article>
+      </section>
+      <section class="section">
+        <div class="section-heading"><p class="kicker">Related fixes</p><h2>Exact-problem guides for this product</h2></div>
+        <div class="topic-list"><a class="topic-card" href="/eslint/eslintrc-to-flat-config/"><strong>How to migrate .eslintrc to eslint.config.cjs with FlatCompat</strong><span>Convert static .eslintrc JSON or YAML into eslint.config.cjs without executing JS logic.</span></a><a class="topic-card" href="/eslint/package-json-eslintconfig/"><strong>How to migrate package.json eslintConfig to flat config</strong><span>Convert static package.json eslintConfig blocks into flat config without evaluating JS.</span></a><a class="topic-card" href="/eslint/eslintrc-js-unsupported/"><strong>Why .eslintrc.js is a manual-review case for flat config migration</strong><span>Understand why JS-backed ESLint configs are out of scope for deterministic flat-config migration.</span></a><a class="topic-card" href="/eslint/eslintignore-migration/"><strong>How to move .eslintignore patterns into flat config</strong><span>Carry straightforward .eslintignore and ignorePatterns entries into flat config while keeping the hard cases explicit.</span></a><a class="topic-card" href="/eslint/negated-ignore-patterns/"><strong>Why negated ignore patterns need manual review in flat config migration</strong><span>Understand why negated ignore rules belong in manual review instead of a guessed flat-config translation.</span></a><a class="topic-card" href="/eslint/multiple-legacy-configs/"><strong>Why multiple legacy ESLint config sources block flat config migration</strong><span>If a repo has more than one legacy ESLint config source, the deterministic migration path should stop for manual review.</span></a><a class="topic-card" href="/eslint/existing-flat-config/"><strong>What to do when eslint.config.* already exists</strong><span>If the repo already has eslint.config.js, .cjs, or .mjs, the static legacy-config migration path should stop for manual review.</span></a><a class="topic-card" href="/eslint/env-globals-flat-config/"><strong>How to migrate env and globals settings to ESLint flat config</strong><span>Move env and globals from legacy config into the flat config languageOptions object.</span></a><a class="topic-card" href="/eslint/overrides-flat-config/"><strong>How to migrate ESLint overrides to flat config arrays</strong><span>Overrides in legacy config become separate array elements in flat config.</span></a><a class="topic-card" href="/eslint/parser-options-flat-config/"><strong>How to migrate parserOptions to ESLint flat config</strong><span>Move parserOptions into languageOptions.parserOptions in flat config.</span></a></div>
+      </section>
 
     </main>
-    <footer class="site-footer"><div class="wrap footer-grid"><div><p class="footer-title">Zipper Tools</p><p class="caption">Exact-problem migration guides and narrow codemod products.</p></div><div class="footer-links"><a href="/scan">Scan</a><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="#" data-repo-link>GitHub repo</a><a href="#" data-contact-link>Contact</a></div><p class="caption footer-note">Questions: <a href="#" data-contact-link><span data-contact-email>email</span></a></p></div></footer>
+    <footer class="site-footer"><div class="wrap footer-grid"><div><p class="footer-title">Zipper Tools</p><p class="caption">Exact-problem migration guides and narrow codemod products.</p></div><div class="footer-links"><a href="/scan">Scan</a><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="/policies">Policies</a><a href="#" data-repo-link>Repo</a><a href="mailto:zippers3737@gmail.com" data-contact-link>Contact</a></div><p class="caption footer-note">Support: <a href="mailto:zippers3737@gmail.com" data-contact-link><span data-contact-email>zippers3737@gmail.com</span></a></p></div></footer>
   </body>
 </html>

@@ -26,7 +26,7 @@
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="stylesheet" href="styles.css" />
     <script src="config.js"></script>
-    <script defer src="app.js"></script>
+    <script type="module" src="app.js"></script>
   </head>
   <body>
     <header class="site-header">
@@ -34,6 +34,8 @@
         <a class="brand" href="/">Zipper Tools</a>
         <nav class="nav-links" aria-label="Primary">
           <a href="/scan">Scan</a>
+          <a href="/guides/">Guides</a>
+          <a href="/products/">Products</a>
           <a href="/pricing">Pricing</a>
           <a href="/demo">Demo</a>
           <a href="/policies">Policies</a>
@@ -46,13 +48,14 @@
       <section class="warning" id="launch-warning" aria-live="polite"></section>
       <section class="page-title">
         <p class="kicker">Pricing</p>
-        <h1>Start free. Pay for the next confidence step.</h1>
+        <h1>Start free. Upgrade only when the report makes the next step obvious.</h1>
         <p>
-          Use the local scan first. Then choose the smallest paid step that
-          matches the report: a $99 automated fit report, the cleanup pack, or
-          the preset bundle. No human service delivery.
+          Use the local scan first. If it shows supported patterns, choose the
+          smallest paid step that answers the next buyer question: fit, cleanup,
+          rollout structure, or the adjacent Pydantic workflow.
         </p>
         <div class="badge-row">
+          <span class="badge">Start with the free scan</span>
           <span class="badge">Public repo first</span>
           <span class="badge">No repo upload</span>
           <span class="badge">Validation report included</span>
@@ -60,161 +63,218 @@
         </div>
       </section>
 
-      <section class="section stack">
-        <section class="page-panel" id="free-scan">
-          <p class="offer-label">Free</p>
-          <h2>Free scan and report</h2>
-          <p>Price: <span class="pill">$0</span></p>
-          <ul class="clean">
-            <li>Public CLI</li>
-            <li>Public GitHub Action</li>
-            <li>Core deterministic transforms</li>
-            <li>Manual-review findings</li>
-            <li>JSON migration report</li>
-          </ul>
-          <div class="page-actions">
-            <a class="button" href="/go/free-scan/pricing-free" data-free-link>Open the repo</a>
-          </div>
-        </section>
+      <section class="section">
+        <div class="section-heading">
+          <p class="kicker">Which option should I choose?</p>
+          <h2>Match the purchase to the question in front of you.</h2>
+        </div>
+        <div class="decision-card-grid" aria-label="Pricing decision guide">
+          <article class="page-panel">
+            <h3>Question: Does my repo have the supported pattern?</h3>
+            <p>Recommended option: Free scan.</p>
+            <p class="small">Price: Free.</p>
+          </article>
+          <article class="page-panel">
+            <h3>Question: Is this SQLAlchemy or Pydantic repo worth automating before I buy the pack?</h3>
+            <p>Recommended option: SQLAlchemy/Pydantic Fit Report Add-on.</p>
+            <p class="small">Price: $99.</p>
+          </article>
+          <article class="page-panel">
+            <h3>Question: Apply the repeated safe SQLAlchemy 1.4-to-2.0 rewrites locally.</h3>
+            <p>Recommended option: SQLAlchemy 1.4 to 2.0 Migration Cleanup Pack.</p>
+            <p class="small">Price: $299.99.</p>
+          </article>
+          <article class="page-panel">
+            <h3>Question: Organize rollout docs and reusable presets.</h3>
+            <p>Recommended option: Migration Preset Bundle.</p>
+            <p class="small">Price: $149.99.</p>
+          </article>
+          <article class="page-panel">
+            <h3>Question: Do the supported cleanup for Pydantic v1 to v2.</h3>
+            <p>Recommended option: Pydantic v1 to v2 Migration Cleanup Pack.</p>
+            <p class="small">Price: $249.99.</p>
+          </article>
+        </div>
+        <table class="table pricing-table">
+          <thead>
+            <tr>
+              <th>Buyer Question</th>
+              <th>Recommended Option</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody data-product-pricing-rows="freeScan,fitReport,sa20,sa20Preset,pydantic">
+            <tr>
+              <td>Does my repo have the supported pattern?</td>
+              <td>Free scan</td>
+              <td>Free</td>
+            </tr>
+            <tr>
+              <td>Is this SQLAlchemy or Pydantic repo worth automating before I buy the pack?</td>
+              <td>SQLAlchemy/Pydantic Fit Report Add-on</td>
+              <td>$99</td>
+            </tr>
+            <tr>
+              <td>Apply the repeated safe SQLAlchemy 1.4-to-2.0 rewrites locally.</td>
+              <td>SQLAlchemy 1.4 to 2.0 Migration Cleanup Pack</td>
+              <td>$299.99</td>
+            </tr>
+            <tr>
+              <td>Organize rollout docs and reusable presets.</td>
+              <td>Migration Preset Bundle</td>
+              <td>$149.99</td>
+            </tr>
+            <tr>
+              <td>Do the supported cleanup for Pydantic v1 to v2.</td>
+              <td>Pydantic v1 to v2 Migration Cleanup Pack</td>
+              <td>$249.99</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
 
-        <section class="page-panel" id="fit-report">
-          <p class="offer-label">$99</p>
-          <h2>Automated Migration Fit Report Add-on</h2>
-          <p>Planned checkout price: <span class="pill">$99 per team</span></p>
-          <ul class="clean">
-            <li>Run the free scanner locally and keep the report in your checkout.</li>
-            <li>Use the add-on locally to summarize supported patterns.</li>
-            <li>Generate manual-review risk notes and a buy/do-not-buy recommendation.</li>
-            <li>No report submission, human review, consulting, or source upload.</li>
-          </ul>
-          <p class="small">
-            This offer is software-only. Do not send private source code,
-            credentials, or reports to a person.
-          </p>
-          <div class="page-actions">
-            <a class="button" href="/go/fit-report/pricing-fit-report" data-fit-report-link
-              >Open fit report checkout</a
-            >
-          </div>
-        </section>
-
-        <section class="page-panel" id="sa20-pack">
-          <p class="offer-label">One-time pack</p>
-          <h2>SQLAlchemy 1.4 to 2.0 Migration Cleanup Pack</h2>
-          <p>Current checkout price: <span class="pill">$299.99 per team</span></p>
-          <ul class="clean">
-            <li>Deterministic local rewrites for the documented SQLAlchemy subset</li>
-            <li>Preview/apply workflow with JSON report output</li>
-            <li>Supported rewrite table and manual-review flags</li>
-            <li>Rollback notes, rollout checklist, and manager summary</li>
-            <li>No hosted API and no source-code upload</li>
-          </ul>
-          <p class="small">
-            Use this when the free scan proves the repo has repeated supported
-            findings. If fit is unclear, use the $99 automated fit report first.
-          </p>
-          <ul class="clean">
-            <li>Automated digital delivery through Stripe checkout.</li>
-            <li>Runs locally; no hosted API and no repo upload.</li>
-            <li>Scope-match refund review within 14 days.</li>
-          </ul>
-          <div class="page-actions">
-            <a class="button secondary" href="/go/sa20-pack/pricing-sa20-pack" data-pack-link
-              >Open cleanup pack checkout</a
-            >
-          </div>
-          <div class="small-links">
-            <a href="/products/sa20-pack/"
-              >Read the SQLAlchemy migration tool overview</a
-            >
-            <a href="/products/sa20-pack/"
-              >Read the pack details</a
-            >
-          </div>
-        </section>
-
-        <section class="page-panel" id="sa20-preset">
-          <p class="offer-label">Downloadable add-on</p>
-          <h2>Migration Preset Bundle</h2>
-          <p>Current checkout price: <span class="pill">$149.99 per team</span></p>
-          <ul class="clean">
-            <li>Repo-type presets for common migration shapes</li>
-            <li>Richer report and rollout templates</li>
-            <li>Manager-facing summary and rollout notes</li>
-            <li>Downloadable add-on with no human delivery dependency</li>
-          </ul>
-          <p class="small">
-            Use this when you want more repeatable rollout structure and preset
-            guidance without buying a service engagement.
-          </p>
-          <ul class="clean">
-            <li>Automated digital delivery through Stripe checkout.</li>
-            <li>Downloadable docs and presets; no human delivery dependency.</li>
-            <li>Scope-match refund review within 14 days.</li>
-          </ul>
-          <div class="page-actions">
-            <a class="button secondary" href="/go/sa20-preset/pricing-preset" data-bundle-link
-              >Open preset bundle checkout</a
-            >
-          </div>
-          <div class="small-links">
-            <a href="/pricing"
-              >Read the preset bundle details</a
-            >
-          </div>
-        </section>
+      <section class="section">
+        <div
+          class="stack"
+          data-product-pricing-list="freeScan"
+          data-product-source="pricing-free"
+        >
+          <article class="page-panel" id="free-scan">
+            <p class="offer-label">Free</p>
+            <h2>Free scan and report</h2>
+            <p>Price: <span class="pill">$0</span></p>
+            <ul class="clean">
+              <li>Public CLI plus public GitHub Action.</li>
+              <li>Core deterministic transforms with manual-review findings.</li>
+              <li>Local report only; no repository upload.</li>
+            </ul>
+            <p class="small">Start here before any checkout. The report is the buying evidence.</p>
+            <p class="small"><strong>Buy this if:</strong> you have not yet qualified your repo against the supported subset.</p>
+            <p class="small"><strong>Do not buy this if:</strong> you already have a scan report and supported findings - move to a paid step.</p>
+            <div class="page-actions">
+              <a class="button" href="/scan?source=pricing-free">Run free scan</a>
+              <a class="button secondary" href="/go/free-scan/pricing-free">Open quickstart</a>
+            </div>
+          </article>
+        </div>
       </section>
 
       <section class="section">
         <div class="section-heading">
-          <p class="kicker">Other Packs</p>
-          <h2>The storefront also carries adjacent migration products.</h2>
+          <p class="kicker">Paid steps</p>
+          <h2>Only move past the free scan when the report justifies it.</h2>
         </div>
-        <section class="page-panel" id="pydantic-v2-porter">
-          <p class="offer-label">Python migration pack</p>
-          <h2>Pydantic v1 to v2 Migration Cleanup Pack</h2>
-          <p>Current checkout price: <span class="pill">$249.99 per team</span></p>
-          <ul class="clean">
-            <li>Safe Pydantic v1 to v2 validator rewrites</li>
-            <li>Safe Config to model_config conversion</li>
-            <li>BaseSettings migration support for the documented subset</li>
-            <li>Fail-closed unsupported findings</li>
-          </ul>
-          <p class="small">
-            Use this only after the free fit scan shows the repo falls inside
-            the documented supported subset.
-          </p>
-          <ul class="clean">
-            <li>Automated digital delivery through Stripe checkout.</li>
-            <li>Runs locally; no hosted API and no repo upload.</li>
-            <li>Scope-match refund review within 14 days.</li>
-          </ul>
-          <div class="page-actions">
-            <a class="button secondary" href="/go/pydantic-v2-porter/pricing-pydantic" data-pydantic-link
-              >Open Pydantic cleanup pack checkout</a
-            >
-          </div>
-          <div class="small-links">
-            <a href="/products/pydantic-v2-porter/"
-              >Read the Pydantic pack details</a
-            >
-            <a href="/pydantic/validator-to-field-validator/"
-              >See validator migration page</a
-            >
-            <a href="/pydantic/basesettings-moved/"
-              >See BaseSettings migration page</a
-            >
-            <a href="/pydantic/root-validator-pre/"
-              >See pre root_validator page</a
-            >
-          </div>
-        </section>
+        <div
+          class="grid two pricing-option-grid"
+          data-product-pricing-list="fitReport,sa20,sa20Preset"
+          data-product-source="pricing"
+        >
+          <article class="page-panel" id="fit-report-static">
+            <p class="offer-label">$99</p>
+            <h2>SQLAlchemy/Pydantic Fit Report Add-on</h2>
+            <p>Current checkout price: $99 per team</p>
+            <ul class="clean">
+              <li>Run the matching SQLAlchemy or Pydantic scanner locally and keep the report in your checkout.</li>
+              <li>Use the add-on locally to summarize supported patterns and surface manual-review risk.</li>
+              <li>Generate a buy/do-not-buy recommendation; no human review or source upload.</li>
+            </ul>
+            <p class="small"><strong>Buy this if:</strong> the scan shows repeated supported findings but you are unsure whether the cleanup pack is worth it.</p>
+            <p class="small"><strong>Do not buy this if:</strong> you have not run the scan yet, or unsupported patterns dominate.</p>
+            <div class="page-actions">
+              <a class="button" href="/go/fit-report/pricing-static">Buy automated fit report - $99</a>
+            </div>
+            <p class="small">Secure checkout is handled by Stripe.</p>
+          </article>
+          <article class="page-panel" id="sa20-pack-static">
+            <p class="offer-label">$299.99</p>
+            <h2>SQLAlchemy 1.4 to 2.0 Migration Cleanup Pack</h2>
+            <p>Current checkout price: $299.99 per team</p>
+            <ul class="clean">
+              <li>Deterministic local rewrites for the documented SQLAlchemy subset.</li>
+              <li>Preview/apply workflow with JSON migration report and supported rewrite table.</li>
+              <li>Rollback notes, manager summary, and license/support terms.</li>
+            </ul>
+            <p class="small"><strong>Buy this if:</strong> the scan shows 10+ supported cleanup findings and your team can validate locally before merge.</p>
+            <p class="small"><strong>Do not buy this if:</strong> the repo is dominated by engine.execute, broad Query-to-select, or async migration work.</p>
+            <div class="page-actions">
+              <a class="button" href="/go/sa20-pack/pricing-static">Buy cleanup pack - $299.99</a>
+            </div>
+            <p class="small">Secure checkout is handled by Stripe.</p>
+          </article>
+          <article class="page-panel" id="sa20-preset-static">
+            <p class="offer-label">$149.99</p>
+            <h2>Migration Preset Bundle</h2>
+            <p>Current checkout price: $149.99 per team</p>
+            <ul class="clean">
+              <li>Rollout checklist for staged SQLAlchemy 1.4-to-2.0 cleanup work.</li>
+              <li>Manager summary template that turns scan findings into a status update.</li>
+              <li>Migration-triage presets, review buckets, and handoff notes.</li>
+            </ul>
+            <p class="small"><strong>Buy this if:</strong> you want repeatable rollout structure without buying a service engagement.</p>
+            <p class="small"><strong>Do not buy this if:</strong> you need code rewrites - this is templates and rollout docs, not the cleanup pack.</p>
+            <div class="page-actions">
+              <a class="button" href="/go/sa20-preset/pricing-static">Buy preset bundle - $149.99</a>
+            </div>
+            <p class="small">Secure checkout is handled by Stripe.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="kicker">Adjacent pack</p>
+          <h2>Use Pydantic only when that is the migration in front of you.</h2>
+        </div>
+        <div
+          class="stack"
+          data-product-pricing-list="pydantic"
+          data-product-source="pricing-pydantic"
+        >
+          <article class="page-panel" id="pydantic-static">
+            <p class="offer-label">$249.99</p>
+            <h2>Pydantic v1 to v2 Migration Cleanup Pack</h2>
+            <p>Current checkout price: $249.99 per team</p>
+            <ul class="clean">
+              <li>Deterministic local rewrites for the documented Pydantic v2 subset.</li>
+              <li>Supported imports, BaseSettings moves, simple validators, and safe Config blocks.</li>
+              <li>Manual-review findings stay explicit for alias-heavy imports and signature-heavy validators.</li>
+            </ul>
+            <p class="small"><strong>Buy this if:</strong> the repo has direct Pydantic v1 imports plus the supported validator/settings/config subset.</p>
+            <p class="small"><strong>Do not buy this if:</strong> validator signatures depend on values, field, config, each_item, or always.</p>
+            <div class="page-actions">
+              <a class="button" href="/go/pydantic-v2-porter/pricing-static">Buy Pydantic cleanup pack - $249.99</a>
+            </div>
+            <p class="small">Secure checkout is handled by Stripe.</p>
+          </article>
+        </div>
       </section>
 
       <section class="section">
         <div class="section-heading">
           <p class="kicker">Fit</p>
           <h2>Buy only when the remaining migration work is still expensive.</h2>
+        </div>
+        <div class="decision-card-grid" aria-label="Fit decision guide">
+          <article class="page-panel">
+            <h3>Situation: You have not run the tool on your repo yet.</h3>
+            <p>Best fit: Use the free scan first.</p>
+          </article>
+          <article class="page-panel">
+            <h3>Situation: The scan shows repeated supported findings, but you are unsure whether automation is worth it.</h3>
+            <p>Best fit: Use the <span data-product-text="fitReport.price">$99</span> fit report.</p>
+          </article>
+          <article class="page-panel">
+            <h3>Situation: The scan shows 10+ supported cleanup findings and a manageable manual-review bucket.</h3>
+            <p>Best fit: Buy the SQLAlchemy Migration Cleanup Pack.</p>
+          </article>
+          <article class="page-panel">
+            <h3>Situation: You want more repeatable rollout structure and preset guidance.</h3>
+            <p>Best fit: Buy the Migration Preset Bundle.</p>
+          </article>
+          <article class="page-panel">
+            <h3>Situation: You need a guaranteed full custom migration across unsupported patterns.</h3>
+            <p>Best fit: Do not buy this.</p>
+          </article>
         </div>
         <table class="table">
           <thead>
@@ -230,7 +290,7 @@
             </tr>
             <tr>
               <td>The scan shows repeated supported findings, but you are unsure whether automation is worth it.</td>
-              <td>Use the $99 Automated Migration Fit Report Add-on.</td>
+              <td>Use the <span data-product-text="fitReport.price">$99</span> fit report.</td>
             </tr>
             <tr>
               <td>The scan shows 10+ supported cleanup findings and a manageable manual-review bucket.</td>
@@ -252,13 +312,18 @@
     <footer class="site-footer">
       <div class="wrap footer-grid">
         <div class="footer-links">
-          <a href="/">Home</a>
           <a href="/scan">Scan</a>
+          <a href="/guides/">Guides</a>
+          <a href="/products/">Products</a>
+          <a href="/pricing">Pricing</a>
           <a href="/demo">Demo</a>
           <a href="/policies">Policies</a>
-          <a href="#" data-doc-path="docs/pricing.md">Pricing doc</a>
-          <a href="#" data-contact-link>Contact</a>
+          <a href="#" data-repo-link>Repo</a>
+          <a href="mailto:zippers3737@gmail.com" data-contact-link>Contact</a>
         </div>
+        <p class="caption footer-note">Support:
+          <a href="mailto:zippers3737@gmail.com" data-contact-link><span data-contact-email>zippers3737@gmail.com</span></a>
+        </p>
       </div>
     </footer>
   </body>

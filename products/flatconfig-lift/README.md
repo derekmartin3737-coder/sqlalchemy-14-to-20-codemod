@@ -48,8 +48,16 @@ scope.
 
 ## Quickstart
 
+Install from the public GitHub repo subproject:
+
 ```bash
-python -m flatconfig_lift.cli path/to/repo --report flatconfig-lift-report.json
+python -m pip install "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/archive/refs/heads/main.zip#subdirectory=products/flatconfig-lift"
+```
+
+Then scan a local checkout:
+
+```bash
+python -m flatconfig_lift.cli path/to/repo --report migration-report.json
 ```
 
 The public repo always runs in scan mode. `--apply` is reserved for the

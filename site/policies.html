@@ -7,7 +7,7 @@
     <title>Policies | Zipper Tools</title>
     <meta
       name="description"
-      content="Privacy, refund, license, and support boundaries for Zipper Tools migration products."
+      content="Payment, delivery, refund, support, license, and source-code handling policies for Zipper Tools migration products."
     />
     <link
       rel="canonical"
@@ -26,7 +26,7 @@
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="stylesheet" href="styles.css" />
     <script src="config.js"></script>
-    <script defer src="app.js"></script>
+    <script type="module" src="app.js"></script>
   </head>
   <body>
     <header class="site-header">
@@ -34,6 +34,8 @@
         <a class="brand" href="/">Zipper Tools</a>
         <nav class="nav-links" aria-label="Primary">
           <a href="/scan">Scan</a>
+          <a href="/guides/">Guides</a>
+          <a href="/products/">Products</a>
           <a href="/pricing">Pricing</a>
           <a href="/demo">Demo</a>
           <a href="/policies">Policies</a>
@@ -48,63 +50,134 @@
         <p class="kicker">Policies</p>
         <h1>Clear boundaries before anyone buys.</h1>
         <p>
-          These are the launch policies for the public site and migration
-          products. The full markdown versions live in the repo and should stay
-          in sync with this page.
+          These policies cover paid Zipper Tools digital migration products,
+          including the SQLAlchemy cleanup pack, preset bundle, Pydantic cleanup
+          pack, and automated fit report add-on.
         </p>
+        <p class="caption">Last updated: 2026-05-01</p>
       </section>
 
       <section class="section stack">
         <section class="page-panel">
-          <h2>Privacy</h2>
+          <h2>Plain-English summary</h2>
+          <ul class="clean">
+            <li>Paid checkout uses Stripe Checkout. Stripe handles secure payment, receipts, and payment records.</li>
+            <li>After payment, the site verifies the Stripe session before opening the purchased ZIP download.</li>
+            <li>The products run locally. Zipper Tools does not require source-code upload for normal use.</li>
+            <li>Refunds get a 14-day review when delivery fails or the delivered product materially does not match the published scope.</li>
+            <li>Support is email-based and limited to delivery, installation, usage, and published-scope questions.</li>
+          </ul>
+        </section>
+
+        <section class="page-panel">
+          <h2>Payment provider</h2>
           <p>
-            The public website uses Cloudflare Web Analytics if the analytics
-            token is enabled. Checkout is handled by Stripe. Payment and payout
-            operations are processed through Stripe.
-            The public CLI does not send hidden telemetry by default.
+            Paid orders are processed through Stripe Checkout. Stripe handles
+            secure card checkout, receipts, payment records, and the payment
+            dashboard used for refunds and disputes. Zipper Tools controls the
+            product names, prices, checkout routes, and delivery routing through
+            the Cloudflare Worker.
           </p>
           <p>
-            Direct support requests send the information you include in your own
-            email. Do not send secrets, production credentials, or regulated
-            data.
+            Zipper Tools does not receive or store full card numbers. Stripe may
+            process buyer and order information under its own policies and legal
+            obligations.
           </p>
         </section>
 
         <section class="page-panel">
-          <h2>Refunds</h2>
+          <h2>Digital delivery</h2>
           <p>
-            If the delivered paid pack materially fails to match the published
-            supported scope, contact the seller within 14 days of purchase.
-            Refunds are evaluated against the published scope, limitations, and
-            the delivered downloadable product.
+            Paid products are delivered as digital ZIP downloads. After a
+            successful Stripe payment, the success page links to
+            <code>/stripe/delivery</code>. That route verifies the paid Stripe
+            Checkout Session and streams the matching ZIP from private
+            Cloudflare storage.
+          </p>
+          <p>
+            Normal delivery does not require a manual email step, private repo
+            access, or source-code upload. If delivery fails, contact support
+            with the order reference so the issue can be fixed or reviewed.
           </p>
         </section>
 
         <section class="page-panel">
-          <h2>License</h2>
+          <h2>Refund review window</h2>
           <p>
-            The public repo remains under its open-source license. Paid packs are
-            separate commercial digital products for internal use by the buyer's
-            own organization and may not be resold or republished.
+            Contact support within 14 days of purchase if the delivered product
+            materially does not match the published supported scope, or if a
+            paid delivery issue cannot be resolved. Include the order reference,
+            product name, and a short explanation of the mismatch or delivery
+            failure.
+          </p>
+          <p>
+            A repo being outside the documented coverage is not treated as a
+            hidden defect when that limitation was stated before purchase. The
+            review is based on the published product page, support boundary, and
+            delivered digital product.
           </p>
         </section>
 
         <section class="page-panel">
-          <h2>Support scope</h2>
+          <h2>What support includes</h2>
+          <ul class="clean">
+            <li>Delivery and download issues for a paid order.</li>
+            <li>Clarifying installation and local usage steps.</li>
+            <li>Clarifying the published supported and unsupported scope.</li>
+            <li>Helping interpret product docs, report fields, and manual-review findings.</li>
+            <li>Refund review questions inside the 14-day review window.</li>
+          </ul>
+        </section>
+
+        <section class="page-panel">
+          <h2>What support does not include</h2>
+          <ul class="clean">
+            <li>Custom repo debugging, custom PRs, or consulting work.</li>
+            <li>Full application, database, infrastructure, or deployment ownership.</li>
+            <li>Guarantees that every repo will pass validation or behave correctly in production.</li>
+            <li>Private environment access, production credentials, or regulated-data handling.</li>
+            <li>Automatic fixes for patterns listed as unsupported or manual review.</li>
+          </ul>
+        </section>
+
+        <section class="page-panel">
+          <h2>License terms</h2>
           <p>
-            Product support is limited to published docs, download issues, and
-            clarifying supported scope. If validation fails after a migration,
-            that is reported as a failed migration, not a fake success.
+            The public repo remains under its open-source license. Paid products
+            are separate commercial digital products licensed for internal use
+            by the buyer's own organization on repos it owns or controls.
+          </p>
+          <p>
+            Paid product contents may not be resold, sublicensed, or republished
+            in a public repo. Code changes you apply to your own codebase using
+            the product remain part of your own codebase.
           </p>
         </section>
 
         <section class="page-panel">
-          <h2>Use safeguards</h2>
+          <h2>Privacy / source-code handling</h2>
           <p>
-            Use version control, backups, and normal engineering review before
-            applying changes. The product helps with specific legacy patterns and
-            reporting, but it does not guarantee passing application behavior in
-            every environment.
+            The public website may use Cloudflare Web Analytics if the
+            analytics token is enabled. Checkout and order information are
+            processed through Stripe. Direct support emails include only the
+            information you choose to send.
+          </p>
+          <p>
+            The free scanner and paid products are designed to run in your local
+            checkout. They do not send hidden CLI telemetry by default and do not
+            require uploading private source code. Do not send secrets,
+            production credentials, regulated data, or full private application
+            dumps through ordinary support email.
+          </p>
+        </section>
+
+        <section class="page-panel">
+          <h2>Contact</h2>
+          <p>Support: <a href="mailto:zippers3737@gmail.com" data-contact-link><span data-contact-email>zippers3737@gmail.com</span></a></p>
+          <p>
+            For paid support or refund review, include the order reference,
+            product name, delivery error if any, and a minimal sanitized example
+            or report excerpt when relevant.
           </p>
         </section>
       </section>
@@ -113,11 +186,14 @@
     <footer class="site-footer">
       <div class="wrap footer-grid">
         <div class="footer-links">
-          <a href="#" data-doc-path="docs/privacy-policy.md">Privacy policy</a>
-          <a href="#" data-doc-path="docs/refund-policy.md">Refund policy</a>
-          <a href="#" data-doc-path="docs/terms-of-sale.md">Terms of sale</a>
-          <a href="#" data-doc-path="docs/license-terms.md">License terms</a>
-          <a href="#" data-doc-path="docs/support-scope.md">Support scope</a>
+          <a href="/scan">Scan</a>
+          <a href="/guides/">Guides</a>
+          <a href="/products/">Products</a>
+          <a href="/pricing">Pricing</a>
+          <a href="/demo">Demo</a>
+          <a href="/policies">Policies</a>
+          <a href="#" data-repo-link>Repo</a>
+          <a href="#" data-contact-link>Contact</a>
         </div>
       </div>
     </footer>
