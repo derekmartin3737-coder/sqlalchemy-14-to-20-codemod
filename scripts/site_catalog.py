@@ -7,6 +7,45 @@ from dataclasses import dataclass
 SITE_NAME = "Zipper Tools"
 SITE_URL = "https://zippertools.org"
 INDEXNOW_KEY = "66d2924ff8a74b898f29b91e27b2fce8"
+REPO_URL = "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod"
+SUPPORT_EMAIL = "zippers3737@gmail.com"
+SA20_INSTALL_URL = f"{REPO_URL}/archive/refs/heads/main.zip"
+# pip's `#subdirectory=` fragment works on both git+ URLs and archive zip URLs.
+# Use the archive form so users do not need a local git binary.
+PYDANTIC_INSTALL_URL = f"{REPO_URL}/archive/refs/heads/main.zip#subdirectory=products/pydantic-v2-porter"
+FLATCONFIG_INSTALL_URL = f"{REPO_URL}/archive/refs/heads/main.zip#subdirectory=products/flatconfig-lift"
+PROOF_ONLY_CHECKOUT_NOTE = "No checkout is listed for this proof page yet."
+
+CHECKOUT_PROVIDER = "Stripe"
+SECURE_CHECKOUT_NOTE = f"Secure checkout is handled by {CHECKOUT_PROVIDER}."
+CHECKOUT_LANGUAGE = f"{CHECKOUT_PROVIDER} Checkout handles secure payment and receipts."
+DELIVERY_LANGUAGE = (
+    "After payment, /stripe/delivery verifies the Stripe session and streams the "
+    "purchased ZIP."
+)
+LOCAL_NO_UPLOAD_LANGUAGE = (
+    "Runs locally; no hosted API, repo upload, or production credentials needed."
+)
+REFUND_LANGUAGE = "14-day refund review for published-scope or delivery mismatches."
+
+FIT_REPORT_ROUTE = "/go/fit-report"
+FIT_REPORT_PRICE = "$99"
+FIT_REPORT_NAME = "SQLAlchemy/Pydantic Fit Report Add-on"
+FIT_REPORT_LABEL = "SQLAlchemy/Pydantic fit report"
+FIT_REPORT_PRODUCT_SLUGS = frozenset(("sa20-pack", "pydantic-v2-porter"))
+FIT_REPORT_CTA = f"Buy automated fit report - {FIT_REPORT_PRICE}"
+FIT_REPORT_SCOPE_NOTE = (
+    "Use this only with SQLAlchemy or Pydantic scanner output. It is not listed "
+    "for ESLint proof-only pages."
+)
+
+SA20_PRESET_NAME = "Migration Preset Bundle"
+SA20_PRESET_PRICE = "149.99"
+SA20_PRESET_CHECKOUT_PATH = "/go/sa20-preset"
+
+STATUS_AVAILABLE = "Available now"
+STATUS_PROOF_ONLY = "Example/proof page only"
+STATUS_NOT_PURCHASABLE = "Not currently purchasable"
 
 
 @dataclass(frozen=True)
@@ -106,7 +145,7 @@ GUIDES: tuple[GuidePage, ...] = (
         before_code=(
             "query = session.query(User)\n"
             "user = session.query(User).get(user_id)\n"
-            "rows = session.query(User).join(\"addresses\").all()\n"
+            'rows = session.query(User).join("addresses").all()\n'
         ),
         after_code=(
             "query = session.query(User)  # still legacy, not the first rewrite target\n"
@@ -142,11 +181,11 @@ GUIDES: tuple[GuidePage, ...] = (
             "Move execution onto a Connection or Session and make transaction boundaries "
             "explicit. That is why honest tooling buckets engine.execute(...) as manual review."
         ),
-        before_code="result = engine.execute(\"SELECT id FROM users\")\nrows = engine.execute(stmt).fetchall()\n",
+        before_code='result = engine.execute("SELECT id FROM users")\nrows = engine.execute(stmt).fetchall()\n',
         after_code=(
             "from sqlalchemy import text\n\n"
             "with engine.connect() as conn:\n"
-            "    result = conn.execute(text(\"SELECT id FROM users\"))\n"
+            '    result = conn.execute(text("SELECT id FROM users"))\n'
             "    rows = conn.execute(stmt).fetchall()\n"
         ),
         symptoms=(
@@ -179,8 +218,8 @@ GUIDES: tuple[GuidePage, ...] = (
             "obvious. Stop when aliasing or dotted paths make the replacement unclear."
         ),
         before_code=(
-            "query = session.query(User).options(joinedload_all(\"orders.items\"))\n"
-            "query = query.options(joinedload_all(\"addresses\"))\n"
+            'query = session.query(User).options(joinedload_all("orders.items"))\n'
+            'query = query.options(joinedload_all("addresses"))\n'
         ),
         after_code=(
             "query = session.query(User).options(\n"
@@ -238,7 +277,7 @@ GUIDES: tuple[GuidePage, ...] = (
         slug="string-join-paths",
         title="Replace string join paths in SQLAlchemy 2.0 migrations",
         h1="How to replace string join paths during a SQLAlchemy 2.0 migration",
-        description="Replace simple join(\"addresses\") and outerjoin(\"orders\") calls with mapped attributes when the root entity is obvious.",
+        description='Replace simple join("addresses") and outerjoin("orders") calls with mapped attributes when the root entity is obvious.',
         search_term="sqlalchemy join string relationship 2.0",
         summary="Simple string relationship joins are good deterministic cleanup. Multi-hop join chains are not.",
         answer=(
@@ -246,8 +285,8 @@ GUIDES: tuple[GuidePage, ...] = (
             "mapped attribute, like User.addresses or User.orders."
         ),
         before_code=(
-            "query = session.query(User).join(\"addresses\")\n"
-            "query = query.outerjoin(\"orders\")\n"
+            'query = session.query(User).join("addresses")\n'
+            'query = query.outerjoin("orders")\n'
         ),
         after_code=(
             "query = session.query(User).join(User.addresses)\n"
@@ -259,12 +298,12 @@ GUIDES: tuple[GuidePage, ...] = (
             "Teams do not want to hand-fix dozens of repetitive join calls.",
         ),
         covers=(
-            "Simple join(\"relationship\") rewrites.",
-            "Simple outerjoin(\"relationship\") rewrites.",
+            'Simple join("relationship") rewrites.',
+            'Simple outerjoin("relationship") rewrites.',
             "Reporting for the string-join cleanup bucket.",
         ),
         manual_review=(
-            "Multi-hop joins like join(\"orders\", \"items\").",
+            'Multi-hop joins like join("orders", "items").',
             "Alias-heavy query builders.",
             "Cases where the root entity is not obvious from the call site.",
         ),
@@ -275,7 +314,7 @@ GUIDES: tuple[GuidePage, ...] = (
         slug="string-loader-options",
         title="Replace string loader options in SQLAlchemy 2.0",
         h1="How to replace string loader options in SQLAlchemy 2.0",
-        description="Replace joinedload(\"addresses\") and similar string loader options with mapped attributes when the relationship root is obvious.",
+        description='Replace joinedload("addresses") and similar string loader options with mapped attributes when the relationship root is obvious.',
         search_term="joinedload string path sqlalchemy 2.0",
         summary="Simple loader strings are cleanup work. Dotted paths and query-shape-dependent options are not.",
         answer=(
@@ -283,8 +322,8 @@ GUIDES: tuple[GuidePage, ...] = (
             "attribute, like joinedload(User.addresses)."
         ),
         before_code=(
-            "query = session.query(User).options(joinedload(\"addresses\"))\n"
-            "query = query.options(selectinload(\"orders\"))\n"
+            'query = session.query(User).options(joinedload("addresses"))\n'
+            'query = query.options(selectinload("orders"))\n'
         ),
         after_code=(
             "query = session.query(User).options(joinedload(User.addresses))\n"
@@ -301,7 +340,7 @@ GUIDES: tuple[GuidePage, ...] = (
             "Cross-links to the dotted-path and joinedload_all manual buckets.",
         ),
         manual_review=(
-            "Dotted paths like joinedload(\"orders.items\").",
+            'Dotted paths like joinedload("orders.items").',
             "contains_eager and duplicate-join interactions.",
             "Cases where the owning entity is not obvious from the local code.",
         ),
@@ -322,9 +361,7 @@ GUIDES: tuple[GuidePage, ...] = (
         before_code=(
             "from sqlalchemy.ext.declarative import declarative_base, declared_attr\n"
         ),
-        after_code=(
-            "from sqlalchemy.orm import declarative_base, declared_attr\n"
-        ),
+        after_code=("from sqlalchemy.orm import declarative_base, declared_attr\n"),
         symptoms=(
             "Legacy declarative imports survive long after the runtime bump.",
             "The replacement is direct and low-risk.",
@@ -350,15 +387,9 @@ GUIDES: tuple[GuidePage, ...] = (
         description="Move legacy insert constructor kwargs onto the statement object with .values(...).",
         search_term="insert values keyword sqlalchemy 2.0",
         summary="Legacy DML constructor kwargs are repetitive syntax cleanup that good codemods should handle.",
-        answer=(
-            "Build the statement first, then call .values({...}) on it."
-        ),
-        before_code=(
-            "stmt = insert(user_table, values={\"name\": name})\n"
-        ),
-        after_code=(
-            "stmt = insert(user_table).values({\"name\": name})\n"
-        ),
+        answer=("Build the statement first, then call .values({...}) on it."),
+        before_code=('stmt = insert(user_table, values={"name": name})\n'),
+        after_code=('stmt = insert(user_table).values({"name": name})\n'),
         symptoms=(
             "Insert helpers still rely on constructor kwargs from older SQLAlchemy code.",
             "The fix is obvious but spread across many files.",
@@ -392,14 +423,14 @@ GUIDES: tuple[GuidePage, ...] = (
             "stmt = update(\n"
             "    user_table,\n"
             "    whereclause=user_table.c.id == user_id,\n"
-            "    values={\"name\": name},\n"
+            '    values={"name": name},\n'
             ")\n"
         ),
         after_code=(
             "stmt = (\n"
             "    update(user_table)\n"
             "    .where(user_table.c.id == user_id)\n"
-            "    .values({\"name\": name})\n"
+            '    .values({"name": name})\n'
             ")\n"
         ),
         symptoms=(
@@ -427,15 +458,11 @@ GUIDES: tuple[GuidePage, ...] = (
         description="Move legacy delete constructor kwargs onto the statement object with .where(...).",
         search_term="delete whereclause sqlalchemy 2.0",
         summary="This is exactly the kind of legacy DML syntax change that benefits from deterministic cleanup.",
-        answer=(
-            "Build the delete statement first, then chain .where(expr) on it."
-        ),
+        answer=("Build the delete statement first, then chain .where(expr) on it."),
         before_code=(
             "stmt = delete(user_table, whereclause=user_table.c.id == user_id)\n"
         ),
-        after_code=(
-            "stmt = delete(user_table).where(user_table.c.id == user_id)\n"
-        ),
+        after_code=("stmt = delete(user_table).where(user_table.c.id == user_id)\n"),
         symptoms=(
             "Delete statements still use constructor kwargs from pre-2.0 style code.",
             "The mechanical fix is easy but repetitive.",
@@ -495,16 +522,14 @@ GUIDES: tuple[GuidePage, ...] = (
         slug="multi-hop-string-joins",
         title="Why multi-hop string joins are a manual-review case in SQLAlchemy 2.0",
         h1="Why multi-hop string joins are a manual-review case in SQLAlchemy 2.0",
-        description="Understand why join(\"orders\", \"items\") belongs in manual review instead of a guessed codemod.",
+        description='Understand why join("orders", "items") belongs in manual review instead of a guessed codemod.',
         search_term="sqlalchemy join string multiple relationships 2.0",
         summary="Single relationship strings are automatable. Multi-hop string joins are not.",
         answer=(
             "Treat multi-hop string joins as manual review. The right mapped "
             "attribute chain depends on the surrounding entities and join shape."
         ),
-        before_code=(
-            "query = session.query(User).join(\"orders\", \"items\")\n"
-        ),
+        before_code=('query = session.query(User).join("orders", "items")\n'),
         after_code=(
             "# manual review required\n"
             "# replacement depends on the actual join path and root entity\n"
@@ -542,7 +567,7 @@ GUIDES: tuple[GuidePage, ...] = (
             "from pydantic import BaseModel, validator\n\n"
             "class UserModel(BaseModel):\n"
             "    email: str\n\n"
-            "    @validator(\"email\")\n"
+            '    @validator("email")\n'
             "    def normalize_email(cls, value: str) -> str:\n"
             "        return value.strip().lower()\n"
         ),
@@ -550,7 +575,7 @@ GUIDES: tuple[GuidePage, ...] = (
             "from pydantic import BaseModel, field_validator\n\n"
             "class UserModel(BaseModel):\n"
             "    email: str\n\n"
-            "    @field_validator(\"email\")\n"
+            '    @field_validator("email")\n'
             "    def normalize_email(cls, value: str) -> str:\n"
             "        return value.strip().lower()\n"
         ),
@@ -689,7 +714,7 @@ GUIDES: tuple[GuidePage, ...] = (
         search_term="root_validator pre model_validator pydantic v2",
         summary="The safe root-validator case is pre=True with the simple (cls, values) classmethod signature.",
         answer=(
-            'For supported pre=True root validators with the simple (cls, values) '
+            "For supported pre=True root validators with the simple (cls, values) "
             'signature, the v2 replacement is @model_validator(mode="before").'
         ),
         before_code=(
@@ -704,7 +729,7 @@ GUIDES: tuple[GuidePage, ...] = (
             "from pydantic import BaseModel, model_validator\n\n"
             "class Payload(BaseModel):\n"
             "    name: str\n\n"
-            "    @model_validator(mode=\"before\")\n"
+            '    @model_validator(mode="before")\n'
             "    def normalize_input(cls, values):\n"
             "        return values\n"
         ),
@@ -714,7 +739,7 @@ GUIDES: tuple[GuidePage, ...] = (
             "Reviewers need a stop signal before post validators or custom signatures.",
         ),
         covers=(
-            "pre=True root_validator to model_validator(mode=\"before\") rewrites.",
+            'pre=True root_validator to model_validator(mode="before") rewrites.',
             "Reporting for exactly where the supported root-validator subset appears.",
             "Cross-links to the post root-validator manual bucket.",
         ),
@@ -779,12 +804,8 @@ GUIDES: tuple[GuidePage, ...] = (
             "pydantic. Keep BaseSettings and unsupported decorators in their own "
             "migration buckets."
         ),
-        before_code=(
-            "from pydantic.v1 import BaseModel, ValidationError\n"
-        ),
-        after_code=(
-            "from pydantic import BaseModel, ValidationError\n"
-        ),
+        before_code=("from pydantic.v1 import BaseModel, ValidationError\n"),
+        after_code=("from pydantic import BaseModel, ValidationError\n"),
         symptoms=(
             "Repos still pin import paths to pydantic.v1 after starting the v2 migration.",
             "Teams want the import cleanup separated from the harder validator and config work.",
@@ -814,13 +835,9 @@ GUIDES: tuple[GuidePage, ...] = (
             "Treat Config.fields as manual review. It was removed in Pydantic v2, "
             "so the migration depends on what behavior the model actually needs."
         ),
-        before_code=(
-            "class Config:\n"
-            "    fields = {\"name\": {\"alias\": \"full_name\"}}\n"
-        ),
+        before_code=('class Config:\n    fields = {"name": {"alias": "full_name"}}\n'),
         after_code=(
-            "# manual review required\n"
-            "# Config.fields was removed in Pydantic v2\n"
+            "# manual review required\n# Config.fields was removed in Pydantic v2\n"
         ),
         symptoms=(
             "Teams expect every Config key to become a simple model_config entry.",
@@ -856,7 +873,7 @@ GUIDES: tuple[GuidePage, ...] = (
             "from pydantic import BaseModel, validator\n\n"
             "class Payload(BaseModel):\n"
             "    tags: list[str]\n\n"
-            "    @validator(\"tags\", each_item=True)\n"
+            '    @validator("tags", each_item=True)\n'
             "    def normalize_tag(cls, value: str) -> str:\n"
             "        return value.strip()\n"
         ),
@@ -896,7 +913,7 @@ GUIDES: tuple[GuidePage, ...] = (
         ),
         before_code=(
             "from pydantic import validate_arguments\n\n"
-            "@validate_arguments(config={\"arbitrary_types_allowed\": True})\n"
+            '@validate_arguments(config={"arbitrary_types_allowed": True})\n'
             "def create_user(user) -> None:\n"
             "    ...\n"
         ),
@@ -935,17 +952,17 @@ GUIDES: tuple[GuidePage, ...] = (
         ),
         before_code=(
             "{\n"
-            "  \"extends\": [\"eslint:recommended\"],\n"
-            "  \"rules\": {\"no-console\": \"warn\"}\n"
+            '  "extends": ["eslint:recommended"],\n'
+            '  "rules": {"no-console": "warn"}\n'
             "}\n"
         ),
         after_code=(
-            "const { FlatCompat } = require(\"@eslint/eslintrc\");\n"
+            'const { FlatCompat } = require("@eslint/eslintrc");\n'
             "const compat = new FlatCompat();\n\n"
             "module.exports = [\n"
             "  ...compat.config({\n"
-            "    extends: [\"eslint:recommended\"],\n"
-            "    rules: { \"no-console\": \"warn\" },\n"
+            '    extends: ["eslint:recommended"],\n'
+            '    rules: { "no-console": "warn" },\n'
             "  }),\n"
             "];\n"
         ),
@@ -979,15 +996,15 @@ GUIDES: tuple[GuidePage, ...] = (
             "the bridge file can be generated cleanly."
         ),
         before_code=(
-            "\"eslintConfig\": {\n"
-            "  \"extends\": [\"eslint:recommended\"],\n"
-            "  \"env\": {\"node\": true}\n"
+            '"eslintConfig": {\n'
+            '  "extends": ["eslint:recommended"],\n'
+            '  "env": {"node": true}\n'
             "}\n"
         ),
         after_code=(
             "module.exports = [\n"
             "  ...compat.config({\n"
-            "    extends: [\"eslint:recommended\"],\n"
+            '    extends: ["eslint:recommended"],\n'
             "    env: { node: true },\n"
             "  }),\n"
             "];\n"
@@ -1023,8 +1040,8 @@ GUIDES: tuple[GuidePage, ...] = (
         ),
         before_code=(
             "module.exports = {\n"
-            "  extends: [\"eslint:recommended\"],\n"
-            "  rules: process.env.CI ? { \"no-console\": \"error\" } : {},\n"
+            '  extends: ["eslint:recommended"],\n'
+            '  rules: process.env.CI ? { "no-console": "error" } : {},\n'
             "};\n"
         ),
         after_code="// manual review required\n// keep logic-bearing config out of the deterministic path\n",
@@ -1057,14 +1074,11 @@ GUIDES: tuple[GuidePage, ...] = (
             "Move straightforward ignore patterns into the flat config ignores "
             "list. Stop when a pattern is negated or otherwise ambiguous."
         ),
-        before_code=(
-            "dist/\n"
-            "coverage/\n"
-        ),
+        before_code=("dist/\ncoverage/\n"),
         after_code=(
             "module.exports = [\n"
             "  {\n"
-            "    ignores: [\"**/dist\", \"**/coverage\"],\n"
+            '    ignores: ["**/dist", "**/coverage"],\n'
             "  },\n"
             "];\n"
         ),
@@ -1098,10 +1112,7 @@ GUIDES: tuple[GuidePage, ...] = (
             "config behavior depends on how the rest of the ignore list is "
             "supposed to interact."
         ),
-        before_code=(
-            "dist/\n"
-            "!dist/keep.js\n"
-        ),
+        before_code=("dist/\n!dist/keep.js\n"),
         after_code=(
             "# manual review required\n"
             "# negated ignore patterns are outside the deterministic flat-config subset\n"
@@ -1136,10 +1147,7 @@ GUIDES: tuple[GuidePage, ...] = (
             "first job is deciding which source is authoritative before "
             "generating a flat config bridge."
         ),
-        before_code=(
-            ".eslintrc.json\n"
-            "package.json#eslintConfig\n"
-        ),
+        before_code=(".eslintrc.json\npackage.json#eslintConfig\n"),
         after_code=(
             "# manual review required\n"
             "# choose the authoritative legacy config source before migration\n"
@@ -1174,13 +1182,9 @@ GUIDES: tuple[GuidePage, ...] = (
             "depends on whether the flat config is authoritative, partial, or "
             "mid-migration."
         ),
-        before_code=(
-            "eslint.config.cjs\n"
-            ".eslintrc.json\n"
-        ),
+        before_code=("eslint.config.cjs\n.eslintrc.json\n"),
         after_code=(
-            "# manual review required\n"
-            "# repo already has a flat config file\n"
+            "# manual review required\n# repo already has a flat config file\n"
         ),
         symptoms=(
             "The repo already contains eslint.config.js, .cjs, or .mjs.",
@@ -1323,14 +1327,13 @@ GUIDES: tuple[GuidePage, ...] = (
             "when the migration also touches the relationship."
         ),
         before_code=(
-            "class User(Base):\n"
-            "    orders = relationship(\"Order\", backref=\"user\")\n"
+            'class User(Base):\n    orders = relationship("Order", backref="user")\n'
         ),
         after_code=(
             "class User(Base):\n"
-            "    orders = relationship(\"Order\", back_populates=\"user\")\n\n"
+            '    orders = relationship("Order", back_populates="user")\n\n'
             "class Order(Base):\n"
-            "    user = relationship(\"User\", back_populates=\"orders\")\n"
+            '    user = relationship("User", back_populates="orders")\n'
         ),
         symptoms=(
             "Reviewers prefer explicit back_populates over magic backref strings.",
@@ -1371,7 +1374,7 @@ GUIDES: tuple[GuidePage, ...] = (
         after_code=(
             "from pydantic import BaseModel, ConfigDict\n\n"
             "class Strict(BaseModel):\n"
-            "    model_config = ConfigDict(extra=\"forbid\")\n"
+            '    model_config = ConfigDict(extra="forbid")\n'
         ),
         symptoms=(
             "ImportError for Extra from pydantic.",
@@ -1398,18 +1401,16 @@ GUIDES: tuple[GuidePage, ...] = (
         description="Migrate schema_extra in Config to json_schema_extra in model_config.",
         search_term="schema_extra json_schema_extra pydantic v2",
         summary="schema_extra was renamed to json_schema_extra in Pydantic v2.",
-        answer=(
-            "Replace schema_extra with json_schema_extra in your model_config."
-        ),
+        answer=("Replace schema_extra with json_schema_extra in your model_config."),
         before_code=(
             "class User(BaseModel):\n"
             "    class Config:\n"
-            "        schema_extra = {\"examples\": [{\"name\": \"Alice\"}]}\n"
+            '        schema_extra = {"examples": [{"name": "Alice"}]}\n'
         ),
         after_code=(
             "class User(BaseModel):\n"
             "    model_config = ConfigDict(\n"
-            "        json_schema_extra={\"examples\": [{\"name\": \"Alice\"}]}\n"
+            '        json_schema_extra={"examples": [{"name": "Alice"}]}\n'
             "    )\n"
         ),
         symptoms=(
@@ -1437,13 +1438,9 @@ GUIDES: tuple[GuidePage, ...] = (
         description="The orm_mode config key was renamed to from_attributes in Pydantic v2.",
         search_term="orm_mode from_attributes pydantic v2",
         summary="orm_mode is now from_attributes. This is a simple rename.",
-        answer=(
-            "Replace orm_mode=True with from_attributes=True in model_config."
-        ),
+        answer=("Replace orm_mode=True with from_attributes=True in model_config."),
         before_code=(
-            "class UserOut(BaseModel):\n"
-            "    class Config:\n"
-            "        orm_mode = True\n"
+            "class UserOut(BaseModel):\n    class Config:\n        orm_mode = True\n"
         ),
         after_code=(
             "class UserOut(BaseModel):\n"
@@ -1481,13 +1478,13 @@ GUIDES: tuple[GuidePage, ...] = (
         before_code=(
             "from pydantic import BaseModel, Field\n\n"
             "class Config(BaseModel):\n"
-            "    version: str = Field(const=True, default=\"1.0\")\n"
+            '    version: str = Field(const=True, default="1.0")\n'
         ),
         after_code=(
             "from typing import Literal\n"
             "from pydantic import BaseModel\n\n"
             "class Config(BaseModel):\n"
-            "    version: Literal[\"1.0\"] = \"1.0\"\n"
+            '    version: Literal["1.0"] = "1.0"\n'
         ),
         symptoms=(
             "TypeError about unexpected keyword const.",
@@ -1521,18 +1518,18 @@ GUIDES: tuple[GuidePage, ...] = (
         ),
         before_code=(
             "{\n"
-            "  \"env\": {\"browser\": true, \"node\": true},\n"
-            "  \"globals\": {\"myGlobal\": \"readonly\"}\n"
+            '  "env": {"browser": true, "node": true},\n'
+            '  "globals": {"myGlobal": "readonly"}\n'
             "}\n"
         ),
         after_code=(
-            "const globals = require(\"globals\");\n\n"
+            'const globals = require("globals");\n\n'
             "module.exports = [{\n"
             "  languageOptions: {\n"
             "    globals: {\n"
             "      ...globals.browser,\n"
             "      ...globals.node,\n"
-            "      myGlobal: \"readonly\",\n"
+            '      myGlobal: "readonly",\n'
             "    },\n"
             "  },\n"
             "}];\n"
@@ -1567,19 +1564,19 @@ GUIDES: tuple[GuidePage, ...] = (
         ),
         before_code=(
             "{\n"
-            "  \"rules\": {\"no-console\": \"warn\"},\n"
-            "  \"overrides\": [{\n"
-            "    \"files\": [\"*.test.js\"],\n"
-            "    \"rules\": {\"no-console\": \"off\"}\n"
+            '  "rules": {"no-console": "warn"},\n'
+            '  "overrides": [{\n'
+            '    "files": ["*.test.js"],\n'
+            '    "rules": {"no-console": "off"}\n'
             "  }]\n"
             "}\n"
         ),
         after_code=(
             "module.exports = [\n"
-            "  { rules: { \"no-console\": \"warn\" } },\n"
+            '  { rules: { "no-console": "warn" } },\n'
             "  {\n"
-            "    files: [\"**/*.test.js\"],\n"
-            "    rules: { \"no-console\": \"off\" },\n"
+            '    files: ["**/*.test.js"],\n'
+            '    rules: { "no-console": "off" },\n'
             "  },\n"
             "];\n"
         ),
@@ -1613,9 +1610,9 @@ GUIDES: tuple[GuidePage, ...] = (
         ),
         before_code=(
             "{\n"
-            "  \"parserOptions\": {\n"
-            "    \"ecmaVersion\": 2022,\n"
-            "    \"sourceType\": \"module\"\n"
+            '  "parserOptions": {\n'
+            '    "ecmaVersion": 2022,\n'
+            '    "sourceType": "module"\n'
             "  }\n"
             "}\n"
         ),
@@ -1623,7 +1620,7 @@ GUIDES: tuple[GuidePage, ...] = (
             "module.exports = [{\n"
             "  languageOptions: {\n"
             "    ecmaVersion: 2022,\n"
-            "    sourceType: \"module\",\n"
+            '    sourceType: "module",\n'
             "  },\n"
             "}];\n"
         ),
@@ -1658,13 +1655,13 @@ GUIDES: tuple[GuidePage, ...] = (
             "Connection into code that still expects an executable object."
         ),
         before_code=(
-            "rows = pd.read_sql_query(\"SELECT id FROM users\", engine)\n"
+            'rows = pd.read_sql_query("SELECT id FROM users", engine)\n'
             "result = engine.execution_options(stream_results=True).execute(stmt)\n"
         ),
         after_code=(
             "from sqlalchemy import text\n\n"
             "with engine.connect() as conn:\n"
-            "    rows = pd.read_sql_query(text(\"SELECT id FROM users\"), conn)\n"
+            '    rows = pd.read_sql_query(text("SELECT id FROM users"), conn)\n'
             "    result = conn.execution_options(stream_results=True).execute(stmt)\n"
         ),
         symptoms=(
@@ -1698,13 +1695,13 @@ GUIDES: tuple[GuidePage, ...] = (
         ),
         before_code=(
             "result = engine.execute(stmt)\n"
-            "engine.execute(user_table.insert(), {\"name\": \"Ada\"})\n"
+            'engine.execute(user_table.insert(), {"name": "Ada"})\n'
         ),
         after_code=(
             "with engine.connect() as conn:\n"
             "    result = conn.execute(stmt)\n\n"
             "with engine.begin() as conn:\n"
-            "    conn.execute(user_table.insert(), {\"name\": \"Ada\"})\n"
+            '    conn.execute(user_table.insert(), {"name": "Ada"})\n'
         ),
         symptoms=(
             "AttributeError appears immediately after the SQLAlchemy 2.0 bump.",
@@ -1794,7 +1791,7 @@ GUIDES: tuple[GuidePage, ...] = (
             "Use chained joinedload(...) calls with mapped attributes for clear paths. "
             "Stop for aliases, contains_eager, and duplicate join interactions."
         ),
-        before_code="query = session.query(User).options(joinedload_all(\"orders.items\"))\n",
+        before_code='query = session.query(User).options(joinedload_all("orders.items"))\n',
         after_code=(
             "query = session.query(User).options(\n"
             "    joinedload(User.orders).joinedload(Order.items)\n"
@@ -1941,14 +1938,14 @@ GUIDES: tuple[GuidePage, ...] = (
         before_code=(
             "from pydantic import BaseModel, validator\n\n"
             "class User(BaseModel):\n"
-            "    @validator(\"email\")\n"
+            '    @validator("email")\n'
             "    def clean_email(cls, value):\n"
             "        return value.lower()\n"
         ),
         after_code=(
             "from pydantic import BaseModel, field_validator\n\n"
             "class User(BaseModel):\n"
-            "    @field_validator(\"email\")\n"
+            '    @field_validator("email")\n'
             "    @classmethod\n"
             "    def clean_email(cls, value):\n"
             "        return value.lower()\n"

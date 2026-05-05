@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -22,7 +22,7 @@
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="stylesheet" href="styles.css" />
     <script src="config.js"></script>
-    <script defer src="app.js"></script>
+    <script type="module" src="app.js"></script>
   </head>
   <body>
     <header class="site-header">
@@ -64,17 +64,22 @@
         <div class="grid two">
           <article class="page-panel">
             <p class="kicker">Install</p>
-            <h2>Start from the public repo</h2>
-            <pre class="code-block">python -m pip install sa20-pack</pre>
+            <h2>Install from the public GitHub repo</h2>
+            <pre class="code-block">python -m pip install "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/archive/refs/heads/main.zip"
+python -m sa20_pack.cli . --report migration-report.json</pre>
+            <p class="caption">
+              If installation fails, retry from the GitHub quickstart or contact
+              support at zippers3737@gmail.com.
+            </p>
             <div class="page-actions">
-              <a class="button" href="/go/free-scan/scan-install" data-free-link>Open quickstart</a>
+              <a class="button" href="/go/free-scan/scan-install">Open quickstart</a>
               <a class="button secondary" href="#" data-repo-link>View GitHub repo</a>
             </div>
           </article>
           <article class="page-panel">
             <p class="kicker">Scan</p>
             <h2>Run against a local checkout</h2>
-            <pre class="code-block">python -m sa20_pack.cli path/to/repo --report migration-report.json</pre>
+            <pre class="code-block">python -m sa20_pack.cli . --report migration-report.json</pre>
             <p class="caption">
               Keep the report with your branch notes. Do not send private
               source code through support.
@@ -109,26 +114,11 @@ recommended_next_step: preview deterministic rewrites</pre>
       </section>
 
       <section class="section">
-        <div class="grid three">
-          <article class="offer">
-            <p class="offer-label">Free</p>
-            <h3>Run the scanner</h3>
-            <p>Find supported candidates and manual-review areas locally.</p>
-            <a class="button" href="/go/free-scan/scan-offer" data-free-link>Open quickstart</a>
-          </article>
-          <article class="offer">
-            <p class="offer-label">$99</p>
-            <h3>Automated Fit Report</h3>
-            <p>Run a software-only add-on against scanner output for a buy/do-not-buy recommendation.</p>
-            <a class="button secondary" href="/go/fit-report/scan-offer" data-fit-report-link>Open fit report details</a>
-          </article>
-          <article class="offer">
-            <p class="offer-label">$299.99</p>
-            <h3>Cleanup Pack</h3>
-            <p>Apply supported deterministic rewrites locally after fit is clear.</p>
-            <a class="button secondary" href="/go/sa20-pack/scan-offer" data-pack-link>Open cleanup pack</a>
-          </article>
-        </div>
+        <div
+          class="grid three"
+          data-product-cards="freeScan,fitReport,sa20"
+          data-product-source="scan-offer"
+        ></div>
       </section>
 
       <section class="section">
@@ -163,12 +153,18 @@ recommended_next_step: preview deterministic rewrites</pre>
           <p class="caption">Local-first migration scanner and cleanup workflow.</p>
         </div>
         <div class="footer-links">
-          <a href="/">Home</a>
+          <a href="/scan">Scan</a>
+          <a href="/guides/">Guides</a>
+          <a href="/products/">Products</a>
           <a href="/pricing">Pricing</a>
           <a href="/demo">Demo</a>
           <a href="/policies">Policies</a>
-          <a href="#" data-contact-link>Contact</a>
+          <a href="#" data-repo-link>Repo</a>
+          <a href="mailto:zippers3737@gmail.com" data-contact-link>Contact</a>
         </div>
+        <p class="caption footer-note">Support:
+          <a href="mailto:zippers3737@gmail.com" data-contact-link><span data-contact-email>zippers3737@gmail.com</span></a>
+        </p>
       </div>
     </footer>
   </body>

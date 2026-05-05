@@ -191,7 +191,9 @@ def audit_sitemap_pages(
     internal_links: set[str] = set()
     for url in urls:
         if is_legacy_url(url):
-            issues.append(AuditIssue(url, "sitemap_legacy_url", "Sitemap URL is not canonical"))
+            issues.append(
+                AuditIssue(url, "sitemap_legacy_url", "Sitemap URL is not canonical")
+            )
         page = fetch_live(url) if live else fetch_local(site_dir, base_url, url)
         parser = parse_page(page.body)
         if page.status != 200:
@@ -214,7 +216,9 @@ def audit_sitemap_pages(
             absolute = urllib.parse.urlunparse(
                 (parsed.scheme, parsed.netloc, parsed.path, "", "", "")
             )
-            if is_internal_url(base_url, absolute) and not ignored_internal_path(absolute):
+            if is_internal_url(base_url, absolute) and not ignored_internal_path(
+                absolute
+            ):
                 internal_links.add(absolute)
     return issues, internal_links
 
@@ -229,7 +233,11 @@ def audit_internal_links(
     issues: list[AuditIssue] = []
     for url in sorted(urls):
         if is_legacy_url(url):
-            issues.append(AuditIssue(url, "internal_legacy_url", "Internal link uses redirect URL"))
+            issues.append(
+                AuditIssue(
+                    url, "internal_legacy_url", "Internal link uses redirect URL"
+                )
+            )
         page = fetch_live(url) if live else fetch_local(site_dir, base_url, url)
         if page.status in {301, 302, 307, 308}:
             issues.append(AuditIssue(url, "internal_redirect", page.location))

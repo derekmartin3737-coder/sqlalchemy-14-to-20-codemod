@@ -39,9 +39,9 @@ def _is_mutating_validation_command(command: list[str]) -> bool:
         "ruff",
         "format",
     ) or command[:2] == ["ruff", "format"]
-    black_format = _is_python_module_command(command, "black") or command[
-        :1
-    ] == ["black"]
+    black_format = _is_python_module_command(command, "black") or command[:1] == [
+        "black"
+    ]
 
     if ruff_format and "--check" not in command:
         return True

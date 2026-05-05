@@ -13,6 +13,22 @@ def _build_output(name: str) -> Path:
     return Path.cwd() / "test_runs" / "site_builder" / name
 
 
+def _assert_primary_nav_order(html: str) -> None:
+    nav_html = html.split('<nav class="nav-links" aria-label="Primary">', 1)[1].split(
+        "</nav>", 1
+    )[0]
+    labels = ("Scan", "Guides", "Products", "Pricing", "Demo", "Policies", "Repo")
+    positions = [nav_html.index(f">{label}<") for label in labels]
+    assert positions == sorted(positions)
+
+
+def _assert_footer_nav_order(html: str) -> None:
+    footer_html = html.split('<div class="footer-links">', 1)[1].split("</div>", 1)[0]
+    labels = ("Scan", "Guides", "Products", "Pricing", "Demo", "Policies", "Repo")
+    positions = [footer_html.index(f">{label}<") for label in labels]
+    assert positions == sorted(positions)
+
+
 def test_build_site_generates_sitemaps_and_indexnow_key() -> None:
     site_dir = _build_output("sitemaps")
     manifest = build_site(site_dir)
@@ -119,13 +135,12 @@ def test_generated_redirects_preserve_legacy_paths_and_track_checkout() -> None:
     )
     assert "/scan.html /scan 301" in redirects_text
     assert "/sqlalchemy-2-migration-scan /scan 301" in redirects_text
-    assert "/go/fit-report /pricing#fit-report 302" in redirects_text
-    assert "/go/fit-review /pricing#fit-report 301" in redirects_text
-    assert "/go/sa20-pack /pricing#sa20-pack 302" in redirects_text
-    assert "/go/sa20-preset /pricing#sa20-preset 302" in redirects_text
+    assert "/go/fit-report /pricing#fit-report 302" not in redirects_text
+    assert "/go/fit-review /pricing#fit-report 301" not in redirects_text
+    assert "/go/sa20-pack /pricing#sa20-pack 302" not in redirects_text
+    assert "/go/sa20-preset /pricing#sa20-preset 302" not in redirects_text
     assert (
-        "/go/pydantic-v2-porter /pricing#pydantic-v2-porter 302"
-        in redirects_text
+        "/go/pydantic-v2-porter /pricing#pydantic-v2-porter 302" not in redirects_text
     )
     assert "pay.zippertools.org" not in redirects_text
     assert (
@@ -162,16 +177,60 @@ def test_product_pages_link_to_trackable_checkout_routes() -> None:
         'href="/go/pydantic-free-scan/product-products-pydantic-v2-porter"'
         in pydantic_text
     )
-    assert 'href="/go/free-scan/product-products-sa20-pack"' in sa20_text
-    assert "Run the free scan first" in sa20_text
+    # SQLAlchemy buyer-path scan CTA routes to the controlled /scan page
+    # rather than jumping straight to the GitHub quickstart redirect, so
+    # buyers stay on-site for the first step. /scan still links out to the
+    # GitHub quickstart as a secondary trust path.
+    assert 'href="/scan?source=product-products-sa20-pack"' in sa20_text
+    assert "/go/free-scan/product-products-sa20-pack" not in sa20_text
+    assert "Run the SQLAlchemy scan first" in sa20_text
+    assert "Run the Pydantic scan first" in pydantic_text
+    assert "not the SQLAlchemy scanner" in pydantic_text
     assert "Buy cleanup pack - $299.99" in sa20_text
-    assert "Buy cleanup pack - $249.99" in pydantic_text
+    assert "Buy Pydantic cleanup pack - $249.99" in pydantic_text
     assert 'href="/go/fit-report/product-products-sa20-pack"' in sa20_text
+    assert 'href="/go/fit-report/product-products-pydantic-v2-porter"' in pydantic_text
+    assert "Stripe Checkout handles secure payment and receipts." in sa20_text
+    assert (
+        "14-day refund review for published-scope or delivery mismatches."
+        in pydantic_text
+    )
     assert "SQLAlchemy 1.4 to 2.0 Migration Cleanup Pack" in sa20_text
     assert "Pydantic v1 to v2 Migration Cleanup Pack" in pydantic_text
+    assert "After purchase, you receive" in sa20_text
+    assert "After purchase, you receive" in pydantic_text
+    assert "Preview/apply commands" in sa20_text
+    assert "Supported rewrite table" in pydantic_text
+    assert "license/support terms" in sa20_text
+    assert sa20_text.index("After purchase, you receive") < sa20_text.index(
+        "Do not use this if"
+    )
     assert 'href="/proof/sqlalchemy-public-proof/"' in sa20_text
     assert 'href="/proof/pydantic-v2-porter/"' in pydantic_text
     assert 'href="/pricing#pydantic-v2-porter"' in pydantic_text
+
+
+def test_fit_report_scope_is_not_offered_on_proof_only_eslint_pages() -> None:
+    site_dir = _build_output("fit_report_scope")
+    build_site(site_dir)
+
+    pydantic_text = (
+        site_dir / "products" / "pydantic-v2-porter" / "index.html"
+    ).read_text(encoding="utf-8")
+    eslint_text = (
+        site_dir / "eslint" / "eslintrc-to-flat-config" / "index.html"
+    ).read_text(encoding="utf-8")
+    pricing_text = Path("docs/pricing.md").read_text(encoding="utf-8")
+    store_text = Path("docs/store-products.md").read_text(encoding="utf-8")
+
+    assert "SQLAlchemy/Pydantic Fit Report Add-on" in pricing_text
+    assert "SQLAlchemy/Pydantic Fit Report Add-on" in store_text
+    assert "separate Pydantic scanner" in pricing_text
+    assert "/go/fit-report" in pydantic_text
+    assert "/go/fit-report" not in eslint_text
+    assert (
+        "fit-report add-on is not listed for this proof-only product yet" in eslint_text
+    )
 
 
 def test_generated_links_and_sitemaps_use_clean_public_urls() -> None:
@@ -194,6 +253,8 @@ def test_static_indexable_pages_use_clean_canonicals_and_links() -> None:
     pricing_text = Path("site/pricing.html").read_text(encoding="utf-8")
     demo_text = Path("site/demo.html").read_text(encoding="utf-8")
     index_text = Path("site/index.html").read_text(encoding="utf-8")
+    scan_text = Path("site/scan.html").read_text(encoding="utf-8")
+    policies_text = Path("site/policies.html").read_text(encoding="utf-8")
     config_text = Path("site/config.js").read_text(encoding="utf-8")
 
     assert 'href="https://zippertools.org/pricing"' in pricing_text
@@ -208,6 +269,63 @@ def test_static_indexable_pages_use_clean_canonicals_and_links() -> None:
     assert 'pydanticPackUrl: "/go/pydantic-v2-porter"' in config_text
     assert 'fitReportUrl: "/go/fit-report"' in config_text
     assert 'href="/scan"' in index_text
+    assert "Current checkout price: $99 per team" in pricing_text
+    assert "Buy automated fit report - $99" in pricing_text
+    assert "Secure checkout is handled by Stripe." in pricing_text
+    buyer_path_pos = index_text.index("Run local scan.")
+    pain_pos = index_text.index('<p class="kicker">Pain</p>')
+    paid_options_pos = index_text.index('<p class="kicker">Paid options</p>')
+    assert buyer_path_pos < pain_pos < paid_options_pos
+    assert "Choose the smallest paid step." in index_text
+    assert "Buy only if repeated supported findings exist." in index_text
+    for html in (index_text, scan_text, pricing_text, demo_text, policies_text):
+        _assert_primary_nav_order(html)
+        _assert_footer_nav_order(html)
+
+
+def test_free_scan_install_path_uses_verified_archive_command() -> None:
+    install_url = (
+        "https://github.com/derekmartin3737-coder/"
+        "sqlalchemy-14-to-20-codemod/archive/refs/heads/main.zip"
+    )
+    scan_text = Path("site/scan.html").read_text(encoding="utf-8")
+    index_text = Path("site/index.html").read_text(encoding="utf-8")
+    product_text = Path("site/products/sa20-pack/index.html").read_text(
+        encoding="utf-8"
+    )
+    quickstart_text = Path("docs/quickstart.md").read_text(encoding="utf-8")
+    pydantic_text = Path("products/pydantic-v2-porter/README.md").read_text(
+        encoding="utf-8"
+    )
+    flatconfig_text = Path("products/flatconfig-lift/README.md").read_text(
+        encoding="utf-8"
+    )
+
+    scan_command = "python -m sa20_pack.cli . --report migration-report.json"
+    fallback_note = (
+        "If installation fails, retry from the GitHub quickstart or contact "
+        "support at zippers3737@gmail.com."
+    )
+    normalized_fallback = " ".join(fallback_note.split())
+
+    for text in (scan_text, quickstart_text):
+        assert install_url in text
+        assert "pip install sa20-pack" not in text
+        assert scan_command in text
+        assert normalized_fallback in " ".join(text.split())
+        assert "python -m sa20_pack.cli path/to/repo" not in text
+
+    for text in (index_text, product_text):
+        assert install_url in text
+        assert scan_command in text
+        assert normalized_fallback in " ".join(text.split())
+
+    assert f"{install_url}#subdirectory=products/pydantic-v2-porter" in pydantic_text
+    assert (
+        "python -m pydantic_v2_porter.cli path/to/repo --report migration-report.json"
+        in pydantic_text
+    )
+    assert f"{install_url}#subdirectory=products/flatconfig-lift" in flatconfig_text
 
 
 def test_indexnow_payload_uses_generated_manifest_groups() -> None:

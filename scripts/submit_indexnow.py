@@ -31,12 +31,20 @@ def submit(payload: dict[str, object]) -> None:
     )
     with request.urlopen(req, timeout=30) as response:  # noqa: S310
         if response.status >= 400:
-            raise RuntimeError(f"IndexNow submission failed with status {response.status}")
+            raise RuntimeError(
+                f"IndexNow submission failed with status {response.status}"
+            )
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Submit generated site URLs to IndexNow.")
-    parser.add_argument("--manifest", default="site/_site_manifest.json", help="Path to the generated site manifest.")
+    parser = argparse.ArgumentParser(
+        description="Submit generated site URLs to IndexNow."
+    )
+    parser.add_argument(
+        "--manifest",
+        default="site/_site_manifest.json",
+        help="Path to the generated site manifest.",
+    )
     parser.add_argument(
         "--groups",
         nargs="+",

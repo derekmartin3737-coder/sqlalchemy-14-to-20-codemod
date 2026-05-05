@@ -2,8 +2,10 @@
 
 Last updated: 2026-04-30
 
-Use this file as the current Stripe product setup reference so product pages,
-pricing, Worker checkout metadata, and storefront links stay consistent.
+Use [`site/product_catalog.mjs`](../site/product_catalog.mjs) as the source of
+truth for public product names, prices, checkout routes, support, refund, and
+delivery language. This file is the longer business reference behind that
+catalog.
 
 ## Immediate checkout trust fixes
 
@@ -60,7 +62,7 @@ Suggested checkout summary:
 
 Suggested visual/checklist block:
 
-- CLI: `python -m sa20_pack.cli path/to/repo --report migration-report.json`
+- CLI: `python -m sa20_pack.cli . --report migration-report.json`
 - Report: `38 supported findings`, `6 manual-review findings`, `0 files uploaded`
 - Diff: `session.query(User).get(id)` -> `session.get(User, id)`
 - Safety: local-only, branch-first, deterministic transforms, validation report
@@ -152,7 +154,7 @@ Paid KV artifact key:
 
 Who it is for:
 
-- teams that already ran the free fit scan for the Pydantic subset
+- teams that already ran the separate Pydantic free scan for the documented subset
 - repos that fall within the documented validator/config/settings coverage
 - buyers who want a downloadable local apply pack instead of a hosted tool
 
@@ -178,7 +180,7 @@ Suggested visual/checklist block:
 
 ## Product 4
 
-Name: `Automated Migration Fit Report Add-on`
+Name: `SQLAlchemy/Pydantic Fit Report Add-on`
 
 Current checkout price: `$99` per team
 
@@ -194,27 +196,29 @@ Paid KV artifact key:
 
 Who it is for:
 
-- buyers who ran the local scan but are unsure whether the repo fits
+- buyers who ran the SQLAlchemy or Pydantic local scan but are unsure whether the repo fits
 - teams that need an autonomous buy/do-not-buy recommendation before spending $299+
 - leads from GitHub, Reddit, or email outreach who are not ready for the pack
 
 What the buyer gets:
 
-- local software that reads scanner JSON/output
+- local software that reads SQLAlchemy or Pydantic scanner JSON/output
 - supported-pattern summary
 - manual-review risk summary
 - recommendation: use cleanup pack, use preset bundle, or do not buy
 
 Suggested checkout summary:
 
-> Run the free scanner locally, then use this add-on locally against the report.
-> It produces an automated fit summary, supported-pattern counts,
-> manual-review buckets, and a buy/do-not-buy recommendation without human
-> review, source upload, consulting, or custom PR work.
+> Run the SQLAlchemy or Pydantic free scanner locally, then use this add-on
+> locally against the matching report. It produces an automated fit summary,
+> supported-pattern counts, manual-review buckets, and a buy/do-not-buy
+> recommendation without human review, source upload, consulting, or custom PR
+> work. It is not listed for ESLint proof-only pages.
 
 ## Tax and delivery notes
 
-- keep Stripe checkout copy and prices in `worker/index.mjs`
+- keep public checkout copy and prices in `site/product_catalog.mjs`
+- keep private paid artifact keys in `worker/index.mjs`
 - keep Cloudflare as the canonical storefront
 - keep paid ZIPs out of git and store checkout delivery artifacts in the
   private `PAID_ARTIFACTS` KV namespace

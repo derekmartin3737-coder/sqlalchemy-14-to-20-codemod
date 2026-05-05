@@ -1,12 +1,11 @@
 # Privacy Policy
 
-Last updated: 2026-04-30
+Last updated: 2026-05-01
 
 This policy covers the public `sa20-pack` website, the free public repo, and
 related checkout and support flows.
 
-This is not legal advice. Update the seller name and contact details before the
-public launch if they are still generic elsewhere in the repo.
+This is a plain-English operational policy, not legal advice.
 
 ## What we collect
 
@@ -21,6 +20,10 @@ Paid checkout is handled by Stripe Checkout. Orders, receipts, payment status,
 and related customer information are processed through Stripe under Stripe's
 own policies and legal obligations.
 
+Zipper Tools controls the `/go/...` checkout routes through the Cloudflare
+Worker, but Stripe handles secure payment entry and payment records. Zipper
+Tools does not receive or store full card numbers.
+
 ### Payment and payout operations
 
 Seller-side payout operations use Stripe. Buyers do not send payout
@@ -32,11 +35,14 @@ If you contact the seller directly, the seller receives the information you send
 in that message, such as your email address, order reference, and repo problem
 description.
 
+Support email: `zippers3737@gmail.com`.
+
 ## What we do not collect by default
 
 - no hidden CLI telemetry
 - no default background reporting from the codemod
 - no production credentials from your environment
+- no source-code upload for normal scanner or paid-product use
 
 ## How information is used
 

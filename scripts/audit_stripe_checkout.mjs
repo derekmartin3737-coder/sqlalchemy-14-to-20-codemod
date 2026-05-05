@@ -1,43 +1,17 @@
 #!/usr/bin/env node
 
-import worker from "../worker/index.mjs";
+import worker, { STRIPE_PRODUCTS } from "../worker/index.mjs";
 
 const DEFAULT_SITE_URL = "https://zippertools.org";
 const AUDIT_SOURCE = "stripe-audit";
-const PRODUCTS = [
-  {
-    label: "fit-report",
-    route: "/go/fit-report",
-    amount: "9900",
-    name: "Automated Migration Fit Report Add-on",
-    artifactKey: "fit-report-add-on.zip",
-    downloadName: "zippertools-fit-report-add-on.zip",
-  },
-  {
-    label: "sa20-pack",
-    route: "/go/sa20-pack",
-    amount: "29999",
-    name: "SQLAlchemy 1.4 to 2.0 Migration Cleanup Pack",
-    artifactKey: "sa20-pack-edge-case-pack.zip",
-    downloadName: "sa20-pack-edge-case-pack.zip",
-  },
-  {
-    label: "sa20-preset",
-    route: "/go/sa20-preset",
-    amount: "14999",
-    name: "Migration Preset Bundle",
-    artifactKey: "sa20-pack-preset-bundle.zip",
-    downloadName: "sa20-pack-preset-bundle.zip",
-  },
-  {
-    label: "pydantic-v2-porter",
-    route: "/go/pydantic-v2-porter",
-    amount: "24999",
-    name: "Pydantic v1 to v2 Migration Cleanup Pack",
-    artifactKey: "pydantic-v2-porter.zip",
-    downloadName: "pydantic-v2-porter.zip",
-  },
-];
+const PRODUCTS = Object.values(STRIPE_PRODUCTS).map((product) => ({
+  label: product.label,
+  route: `/go/${product.slug}`,
+  amount: String(product.unitAmount),
+  name: product.name,
+  artifactKey: product.artifactKey,
+  downloadName: product.downloadName,
+}));
 
 function parseArgs(argv) {
   const args = { siteUrl: DEFAULT_SITE_URL };

@@ -1,8 +1,10 @@
 # Support Scope
 
-Last updated: 2026-04-06
+Last updated: 2026-05-01
 
 Zipper Tools product support is intentionally bounded.
+
+Support email: `zippers3737@gmail.com`.
 
 ## Free support
 
@@ -18,9 +20,12 @@ Free support does not include custom repo debugging.
 
 Paid products do not include consulting. Paid product support is limited to:
 
+- paid delivery and download issues
 - clarifying published scope
 - clarifying install and delivery steps
 - clarifying how the downloadable product is meant to be used
+- helping interpret product docs, report fields, and manual-review findings
+- refund review questions inside the published review window
 
 ## Out of scope
 
@@ -31,6 +36,7 @@ Paid products do not include consulting. Paid product support is limited to:
 - on-call style support
 - private environment access
 - regulated-data handling without a separate formal process
+- automatic fixes for patterns listed as unsupported or manual review
 
 ## Security boundary
 
@@ -48,6 +54,7 @@ after changes.
 Send:
 
 - order reference
+- product name
 - SQLAlchemy version details
 - report excerpt
 - the unsupported pattern or validation failure

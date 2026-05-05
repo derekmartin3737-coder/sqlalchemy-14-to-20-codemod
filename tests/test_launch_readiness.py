@@ -16,6 +16,7 @@ def _required_relative_paths() -> tuple[str, ...]:
         "site/success.html",
         "site/cancel.html",
         "site/app.js",
+        "site/product_catalog.mjs",
         "site/styles.css",
         "site/og-preview.svg",
         "wrangler.jsonc",

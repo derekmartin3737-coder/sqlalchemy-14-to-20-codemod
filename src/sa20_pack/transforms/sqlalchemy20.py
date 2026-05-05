@@ -94,8 +94,10 @@ class _SQLAlchemy20Scanner(ast.NodeVisitor):
     def visit_Call(self, node: ast.Call) -> None:
         func_name = _call_name(node.func)
 
-        if _is_name(node.func, "select") and node.args and isinstance(
-            node.args[0], ast.List
+        if (
+            _is_name(node.func, "select")
+            and node.args
+            and isinstance(node.args[0], ast.List)
         ):
             self.transform_counts["select_list_syntax"] += 1
 
@@ -107,8 +109,10 @@ class _SQLAlchemy20Scanner(ast.NodeVisitor):
                 ):
                     self.transform_counts["query_get"] += 1
 
-            if node.func.attr in JOIN_NAMES and node.args and _is_string_literal(
-                node.args[0]
+            if (
+                node.func.attr in JOIN_NAMES
+                and node.args
+                and _is_string_literal(node.args[0])
             ):
                 self.transform_counts["string_join"] += 1
 

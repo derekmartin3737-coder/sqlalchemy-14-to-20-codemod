@@ -1,3 +1,5 @@
+import { checkoutProducts, goRoutes } from "../site/product_catalog.mjs";
+
 const MAX_WEBHOOK_BYTES = 256 * 1024;
 const STRIPE_WEBHOOK_PATH = "/stripe/webhook";
 const STRIPE_DELIVERY_PATH = "/stripe/delivery";
@@ -6,105 +8,49 @@ const STRIPE_CHECKOUT_SESSION_API_URL =
   "https://api.stripe.com/v1/checkout/sessions";
 const STRIPE_WEBHOOK_TOLERANCE_SECONDS = 5 * 60;
 const LEGACY_PAID_ASSET_PATH_PREFIX = "/__stripe_paid_assets/";
+const RETIRED_PAYHIP_PATH = "/payhip";
 
-const STRIPE_PRODUCTS = {
+const DELIVERY_ARTIFACTS = {
   "fit-report": {
-    slug: "fit-report",
-    label: "fit-report",
-    name: "Automated Migration Fit Report Add-on",
-    description:
-      "Local software add-on that reads scanner output and produces an autonomous buy/do-not-buy migration fit summary.",
-    unitAmount: 9900,
-    currency: "usd",
     artifactKey: "fit-report-add-on.zip",
     downloadName: "zippertools-fit-report-add-on.zip",
   },
   "sa20-pack": {
-    slug: "sa20-pack",
-    label: "sa20-pack",
-    name: "SQLAlchemy 1.4 to 2.0 Migration Cleanup Pack",
-    description:
-      "Deterministic local workflow for finding and cleaning up repeated SQLAlchemy 1.4 to 2.0 migration patterns.",
-    unitAmount: 29999,
-    currency: "usd",
     artifactKey: "sa20-pack-edge-case-pack.zip",
     downloadName: "sa20-pack-edge-case-pack.zip",
   },
   "sa20-preset": {
-    slug: "sa20-preset",
-    label: "sa20-preset",
-    name: "Migration Preset Bundle",
-    description:
-      "Preset guidance, report templates, and rollout docs for teams turning a local migration scan into repeatable cleanup work.",
-    unitAmount: 14999,
-    currency: "usd",
     artifactKey: "sa20-pack-preset-bundle.zip",
     downloadName: "sa20-pack-preset-bundle.zip",
   },
   "pydantic-v2-porter": {
-    slug: "pydantic-v2-porter",
-    label: "pydantic-v2-porter",
-    name: "Pydantic v1 to v2 Migration Cleanup Pack",
-    description:
-      "Deterministic local cleanup pack for supported Pydantic v1 to v2 imports, validators, config, and BaseSettings moves.",
-    unitAmount: 24999,
-    currency: "usd",
     artifactKey: "pydantic-v2-porter.zip",
     downloadName: "pydantic-v2-porter.zip",
   },
 };
 
-const GO_ROUTES = {
-  "/go/free-scan": {
-    kind: "free_scan",
-    label: "free-scan",
-    target:
-      "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/blob/main/docs/quickstart.md?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=quickstart",
-  },
-  "/go/pydantic-free-scan": {
-    kind: "free_scan",
-    label: "pydantic-free-scan",
-    target:
-      "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/blob/main/products/pydantic-v2-porter/README.md?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=pydantic-v2-porter",
-  },
-  "/go/flatconfig-free-scan": {
-    kind: "free_scan",
-    label: "flatconfig-free-scan",
-    target:
-      "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/blob/main/products/flatconfig-lift/README.md?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=flatconfig-lift",
-  },
-  "/go/github-release": {
-    kind: "trust",
-    label: "github-release",
-    target:
-      "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/releases/tag/v0.1.0?utm_source=zippertools&utm_medium=site&utm_campaign=trust&utm_content=v0.1.0",
-  },
-  "/go/fit-report": {
-    kind: "checkout",
-    label: "fit-report",
-    productSlug: "fit-report",
-  },
-  "/go/fit-review": {
-    kind: "legacy",
-    label: "fit-review",
-    target: "https://zippertools.org/go/fit-report",
-  },
-  "/go/sa20-pack": {
-    kind: "checkout",
-    label: "sa20-pack",
-    productSlug: "sa20-pack",
-  },
-  "/go/sa20-preset": {
-    kind: "checkout",
-    label: "sa20-preset",
-    productSlug: "sa20-preset",
-  },
-  "/go/pydantic-v2-porter": {
-    kind: "checkout",
-    label: "pydantic-v2-porter",
-    productSlug: "pydantic-v2-porter",
-  },
-};
+export const STRIPE_PRODUCTS = Object.freeze(
+  Object.fromEntries(
+    Object.values(checkoutProducts).map((product) => {
+      const delivery = DELIVERY_ARTIFACTS[product.checkoutSlug];
+      return [
+        product.checkoutSlug,
+        {
+          slug: product.checkoutSlug,
+          label: product.checkoutSlug,
+          name: product.name,
+          description: product.description,
+          unitAmount: product.amountCents,
+          currency: product.currency,
+          artifactKey: delivery.artifactKey,
+          downloadName: delivery.downloadName,
+        },
+      ];
+    }),
+  ),
+);
+
+export const GO_ROUTES = goRoutes;
 
 function jsonResponse(value, init = {}) {
   const headers = new Headers(init.headers);
@@ -621,6 +567,12 @@ async function handleStripeDelivery(request, env) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (
+      url.pathname === RETIRED_PAYHIP_PATH ||
+      url.pathname.startsWith(`${RETIRED_PAYHIP_PATH}/`)
+    ) {
+      return jsonResponse({ ok: false, error: "not_found" }, { status: 404 });
+    }
     if (url.pathname.startsWith(LEGACY_PAID_ASSET_PATH_PREFIX)) {
       return jsonResponse({ ok: false, error: "not_found" }, { status: 404 });
     }

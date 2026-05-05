@@ -29,31 +29,6 @@
       "status": 302
     },
     {
-      "source": "/go/fit-report",
-      "target": "/pricing#fit-report",
-      "status": 302
-    },
-    {
-      "source": "/go/fit-review",
-      "target": "/pricing#fit-report",
-      "status": 301
-    },
-    {
-      "source": "/go/sa20-pack",
-      "target": "/pricing#sa20-pack",
-      "status": 302
-    },
-    {
-      "source": "/go/sa20-preset",
-      "target": "/pricing#sa20-preset",
-      "status": 302
-    },
-    {
-      "source": "/go/pydantic-v2-porter",
-      "target": "/pricing#pydantic-v2-porter",
-      "status": 302
-    },
-    {
       "source": "/sqlalchemy-2-migration-scan",
       "target": "/scan",
       "status": 301
@@ -694,7 +669,7 @@
       "status": 301
     }
   ],
-  "generated_on": "2026-04-30",
+  "generated_on": "2026-05-04",
   "urls": {
     "static": [
       "https://zippertools.org/",

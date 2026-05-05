@@ -2,8 +2,8 @@
 
 Last updated: 2026-04-30
 
-This replaces Payhip checkout with repo-controlled Stripe Checkout Sessions
-created by the Cloudflare Worker.
+This uses repo-controlled Stripe Checkout Sessions created by the Cloudflare
+Worker.
 
 ## What Stripe owns
 
@@ -15,14 +15,16 @@ created by the Cloudflare Worker.
 
 ## What the Worker owns
 
-- product names, descriptions, prices, and checkout routing
+- product names, descriptions, prices, and checkout routing from
+  `site/product_catalog.mjs`
 - `/go/...` conversion tracking
 - Checkout Session creation
 - Stripe webhook signature verification at `/stripe/webhook`
 - post-payment KV artifact delivery at `/stripe/delivery`
 
-The Worker uses inline Stripe `price_data`, so the product names and prices live
-in `worker/index.mjs`. You do not need to manually create Stripe products first.
+The Worker uses inline Stripe `price_data`, so the product names and prices come
+from `site/product_catalog.mjs`. You do not need to manually create Stripe
+products first.
 
 ## Dashboard setup
 
@@ -97,12 +99,13 @@ Use `true` only after Stripe Tax is configured. Leave it unset while testing.
    before deploy.
 5. Make one low-risk live purchase and refund it from Stripe if needed.
 
-## Ditch Payhip
+## Retire Previous Checkout
 
 After Stripe test and live checkout both work:
 
-1. Remove or unpublish Payhip product pages.
-2. Remove the Payhip webhook endpoint from Payhip developer settings.
-3. Stop sending traffic to the old Payhip custom-domain checkout.
-4. Keep old Payhip order records for accounting and support history.
+1. Remove or unpublish previous checkout-provider product pages.
+2. Remove the previous checkout-provider webhook endpoint from its developer
+   settings.
+3. Stop sending traffic to the old custom-domain checkout.
+4. Keep old order records for accounting and support history.
 5. Use Stripe for new orders, refunds, and payout tracking.

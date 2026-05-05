@@ -1,9 +1,9 @@
 # Terms of Sale
 
-Last updated: 2026-04-06
+Last updated: 2026-05-01
 
 These terms apply to paid Zipper Tools digital migration products sold through
-the public checkout links.
+the public checkout links. Paid checkout uses Stripe Checkout.
 
 ## What is being sold
 
@@ -40,13 +40,21 @@ successful migration. The tool is designed to report that failure clearly.
 
 ## Delivery
 
-Paid digital goods are delivered through the configured checkout and download
-path. The buyer is responsible for keeping the order reference and receipt.
+Paid digital goods are delivered as ZIP downloads. After a successful Stripe
+payment, the success page links to `/stripe/delivery`. That route verifies the
+paid Stripe Checkout Session and streams the matching ZIP from private
+Cloudflare storage.
+
+Normal delivery does not require a manual email step, private repo access, or
+source-code upload. The buyer is responsible for keeping the order reference
+and receipt.
 
 ## Support
 
 Support follows the published support-scope policy. Buying a paid product does
 not create a consulting or custom-services relationship.
+
+Support email: `zippers3737@gmail.com`.
 
 ## Liability boundary
 

@@ -1,6 +1,6 @@
 # License Terms
 
-Last updated: 2026-04-06
+Last updated: 2026-05-01
 
 ## Free public repo
 
@@ -22,6 +22,10 @@ Unless a later paid-pack license says otherwise, the default launch intent is:
 
 Applying a paid pack to your own codebase for internal migration purposes is the
 intended use.
+
+Code changes you apply to repos your organization owns or controls remain part
+of your own codebase. The paid product files themselves remain separate
+commercial digital product contents.
 
 ## Conflicts
 

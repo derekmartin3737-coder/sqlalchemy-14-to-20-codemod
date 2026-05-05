@@ -37,8 +37,10 @@ Use [`site/config.example.js`](../site/config.example.js) as the reference forma
 
 ## 2. Keep the checkout products current
 
-Stripe Checkout is created by the Cloudflare Worker. Product names, prices,
-and checkout descriptions live in [`worker/index.mjs`](../worker/index.mjs).
+Stripe Checkout is created by the Cloudflare Worker. Public product names,
+prices, routes, and checkout descriptions live in
+[`site/product_catalog.mjs`](../site/product_catalog.mjs); the Worker keeps
+only the private paid artifact mapping beside the checkout code.
 
 Before sending paid traffic:
 

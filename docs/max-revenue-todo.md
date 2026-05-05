@@ -9,8 +9,8 @@ near the bottom of this file. That lower section is now the authoritative
 checklist for getting from here to a live company that can accept purchases.
 
 Note: Stripe Checkout is now the active checkout provider for new orders. Older
-Payhip and Lemon Squeezy items remain in this file only as historical research
-or fallback notes unless explicitly updated.
+third-party checkout research remains in this file only as historical context or
+fallback notes unless explicitly updated.
 
 Priority labels:
 

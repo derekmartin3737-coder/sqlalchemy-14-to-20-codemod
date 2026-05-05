@@ -19,8 +19,10 @@ __pycache__/
 node_modules/
 .claude/
 .npm-cache/
+.npm-cache-codex/
 .wrangler/
 .wrangler-dryrun/
+.wrangler-stripe-dryrun/
 cloudflare-mcp-server/
 dist_test/
 site-build-*/

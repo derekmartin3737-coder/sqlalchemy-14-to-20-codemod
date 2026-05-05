@@ -2,9 +2,27 @@
 
 ## Product ladder
 
+| Buyer Question | Recommended Option | Price |
+| --- | --- | --- |
+| "Does my repo have supported patterns?" | Free scan | Free |
+| "Is automation worth it for SQLAlchemy or Pydantic?" | SQLAlchemy/Pydantic fit report | $99 |
+| "I want the SQLAlchemy cleanup workflow." | SQLAlchemy pack | $299.99 |
+| "I want SQLAlchemy rollout docs and presets." | Preset bundle | $149.99 |
+| "I need the Pydantic v1 to v2 cleanup subset." | Pydantic cleanup pack | $249.99 |
+
+## Checkout and delivery terms
+
+Paid products use Stripe Checkout. After payment, `/stripe/delivery` verifies
+the paid Stripe Checkout Session and streams the matching ZIP from private
+Cloudflare storage. Normal use does not require source-code upload or manual
+email delivery.
+
+Refunds receive a 14-day review for published-scope or delivery mismatches.
+Support email: `zippers3737@gmail.com`.
+
 ## Free vs paid at a glance
 
-| Capability | Free scan | $99 automated fit report | Cleanup pack | Preset bundle |
+| Capability | Free scan | $99 SQLAlchemy/Pydantic fit report | Cleanup pack | Preset bundle |
 | --- | --- | --- | --- | --- |
 | Public/local CLI | Yes | Reads scanner output locally | Yes | Uses scanner output locally |
 | Core deterministic transforms | Yes | No code changes | Yes | Uses scanner output |
@@ -30,15 +48,26 @@ Use the public repo, CLI, and GitHub Action for:
 The point of the free tier is qualification and trust. A buyer should know
 whether the repo is a fit before paying.
 
-### $99 automated fit report
+Best for:
 
-Product name: **`Automated Migration Fit Report Add-on`**
+- finding whether a repo has repeated supported SQLAlchemy patterns
+- creating a local report without checkout, repo upload, or source sharing
+
+Not for:
+
+- custom migration decisions
+- private source review
+- guaranteed app-level success
+
+### $99 SQLAlchemy/Pydantic fit report
+
+Product name: **`SQLAlchemy/Pydantic Fit Report Add-on`**
 
 Current checkout price: **$99 per team**
 
 What it adds:
 
-- a local report summarizer for the free scanner JSON
+- a local report summarizer for SQLAlchemy or Pydantic free scanner JSON
 - supported-pattern summary
 - manual-review risk summary
 - autonomous recommendation to use the cleanup pack, use the preset bundle, or do not buy
@@ -48,6 +77,12 @@ What it does not include:
 - human review
 - custom coding
 - guaranteed migration success
+
+Best for: promising SQLAlchemy or Pydantic scan output where the business case
+is still unclear.
+
+Not for: ESLint proof-only pages, applying rewrites, custom consulting, or
+human review.
 
 ### SQLAlchemy cleanup pack
 
@@ -69,6 +104,12 @@ What the buyer is really paying for:
 - clearer unsupported buckets
 - tighter rollout confidence
 
+Best for: repeated supported SQLAlchemy findings that are still expensive to
+fix by hand.
+
+Not for: unsupported transaction semantics, broad `Query` to `select()`
+rewrites, or app-specific debugging.
+
 ### Migration Preset Bundle
 
 Product name: **`Migration Preset Bundle`**
@@ -88,6 +129,11 @@ What it does not include:
 - custom coding by a person
 - guaranteed full migration ownership
 
+Best for: teams that already know the repo fit and want reusable rollout
+structure.
+
+Not for: code rewrites, private repo debugging, or a migration service.
+
 ### Pydantic cleanup pack
 
 Product name: **`Pydantic v1 to v2 Migration Cleanup Pack`**
@@ -101,6 +147,15 @@ What it includes:
 - supported `root_validator(pre=True)` rewrites
 - safe config conversion for the documented subset
 - fail-closed unsupported findings
+
+Free qualification: run the separate Pydantic scanner from the Pydantic README.
+It is not the SQLAlchemy free scan.
+
+Best for: repos with direct `pydantic` imports, `BaseSettings`, safe `Config`
+blocks, or simple validators.
+
+Not for: custom semantic rewrites, post root validators, or unsupported
+validator signatures.
 
 ## Why the split works
 

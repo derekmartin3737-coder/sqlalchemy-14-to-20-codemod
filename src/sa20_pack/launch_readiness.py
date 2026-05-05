@@ -19,6 +19,7 @@ REQUIRED_SITE_FILES = (
     "site/cancel.html",
     "site/config.js",
     "site/app.js",
+    "site/product_catalog.mjs",
     "site/styles.css",
     "site/og-preview.svg",
     "wrangler.jsonc",

@@ -8,12 +8,16 @@ from pathlib import Path
 def test_cloudflare_assets_runs_worker_for_checkout_and_webhooks() -> None:
     config = json.loads(Path("wrangler.jsonc").read_text(encoding="utf-8"))
 
-    assert set(config["assets"]["run_worker_first"]) >= {
+    run_worker_first = set(config["assets"]["run_worker_first"])
+    assert run_worker_first >= {
         "/go/*",
         "/stripe/*",
+        "/payhip",
         "/payhip/*",
         "/__stripe_paid_assets/*",
     }
+    # The retired checkout paths run through the Worker so stale assets cannot
+    # be served if an old deployment artifact exists.
 
 
 def test_worker_tracks_source_tagged_go_routes() -> None:
@@ -53,8 +57,7 @@ console.log(response.headers.get('location'));
     lines = result.stdout.strip().splitlines()
     assert "conversion_route" in lines[0]
     assert lines[1] == (
-        "https://api.stripe.com/v1/checkout/sessions "
-        "sa20-pack product-sa20-pack 29999"
+        "https://api.stripe.com/v1/checkout/sessions sa20-pack product-sa20-pack 29999"
     )
     assert lines[-2] == "303"
     assert lines[-1] == "https://checkout.stripe.com/c/pay/cs_test_sa20"
@@ -303,6 +306,45 @@ console.log(await response.text());
     assert lines[0] == "404"
     assert lines[1] == "0"
     assert '"not_found"' in lines[2]
+
+
+def test_retired_payhip_paths_are_not_public() -> None:
+    script = """
+import worker from './worker/index.mjs';
+let assetFetchCount = 0;
+const env = {
+  ASSETS: {
+    fetch: async () => {
+      assetFetchCount += 1;
+      return new Response('stale checkout');
+    },
+  },
+};
+for (const path of ['/payhip', '/payhip/old-product']) {
+  const response = await worker.fetch(
+    new Request(`https://zippertools.org${path}`),
+    env,
+  );
+  console.log(response.status);
+  console.log(await response.text());
+}
+console.log(assetFetchCount);
+"""
+    result = subprocess.run(
+        ["node", "--input-type=module", "-e", script],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+
+    lines = result.stdout.strip().splitlines()
+    assert lines == [
+        "404",
+        '{"ok":false,"error":"not_found"}',
+        "404",
+        '{"ok":false,"error":"not_found"}',
+        "0",
+    ]
 
 
 def test_stripe_webhook_verifies_signed_checkout_event() -> None:
