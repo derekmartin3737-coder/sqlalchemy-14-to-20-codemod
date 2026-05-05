@@ -976,6 +976,17 @@ def render_evaluation_path_section(
     extra_action = ""
     if product.slug == "sa20-pack":
         extra_action = f'<a class="button secondary" href="{relative_href(path, "demo.html")}">See demo report</a>'
+    actions_html = action_list_html(
+        (
+            f'<a class="button" href="{product_href}">Open product page</a>',
+            fit_report_action,
+            f'<a class="button secondary" href="{pricing_href}">See pricing</a>'
+            if pricing_href
+            else "",
+            f'<a class="button secondary" href="{proof_href}">Read proof</a>',
+            extra_action,
+        )
+    )
     return f"""      <section class="section">
         <div class="grid two">
           <article class="page-panel bridge-panel">
@@ -992,11 +1003,7 @@ def render_evaluation_path_section(
             <h2>Product fit, proof, and price should all be one click away.</h2>
             <p>{escape(price_line)}</p>
             <div class="page-actions">
-              <a class="button" href="{product_href}">Open product page</a>
-              {fit_report_action}
-              {f'<a class="button secondary" href="{pricing_href}">See pricing</a>' if pricing_href else ""}
-              <a class="button secondary" href="{proof_href}">Read proof</a>
-              {extra_action}
+              {actions_html}
             </div>
           </article>
         </div>
@@ -1090,6 +1097,13 @@ def render_guide(guide: GuidePage) -> tuple[str, str]:
             f'<a class="button secondary" href="{relative_href(path, "proof/sqlalchemy-public-proof/index.html")}">'
             "Read public proof</a>"
         )
+    narrow_actions = action_list_html(
+        (
+            f'<a class="button" href="{relative_href(path, f"products/{guide.product_slug}/index.html")}">Open the matching product page</a>',
+            qualification_cta,
+            proof_cta,
+        )
+    )
     # Get related guides from same family (top 3 as cards)
     related = [
         item
@@ -1168,9 +1182,7 @@ def render_guide(guide: GuidePage) -> tuple[str, str]:
             <h3>Keep the migration narrow</h3>
             <p>Use the exact-problem guides as a triage layer, then decide whether the repo is inside the supported subset.</p>
             <div class="page-actions">
-              <a class="button" href="{relative_href(path, f"products/{guide.product_slug}/index.html")}">Open the matching product page</a>
-              {qualification_cta}
-              {proof_cta}
+              {narrow_actions}
             </div>
           </article>
           <article class="page-panel">
@@ -1201,7 +1213,7 @@ def render_guide(guide: GuidePage) -> tuple[str, str]:
 
 def render_family_hub(family: str, guides: list[GuidePage]) -> tuple[str, str]:
     path = f"{family}/index.html"
-    product_links = "".join(
+    product_links = action_list_html(
         f'<a class="button secondary" href="{relative_href(path, f"products/{product.slug}/index.html")}">Open {escape(product.name)}</a>'
         for product in PRODUCTS
         if any(guide.product_slug == product.slug for guide in guides)
@@ -1486,10 +1498,8 @@ def render_product(product: ProductPage) -> tuple[str, str]:
         if product.price
         else '<p class="price-line">Checkout is not listed yet.</p>'
     )
-    proof_actions = "".join(
-        action
-        for action in (proof_link, pricing_button, release_button, docs_links)
-        if action
+    proof_actions = action_list_html(
+        (proof_link, pricing_button, release_button, *docs_buttons)
     )
     workflow_section = render_product_workflow_section(product, path)
     deliverables_heading = (
@@ -1712,6 +1722,13 @@ def render_products_hub() -> tuple[str, str]:
         '<li>Handoff notes for engineering teams picking up the cleanup.</li>'
         '<li>License and support terms; no human delivery dependency.</li>'
         '</ul>'
+        '<h3>Sample preview</h3>'
+        '<pre class="code-block"><code>Manager summary excerpt\n'
+        'Supported cleanup findings: 38\n'
+        'Manual-review findings: 6\n'
+        'Rollout bucket: safe mechanical rewrites first\n'
+        'Review buckets: supported / manual-review / unsupported\n'
+        'Next step: run branch validation before merge</code></pre>'
         f'<p class="caption">Support: '
         f'<a href="mailto:{SUPPORT_EMAIL}" data-contact-link>'
         f'<span data-contact-email>{SUPPORT_EMAIL}</span></a></p>'
@@ -1745,6 +1762,12 @@ def render_products_hub() -> tuple[str, str]:
 
 def render_sqlalchemy_public_proof() -> tuple[str, str]:
     path = "proof/sqlalchemy-public-proof/index.html"
+    proof_actions = action_list_html(
+        (
+            f'<a class="button" href="{relative_href(path, "products/sa20-pack/index.html")}">Open SQLAlchemy cleanup pack</a>',
+            '<a class="button secondary" href="/scan?source=proof-sqlalchemy-public-proof">Run the free scan first</a>',
+        )
+    )
     proof_rows = (
         (
             "Bogdanp/flask_dramatiq_example",
@@ -1838,8 +1861,7 @@ def render_sqlalchemy_public_proof() -> tuple[str, str]:
               <li>Package, test, or database integration success for every repo with one supported snippet.</li>
             </ul>
             <div class="page-actions">
-              <a class="button" href="{relative_href(path, "products/sa20-pack/index.html")}">Open SQLAlchemy cleanup pack</a>
-              <a class="button secondary" href="/scan?source=proof-sqlalchemy-public-proof">Run the free scan first</a>
+              {proof_actions}
             </div>
           </article>
         </div>
@@ -1870,7 +1892,7 @@ def render_generic_product_proof(product: ProductPage) -> tuple[str, str]:
         f"<strong>{escape(guide.h1)}</strong><span>{escape(guide.description)}</span></a>"
         for guide in guides
     )
-    docs_links = "".join(
+    docs_buttons = tuple(
         f'<a class="button secondary" href="#" data-doc-path="{escape(doc_path)}">{escape(label)}</a>'
         for label, doc_path in product.docs
     )
@@ -1880,6 +1902,9 @@ def render_generic_product_proof(product: ProductPage) -> tuple[str, str]:
         else ""
     )
     product_button = f'<a class="button" href="{relative_href(path, product_page_path(product))}">Open {escape(product.name)}</a>'
+    decision_actions = action_list_html(
+        (product_button, pricing_button, *docs_buttons)
+    )
     body = f"""
       <section class="section">
         <div class="grid three">
@@ -1919,9 +1944,7 @@ def render_generic_product_proof(product: ProductPage) -> tuple[str, str]:
             <h2>Decision path</h2>
             <p>{escape(product.summary)}</p>
             <div class="page-actions">
-              {product_button}
-              {pricing_button}
-              {docs_links}
+              {decision_actions}
             </div>
           </article>
         </div>

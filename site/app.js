@@ -397,6 +397,20 @@ import {
     });
   }
 
+  function applyCancelTitle() {
+    if (window.location.pathname.replace(/\/$/, "") !== "/cancel") {
+      return;
+    }
+    const productSlug = new URLSearchParams(window.location.search).get("product");
+    const labels = {
+      "fit-report": "Fit Report",
+      "sa20-pack": "SQLAlchemy Cleanup Pack",
+      "sa20-preset": "Migration Preset Bundle",
+      "pydantic-v2-porter": "Pydantic Cleanup Pack",
+    };
+    document.title = `Checkout canceled | ${labels[productSlug] || "Zipper Tools"}`;
+  }
+
   const missing = [];
   ["sellerName", "contactEmail", "repoUrl"].forEach((key) => {
     if (isPlaceholder(config[key])) {
@@ -414,6 +428,7 @@ import {
   applyText("[data-seller-name]", config.sellerName, "the seller");
   applyText("[data-contact-email]", contactEmail(), "contact email");
   applyProductText();
+  applyCancelTitle();
   applyProductCtas();
   renderPricingRows();
   renderProductCards();
