@@ -14,7 +14,7 @@ The canonical live storefront is:
 
 The GitHub Pages URL should redirect there:
 
-- `https://derekmartin3737-coder.github.io/sqlalchemy-14-to-20-codemod/`
+- `https://zippertools.github.io/sqlalchemy-14-to-20-codemod/`
 
 For Cloudflare, the repo now also includes
 [`wrangler.jsonc`](../wrangler.jsonc)

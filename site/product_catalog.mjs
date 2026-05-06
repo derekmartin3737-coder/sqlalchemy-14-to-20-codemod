@@ -1,6 +1,6 @@
 const SITE_URL = "https://zippertools.org";
 const REPO_URL =
-  "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod";
+  "https://github.com/zippertools/sqlalchemy-14-to-20-codemod";
 const SUPPORT_EMAIL = "zippers3737@gmail.com";
 
 const routes = Object.freeze({

@@ -117,20 +117,20 @@ def test_generated_redirects_preserve_legacy_paths_and_track_checkout() -> None:
     )
     assert "/products/sa20-pack/index.html /products/sa20-pack/ 301" in redirects_text
     assert (
-        "/go/free-scan https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/blob/main/docs/quickstart.md"
+        "/go/free-scan https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/docs/quickstart.md"
         in redirects_text
     )
     assert (
-        "/go/pydantic-free-scan https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/blob/main/products/pydantic-v2-porter/README.md"
+        "/go/pydantic-free-scan https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/products/pydantic-v2-porter/README.md"
         in redirects_text
     )
     assert (
-        "/go/flatconfig-free-scan https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/blob/main/products/flatconfig-lift/README.md"
+        "/go/flatconfig-free-scan https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/products/flatconfig-lift/README.md"
         in redirects_text
     )
     assert "utm_campaign=free_scan" in redirects_text
     assert (
-        "/go/github-release https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/releases/tag/v0.1.0"
+        "/go/github-release https://github.com/zippertools/sqlalchemy-14-to-20-codemod/releases/tag/v0.1.0"
         in redirects_text
     )
     assert "/scan.html /scan 301" in redirects_text
@@ -285,7 +285,7 @@ def test_static_indexable_pages_use_clean_canonicals_and_links() -> None:
 
 def test_free_scan_install_path_uses_verified_archive_command() -> None:
     install_url = (
-        "https://github.com/derekmartin3737-coder/"
+        "https://github.com/zippertools/"
         "sqlalchemy-14-to-20-codemod/archive/refs/heads/main.zip"
     )
     scan_text = Path("site/scan.html").read_text(encoding="utf-8")

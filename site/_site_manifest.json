@@ -10,22 +10,22 @@
     },
     {
       "source": "/go/free-scan",
-      "target": "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/blob/main/docs/quickstart.md?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=quickstart",
+      "target": "https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/docs/quickstart.md?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=quickstart",
       "status": 302
     },
     {
       "source": "/go/pydantic-free-scan",
-      "target": "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/blob/main/products/pydantic-v2-porter/README.md?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=pydantic-v2-porter",
+      "target": "https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/products/pydantic-v2-porter/README.md?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=pydantic-v2-porter",
       "status": 302
     },
     {
       "source": "/go/flatconfig-free-scan",
-      "target": "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/blob/main/products/flatconfig-lift/README.md?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=flatconfig-lift",
+      "target": "https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/products/flatconfig-lift/README.md?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=flatconfig-lift",
       "status": 302
     },
     {
       "source": "/go/github-release",
-      "target": "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/releases/tag/v0.1.0?utm_source=zippertools&utm_medium=site&utm_campaign=trust&utm_content=v0.1.0",
+      "target": "https://github.com/zippertools/sqlalchemy-14-to-20-codemod/releases/tag/v0.1.0?utm_source=zippertools&utm_medium=site&utm_campaign=trust&utm_content=v0.1.0",
       "status": 302
     },
     {
@@ -669,7 +669,7 @@
       "status": 301
     }
   ],
-  "generated_on": "2026-05-04",
+  "generated_on": "2026-05-05",
   "urls": {
     "static": [
       "https://zippertools.org/",

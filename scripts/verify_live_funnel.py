@@ -27,23 +27,23 @@ from collections.abc import Iterable
 from dataclasses import dataclass, field
 
 DEFAULT_BASE_URL = "https://zippertools.org"
-REPO_URL = "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod"
+REPO_URL = "https://github.com/zippertools/sqlalchemy-14-to-20-codemod"
 RAW_REPO_URL = (
-    "https://raw.githubusercontent.com/derekmartin3737-coder/"
+    "https://raw.githubusercontent.com/zippertools/"
     "sqlalchemy-14-to-20-codemod/main"
 )
 GITHUB_API_CONTENTS_URL = (
-    "https://api.github.com/repos/derekmartin3737-coder/"
+    "https://api.github.com/repos/zippertools/"
     "sqlalchemy-14-to-20-codemod/contents"
 )
 
 SQLALCHEMY_INSTALL = (
-    'python -m pip install "https://github.com/derekmartin3737-coder/'
+    'python -m pip install "https://github.com/zippertools/'
     'sqlalchemy-14-to-20-codemod/archive/refs/heads/main.zip"'
 )
 SQLALCHEMY_RUN = "python -m sa20_pack.cli . --report migration-report.json"
 PYDANTIC_INSTALL = (
-    'python -m pip install "https://github.com/derekmartin3737-coder/'
+    'python -m pip install "https://github.com/zippertools/'
     "sqlalchemy-14-to-20-codemod/archive/refs/heads/main.zip"
     '#subdirectory=products/pydantic-v2-porter"'
 )

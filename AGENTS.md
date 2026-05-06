@@ -225,7 +225,7 @@ And the migration runner itself should produce a structured report showing:
   narrow scanner-first SQLAlchemy migration description, and exact-intent
   migration topics.
 - GitHub release `v0.1.0` now exists for the public scanner/discovery baseline:
-  `https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/releases/tag/v0.1.0`.
+  `https://github.com/zippertools/sqlalchemy-14-to-20-codemod/releases/tag/v0.1.0`.
 
 ## Next Steps
 

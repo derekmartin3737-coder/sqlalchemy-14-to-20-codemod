@@ -25,7 +25,7 @@ directory. The repaired pages live at:
 - `https://zippertools.org/products/sa20-pack/`
 - `https://zippertools.org/products/pydantic-v2-porter/`
 - `https://zippertools.org/proof/flatconfig-lift/` (ESLint proof-only)
-- `https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/blob/main/docs/quickstart.md`
+- `https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/docs/quickstart.md`
 
 The deploy verification step still requires running `wrangler deploy` and
 recording the version. That stays open until the next push.
@@ -40,7 +40,7 @@ recording the version. That stays open until the next push.
       is still unavailable:
 
   ```bash
-  python -m pip install "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/archive/refs/heads/main.zip"
+  python -m pip install "https://github.com/zippertools/sqlalchemy-14-to-20-codemod/archive/refs/heads/main.zip"
   python -m sa20_pack.cli . --report migration-report.json
   ```
 
@@ -124,7 +124,7 @@ Evidence: the Pydantic product page now ships a verified GitHub install command
 followed by the scan command:
 
 ```bash
-python -m pip install "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/archive/refs/heads/main.zip#subdirectory=products/pydantic-v2-porter"
+python -m pip install "https://github.com/zippertools/sqlalchemy-14-to-20-codemod/archive/refs/heads/main.zip#subdirectory=products/pydantic-v2-porter"
 python -m pydantic_v2_porter.cli path/to/repo --report migration-report.json
 ```
 

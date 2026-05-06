@@ -25,7 +25,7 @@ small, verify locally, and update this file as fixes land.
 - [x] Use one primary public command pair:
 
 ```bash
-python -m pip install "https://github.com/derekmartin3737-coder/sqlalchemy-14-to-20-codemod/archive/refs/heads/main.zip"
+python -m pip install "https://github.com/zippertools/sqlalchemy-14-to-20-codemod/archive/refs/heads/main.zip"
 python -m sa20_pack.cli . --report migration-report.json
 ```
 

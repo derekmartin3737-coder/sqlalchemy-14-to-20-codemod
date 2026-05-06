@@ -149,9 +149,9 @@ for (const [route, expectedPath] of routes) {
     )
 
     assert result.stdout.strip().splitlines() == [
-        "302 github.com /derekmartin3737-coder/sqlalchemy-14-to-20-codemod/blob/main/docs/quickstart.md free_scan unit-test",
-        "302 github.com /derekmartin3737-coder/sqlalchemy-14-to-20-codemod/blob/main/products/pydantic-v2-porter/README.md free_scan unit-test",
-        "302 github.com /derekmartin3737-coder/sqlalchemy-14-to-20-codemod/blob/main/products/flatconfig-lift/README.md free_scan unit-test",
+        "302 github.com /zippertools/sqlalchemy-14-to-20-codemod/blob/main/docs/quickstart.md free_scan unit-test",
+        "302 github.com /zippertools/sqlalchemy-14-to-20-codemod/blob/main/products/pydantic-v2-porter/README.md free_scan unit-test",
+        "302 github.com /zippertools/sqlalchemy-14-to-20-codemod/blob/main/products/flatconfig-lift/README.md free_scan unit-test",
     ]
 
 
