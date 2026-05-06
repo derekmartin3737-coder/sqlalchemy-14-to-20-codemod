@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from decimal import Decimal, ROUND_HALF_UP
 
 # ruff: noqa: E501
 
@@ -12,6 +13,17 @@ PYDANTIC_REPO_URL = "https://github.com/zippertools/pydantic-v1-to-v2-codemod"
 PUBLIC_RELEASE_TAG = "v0.1.1"
 PYDANTIC_RELEASE_TAG = "v0.1.1"
 SUPPORT_EMAIL = "zippers3737@gmail.com"
+SALE_NAME = "Migration Sprint Sale"
+SALE_BADGE = "90% off"
+SALE_DISCOUNT_PERCENT = 90
+SALE_STRIPE_COUPON_ID = "ro5ZyRLf"
+SALE_START_ISO = "2026-05-06T07:00:00Z"
+SALE_END_ISO = "2026-05-28T06:59:59Z"
+SALE_END_LABEL = "May 27, 2026 at 11:59 PM Pacific"
+SALE_COPY = (
+    f"{SALE_NAME}: {SALE_BADGE} every listed paid product through "
+    f"{SALE_END_LABEL}. Discount is applied automatically in Stripe Checkout."
+)
 SA20_INSTALL_URL = f"{REPO_URL}/archive/refs/tags/{PUBLIC_RELEASE_TAG}.zip"
 # pip's `#subdirectory=` fragment works on both git+ URLs and archive zip URLs.
 # Use the archive form so users do not need a local git binary.
@@ -37,11 +49,12 @@ LOCAL_NO_UPLOAD_LANGUAGE = (
 REFUND_LANGUAGE = "14-day refund review for published-scope or delivery mismatches."
 
 FIT_REPORT_ROUTE = "/go/fit-report"
-FIT_REPORT_PRICE = "$99"
+FIT_REPORT_REGULAR_PRICE = "$99"
+FIT_REPORT_PRICE = "$9.90"
 FIT_REPORT_NAME = "SQLAlchemy/Pydantic Fit Report Add-on"
 FIT_REPORT_LABEL = "SQLAlchemy/Pydantic fit report"
 FIT_REPORT_PRODUCT_SLUGS = frozenset(("sa20-pack", "pydantic-v2-porter"))
-FIT_REPORT_CTA = f"Buy automated fit report - {FIT_REPORT_PRICE}"
+FIT_REPORT_CTA = f"Buy automated fit report - {FIT_REPORT_PRICE} sale"
 FIT_REPORT_SCOPE_NOTE = (
     "Use this only with SQLAlchemy or Pydantic scanner output. It is not listed "
     "for ESLint proof-only pages."
@@ -54,6 +67,42 @@ SA20_PRESET_CHECKOUT_PATH = "/go/sa20-preset"
 STATUS_AVAILABLE = "Available now"
 STATUS_PROOF_ONLY = "Example/proof page only"
 STATUS_NOT_PURCHASABLE = "Not currently purchasable"
+
+
+def price_to_cents(price: str) -> int:
+    cents = (Decimal(price) * Decimal("100")).quantize(
+        Decimal("1"), rounding=ROUND_HALF_UP
+    )
+    return int(cents)
+
+
+def format_cents(cents: int) -> str:
+    dollars = Decimal(cents) / Decimal("100")
+    if cents % 100 == 0:
+        return f"${dollars.quantize(Decimal('1'))}"
+    return f"${dollars.quantize(Decimal('0.01'))}"
+
+
+def sale_price_cents(price: str) -> int:
+    return int(
+        (
+            Decimal(price_to_cents(price))
+            * Decimal(100 - SALE_DISCOUNT_PERCENT)
+            / Decimal("100")
+        ).quantize(Decimal("1"), rounding=ROUND_HALF_UP)
+    )
+
+
+def sale_price_display(price: str) -> str:
+    return format_cents(sale_price_cents(price))
+
+
+def sale_price_detail(price: str) -> str:
+    return f"{sale_price_display(price)} during {SALE_NAME}; normally ${price} per team"
+
+
+def sale_cta_price(price: str) -> str:
+    return f"{sale_price_display(price)} sale"
 
 
 @dataclass(frozen=True)

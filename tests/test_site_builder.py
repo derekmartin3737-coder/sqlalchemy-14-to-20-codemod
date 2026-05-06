@@ -207,8 +207,8 @@ def test_product_pages_link_to_trackable_checkout_routes() -> None:
     assert "Run the SQLAlchemy scan first" in sa20_text
     assert "Run the Pydantic scan first" in pydantic_text
     assert "not the SQLAlchemy scanner" in pydantic_text
-    assert "Buy cleanup pack - $299.99" in sa20_text
-    assert "Buy Pydantic cleanup pack - $249.99" in pydantic_text
+    assert "Buy cleanup pack - $30 sale" in sa20_text
+    assert "Buy Pydantic cleanup pack - $25 sale" in pydantic_text
     assert 'href="/go/fit-report/product-products-sa20-pack"' in sa20_text
     assert 'href="/go/fit-report/product-products-pydantic-v2-porter"' in pydantic_text
     assert "Stripe Checkout handles secure payment and receipts." in sa20_text
@@ -295,8 +295,15 @@ def test_static_indexable_pages_use_clean_canonicals_and_links() -> None:
     assert 'fitReportUrl: "/go/fit-report"' in config_text
     assert 'contactEmail: "zippers3737@gmail.com"' in config_text
     assert 'href="/scan"' in index_text
-    assert "Current checkout price: $99 per team" in pricing_text
-    assert "Buy automated fit report - $99" in pricing_text
+    assert "Migration Sprint Sale" in pricing_text
+    assert (
+        "Sale price: $9.90 during Migration Sprint Sale; normally $99 per team"
+        in pricing_text
+    )
+    assert "Buy automated fit report - $9.90 sale" in pricing_text
+    for page_text in (index_text, scan_text, pricing_text, demo_text, policies_text):
+        assert "Migration Sprint Sale" in page_text
+        assert "90% off" in page_text
     assert "Secure checkout is handled by Stripe." in pricing_text
     buyer_path_pos = index_text.index("Run the local scan.")
     pain_pos = index_text.index('<p class="kicker">Pain</p>')

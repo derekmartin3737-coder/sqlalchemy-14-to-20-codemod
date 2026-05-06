@@ -7,6 +7,19 @@ truth for public product names, prices, checkout routes, support, refund, and
 delivery language. This file is the longer business reference behind that
 catalog.
 
+## Temporary Migration Sprint Sale
+
+From May 6, 2026 through May 27, 2026 at 11:59 PM Pacific, every listed paid
+product is 90% off. Stripe Checkout applies the discount automatically through
+coupon `ro5ZyRLf`, while the Worker enforces the deadline.
+
+Sale prices:
+
+- SQLAlchemy cleanup pack: `$30` sale; normally `$299.99`
+- Migration Preset Bundle: `$15` sale; normally `$149.99`
+- Pydantic cleanup pack: `$25` sale; normally `$249.99`
+- SQLAlchemy/Pydantic Fit Report Add-on: `$9.90` sale; normally `$99`
+
 ## Immediate checkout trust fixes
 
 Apply these rules before sending paid traffic:
@@ -24,7 +37,8 @@ Apply these rules before sending paid traffic:
 
 Name: `SQLAlchemy 1.4 to 2.0 Migration Cleanup Pack`
 
-Current checkout price: `$299.99` one-time per team
+Temporary sale price: `$30` one-time per team through May 27, 2026 at 11:59 PM Pacific.
+Normal checkout price: `$299.99` one-time per team.
 
 Type: single-payment digital product
 
@@ -86,7 +100,8 @@ Suggested receipt email button:
 
 Name: `Migration Preset Bundle`
 
-Current checkout price: `$149.99` one-time per team
+Temporary sale price: `$15` one-time per team through May 27, 2026 at 11:59 PM Pacific.
+Normal checkout price: `$149.99` one-time per team.
 
 Type: single-payment digital product
 
@@ -140,7 +155,8 @@ Suggested receipt email button:
 
 Name: `Pydantic v1 to v2 Migration Cleanup Pack`
 
-Current checkout price: `$249.99` one-time per team
+Temporary sale price: `$25` one-time per team through May 27, 2026 at 11:59 PM Pacific.
+Normal checkout price: `$249.99` one-time per team.
 
 Type: single-payment digital product
 
@@ -182,7 +198,8 @@ Suggested visual/checklist block:
 
 Name: `SQLAlchemy/Pydantic Fit Report Add-on`
 
-Current checkout price: `$99` per team
+Temporary sale price: `$9.90` per team through May 27, 2026 at 11:59 PM Pacific.
+Normal checkout price: `$99` per team.
 
 Type: single-payment digital software product
 

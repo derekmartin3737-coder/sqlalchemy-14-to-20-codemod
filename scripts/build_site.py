@@ -41,6 +41,10 @@ from scripts.site_catalog import (
     SA20_PRESET_NAME,
     SA20_PRESET_PRICE,
     SECURE_CHECKOUT_NOTE,
+    SALE_BADGE,
+    SALE_COPY,
+    SALE_END_LABEL,
+    SALE_NAME,
     SITE_NAME,
     SITE_URL,
     STATUS_AVAILABLE,
@@ -49,6 +53,9 @@ from scripts.site_catalog import (
     SUPPORT_EMAIL,
     GuidePage,
     ProductPage,
+    sale_cta_price,
+    sale_price_detail,
+    sale_price_display,
 )
 
 # ruff: noqa: E501
@@ -369,6 +376,20 @@ def footer_html(path: str) -> str:
     )
 
 
+def sale_banner_html(path: str) -> str:
+    pricing_href = relative_href(path, "pricing.html")
+    return (
+        f'<section class="sale-banner" data-sale-banner data-sale-ends="{SALE_END_LABEL}">'
+        '<div>'
+        f'<p class="kicker">{escape(SALE_BADGE)} for three weeks</p>'
+        f'<strong>{escape(SALE_NAME)}</strong>'
+        f'<span>{escape(SALE_COPY)}</span>'
+        "</div>"
+        f'<a class="button secondary" href="{pricing_href}">See sale pricing</a>'
+        "</section>"
+    )
+
+
 def breadcrumb_html(path: str, crumbs: list[tuple[str, str]]) -> str:
     items: list[str] = []
     for href, label in crumbs[:-1]:
@@ -423,11 +444,12 @@ def product_schema(product: ProductPage, path: str) -> dict[str, object]:
     if product.price:
         schema["offers"] = {
             "@type": "Offer",
-            "price": product.price,
+            "price": sale_price_display(product.price).removeprefix("$"),
             "priceCurrency": product.currency,
             "availability": f"https://schema.org/{product.availability}",
             "url": canonical_url(path),
             "seller": {"@type": "Organization", "name": SITE_NAME},
+            "priceValidUntil": "2026-05-27",
         }
     return schema
 
@@ -445,10 +467,11 @@ def software_application_schema(product: ProductPage, path: str) -> dict[str, ob
     if product.price:
         schema["offers"] = {
             "@type": "Offer",
-            "price": product.price,
+            "price": sale_price_display(product.price).removeprefix("$"),
             "priceCurrency": product.currency,
             "availability": f"https://schema.org/{product.availability}",
             "url": canonical_url(path),
+            "priceValidUntil": "2026-05-27",
         }
     return schema
 
@@ -560,11 +583,11 @@ def checkout_cta_label(product: ProductPage) -> str:
 
 
 def product_price_line(product: ProductPage) -> str:
-    return f"${product.price} per team" if product.price else STATUS_NOT_PURCHASABLE
+    return sale_price_detail(product.price) if product.price else STATUS_NOT_PURCHASABLE
 
 
 def product_buy_cta(product: ProductPage) -> str:
-    return f"{checkout_cta_label(product)} - ${product.price}"
+    return f"{checkout_cta_label(product)} - {sale_cta_price(product.price)}"
 
 
 def product_page_path(product: ProductPage) -> str:
@@ -911,16 +934,16 @@ def render_purchase_panel(product: ProductPage, path: str, *, context: str) -> s
             fit_report_action,
             proof_action,
             pricing_action,
-            f'<a class="button secondary" href="{escape(checkout_path)}">{escape(checkout_cta_label(product))}</a>',
+            f'<a class="button secondary" href="{escape(checkout_path)}">{escape(product_buy_cta(product))}</a>',
         )
     else:
         primary_action = (
             fit_report_action.replace('class="button secondary"', 'class="button"', 1)
             if fit_report_action
-            else f'<a class="button" href="{escape(checkout_path)}">Buy {escape(product.name)} - ${escape(product.price)}</a>'
+            else f'<a class="button" href="{escape(checkout_path)}">Buy {escape(product.name)} - {escape(sale_cta_price(product.price))}</a>'
         )
         secondary_actions = (
-            f'<a class="button secondary" href="{escape(checkout_path)}">Buy {escape(product.name)} - ${escape(product.price)}</a>',
+            f'<a class="button secondary" href="{escape(checkout_path)}">Buy {escape(product.name)} - {escape(sale_cta_price(product.price))}</a>',
             proof_action,
             pricing_action,
         )
@@ -1093,7 +1116,7 @@ def render_evaluation_path_section(
         else ""
     )
     price_line = (
-        f"Published cleanup-pack price: ${escape(product.price)} one time."
+        f"Temporary sale price: {sale_price_detail(product.price)}. Stripe Checkout applies the {SALE_BADGE} discount automatically through {SALE_END_LABEL}."
         if product.price
         else "Current listed price is not published on the pricing page yet."
     )
@@ -1188,6 +1211,7 @@ def layout(
     {nav_html(path)}
     <main class="wrap">
       <section class="warning" id="launch-warning" aria-live="polite"></section>
+      {sale_banner_html(path)}
       <section class="page-title">
         {breadcrumb_html(path, crumbs)}
         <p class="kicker">{escape(kicker)}</p>
@@ -1750,7 +1774,7 @@ def render_product(product: ProductPage) -> tuple[str, str]:
     )
     docs_links = "".join(docs_buttons)
     if product.checkout_path:
-        price_suffix = f" - ${escape(product.price)}" if product.price else ""
+        price_suffix = f" - {escape(sale_cta_price(product.price))}" if product.price else ""
         checkout_label = checkout_cta_label(product)
         checkout_button = (
             f'<a class="button" href="{escape(checkout_path)}">'
@@ -1821,7 +1845,7 @@ def render_product(product: ProductPage) -> tuple[str, str]:
     )
 
     price_line = (
-        f'<p class="price-line">Published workflow price: <strong>${escape(product.price)}</strong>.</p>'
+        f'<p class="price-line">Temporary sale price: <strong>{escape(sale_price_display(product.price))}</strong>. Normally ${escape(product.price)} per team. {escape(SALE_BADGE)} is applied automatically in Stripe Checkout through {escape(SALE_END_LABEL)}.</p>'
         if product.price
         else '<p class="price-line">Checkout is not listed yet.</p>'
     )
@@ -2013,11 +2037,11 @@ def render_products_hub() -> tuple[str, str]:
             "status": STATUS_AVAILABLE,
             "status_class": "available",
             "outcome": "Add reusable SQLAlchemy rollout presets, richer report templates, and manager-ready migration notes.",
-            "price": f"${SA20_PRESET_PRICE} per team",
+            "price": sale_price_detail(SA20_PRESET_PRICE),
             "href": relative_href(path, product_page_path(product_lookup["sa20-preset"])),
             "cta": "View rollout kit details",
             "buy_href": tracked_go_path(SA20_PRESET_CHECKOUT_PATH, catalog_source),
-            "buy_cta": f"Buy preset bundle - ${SA20_PRESET_PRICE}",
+            "buy_cta": f"Buy preset bundle - {sale_cta_price(SA20_PRESET_PRICE)}",
             "checkout_note": SECURE_CHECKOUT_NOTE,
         },
     )
@@ -2101,6 +2125,13 @@ def render_products_hub() -> tuple[str, str]:
         '</section>'
     )
     body = f"""
+      <section class="section">
+        <article class="page-panel sale-detail-panel">
+          <p class="kicker">{escape(SALE_BADGE)} temporary sale</p>
+          <h2>{escape(SALE_NAME)} is live on every purchasable product.</h2>
+          <p>{escape(SALE_COPY)}</p>
+        </article>
+      </section>
       <section class="section">
         <div class="section-heading"><p class="kicker">{escape(STATUS_AVAILABLE)}</p><h2>Available products, each with a real detail page.</h2></div>
         <div class="catalog-grid">{available_html}</div>

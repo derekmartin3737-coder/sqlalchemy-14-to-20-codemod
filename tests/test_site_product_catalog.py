@@ -22,10 +22,10 @@ def test_product_catalog_order_status_and_ctas() -> None:
     assert fit_pos < sqlalchemy_pos < pydantic_pos < preset_pos < eslint_pos
     assert html.count('class="status-label available">Available now') == 4
     assert "Example/proof page only" in html
-    assert "$99 per team" in html
-    assert "$299.99 per team" in html
-    assert "$249.99 per team" in html
-    assert "$149.99 per team" in html
+    assert "$9.90 during Migration Sprint Sale; normally $99 per team" in html
+    assert "$30 during Migration Sprint Sale; normally $299.99 per team" in html
+    assert "$25 during Migration Sprint Sale; normally $249.99 per team" in html
+    assert "$15 during Migration Sprint Sale; normally $149.99 per team" in html
     assert "Not currently purchasable" in html
     assert "Read proof page" in html
     assert "/products/fit-report/" in html
@@ -38,15 +38,16 @@ def test_product_catalog_order_status_and_ctas() -> None:
     assert "/go/sa20-preset/catalog-card-products" in html
     assert "View fit report details" in html
     assert "View rollout kit details" in html
-    assert "Buy automated fit report - $99" in html
-    assert "Buy cleanup pack - $299.99" in html
-    assert "Buy Pydantic cleanup pack - $249.99" in html
-    assert "Buy preset bundle - $149.99" in html
+    assert "Buy automated fit report - $9.90 sale" in html
+    assert "Buy cleanup pack - $30 sale" in html
+    assert "Buy Pydantic cleanup pack - $25 sale" in html
+    assert "Buy preset bundle - $15 sale" in html
     assert html.count("Secure checkout is handled by Stripe.") == 4
     assert "Labs and proofs" in html
     catalog_text = Path("site/product_catalog.mjs").read_text(encoding="utf-8")
     assert "Buy automated fit report" in catalog_text
-    assert "prices.fitReport.display" in catalog_text
+    assert "checkoutSale" in catalog_text
+    assert "saleCtaPrice" in catalog_text
     assert "SQLAlchemy/Pydantic Fit Report Add-on" in (catalog_text)
     assert "Use this only with SQLAlchemy or Pydantic scanner output" in (catalog_text)
     assert 'secureCheckoutNote: "Secure checkout is handled by Stripe."' in (
@@ -77,6 +78,7 @@ def test_site_config_matches_product_catalog_constants() -> None:
 import fs from 'node:fs';
 import vm from 'node:vm';
 import {
+  checkoutSale,
   checkoutProducts,
   commerce,
   goRoutes,
@@ -114,6 +116,12 @@ console.log(JSON.stringify({
     sa20Preset: products.sa20Preset.ctaLabel,
     pydantic: products.pydantic.ctaLabel,
   },
+  sale: {
+    active: checkoutSale.active,
+    name: checkoutSale.name,
+    coupon: checkoutSale.stripeCouponId,
+    endsAt: checkoutSale.endsAt,
+  },
   goRouteLabels: Object.fromEntries(
     Object.entries(goRoutes).map(([route, value]) => [route, value.label]),
   ),
@@ -140,10 +148,16 @@ console.log(JSON.stringify({
         "sa20-preset": 14999,
     }
     assert data["ctaLabels"] == {
-        "fitReport": "Buy automated fit report - $99",
-        "pydantic": "Buy Pydantic cleanup pack - $249.99",
-        "sa20": "Buy cleanup pack - $299.99",
-        "sa20Preset": "Buy preset bundle - $149.99",
+        "fitReport": "Buy automated fit report - $9.90 sale",
+        "pydantic": "Buy Pydantic cleanup pack - $25 sale",
+        "sa20": "Buy cleanup pack - $30 sale",
+        "sa20Preset": "Buy preset bundle - $15 sale",
+    }
+    assert data["sale"] == {
+        "active": True,
+        "name": "Migration Sprint Sale",
+        "coupon": "ro5ZyRLf",
+        "endsAt": "2026-05-28T06:59:59Z",
     }
     assert data["goRouteLabels"]["/go/fit-report"] == "fit-report"
     assert data["goRouteLabels"]["/go/pydantic-v2-porter"] == "pydantic-v2-porter"

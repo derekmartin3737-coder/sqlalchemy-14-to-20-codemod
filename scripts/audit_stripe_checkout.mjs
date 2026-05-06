@@ -4,6 +4,8 @@ import worker, { STRIPE_PRODUCTS } from "../worker/index.mjs";
 
 const DEFAULT_SITE_URL = "https://zippertools.org";
 const AUDIT_SOURCE = "stripe-audit";
+const SALE_COUPON_ID = "ro5ZyRLf";
+const SALE_NOW_ISO = "2026-05-07T12:00:00Z";
 const PRODUCTS = Object.values(STRIPE_PRODUCTS).map((product) => ({
   label: product.label,
   route: `/go/${product.slug}`,
@@ -62,6 +64,7 @@ async function auditProduct(args, product) {
     const env = {
       ASSETS: { fetch: async () => new Response("asset") },
       STRIPE_SECRET_KEY: "sk_test_audit",
+      SALE_NOW_ISO,
     };
     const response = await worker.fetch(request, env);
     const location = response.headers.get("location") || "";
@@ -92,6 +95,18 @@ async function auditProduct(args, product) {
       observedParams.get("line_items[0][price_data][product_data][name]") ===
         product.name,
       `${product.route} sent the wrong product name`,
+    );
+    assertAudit(
+      observedParams.get("discounts[0][coupon]") === SALE_COUPON_ID,
+      `${product.route} did not apply the sale coupon`,
+    );
+    assertAudit(
+      !observedParams.has("allow_promotion_codes"),
+      `${product.route} should not mix automatic discounts with promotion-code entry`,
+    );
+    assertAudit(
+      observedParams.get("metadata[sale_name]") === "Migration Sprint Sale",
+      `${product.route} did not include sale metadata`,
     );
     return { route: product.route, location };
   } finally {

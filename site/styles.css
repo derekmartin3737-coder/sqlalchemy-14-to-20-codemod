@@ -115,6 +115,35 @@ main {
   color: #fde68a;
 }
 
+.sale-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border: 1px solid rgba(34, 197, 94, 0.46);
+  border-radius: var(--radius);
+  background: rgba(7, 45, 31, 0.86);
+  color: #dcfce7;
+  padding: 14px 16px;
+  margin: 8px 0 24px;
+  box-shadow: var(--shadow);
+}
+
+.sale-banner strong {
+  display: block;
+  color: #f0fdf4;
+  font-size: 1.05rem;
+  margin-bottom: 4px;
+}
+
+.sale-banner span {
+  color: #bbf7d0;
+}
+
+.sale-banner .button {
+  flex: 0 0 auto;
+}
+
 .lead {
   padding: 12px 0 20px;
 }
@@ -364,6 +393,11 @@ li {
 
   .button {
     width: 100%;
+  }
+
+  .sale-banner {
+    align-items: stretch;
+    flex-direction: column;
   }
 }
 

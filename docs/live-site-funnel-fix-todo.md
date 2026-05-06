@@ -62,29 +62,25 @@ in the public site.
 ### 2. Fit Report Pricing Language
 
 - [x] Replace retired provisional-price copy everywhere it appears.
-- [x] Use `Current checkout price: $99 per team` or
-      `One-time checkout price: $99 per team`.
+- [x] Use explicit live checkout price copy. During the temporary Migration
+      Sprint Sale, public pages use sale-price copy instead.
 - [x] Acceptance: no public page describes a live checkout price as planned.
 
-Evidence: public pages use the centralized `prices.fitReport.display` and
-`Current checkout price` language wired through `site/product_catalog.mjs` and
-`site/app.js`.
+Evidence: public pages use centralized price language wired through
+`site/product_catalog.mjs` and `site/app.js`.
 
 ### 3. Fit Report CTA Wording
 
 - [x] Replace retired fit-report detail labels anywhere the link goes to
       checkout.
-- [x] Replace vague checkout CTAs such as `Open the $99 automated fit report`
-      where they send users directly to payment.
-- [x] Preferred copy:
-      `Buy automated fit report - $99` or `Open $99 fit report checkout`.
+- [x] Replace vague checkout CTAs where they send users directly to payment.
+- [x] Preferred copy: price-specific buy CTAs that make checkout intent clear.
 - [x] Acceptance: every CTA that starts checkout clearly says it is a checkout
       or purchase action.
 
-Evidence: every paid CTA on generated and static pages now reads
-`Buy automated fit report - $99`, `Buy cleanup pack - $299.99`, or
-`Buy Pydantic cleanup pack - $249.99`. The retired fit-report detail label is
-covered by the regression check at
+Evidence: every paid CTA on generated and static pages now uses explicit
+price-specific buy language. The retired fit-report detail label is covered by
+the regression check at
 `tests/test_site_builder.py::test_product_pages_link_to_trackable_checkout_routes`
 passes.
 

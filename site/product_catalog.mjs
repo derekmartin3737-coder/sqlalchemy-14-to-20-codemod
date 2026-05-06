@@ -5,6 +5,18 @@ const PYDANTIC_REPO_URL =
   "https://github.com/zippertools/pydantic-v1-to-v2-codemod";
 const PUBLIC_RELEASE_TAG = "v0.1.1";
 const SUPPORT_EMAIL = "zippers3737@gmail.com";
+export const checkoutSale = Object.freeze({
+  active: true,
+  name: "Migration Sprint Sale",
+  badge: "90% off",
+  discountPercent: 90,
+  stripeCouponId: "ro5ZyRLf",
+  startsAt: "2026-05-06T07:00:00Z",
+  endsAt: "2026-05-28T06:59:59Z",
+  endsLabel: "May 27, 2026 at 11:59 PM Pacific",
+  note:
+    "90% off every listed paid product through May 27, 2026 at 11:59 PM Pacific. Discount is applied automatically in Stripe Checkout.",
+});
 
 const routes = Object.freeze({
   freeScan: "/go/free-scan",
@@ -22,23 +34,47 @@ const prices = Object.freeze({
     display: "$99",
     detail: "$99 per team",
     amountCents: 9900,
+    saleDisplay: "$9.90",
+    saleDetail: "$9.90 during Migration Sprint Sale; normally $99 per team",
+    saleAmountCents: 990,
   }),
   sa20: Object.freeze({
     display: "$299.99",
     detail: "$299.99 per team",
     amountCents: 29999,
+    saleDisplay: "$30",
+    saleDetail: "$30 during Migration Sprint Sale; normally $299.99 per team",
+    saleAmountCents: 3000,
   }),
   sa20Preset: Object.freeze({
     display: "$149.99",
     detail: "$149.99 per team",
     amountCents: 14999,
+    saleDisplay: "$15",
+    saleDetail: "$15 during Migration Sprint Sale; normally $149.99 per team",
+    saleAmountCents: 1500,
   }),
   pydantic: Object.freeze({
     display: "$249.99",
     detail: "$249.99 per team",
     amountCents: 24999,
+    saleDisplay: "$25",
+    saleDetail: "$25 during Migration Sprint Sale; normally $249.99 per team",
+    saleAmountCents: 2500,
   }),
 });
+
+function salePrice(price) {
+  return checkoutSale.active ? price.saleDisplay || price.display : price.display;
+}
+
+function salePriceDetail(price) {
+  return checkoutSale.active ? price.saleDetail || price.detail : price.detail;
+}
+
+function saleCtaPrice(price) {
+  return checkoutSale.active ? `${salePrice(price)} sale` : salePrice(price);
+}
 
 const statuses = Object.freeze({
   available: "available",
@@ -72,6 +108,10 @@ export const commerce = Object.freeze({
     "Runs locally; no hosted API, repo upload, or production credentials needed.",
   noSourceUploadClaim: "No source upload.",
   noHumanDeliveryLanguage: "No human service delivery.",
+  saleName: checkoutSale.name,
+  saleBadge: checkoutSale.badge,
+  saleEndsLabel: checkoutSale.endsLabel,
+  saleNote: checkoutSale.note,
 });
 
 export const products = Object.freeze({
@@ -133,20 +173,23 @@ export const products = Object.freeze({
       "Local software add-on that reads SQLAlchemy or Pydantic scanner output and produces an autonomous buy/do-not-buy migration fit summary.",
     cardDescription:
       "Run a software-only add-on against SQLAlchemy or Pydantic scanner output for a buy/do-not-buy recommendation.",
-    price: prices.fitReport.display,
-    priceDetail: prices.fitReport.detail,
+    price: salePrice(prices.fitReport),
+    priceDetail: salePriceDetail(prices.fitReport),
+    originalPrice: prices.fitReport.display,
+    salePrice: prices.fitReport.saleDisplay,
     amountCents: prices.fitReport.amountCents,
+    saleAmountCents: prices.fitReport.saleAmountCents,
     currency: "usd",
     status: statuses.available,
     checkoutProvider: commerce.checkoutProvider,
     checkoutUrl: routes.fitReport,
     pricingId: "fit-report",
-    offerLabel: prices.fitReport.display,
-    stage: prices.fitReport.display,
+    offerLabel: checkoutSale.badge,
+    stage: `${prices.fitReport.saleDisplay} sale`,
     buyerQuestion: "Is this SQLAlchemy or Pydantic repo worth automating before I buy the pack?",
     offerName: "SQLAlchemy/Pydantic fit report",
-    ctaLabel: `Buy automated fit report - ${prices.fitReport.display}`,
-    ctaLabelWithPrice: `Buy automated fit report - ${prices.fitReport.display}`,
+    ctaLabel: `Buy automated fit report - ${saleCtaPrice(prices.fitReport)}`,
+    ctaLabelWithPrice: `Buy automated fit report - ${saleCtaPrice(prices.fitReport)}`,
     supportEmail: SUPPORT_EMAIL,
     bullets: Object.freeze([
       "Run the matching SQLAlchemy or Pydantic scanner locally and keep the report in your checkout.",
@@ -155,12 +198,13 @@ export const products = Object.freeze({
       "No report submission, human review, consulting, or source upload.",
     ]),
     assurances: Object.freeze([
+      `${checkoutSale.badge} through ${checkoutSale.endsLabel}; applied automatically in Stripe Checkout.`,
       "Software-only local report generation.",
       "No private source code, credentials, or reports need to be sent to a person.",
       commerce.refundLanguage,
     ]),
     pricingNote:
-      "Use this only with SQLAlchemy or Pydantic scanner output. It is not listed for ESLint proof-only pages.",
+      `Use this only with SQLAlchemy or Pydantic scanner output. ${checkoutSale.name} ends ${checkoutSale.endsLabel}. It is not listed for ESLint proof-only pages.`,
     links: Object.freeze([
       Object.freeze({
         label: "Read fit report details",
@@ -179,22 +223,26 @@ export const products = Object.freeze({
       "Deterministic local workflow for finding and cleaning up repeated SQLAlchemy 1.4 to 2.0 migration patterns.",
     cardDescription:
       "Apply deterministic rewrites locally for the documented SQLAlchemy cleanup subset, with reports and manual-review flags.",
-    price: prices.sa20.display,
-    priceDetail: prices.sa20.detail,
+    price: salePrice(prices.sa20),
+    priceDetail: salePriceDetail(prices.sa20),
+    originalPrice: prices.sa20.display,
+    salePrice: prices.sa20.saleDisplay,
     amountCents: prices.sa20.amountCents,
+    saleAmountCents: prices.sa20.saleAmountCents,
     currency: "usd",
     status: statuses.available,
     checkoutProvider: commerce.checkoutProvider,
     checkoutUrl: routes.sa20,
     pricingId: "sa20-pack",
     offerLabel: "One-time pack",
-    stage: prices.sa20.display,
+    stage: `${prices.sa20.saleDisplay} sale`,
     buyerQuestion: "Apply the repeated safe SQLAlchemy rewrites locally.",
     offerName: "SQLAlchemy cleanup pack",
-    ctaLabel: `Buy cleanup pack - ${prices.sa20.display}`,
-    ctaLabelWithPrice: `Buy cleanup pack - ${prices.sa20.display}`,
+    ctaLabel: `Buy cleanup pack - ${saleCtaPrice(prices.sa20)}`,
+    ctaLabelWithPrice: `Buy cleanup pack - ${saleCtaPrice(prices.sa20)}`,
     supportEmail: SUPPORT_EMAIL,
     bullets: Object.freeze([
+      `${checkoutSale.badge} through ${checkoutSale.endsLabel}; applied automatically in Stripe Checkout.`,
       "Deterministic local rewrites for the documented SQLAlchemy subset",
       "Preview/apply workflow with JSON report output",
       "Supported rewrite table and manual-review flags",
@@ -203,7 +251,7 @@ export const products = Object.freeze({
     ]),
     assurances: paidAssurances,
     pricingNote:
-      "Use this when the free scan proves the repo has repeated supported findings.",
+      `Use this when the free scan proves the repo has repeated supported findings. ${checkoutSale.name} temporarily lowers checkout to ${prices.sa20.saleDisplay}.`,
     links: Object.freeze([
       Object.freeze({
         label: "Read the SQLAlchemy migration tool overview",
@@ -222,22 +270,26 @@ export const products = Object.freeze({
       "Preset guidance, report templates, and rollout docs for teams turning a local migration scan into repeatable cleanup work.",
     cardDescription:
       "Add downloadable presets, report templates, and rollout notes for a repeatable software-only migration path.",
-    price: prices.sa20Preset.display,
-    priceDetail: prices.sa20Preset.detail,
+    price: salePrice(prices.sa20Preset),
+    priceDetail: salePriceDetail(prices.sa20Preset),
+    originalPrice: prices.sa20Preset.display,
+    salePrice: prices.sa20Preset.saleDisplay,
     amountCents: prices.sa20Preset.amountCents,
+    saleAmountCents: prices.sa20Preset.saleAmountCents,
     currency: "usd",
     status: statuses.available,
     checkoutProvider: commerce.checkoutProvider,
     checkoutUrl: routes.sa20Preset,
     pricingId: "sa20-preset",
     offerLabel: "Downloadable add-on",
-    stage: prices.sa20Preset.display,
+    stage: `${prices.sa20Preset.saleDisplay} sale`,
     buyerQuestion: "Organize rollout docs and reusable presets.",
     offerName: "Preset bundle",
-    ctaLabel: `Buy preset bundle - ${prices.sa20Preset.display}`,
-    ctaLabelWithPrice: `Buy preset bundle - ${prices.sa20Preset.display}`,
+    ctaLabel: `Buy preset bundle - ${saleCtaPrice(prices.sa20Preset)}`,
+    ctaLabelWithPrice: `Buy preset bundle - ${saleCtaPrice(prices.sa20Preset)}`,
     supportEmail: SUPPORT_EMAIL,
     bullets: Object.freeze([
+      `${checkoutSale.badge} through ${checkoutSale.endsLabel}; applied automatically in Stripe Checkout.`,
       "Rollout checklist for staged SQLAlchemy 1.4-to-2.0 cleanup work",
       "Manager summary template that turns scan findings into a status update",
       "Migration-triage presets for common repo shapes",
@@ -246,13 +298,14 @@ export const products = Object.freeze({
       "License and support terms; no human delivery dependency",
     ]),
     assurances: Object.freeze([
+      `${checkoutSale.name} sale price: ${prices.sa20Preset.saleDisplay}; normally ${prices.sa20Preset.display}.`,
       commerce.checkoutLanguage,
       commerce.deliveryLanguage,
       "Downloadable docs and presets; no human delivery dependency.",
       commerce.refundLanguage,
     ]),
     pricingNote:
-      "Use this when you want repeatable rollout structure without buying a service engagement.",
+      `Use this when you want repeatable rollout structure without buying a service engagement. ${checkoutSale.name} ends ${checkoutSale.endsLabel}.`,
     links: Object.freeze([
       Object.freeze({ label: "Read rollout kit details", href: "/products/sa20-preset/" }),
       Object.freeze({ label: "Compare all options", href: "/pricing" }),
@@ -269,9 +322,12 @@ export const products = Object.freeze({
       "Deterministic local cleanup pack for supported Pydantic v1 to v2 imports, validators, config, and BaseSettings moves.",
     cardDescription:
       "Commercial cleanup pack for the documented Pydantic v1 to v2 subset, with fail-closed unsupported findings.",
-    price: prices.pydantic.display,
-    priceDetail: prices.pydantic.detail,
+    price: salePrice(prices.pydantic),
+    priceDetail: salePriceDetail(prices.pydantic),
+    originalPrice: prices.pydantic.display,
+    salePrice: prices.pydantic.saleDisplay,
     amountCents: prices.pydantic.amountCents,
+    saleAmountCents: prices.pydantic.saleAmountCents,
     currency: "usd",
     status: statuses.available,
     checkoutProvider: commerce.checkoutProvider,
@@ -280,13 +336,14 @@ export const products = Object.freeze({
     freeScanTargetUrl: pydanticRepoBlobUrl("README.md", "pydantic-v2-porter"),
     pricingId: "pydantic-v2-porter",
     offerLabel: "Python migration pack",
-    stage: prices.pydantic.display,
+    stage: `${prices.pydantic.saleDisplay} sale`,
     buyerQuestion: "Do the supported cleanup for Pydantic v1 to v2.",
     offerName: "Pydantic cleanup pack",
-    ctaLabel: `Buy Pydantic cleanup pack - ${prices.pydantic.display}`,
-    ctaLabelWithPrice: `Buy Pydantic cleanup pack - ${prices.pydantic.display}`,
+    ctaLabel: `Buy Pydantic cleanup pack - ${saleCtaPrice(prices.pydantic)}`,
+    ctaLabelWithPrice: `Buy Pydantic cleanup pack - ${saleCtaPrice(prices.pydantic)}`,
     supportEmail: SUPPORT_EMAIL,
     bullets: Object.freeze([
+      `${checkoutSale.badge} through ${checkoutSale.endsLabel}; applied automatically in Stripe Checkout.`,
       "Safe Pydantic v1 to v2 validator rewrites",
       "Safe Config to model_config conversion",
       "BaseSettings migration support for the documented subset",
@@ -294,7 +351,7 @@ export const products = Object.freeze({
     ]),
     assurances: paidAssurances,
     pricingNote:
-      "Use this only after the Pydantic free scan shows the repo falls inside the documented supported subset.",
+      `Use this only after the Pydantic free scan shows the repo falls inside the documented supported subset. ${checkoutSale.name} temporarily lowers checkout to ${prices.pydantic.saleDisplay}.`,
     links: Object.freeze([
       Object.freeze({
         label: "Read the Pydantic pack details",

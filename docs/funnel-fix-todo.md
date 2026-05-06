@@ -44,25 +44,23 @@ the verified public command pair is the GitHub archive install plus
 
 - [x] Search public site, builder, product catalog, and docs for retired
   "planned price" copy.
-- [x] Replace public buyer-facing copy with
-  `One-time checkout price: $99 per team` or
-  `Current checkout price: $99 per team`.
+- [x] Replace public buyer-facing copy with explicit live checkout price copy.
+  During the temporary Migration Sprint Sale, public pages use sale-price copy
+  instead.
 - [x] Keep "planned" only in internal docs if it is still true there.
 
-Evidence: public pricing code now uses `Current checkout price`, and the
-retired "planned price" copy is covered by regression checks.
+Evidence: public pricing code now uses explicit checkout/sale price copy, and
+the retired "planned price" copy is covered by regression checks.
 
 ### 3. Fix Fit Report CTA Wording
 
 - [x] Search for retired fit-report detail CTA labels.
-- [x] If the link goes to checkout, rename it to
-  `Buy automated fit report - $99`.
+- [x] If the link goes to checkout, rename it to a price-specific buy CTA.
 - [x] If a pre-checkout detail page is preferred, create/link that page instead
   of sending a "details" CTA directly to payment.
 
-Evidence: public generated pages and the product catalog use
-`Buy automated fit report - $99`; retired fit-report CTA labels are covered by
-regression checks.
+Evidence: public generated pages and the product catalog use a price-specific
+buy CTA; retired fit-report CTA labels are covered by regression checks.
 
 ### 4. Checkout Domain Consistency
 

@@ -1,4 +1,5 @@
 import {
+  checkoutSale,
   commerce,
   productByKey,
   productTrackingUrl,
@@ -77,6 +78,49 @@ import {
       return blobUrl("docs/quickstart.md");
     }
     return product.checkoutUrl || product.links?.[0]?.href || "#";
+  }
+
+  function saleIsActive() {
+    if (!checkoutSale?.active) {
+      return false;
+    }
+    const now = Date.now();
+    const startsAt = Date.parse(checkoutSale.startsAt || "");
+    const endsAt = Date.parse(checkoutSale.endsAt || "");
+    return (
+      Number.isFinite(startsAt) &&
+      Number.isFinite(endsAt) &&
+      now >= startsAt &&
+      now <= endsAt
+    );
+  }
+
+  function applySaleBanner() {
+    const existing = document.querySelector("[data-sale-banner]");
+    if (!saleIsActive()) {
+      existing?.remove();
+      return;
+    }
+    if (existing) {
+      return;
+    }
+
+    const warning = document.getElementById("launch-warning");
+    const banner = document.createElement("section");
+    banner.className = "sale-banner";
+    banner.dataset.saleBanner = "";
+    banner.dataset.saleEnds = checkoutSale.endsLabel || "";
+    banner.innerHTML = `
+      <div>
+        <p class="kicker">${checkoutSale.badge} for three weeks</p>
+        <strong>${checkoutSale.name}</strong>
+        <span>${checkoutSale.note}</span>
+      </div>
+      <a class="button secondary" href="/pricing">See sale pricing</a>
+    `;
+    if (warning?.parentElement) {
+      warning.insertAdjacentElement("afterend", banner);
+    }
   }
 
   function trackedProductUrl(product, source) {
@@ -290,7 +334,11 @@ import {
 
     const price = document.createElement("p");
     price.textContent =
-      product.key === "freeScan" ? "Price: " : "Current checkout price: ";
+      product.key === "freeScan"
+        ? "Price: "
+        : saleIsActive()
+          ? "Sale price: "
+          : "Current checkout price: ";
     const pill = document.createElement("span");
     pill.className = "pill";
     pill.textContent = product.priceDetail || product.price;
@@ -441,6 +489,7 @@ import {
   applyText("[data-contact-email]", contactEmail(), "contact email");
   applyProductText();
   applyCancelTitle();
+  applySaleBanner();
   applyProductCtas();
   renderPricingRows();
   renderProductCards();

@@ -30,6 +30,7 @@ import worker from './worker/index.mjs';
 const env = {
   ASSETS: { fetch: async () => new Response('asset') },
   STRIPE_SECRET_KEY: 'sk_test_unit',
+  SALE_NOW_ISO: '2026-05-07T12:00:00Z',
 };
 const originalFetch = globalThis.fetch;
 globalThis.fetch = async (url, init) => {
@@ -73,6 +74,7 @@ import worker from './worker/index.mjs';
 const env = {
   ASSETS: { fetch: async () => new Response('asset') },
   STRIPE_SECRET_KEY: 'sk_test_unit',
+  SALE_NOW_ISO: '2026-05-07T12:00:00Z',
 };
 const routes = [
   ['/go/fit-report', 'fit-report', '9900'],
@@ -87,8 +89,10 @@ globalThis.fetch = async (_url, init) => {
   const params = new URLSearchParams(init.body);
   const product = params.get('metadata[product_slug]');
   const amount = params.get('line_items[0][price_data][unit_amount]');
+  const coupon = params.get('discounts[0][coupon]');
+  const saleName = params.get('metadata[sale_name]');
   return new Response(
-    JSON.stringify({ url: `https://checkout.stripe.com/c/pay/cs_test_${product}_${amount}` }),
+    JSON.stringify({ url: `https://checkout.stripe.com/c/pay/cs_test_${product}_${amount}_${coupon}_${saleName}` }),
     { status: 200 },
   );
 };
@@ -96,12 +100,11 @@ for (const [route] of routes) {
   const request = new Request(`https://zippertools.org${route}/unit-test`);
   const response = await worker.fetch(request, env);
   const location = new URL(response.headers.get('location'));
-  const parts = location.pathname.split('_');
+  const payload = decodeURIComponent(location.pathname.split('cs_test_').at(-1));
   originalLog([
     response.status,
     location.host,
-    parts.slice(2, -1).join('_'),
-    parts.at(-1),
+    payload,
   ].join(' '));
 }
 globalThis.fetch = originalFetch;
@@ -114,11 +117,52 @@ globalThis.fetch = originalFetch;
     )
 
     assert result.stdout.strip().splitlines() == [
-        "303 checkout.stripe.com fit-report 9900",
-        "303 checkout.stripe.com sa20-pack 29999",
-        "303 checkout.stripe.com sa20-preset 14999",
-        "303 checkout.stripe.com pydantic-v2-porter 24999",
+        "303 checkout.stripe.com fit-report_9900_ro5ZyRLf_Migration Sprint Sale",
+        "303 checkout.stripe.com sa20-pack_29999_ro5ZyRLf_Migration Sprint Sale",
+        "303 checkout.stripe.com sa20-preset_14999_ro5ZyRLf_Migration Sprint Sale",
+        "303 checkout.stripe.com pydantic-v2-porter_24999_ro5ZyRLf_Migration Sprint Sale",
     ]
+
+
+def test_paid_go_routes_stop_sale_discount_after_deadline() -> None:
+    script = """
+import worker from './worker/index.mjs';
+const env = {
+  ASSETS: { fetch: async () => new Response('asset') },
+  STRIPE_SECRET_KEY: 'sk_test_unit',
+  SALE_NOW_ISO: '2026-05-29T12:00:00Z',
+};
+let observedParams = null;
+const originalLog = console.log;
+console.log = () => {};
+const originalFetch = globalThis.fetch;
+globalThis.fetch = async (_url, init) => {
+  observedParams = new URLSearchParams(init.body);
+  return new Response(
+    JSON.stringify({ url: 'https://checkout.stripe.com/c/pay/cs_test_after_sale' }),
+    { status: 200 },
+  );
+};
+const response = await worker.fetch(
+  new Request('https://zippertools.org/go/sa20-pack/unit-test'),
+  env,
+);
+globalThis.fetch = originalFetch;
+originalLog([
+  response.status,
+  observedParams.get('discounts[0][coupon]') || 'no-coupon',
+  observedParams.get('allow_promotion_codes') || 'no-promo-field',
+  observedParams.get('metadata[sale_name]') || 'no-sale-metadata',
+].join(' '));
+"""
+    result = subprocess.run(
+        ["node", "--input-type=module", "-e", script],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+
+    assert result.stdout.strip() == "303 no-coupon true no-sale-metadata"
 
 
 def test_all_free_scan_routes_land_on_matching_public_docs() -> None:

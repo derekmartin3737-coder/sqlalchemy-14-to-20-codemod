@@ -5,10 +5,16 @@
 | Buyer Question | Recommended Option | Price |
 | --- | --- | --- |
 | "Does my repo have supported patterns?" | Free scan | Free |
-| "Is automation worth it for SQLAlchemy or Pydantic?" | SQLAlchemy/Pydantic fit report | $99 |
-| "I want the SQLAlchemy cleanup workflow." | SQLAlchemy pack | $299.99 |
-| "I want SQLAlchemy rollout docs and presets." | Preset bundle | $149.99 |
-| "I need the Pydantic v1 to v2 cleanup subset." | Pydantic cleanup pack | $249.99 |
+| "Is automation worth it for SQLAlchemy or Pydantic?" | SQLAlchemy/Pydantic fit report | $9.90 sale; normally $99 |
+| "I want the SQLAlchemy cleanup workflow." | SQLAlchemy pack | $30 sale; normally $299.99 |
+| "I want SQLAlchemy rollout docs and presets." | Preset bundle | $15 sale; normally $149.99 |
+| "I need the Pydantic v1 to v2 cleanup subset." | Pydantic cleanup pack | $25 sale; normally $249.99 |
+
+## Temporary sale
+
+The Migration Sprint Sale is active from May 6, 2026 through May 27, 2026 at
+11:59 PM Pacific. Every listed paid product is 90% off during that window, and
+Stripe Checkout applies the discount automatically.
 
 ## Checkout and delivery terms
 
@@ -22,7 +28,7 @@ Support email: `zippers3737@gmail.com`.
 
 ## Free vs paid at a glance
 
-| Capability | Free scan | $99 SQLAlchemy/Pydantic fit report | Cleanup pack | Preset bundle |
+| Capability | Free scan | $9.90 sale SQLAlchemy/Pydantic fit report | Cleanup pack | Preset bundle |
 | --- | --- | --- | --- | --- |
 | Public/local CLI | Yes | Reads scanner output locally | Yes | Uses scanner output locally |
 | Core deterministic transforms | Yes | No code changes | Yes | Uses scanner output |
@@ -59,11 +65,12 @@ Not for:
 - private source review
 - guaranteed app-level success
 
-### $99 SQLAlchemy/Pydantic fit report
+### SQLAlchemy/Pydantic fit report
 
 Product name: **`SQLAlchemy/Pydantic Fit Report Add-on`**
 
-Current checkout price: **$99 per team**
+Temporary sale price: **$9.90 per team** through May 27, 2026 at 11:59 PM Pacific.
+Normal checkout price: **$99 per team**.
 
 What it adds:
 
@@ -88,7 +95,8 @@ human review.
 
 Product name: **`SQLAlchemy 1.4 to 2.0 Migration Cleanup Pack`**
 
-Current checkout price: **$299.99 per team**
+Temporary sale price: **$30 per team** through May 27, 2026 at 11:59 PM Pacific.
+Normal checkout price: **$299.99 per team**.
 
 What it adds:
 
@@ -114,7 +122,8 @@ rewrites, or app-specific debugging.
 
 Product name: **`Migration Preset Bundle`**
 
-Current checkout price: **$149.99 per team**
+Temporary sale price: **$15 per team** through May 27, 2026 at 11:59 PM Pacific.
+Normal checkout price: **$149.99 per team**.
 
 What it includes:
 
@@ -138,7 +147,8 @@ Not for: code rewrites, private repo debugging, or a migration service.
 
 Product name: **`Pydantic v1 to v2 Migration Cleanup Pack`**
 
-Current checkout price: **$249.99 per team**
+Temporary sale price: **$25 per team** through May 27, 2026 at 11:59 PM Pacific.
+Normal checkout price: **$249.99 per team**.
 
 What it includes:
 

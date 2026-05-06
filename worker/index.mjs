@@ -1,4 +1,8 @@
-import { checkoutProducts, goRoutes } from "../site/product_catalog.mjs";
+import {
+  checkoutProducts,
+  checkoutSale,
+  goRoutes,
+} from "../site/product_catalog.mjs";
 
 const MAX_WEBHOOK_BYTES = 256 * 1024;
 const STRIPE_WEBHOOK_PATH = "/stripe/webhook";
@@ -53,6 +57,7 @@ export const STRIPE_PRODUCTS = Object.freeze(
 );
 
 export const GO_ROUTES = goRoutes;
+export const CHECKOUT_SALE = checkoutSale;
 
 function jsonResponse(value, init = {}) {
   const headers = new Headers(init.headers);
@@ -125,13 +130,46 @@ function safeSource(value) {
   return String(value || "unknown").slice(0, 120);
 }
 
+function saleClockMs(env) {
+  if (env.SALE_NOW_ISO) {
+    const override = Date.parse(env.SALE_NOW_ISO);
+    if (Number.isFinite(override)) {
+      return override;
+    }
+  }
+  return Date.now();
+}
+
+function activeCheckoutSale(env) {
+  if (!CHECKOUT_SALE?.active || !CHECKOUT_SALE.stripeCouponId) {
+    return null;
+  }
+  const startsAt = Date.parse(CHECKOUT_SALE.startsAt || "");
+  const endsAt = Date.parse(CHECKOUT_SALE.endsAt || "");
+  const now = saleClockMs(env);
+  if (
+    !Number.isFinite(startsAt) ||
+    !Number.isFinite(endsAt) ||
+    now < startsAt ||
+    now > endsAt
+  ) {
+    return null;
+  }
+  return CHECKOUT_SALE;
+}
+
 function buildStripeCheckoutBody(request, env, product, source) {
   const origin = siteOrigin(request);
   const body = new URLSearchParams();
   body.set("mode", "payment");
   body.set("success_url", `${origin}/success?session_id={CHECKOUT_SESSION_ID}`);
   body.set("cancel_url", `${origin}/cancel?product=${product.slug}`);
-  body.set("allow_promotion_codes", "true");
+  const sale = activeCheckoutSale(env);
+  if (sale) {
+    body.set("discounts[0][coupon]", sale.stripeCouponId);
+  } else {
+    body.set("allow_promotion_codes", "true");
+  }
   body.set(
     "automatic_tax[enabled]",
     env.STRIPE_AUTOMATIC_TAX_ENABLED === "true" ? "true" : "false",
@@ -157,8 +195,17 @@ function buildStripeCheckoutBody(request, env, product, source) {
   );
   body.set("metadata[product_slug]", product.slug);
   body.set("metadata[source]", safeSource(source));
+  if (sale) {
+    body.set("metadata[sale_name]", sale.name);
+    body.set("metadata[sale_discount_percent]", String(sale.discountPercent));
+    body.set("metadata[sale_ends_at]", sale.endsAt);
+  }
   body.set("payment_intent_data[metadata][product_slug]", product.slug);
   body.set("payment_intent_data[metadata][source]", safeSource(source));
+  if (sale) {
+    body.set("payment_intent_data[metadata][sale_name]", sale.name);
+    body.set("payment_intent_data[metadata][sale_discount_percent]", String(sale.discountPercent));
+  }
   body.set("client_reference_id", `${product.slug}:${safeSource(source)}`);
   return body;
 }

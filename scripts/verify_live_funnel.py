@@ -87,10 +87,11 @@ BASE_PAGE_PATHS: tuple[str, ...] = (
 REQUIRED_BY_PATH: dict[str, tuple[str, ...]] = {
     "/": (
         "Run free scan",
-        "Buy automated fit report - $99",
-        "Buy cleanup pack - $299.99",
-        "Buy preset bundle - $149.99",
-        "Buy Pydantic cleanup pack - $249.99",
+        "Migration Sprint Sale",
+        "Buy automated fit report - $9.90 sale",
+        "Buy cleanup pack - $30 sale",
+        "Buy preset bundle - $15 sale",
+        "Buy Pydantic cleanup pack - $25 sale",
         "Secure checkout is handled by Stripe.",
         "Support: zippers3737@gmail.com",
     ),
@@ -100,14 +101,15 @@ REQUIRED_BY_PATH: dict[str, tuple[str, ...]] = {
         "Support: zippers3737@gmail.com",
     ),
     "/pricing": (
-        "Current checkout price: $99 per team",
-        "$299.99 per team",
-        "$149.99 per team",
-        "$249.99 per team",
-        "Buy automated fit report - $99",
-        "Buy cleanup pack - $299.99",
-        "Buy preset bundle - $149.99",
-        "Buy Pydantic cleanup pack - $249.99",
+        "Migration Sprint Sale",
+        "Sale price: $9.90 during Migration Sprint Sale; normally $99 per team",
+        "Sale price: $30 during Migration Sprint Sale; normally $299.99 per team",
+        "Sale price: $15 during Migration Sprint Sale; normally $149.99 per team",
+        "Sale price: $25 during Migration Sprint Sale; normally $249.99 per team",
+        "Buy automated fit report - $9.90 sale",
+        "Buy cleanup pack - $30 sale",
+        "Buy preset bundle - $15 sale",
+        "Buy Pydantic cleanup pack - $25 sale",
         "Secure checkout is handled by Stripe.",
         "Support: zippers3737@gmail.com",
     ),
@@ -143,13 +145,14 @@ REQUIRED_BY_PATH: dict[str, tuple[str, ...]] = {
 
 RUNTIME_ASSETS: dict[str, tuple[str, ...]] = {
     "/app.js": (
-        "Current checkout price",
+        "Sale price",
         "ctaLabelWithPrice",
         "commerce.secureCheckoutNote",
     ),
     "/product_catalog.mjs": (
         "SQLAlchemy/Pydantic Fit Report Add-on",
-        "Buy automated fit report - ${prices.fitReport.display}",
+        "Migration Sprint Sale",
+        "Buy automated fit report - ${saleCtaPrice(prices.fitReport)}",
         'secureCheckoutNote: "Secure checkout is handled by Stripe."',
     ),
 }

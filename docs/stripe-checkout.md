@@ -27,6 +27,23 @@ prices come from `site/product_catalog.mjs`. Live Stripe Products and Prices als
 exist in the connected account for Dashboard clarity and future price-ID
 checkout migration.
 
+## Temporary Migration Sprint Sale
+
+The Migration Sprint Sale runs from May 6, 2026 through May 27, 2026 at
+11:59 PM Pacific. The Stripe coupon is `ro5ZyRLf` and gives 90% off all listed
+paid products.
+
+The Worker keeps the normal inline `price_data` amounts and applies the coupon
+automatically while the sale window is active. After `2026-05-28T06:59:59Z`, the
+Worker stops sending the coupon and restores promotion-code entry.
+
+Sale prices during the window:
+
+- Fit Report: `$9.90` sale; normally `$99`
+- SQLAlchemy cleanup pack: `$30` sale; normally `$299.99`
+- Migration Preset Bundle: `$15` sale; normally `$149.99`
+- Pydantic cleanup pack: `$25` sale; normally `$249.99`
+
 ## Live Stripe catalog
 
 Connected account: `acct_1TKBtaATQfsHIwbt`.
@@ -92,7 +109,7 @@ Use `true` only after Stripe Tax is configured. Leave it unset while testing.
 2. Open `https://zippertools.org/go/sa20-pack/test`.
 3. Confirm Stripe Checkout shows:
    - `SQLAlchemy 1.4 to 2.0 Migration Cleanup Pack`
-   - `$299.99`
+   - `$30` after the Migration Sprint Sale coupon is applied
    - no inventory/scarcity text
    - no ZIP-size framing
 4. Pay with a Stripe test card.
