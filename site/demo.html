@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -98,6 +98,65 @@
 - update(..., whereclause=..., values=...)</pre>
         </section>
 
+        <section class="page-panel stack">
+          <div>
+            <p class="kicker">Paid-pack artifact trail</p>
+            <h2>What the purchased ZIP proves</h2>
+            <p>
+              The paid workflow is still narrow and branch-first: it previews
+              supported rewrites, applies only documented transforms, records
+              validation results, and leaves unsupported work in the report
+              instead of claiming a complete SQLAlchemy 2.0 migration.
+            </p>
+          </div>
+          <div class="grid two">
+            <div>
+              <h3>Preview diff</h3>
+              <pre class="code-block">- user = session.query(User).get(user_id)
++ user = session.get(User, user_id)
+
+- stmt = select([User.name])
++ stmt = select(User.name)</pre>
+            </div>
+            <div>
+              <h3>Apply output</h3>
+              <pre class="code-block">paid apply run
+files_changed: 4
+transforms_applied:
+  query_get, select_list_syntax, string_join,
+  string_loader, dml_kwargs
+manual_review_findings: 0
+report_written: migration-report.json</pre>
+            </div>
+            <div>
+              <h3>Validation result</h3>
+              <pre class="code-block">validation summary
+python -m compileall fixtures/demo_repo ... passed
+python -m pytest fixtures/demo_repo/tests ... passed
+buyer_repo_validation: required before merge</pre>
+            </div>
+            <div>
+              <h3>Final manager report</h3>
+              <pre class="code-block">final manager report
+Supported cleanup findings: 6
+Manual-review findings: 0
+Changed files: 4
+Next step: review branch diff and run normal CI</pre>
+            </div>
+          </div>
+          <div>
+            <h3>Exact ZIP contents</h3>
+            <pre class="code-block">sa20-pack-edge-case-pack.zip
+- paid cleanup CLI
+- preview/apply commands
+- supported rewrite table
+- JSON report schema
+- rollback checklist
+- manager summary template
+- license and support terms</pre>
+          </div>
+        </section>
+
         <section class="page-panel">
           <h2>Why this matters</h2>
           <p>
@@ -106,7 +165,7 @@
             paying first and discovering the repo is outside scope.
           </p>
           <div class="page-actions">
-            <a class="button" href="#" data-doc-path="docs/demo.md"
+            <a class="button" href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/docs/demo.md" data-doc-path="docs/demo.md"
               >Open full demo doc</a
             >
           </div>
@@ -124,10 +183,10 @@
           <a href="/demo">Demo</a>
           <a href="/policies">Policies</a>
           <a href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod" data-repo-link>Repo</a>
-          <a href="mailto:zippers3737@gmail.com" data-contact-link>Contact</a>
+          <a href="mailto:support@zippertools.org" data-contact-link>Contact</a>
         </div>
         <p class="caption footer-note">Support:
-          <a href="mailto:zippers3737@gmail.com" data-contact-link><span data-contact-email>zippers3737@gmail.com</span></a>
+          <a href="mailto:support@zippertools.org" data-contact-link><span data-contact-email>support@zippertools.org</span></a>
         </p>
       </div>
     </footer>

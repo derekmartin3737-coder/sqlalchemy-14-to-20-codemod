@@ -508,6 +508,10 @@ def tracked_go_path(path: str, source: str) -> str:
     return f"{path}/{source}"
 
 
+def repo_doc_href(doc_path: str) -> str:
+    return f"{REPO_URL}/blob/main/{doc_path}"
+
+
 def free_scan_go_path(product: ProductPage | None, source: str) -> str:
     """Public buyer-path scan target.
 
@@ -1542,6 +1546,112 @@ def render_product_workflow_section(product: ProductPage, path: str) -> str:
             ("engine.execute transaction choices", "manual review"),
         )
 
+    if product.slug == "fit-report":
+        apply_output = (
+            "fit-report add-on complete\n"
+            "input_report: migration-report.json\n"
+            "supported_ratio: strong enough for paid cleanup consideration\n"
+            "manual_review_risk: medium\n"
+            "recommendation_written: manager-fit-summary.md"
+        )
+        validation_summary = (
+            "validation summary\n"
+            "scanner_report_loaded: passed\n"
+            "unsupported_product_family_check: passed\n"
+            "source_upload_required: false\n"
+            "overall: recommendation ready for review"
+        )
+        manager_summary = (
+            "final manager summary\n"
+            "Decision: buy the cleanup pack if validation time is available.\n"
+            "Why: repeated supported findings dominate the migration noise.\n"
+            "Risk: manual-review findings remain visible and should be assigned."
+        )
+    elif product.slug == "sa20-preset":
+        apply_output = (
+            "preset bundle populated\n"
+            "scanner_report: migration-report.json\n"
+            "rollout_checklist: generated\n"
+            "review_buckets: supported/manual-review/unsupported\n"
+            "handoff_note: generated"
+        )
+        validation_summary = (
+            "validation summary\n"
+            "required_fields_present: passed\n"
+            "checkout_artifact_scope: documentation only\n"
+            "source_upload_required: false\n"
+            "overall: rollout packet ready"
+        )
+        manager_summary = (
+            "final manager summary\n"
+            "Status: mechanical cleanup can start after branch setup.\n"
+            "Scope: supported SQLAlchemy findings first.\n"
+            "Risk: unsupported findings stay out of the rollout checklist."
+        )
+    elif product.slug == "pydantic-v2-porter":
+        apply_output = (
+            "apply output\n"
+            "files_changed: 3\n"
+            "transforms_applied: import_paths, basesettings, validators, config\n"
+            "manual_review_findings: 5\n"
+            "report_written: migration-report.json"
+        )
+        validation_summary = (
+            "validation summary\n"
+            "python -m compileall target_repo ... passed\n"
+            "pytest selected_fixture_suite ... passed\n"
+            "manual_review_export ... passed\n"
+            "overall: branch validation still required"
+        )
+        manager_summary = (
+            "final manager summary\n"
+            "Supported cleanup findings: 24\n"
+            "Manual-review findings: 5\n"
+            "Next step: inspect diff, then run the buyer repo's own tests."
+        )
+    elif product.slug == "flatconfig-lift":
+        apply_output = (
+            "proof output\n"
+            "static_configs_detected: 1\n"
+            "generated_preview: eslint.config.cjs\n"
+            "manual_review_findings: 2\n"
+            "checkout_status: not listed"
+        )
+        validation_summary = (
+            "validation summary\n"
+            "json_yaml_parse: passed\n"
+            "js_config_guard: passed\n"
+            "existing_flat_config_guard: passed\n"
+            "overall: proof-only fit signal"
+        )
+        manager_summary = (
+            "final manager summary\n"
+            "Decision: proof-only today, no checkout listed.\n"
+            "Use when static config dominates.\n"
+            "Do not use for JS config logic."
+        )
+    else:
+        apply_output = (
+            "apply output\n"
+            "files_changed: 4\n"
+            "transforms_applied: query_get, select_list_syntax, declarative_imports\n"
+            "manual_review_findings: 6\n"
+            "report_written: migration-report.json"
+        )
+        validation_summary = (
+            "validation summary\n"
+            "python -m compileall target_repo ... passed\n"
+            "pytest selected_fixture_suite ... passed\n"
+            "manual_review_export ... passed\n"
+            "overall: branch validation still required"
+        )
+        manager_summary = (
+            "final manager summary\n"
+            "Supported cleanup findings: 38\n"
+            "Manual-review findings: 6\n"
+            "Next step: inspect diff, then run the buyer repo's own tests."
+        )
+
     workflow_heading = (
         "See the migration deliverable before checkout."
         if product.checkout_path
@@ -1581,6 +1691,20 @@ def render_product_workflow_section(product: ProductPage, path: str) -> str:
             <tbody>{table_rows}</tbody>
           </table>
         </div>
+        <div class="grid three artifact-grid">
+          <article class="page-panel">
+            <h3>Apply output</h3>
+            {code_block(apply_output)}
+          </article>
+          <article class="page-panel">
+            <h3>Validation summary</h3>
+            {code_block(validation_summary)}
+          </article>
+          <article class="page-panel">
+            <h3>Final manager summary</h3>
+            {code_block(manager_summary)}
+          </article>
+        </div>
       </section>"""
 
 
@@ -1616,7 +1740,7 @@ def render_product(product: ProductPage) -> tuple[str, str]:
         if label != "Public proof" and not (label == "Pricing" and pricing_href)
     )
     docs_buttons = tuple(
-        f'<a class="button secondary" href="#" data-doc-path="{escape(doc_path)}">{escape(label)}</a>'
+        f'<a class="button secondary" href="{escape(repo_doc_href(doc_path))}" data-doc-path="{escape(doc_path)}">{escape(label)}</a>'
         for label, doc_path in supporting_docs
     )
     docs_links = "".join(docs_buttons)
@@ -2087,12 +2211,26 @@ def render_sqlalchemy_public_proof() -> tuple[str, str]:
         "  scanner report generated ... passed\n"
         "  unsupported findings ... 0"
     )
+    sample_apply_output = (
+        "apply output:\n"
+        "  files changed: 1\n"
+        "  transforms applied: 3\n"
+        "  report written: migration-report.json\n"
+        "  mode: preview/apply branch workflow"
+    )
     sample_final_report = (
         "final report:\n"
         "  files scanned: 1\n"
         "  files changed: 1\n"
         "  transforms applied: declarative_imports, query_get, select_list_syntax\n"
         "  confidence: supported subset, validation required before merge"
+    )
+    sample_manager_summary = (
+        "manager summary:\n"
+        "  supported cleanup findings: 3\n"
+        "  manual-review findings: 0\n"
+        "  next step: run the same workflow on a branch, then validate with repo tests\n"
+        "  boundary: no broad SQLAlchemy migration guarantee"
     )
     body = f"""
       <section class="section">
@@ -2138,11 +2276,19 @@ def render_sqlalchemy_public_proof() -> tuple[str, str]:
             <h3>Validation result</h3>
             {code_block(sample_validation)}
           </article>
+          <article class="page-panel">
+            <h3>Apply output</h3>
+            {code_block(sample_apply_output)}
+          </article>
+          <article class="page-panel">
+            <h3>Final manager summary</h3>
+            {code_block(sample_manager_summary)}
+          </article>
         </div>
         <article class="page-panel">
           <h3>Final report shape</h3>
           {code_block(sample_final_report)}
-          <p class="caption">This is the visible evidence shape buyers should expect: before input, scanner JSON, preview diff, validation status, and a final report. The paid pack still has to be run on a branch and validated in the buyer's repo.</p>
+          <p class="caption">This is the visible evidence shape buyers should expect: before input, scanner JSON, preview diff, apply output, validation status, and final manager summary. The paid pack still has to be run on a branch and validated in the buyer's repo.</p>
         </article>
       </section>
       <section class="section">
@@ -2195,7 +2341,7 @@ def render_generic_product_proof(product: ProductPage) -> tuple[str, str]:
         for guide in guides
     )
     docs_buttons = tuple(
-        f'<a class="button secondary" href="#" data-doc-path="{escape(doc_path)}">{escape(label)}</a>'
+        f'<a class="button secondary" href="{escape(repo_doc_href(doc_path))}" data-doc-path="{escape(doc_path)}">{escape(label)}</a>'
         for label, doc_path in product.docs
     )
     pricing_button = (
@@ -2207,6 +2353,72 @@ def render_generic_product_proof(product: ProductPage) -> tuple[str, str]:
     decision_actions = action_list_html(
         (product_button, pricing_button, *docs_buttons)
     )
+    if product.slug == "pydantic-v2-porter":
+        artifact_scan = (
+            "scan report\n"
+            "supported_findings: 24\n"
+            "manual_review_findings: 5\n"
+            "files_uploaded: 0\n"
+            "next_step: preview supported rewrites"
+        )
+        artifact_diff = (
+            "- from pydantic import BaseSettings, validator\n"
+            "+ from pydantic import field_validator\n"
+            "+ from pydantic_settings import BaseSettings\n"
+            '-     @validator("email")\n'
+            '+     @field_validator("email")\n'
+            "+     @classmethod"
+        )
+        artifact_apply = (
+            "apply output\n"
+            "files_changed: 3\n"
+            "transforms_applied: imports, BaseSettings, validators, Config\n"
+            "manual_review_findings: alias/signature-heavy validators"
+        )
+        artifact_validation = (
+            "validation summary\n"
+            "compileall fixture_repo ... passed\n"
+            "fixture tests ... passed\n"
+            "buyer repo tests ... required before merge"
+        )
+        artifact_manager = (
+            "final manager summary\n"
+            "Use the cleanup pack when direct Pydantic v1 patterns repeat.\n"
+            "Keep alias-heavy imports and signature-heavy validators in manual review.\n"
+            "No source upload is needed."
+        )
+    else:
+        artifact_scan = (
+            "scan report\n"
+            "supported_static_configs: 1\n"
+            "manual_review_findings: 2\n"
+            "files_uploaded: 0\n"
+            "checkout_status: proof only"
+        )
+        artifact_diff = (
+            "- .eslintrc.json\n"
+            "+ eslint.config.cjs\n"
+            '+ const { FlatCompat } = require("@eslint/eslintrc");\n'
+            "+ module.exports = [...compat.config(legacyConfig)];"
+        )
+        artifact_apply = (
+            "proof output\n"
+            "generated_preview: eslint.config.cjs\n"
+            "manual_review_findings: JS config logic, existing flat config\n"
+            "checkout_status: not listed"
+        )
+        artifact_validation = (
+            "validation summary\n"
+            "static config parse ... passed\n"
+            "unsupported guards ... passed\n"
+            "buyer repo lint ... required before merge"
+        )
+        artifact_manager = (
+            "final manager summary\n"
+            "Use as proof for static JSON/YAML config only.\n"
+            "Do not buy from this page; checkout is not listed.\n"
+            "Keep JS config behavior manual."
+        )
     body = f"""
       <section class="section">
         <div class="grid three">
@@ -2223,6 +2435,31 @@ def render_generic_product_proof(product: ProductPage) -> tuple[str, str]:
             <p>The proof is also a way to say no before a buyer spends money on the wrong repo.</p>
           </article>
         </div>
+      </section>
+      <section class="section">
+        <div class="section-heading"><p class="kicker">Artifact trail</p><h2>Visible report, diff, output, validation, and manager summary</h2></div>
+        <div class="grid two">
+          <article class="page-panel">
+            <h3>Scan report</h3>
+            {code_block(artifact_scan)}
+          </article>
+          <article class="page-panel">
+            <h3>Preview diff</h3>
+            {code_block(artifact_diff)}
+          </article>
+          <article class="page-panel">
+            <h3>Apply output</h3>
+            {code_block(artifact_apply)}
+          </article>
+          <article class="page-panel">
+            <h3>Validation summary</h3>
+            {code_block(artifact_validation)}
+          </article>
+        </div>
+        <article class="page-panel">
+          <h3>Final manager summary</h3>
+          {code_block(artifact_manager)}
+        </article>
       </section>
       <section class="section">
         <div class="grid two">

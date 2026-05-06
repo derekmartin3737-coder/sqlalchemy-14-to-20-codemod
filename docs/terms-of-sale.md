@@ -54,7 +54,7 @@ and receipt.
 Support follows the published support-scope policy. Buying a paid product does
 not create a consulting or custom-services relationship.
 
-Support email: `zippers3737@gmail.com`.
+Support email: `support@zippertools.org`.
 
 ## Liability boundary
 

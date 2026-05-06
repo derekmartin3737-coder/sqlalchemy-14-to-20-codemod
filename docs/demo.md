@@ -72,6 +72,65 @@ Supported candidates:
 After the free scan confirms repo fit, the paid pack performs the documented
 rewrites on a branch and includes rollout material in the purchased ZIP.
 
+The paid path is still intentionally narrow: it previews supported rewrites,
+applies only documented transforms, records validation results, and leaves
+unsupported work in the report instead of claiming a complete SQLAlchemy 2.0
+migration.
+
+### Preview Diff
+
+```diff
+- user = session.query(User).get(user_id)
++ user = session.get(User, user_id)
+
+- stmt = select([User.name])
++ stmt = select(User.name)
+```
+
+### Apply Output
+
+```text
+paid apply run
+files_changed: 4
+transforms_applied:
+  query_get, select_list_syntax, string_join,
+  string_loader, dml_kwargs
+manual_review_findings: 0
+report_written: migration-report.json
+```
+
+### Validation Result
+
+```text
+validation summary
+python -m compileall fixtures/demo_repo ... passed
+python -m pytest fixtures/demo_repo/tests ... passed
+buyer_repo_validation: required before merge
+```
+
+### Final Manager Report
+
+```text
+final manager report
+Supported cleanup findings: 6
+Manual-review findings: 0
+Changed files: 4
+Next step: review branch diff and run normal CI
+```
+
+### Exact ZIP Contents
+
+```text
+sa20-pack-edge-case-pack.zip
+- paid cleanup CLI
+- preview/apply commands
+- supported rewrite table
+- JSON report schema
+- rollback checklist
+- manager summary template
+- license and support terms
+```
+
 ## Buyer-visible takeaway
 
 The demo value is not only that the scanner finds patterns. The value is:

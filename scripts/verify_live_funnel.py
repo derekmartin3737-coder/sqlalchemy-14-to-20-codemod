@@ -88,12 +88,12 @@ REQUIRED_BY_PATH: dict[str, tuple[str, ...]] = {
         "Buy preset bundle - $149.99",
         "Buy Pydantic cleanup pack - $249.99",
         "Secure checkout is handled by Stripe.",
-        "Support: zippers3737@gmail.com",
+        "Support: support@zippertools.org",
     ),
     "/scan": (
         SQLALCHEMY_INSTALL,
         SQLALCHEMY_RUN,
-        "Support: zippers3737@gmail.com",
+        "Support: support@zippertools.org",
     ),
     "/pricing": (
         "Current checkout price: $99 per team",
@@ -105,7 +105,7 @@ REQUIRED_BY_PATH: dict[str, tuple[str, ...]] = {
         "Buy preset bundle - $149.99",
         "Buy Pydantic cleanup pack - $249.99",
         "Secure checkout is handled by Stripe.",
-        "Support: zippers3737@gmail.com",
+        "Support: support@zippertools.org",
     ),
     "/products/": (
         "Available now",
@@ -117,7 +117,7 @@ REQUIRED_BY_PATH: dict[str, tuple[str, ...]] = {
     "/products/sa20-pack/": (
         "After purchase, you receive",
         "Secure checkout is handled by Stripe.",
-        "Support: zippers3737@gmail.com",
+        "Support: support@zippertools.org",
     ),
     "/products/pydantic-v2-porter/": (
         PYDANTIC_INSTALL,
@@ -126,14 +126,14 @@ REQUIRED_BY_PATH: dict[str, tuple[str, ...]] = {
             "not the SQLAlchemy scanner."
         ),
         "Secure checkout is handled by Stripe.",
-        "Support: zippers3737@gmail.com",
+        "Support: support@zippertools.org",
     ),
     "/products/flatconfig-lift/": (
         "No checkout is listed for this proof page yet.",
     ),
     "/policies": (
         "Support:",
-        "zippers3737@gmail.com",
+        "support@zippertools.org",
     ),
 }
 

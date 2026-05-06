@@ -141,6 +141,22 @@ stmt = select([Job.id, Job.name])</code></pre>
   scanner report generated ... passed
   unsupported findings ... 0</code></pre>
           </article>
+          <article class="page-panel">
+            <h3>Apply output</h3>
+            <pre class="code-block"><code>apply output:
+  files changed: 1
+  transforms applied: 3
+  report written: migration-report.json
+  mode: preview/apply branch workflow</code></pre>
+          </article>
+          <article class="page-panel">
+            <h3>Final manager summary</h3>
+            <pre class="code-block"><code>manager summary:
+  supported cleanup findings: 3
+  manual-review findings: 0
+  next step: run the same workflow on a branch, then validate with repo tests
+  boundary: no broad SQLAlchemy migration guarantee</code></pre>
+          </article>
         </div>
         <article class="page-panel">
           <h3>Final report shape</h3>
@@ -149,7 +165,7 @@ stmt = select([Job.id, Job.name])</code></pre>
   files changed: 1
   transforms applied: declarative_imports, query_get, select_list_syntax
   confidence: supported subset, validation required before merge</code></pre>
-          <p class="caption">This is the visible evidence shape buyers should expect: before input, scanner JSON, preview diff, validation status, and a final report. The paid pack still has to be run on a branch and validated in the buyer's repo.</p>
+          <p class="caption">This is the visible evidence shape buyers should expect: before input, scanner JSON, preview diff, apply output, validation status, and final manager summary. The paid pack still has to be run on a branch and validated in the buyer's repo.</p>
         </article>
       </section>
       <section class="section">
@@ -177,6 +193,6 @@ stmt = select([Job.id, Job.name])</code></pre>
       </section>
 
     </main>
-    <footer class="site-footer"><div class="wrap footer-grid"><div><p class="footer-title">Zipper Tools</p><p class="caption">Exact-problem migration guides and narrow codemod products.</p></div><div class="footer-links"><a href="/scan">Scan</a><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="/policies">Policies</a><a href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod" data-repo-link>Repo</a><a href="mailto:zippers3737@gmail.com" data-contact-link>Contact</a></div><p class="caption footer-note">Support: <a href="mailto:zippers3737@gmail.com" data-contact-link><span data-contact-email>zippers3737@gmail.com</span></a></p></div></footer>
+    <footer class="site-footer"><div class="wrap footer-grid"><div><p class="footer-title">Zipper Tools</p><p class="caption">Exact-problem migration guides and narrow codemod products.</p></div><div class="footer-links"><a href="/scan">Scan</a><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="/policies">Policies</a><a href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod" data-repo-link>Repo</a><a href="mailto:support@zippertools.org" data-contact-link>Contact</a></div><p class="caption footer-note">Support: <a href="mailto:support@zippertools.org" data-contact-link><span data-contact-email>support@zippertools.org</span></a></p></div></footer>
   </body>
 </html>

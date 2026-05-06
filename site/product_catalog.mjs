@@ -1,7 +1,7 @@
 const SITE_URL = "https://zippertools.org";
 const REPO_URL =
   "https://github.com/zippertools/sqlalchemy-14-to-20-codemod";
-const SUPPORT_EMAIL = "zippers3737@gmail.com";
+const SUPPORT_EMAIL = "support@zippertools.org";
 
 const routes = Object.freeze({
   freeScan: "/go/free-scan",

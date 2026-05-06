@@ -111,7 +111,7 @@
             <div class="primary-cta"><a class="button secondary" href="/proof/flatconfig-lift/">Read public proof</a></div>
             <div class="secondary-cta-group">
               <p class="caption cta-group-label">Secondary options</p>
-              <ul class="action-list"><li><a class="button secondary" href="/go/flatconfig-free-scan/product-products-flatconfig-lift">Run the free static-config scan</a><span class="sr-only">.</span></li><li><a class="button secondary" href="#" data-doc-path="products/flatconfig-lift/docs/commercial-case.md">Commercial case</a><span class="sr-only">.</span></li><li><a class="button secondary" href="#" data-doc-path="products/flatconfig-lift/README.md">README</a><span class="sr-only">.</span></li><li><a class="button secondary" href="#example-workflow">View example before/after</a><span class="sr-only">.</span></li></ul>
+              <ul class="action-list"><li><a class="button secondary" href="/go/flatconfig-free-scan/product-products-flatconfig-lift">Run the free static-config scan</a><span class="sr-only">.</span></li><li><a class="button secondary" href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/products/flatconfig-lift/docs/commercial-case.md" data-doc-path="products/flatconfig-lift/docs/commercial-case.md">Commercial case</a><span class="sr-only">.</span></li><li><a class="button secondary" href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/products/flatconfig-lift/README.md" data-doc-path="products/flatconfig-lift/README.md">README</a><span class="sr-only">.</span></li><li><a class="button secondary" href="#example-workflow">View example before/after</a><span class="sr-only">.</span></li></ul>
             </div>
 
           </div>
@@ -139,7 +139,7 @@
             <h3>Local command</h3>
             <pre class="code-block"><code>python -m pip install &quot;https://github.com/zippertools/sqlalchemy-14-to-20-codemod/archive/refs/heads/main.zip#subdirectory=products/flatconfig-lift&quot;
 python -m flatconfig_lift.cli path/to/repo --report migration-report.json</code></pre>
-            <p class="caption">If installation fails, retry from the GitHub quickstart or contact support at zippers3737@gmail.com.</p>
+            <p class="caption">If installation fails, retry from the GitHub quickstart or contact support at support@zippertools.org.</p>
             <h3>Sample report</h3>
             <pre class="code-block"><code>Scan complete
 supported_static_configs: 1
@@ -165,6 +165,31 @@ next_step: generate FlatCompat bridge in paid pack</code></pre>
             <tbody><tr><td>static .eslintrc JSON/YAML</td><td>rewrite</td></tr><tr><td>package.json eslintConfig</td><td>rewrite</td></tr><tr><td>.eslintignore</td><td>migrate when simple</td></tr><tr><td>.eslintrc.js logic</td><td>manual review</td></tr></tbody>
           </table>
         </div>
+        <div class="grid three artifact-grid">
+          <article class="page-panel">
+            <h3>Apply output</h3>
+            <pre class="code-block"><code>proof output
+static_configs_detected: 1
+generated_preview: eslint.config.cjs
+manual_review_findings: 2
+checkout_status: not listed</code></pre>
+          </article>
+          <article class="page-panel">
+            <h3>Validation summary</h3>
+            <pre class="code-block"><code>validation summary
+json_yaml_parse: passed
+js_config_guard: passed
+existing_flat_config_guard: passed
+overall: proof-only fit signal</code></pre>
+          </article>
+          <article class="page-panel">
+            <h3>Final manager summary</h3>
+            <pre class="code-block"><code>final manager summary
+Decision: proof-only today, no checkout listed.
+Use when static config dominates.
+Do not use for JS config logic.</code></pre>
+          </article>
+        </div>
       </section>
       <section class="section">
         <div class="grid two">
@@ -175,7 +200,7 @@ next_step: generate FlatCompat bridge in paid pack</code></pre>
           <article class="page-panel">
             <h2>Public proof and fit signals</h2>
             <ul class="clean"><li>Public proof covers static JSON and YAML configs from real public repos.</li><li>JS configs and existing flat config files are blocked instead of guessed through.</li><li>The bridge output stays close to the source config with machine-generated reporting.</li></ul>
-            <div class="page-actions"><ul class="action-list"><li><a class="button secondary" href="/proof/flatconfig-lift/">Read public proof</a><span class="sr-only">.</span></li><li><a class="button secondary" href="#" data-doc-path="products/flatconfig-lift/docs/commercial-case.md">Commercial case</a><span class="sr-only">.</span></li><li><a class="button secondary" href="#" data-doc-path="products/flatconfig-lift/README.md">README</a><span class="sr-only">.</span></li></ul></div>
+            <div class="page-actions"><ul class="action-list"><li><a class="button secondary" href="/proof/flatconfig-lift/">Read public proof</a><span class="sr-only">.</span></li><li><a class="button secondary" href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/products/flatconfig-lift/docs/commercial-case.md" data-doc-path="products/flatconfig-lift/docs/commercial-case.md">Commercial case</a><span class="sr-only">.</span></li><li><a class="button secondary" href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/products/flatconfig-lift/README.md" data-doc-path="products/flatconfig-lift/README.md">README</a><span class="sr-only">.</span></li></ul></div>
           </article>
         </div>
       </section>
@@ -194,7 +219,7 @@ next_step: generate FlatCompat bridge in paid pack</code></pre>
           <article class="page-panel">
             <h2>Refund/support note</h2>
             <p>No purchase is available from this page yet, so there is no paid refund path. Use the proof, README, and contact link for fit questions.</p>
-            <p class="caption">Support: <a href="mailto:zippers3737@gmail.com" data-contact-link><span data-contact-email>zippers3737@gmail.com</span></a></p>
+            <p class="caption">Support: <a href="mailto:support@zippertools.org" data-contact-link><span data-contact-email>support@zippertools.org</span></a></p>
           </article>
         </div>
       </section>
@@ -209,7 +234,7 @@ next_step: generate FlatCompat bridge in paid pack</code></pre>
             <div class="primary-cta"><span class="button disabled">Checkout not listed yet</span></div>
             <div class="secondary-cta-group">
               <p class="caption cta-group-label">Secondary options</p>
-              <ul class="action-list"><li><a class="button secondary" href="/proof/flatconfig-lift/">Read public proof</a><span class="sr-only">.</span></li><li><a class="button secondary" href="/go/flatconfig-free-scan/product-products-flatconfig-lift">Run the free static-config scan</a><span class="sr-only">.</span></li><li><a class="button secondary" href="#" data-doc-path="products/flatconfig-lift/docs/commercial-case.md">Commercial case</a><span class="sr-only">.</span></li><li><a class="button secondary" href="#" data-doc-path="products/flatconfig-lift/README.md">README</a><span class="sr-only">.</span></li></ul>
+              <ul class="action-list"><li><a class="button secondary" href="/proof/flatconfig-lift/">Read public proof</a><span class="sr-only">.</span></li><li><a class="button secondary" href="/go/flatconfig-free-scan/product-products-flatconfig-lift">Run the free static-config scan</a><span class="sr-only">.</span></li><li><a class="button secondary" href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/products/flatconfig-lift/docs/commercial-case.md" data-doc-path="products/flatconfig-lift/docs/commercial-case.md">Commercial case</a><span class="sr-only">.</span></li><li><a class="button secondary" href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/products/flatconfig-lift/README.md" data-doc-path="products/flatconfig-lift/README.md">README</a><span class="sr-only">.</span></li></ul>
             </div>
             <p class="small">No checkout is listed for this proof page yet.</p>
           </div>
@@ -221,6 +246,6 @@ next_step: generate FlatCompat bridge in paid pack</code></pre>
       </section>
 
     </main>
-    <footer class="site-footer"><div class="wrap footer-grid"><div><p class="footer-title">Zipper Tools</p><p class="caption">Exact-problem migration guides and narrow codemod products.</p></div><div class="footer-links"><a href="/scan">Scan</a><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="/policies">Policies</a><a href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod" data-repo-link>Repo</a><a href="mailto:zippers3737@gmail.com" data-contact-link>Contact</a></div><p class="caption footer-note">Support: <a href="mailto:zippers3737@gmail.com" data-contact-link><span data-contact-email>zippers3737@gmail.com</span></a></p></div></footer>
+    <footer class="site-footer"><div class="wrap footer-grid"><div><p class="footer-title">Zipper Tools</p><p class="caption">Exact-problem migration guides and narrow codemod products.</p></div><div class="footer-links"><a href="/scan">Scan</a><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="/policies">Policies</a><a href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod" data-repo-link>Repo</a><a href="mailto:support@zippertools.org" data-contact-link>Contact</a></div><p class="caption footer-note">Support: <a href="mailto:support@zippertools.org" data-contact-link><span data-contact-email>support@zippertools.org</span></a></p></div></footer>
   </body>
 </html>

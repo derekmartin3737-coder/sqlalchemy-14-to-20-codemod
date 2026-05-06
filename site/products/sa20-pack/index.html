@@ -157,7 +157,7 @@
             <h3>Free scan commands</h3>
             <pre class="code-block"><code>python -m pip install &quot;https://github.com/zippertools/sqlalchemy-14-to-20-codemod/archive/refs/heads/main.zip&quot;
 python -m sa20_pack.cli . --report migration-report.json</code></pre>
-            <p class="caption">If installation fails, retry from the GitHub quickstart or contact support at zippers3737@gmail.com.</p>
+            <p class="caption">If installation fails, retry from the GitHub quickstart or contact support at support@zippertools.org.</p>
             <h3>Sample report</h3>
             <pre class="code-block"><code>Scan complete
 supported_findings: 38
@@ -181,6 +181,31 @@ next_step: preview deterministic rewrites</code></pre>
             <tbody><tr><td>Query.get primary-key lookups</td><td>rewrite</td></tr><tr><td>select([..]) list syntax</td><td>rewrite</td></tr><tr><td>simple string joins/loaders</td><td>rewrite</td></tr><tr><td>engine.execute transaction choices</td><td>manual review</td></tr></tbody>
           </table>
         </div>
+        <div class="grid three artifact-grid">
+          <article class="page-panel">
+            <h3>Apply output</h3>
+            <pre class="code-block"><code>apply output
+files_changed: 4
+transforms_applied: query_get, select_list_syntax, declarative_imports
+manual_review_findings: 6
+report_written: migration-report.json</code></pre>
+          </article>
+          <article class="page-panel">
+            <h3>Validation summary</h3>
+            <pre class="code-block"><code>validation summary
+python -m compileall target_repo ... passed
+pytest selected_fixture_suite ... passed
+manual_review_export ... passed
+overall: branch validation still required</code></pre>
+          </article>
+          <article class="page-panel">
+            <h3>Final manager summary</h3>
+            <pre class="code-block"><code>final manager summary
+Supported cleanup findings: 38
+Manual-review findings: 6
+Next step: inspect diff, then run the buyer repo&#x27;s own tests.</code></pre>
+          </article>
+        </div>
       </section>
       <section class="section">
         <div class="grid two">
@@ -191,7 +216,7 @@ next_step: preview deterministic rewrites</code></pre>
           <article class="page-panel">
             <h2>Public proof and fit signals</h2>
             <ul class="clean"><li>Public proof shows supported rewrites on real public files.</li><li>Fail-closed proof shows engine.execute(...) stays blocked instead of guessed.</li><li>The public repo remains scanner-first so a buyer can qualify fit before purchase.</li></ul>
-            <div class="page-actions"><ul class="action-list"><li><a class="button secondary" href="/proof/sqlalchemy-public-proof/">Read public proof</a><span class="sr-only">.</span></li><li><a class="button secondary" href="/pricing#sa20-pack">See pricing</a><span class="sr-only">.</span></li><li><a class="button secondary" href="/go/github-release">Read v0.1.0 release</a><span class="sr-only">.</span></li><li><a class="button secondary" href="#" data-doc-path="docs/commercial-case.md">Commercial case</a><span class="sr-only">.</span></li></ul></div>
+            <div class="page-actions"><ul class="action-list"><li><a class="button secondary" href="/proof/sqlalchemy-public-proof/">Read public proof</a><span class="sr-only">.</span></li><li><a class="button secondary" href="/pricing#sa20-pack">See pricing</a><span class="sr-only">.</span></li><li><a class="button secondary" href="/go/github-release">Read v0.1.0 release</a><span class="sr-only">.</span></li><li><a class="button secondary" href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/docs/commercial-case.md" data-doc-path="docs/commercial-case.md">Commercial case</a><span class="sr-only">.</span></li></ul></div>
           </article>
         </div>
       </section>
@@ -210,7 +235,7 @@ next_step: preview deterministic rewrites</code></pre>
           <article class="page-panel">
             <h2>Refund/support note</h2>
             <p>14-day refund review for published-scope or delivery mismatches. Support is by email; include the scanner report and checkout email so the issue can be matched to the published scope.</p>
-            <p class="caption">Support: <a href="mailto:zippers3737@gmail.com" data-contact-link><span data-contact-email>zippers3737@gmail.com</span></a></p>
+            <p class="caption">Support: <a href="mailto:support@zippertools.org" data-contact-link><span data-contact-email>support@zippertools.org</span></a></p>
           </article>
         </div>
       </section>
@@ -237,6 +262,6 @@ next_step: preview deterministic rewrites</code></pre>
       </section>
 
     </main>
-    <footer class="site-footer"><div class="wrap footer-grid"><div><p class="footer-title">Zipper Tools</p><p class="caption">Exact-problem migration guides and narrow codemod products.</p></div><div class="footer-links"><a href="/scan">Scan</a><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="/policies">Policies</a><a href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod" data-repo-link>Repo</a><a href="mailto:zippers3737@gmail.com" data-contact-link>Contact</a></div><p class="caption footer-note">Support: <a href="mailto:zippers3737@gmail.com" data-contact-link><span data-contact-email>zippers3737@gmail.com</span></a></p></div></footer>
+    <footer class="site-footer"><div class="wrap footer-grid"><div><p class="footer-title">Zipper Tools</p><p class="caption">Exact-problem migration guides and narrow codemod products.</p></div><div class="footer-links"><a href="/scan">Scan</a><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="/policies">Policies</a><a href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod" data-repo-link>Repo</a><a href="mailto:support@zippertools.org" data-contact-link>Contact</a></div><p class="caption footer-note">Support: <a href="mailto:support@zippertools.org" data-contact-link><span data-contact-email>support@zippertools.org</span></a></p></div></footer>
   </body>
 </html>

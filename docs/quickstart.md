@@ -8,7 +8,7 @@ python -m sa20_pack.cli . --report migration-report.json
 ```
 
 If installation fails, retry from the GitHub quickstart or contact support at
-zippers3737@gmail.com.
+support@zippertools.org.
 
 For local development in this repo:
 

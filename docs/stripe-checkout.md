@@ -1,6 +1,6 @@
 # Stripe Checkout Setup
 
-Last updated: 2026-04-30
+Last updated: 2026-05-06
 
 This uses repo-controlled Stripe Checkout Sessions created by the Cloudflare
 Worker.
@@ -22,9 +22,21 @@ Worker.
 - Stripe webhook signature verification at `/stripe/webhook`
 - post-payment KV artifact delivery at `/stripe/delivery`
 
-The Worker uses inline Stripe `price_data`, so the product names and prices come
-from `site/product_catalog.mjs`. You do not need to manually create Stripe
-products first.
+The Worker currently uses inline Stripe `price_data`, so the product names and
+prices come from `site/product_catalog.mjs`. Live Stripe Products and Prices also
+exist in the connected account for Dashboard clarity and future price-ID
+checkout migration.
+
+## Live Stripe catalog
+
+Connected account: `acct_1TKBtaATQfsHIwbt`.
+
+| Product | Product ID | Price ID | Amount |
+| --- | --- | --- | --- |
+| SQLAlchemy/Pydantic Fit Report Add-on | `prod_USv2vXjZURK1Dn` | `price_1TTzD1ATQfsHIwbtPxiF2vgp` | `$99.00` |
+| SQLAlchemy 1.4 to 2.0 Migration Cleanup Pack | `prod_USv3EjBVYLIFCP` | `price_1TTzD8ATQfsHIwbto494wZjV` | `$299.99` |
+| Migration Preset Bundle | `prod_USv31CiaOaWfeo` | `price_1TTzDEATQfsHIwbteoXWXTUU` | `$149.99` |
+| Pydantic v1 to v2 Migration Cleanup Pack | `prod_USv3bxBilT5QCy` | `price_1TTzDMATQfsHIwbtb4yDHTnt` | `$249.99` |
 
 ## Dashboard setup
 
@@ -32,7 +44,7 @@ Use the Stripe account that will receive Zipper Tools payouts.
 
 1. In Stripe, set the public business/profile details:
    - public business name: `Zipper Tools`
-   - support email: `zippers3737@gmail.com`
+   - support email: `support@zippertools.org`
    - support site: `https://zippertools.org/`
    - statement descriptor: `ZIPPERTOOLS`
 2. Start in test mode.

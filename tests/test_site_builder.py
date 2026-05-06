@@ -41,10 +41,20 @@ def test_build_site_generates_sitemaps_and_indexnow_key() -> None:
     proof_text = (
         site_dir / "proof" / "sqlalchemy-public-proof" / "index.html"
     ).read_text(encoding="utf-8")
+    pydantic_proof_text = (
+        site_dir / "proof" / "pydantic-v2-porter" / "index.html"
+    ).read_text(encoding="utf-8")
     assert "Artifact trail" in proof_text
     assert "Sample repo before" in proof_text
     assert "Preview diff" in proof_text
+    assert "Apply output" in proof_text
+    assert "Final manager summary" in proof_text
     assert "Final report shape" in proof_text
+    assert "Scan report" in pydantic_proof_text
+    assert "Preview diff" in pydantic_proof_text
+    assert "Apply output" in pydantic_proof_text
+    assert "Validation summary" in pydantic_proof_text
+    assert "Final manager summary" in pydantic_proof_text
     assert (site_dir / "sitemap.xml").exists()
     assert (site_dir / "sitemap-problem-pages.xml").exists()
     assert len(manifest["guides"]) >= 50
@@ -140,6 +150,8 @@ def test_generated_redirects_preserve_legacy_paths_and_track_checkout() -> None:
         "/go/github-release https://github.com/zippertools/sqlalchemy-14-to-20-codemod/releases/tag/v0.1.0"
         in redirects_text
     )
+    assert "/go/pydantic-free-scan/*" not in redirects_text
+    assert "/go/pydantic-v2-porter/*" not in redirects_text
     assert "/scan.html /scan 301" in redirects_text
     assert "/sqlalchemy-2-migration-scan /scan 301" in redirects_text
     assert "/go/fit-report /pricing#fit-report 302" not in redirects_text
@@ -208,6 +220,10 @@ def test_product_pages_link_to_trackable_checkout_routes() -> None:
     assert "After purchase, you receive" in pydantic_text
     assert "Preview/apply commands" in sa20_text
     assert "Supported rewrite table" in pydantic_text
+    for product_text in (sa20_text, pydantic_text):
+        assert "Apply output" in product_text
+        assert "Validation summary" in product_text
+        assert "Final manager summary" in product_text
     assert "license/support terms" in sa20_text
     assert sa20_text.index("After purchase, you receive") < sa20_text.index(
         "Do not use this if"
@@ -275,6 +291,7 @@ def test_static_indexable_pages_use_clean_canonicals_and_links() -> None:
     assert 'presetBundleUrl: "/go/sa20-preset"' in config_text
     assert 'pydanticPackUrl: "/go/pydantic-v2-porter"' in config_text
     assert 'fitReportUrl: "/go/fit-report"' in config_text
+    assert 'contactEmail: "support@zippertools.org"' in config_text
     assert 'href="/scan"' in index_text
     assert "Current checkout price: $99 per team" in pricing_text
     assert "Buy automated fit report - $99" in pricing_text
@@ -293,9 +310,23 @@ def test_static_indexable_pages_use_clean_canonicals_and_links() -> None:
     assert "What are you migrating?" in scan_text
     assert "/go/pydantic-free-scan/scan-chooser" in scan_text
     assert "/go/flatconfig-free-scan/scan-chooser" in scan_text
+    assert "Run a SQLAlchemy or Pydantic Migration Scan" in scan_text
+    assert "python -m pydantic_v2_porter.cli . --report migration-report.json" in scan_text
+    assert "not the SQLAlchemy scanner" in scan_text
+    assert "Run a SQLAlchemy 2.0 Migration Scan" not in scan_text
+    assert "Paid-pack artifact trail" in demo_text
+    assert "Preview diff" in demo_text
+    assert "Apply output" in demo_text
+    assert "Validation result" in demo_text
+    assert "Final manager report" in demo_text
+    assert "Exact ZIP contents" in demo_text
+    assert "sa20-pack-edge-case-pack.zip" in demo_text
     for html in (index_text, scan_text, pricing_text, demo_text, policies_text):
         _assert_primary_nav_order(html)
         _assert_footer_nav_order(html)
+        assert 'href="#" data-repo-link' not in html
+        assert 'href="#" data-contact-link' not in html
+        assert 'mailto:support@zippertools.org' in html
 
 
 def test_free_scan_install_path_uses_verified_archive_command() -> None:
@@ -319,7 +350,7 @@ def test_free_scan_install_path_uses_verified_archive_command() -> None:
     scan_command = "python -m sa20_pack.cli . --report migration-report.json"
     fallback_note = (
         "If installation fails, retry from the GitHub quickstart or contact "
-        "support at zippers3737@gmail.com."
+        "support at support@zippertools.org."
     )
     normalized_fallback = " ".join(fallback_note.split())
 

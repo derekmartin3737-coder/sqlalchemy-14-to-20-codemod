@@ -182,6 +182,31 @@ Next step: run branch validation before merge</code></pre>
             <tbody><tr><td>Rollout checklist</td><td>included</td></tr><tr><td>Manager summary template</td><td>included</td></tr><tr><td>Triage presets and review buckets</td><td>included</td></tr><tr><td>Code rewrite engine</td><td>not included</td></tr></tbody>
           </table>
         </div>
+        <div class="grid three artifact-grid">
+          <article class="page-panel">
+            <h3>Apply output</h3>
+            <pre class="code-block"><code>preset bundle populated
+scanner_report: migration-report.json
+rollout_checklist: generated
+review_buckets: supported/manual-review/unsupported
+handoff_note: generated</code></pre>
+          </article>
+          <article class="page-panel">
+            <h3>Validation summary</h3>
+            <pre class="code-block"><code>validation summary
+required_fields_present: passed
+checkout_artifact_scope: documentation only
+source_upload_required: false
+overall: rollout packet ready</code></pre>
+          </article>
+          <article class="page-panel">
+            <h3>Final manager summary</h3>
+            <pre class="code-block"><code>final manager summary
+Status: mechanical cleanup can start after branch setup.
+Scope: supported SQLAlchemy findings first.
+Risk: unsupported findings stay out of the rollout checklist.</code></pre>
+          </article>
+        </div>
       </section>
       <section class="section">
         <div class="grid two">
@@ -192,7 +217,7 @@ Next step: run branch validation before merge</code></pre>
           <article class="page-panel">
             <h2>Fit signals and docs</h2>
             <ul class="clean"><li>Shows the exact deliverable shape: rollout checklist, manager summary, triage presets, review buckets, and handoff notes.</li><li>Keeps the boundary clear: downloadable docs and presets, not a code rewrite engine.</li><li>Uses the same Stripe Checkout and verified ZIP delivery path as the paid packs.</li></ul>
-            <div class="page-actions"><ul class="action-list"><li><a class="button secondary" href="/pricing#sa20-preset">See pricing</a><span class="sr-only">.</span></li><li><a class="button secondary" href="#" data-doc-path="docs/store-products.md">Store products</a><span class="sr-only">.</span></li><li><a class="button secondary" href="#" data-doc-path="docs/fulfillment.md">Fulfillment</a><span class="sr-only">.</span></li></ul></div>
+            <div class="page-actions"><ul class="action-list"><li><a class="button secondary" href="/pricing#sa20-preset">See pricing</a><span class="sr-only">.</span></li><li><a class="button secondary" href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/docs/store-products.md" data-doc-path="docs/store-products.md">Store products</a><span class="sr-only">.</span></li><li><a class="button secondary" href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/docs/fulfillment.md" data-doc-path="docs/fulfillment.md">Fulfillment</a><span class="sr-only">.</span></li></ul></div>
           </article>
         </div>
       </section>
@@ -211,7 +236,7 @@ Next step: run branch validation before merge</code></pre>
           <article class="page-panel">
             <h2>Refund/support note</h2>
             <p>14-day refund review for published-scope or delivery mismatches. This is a documentation/rollout kit, not the SQLAlchemy apply engine.</p>
-            <p class="caption">Support: <a href="mailto:zippers3737@gmail.com" data-contact-link><span data-contact-email>zippers3737@gmail.com</span></a></p>
+            <p class="caption">Support: <a href="mailto:support@zippertools.org" data-contact-link><span data-contact-email>support@zippertools.org</span></a></p>
           </article>
         </div>
       </section>
@@ -238,6 +263,6 @@ Next step: run branch validation before merge</code></pre>
       </section>
 
     </main>
-    <footer class="site-footer"><div class="wrap footer-grid"><div><p class="footer-title">Zipper Tools</p><p class="caption">Exact-problem migration guides and narrow codemod products.</p></div><div class="footer-links"><a href="/scan">Scan</a><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="/policies">Policies</a><a href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod" data-repo-link>Repo</a><a href="mailto:zippers3737@gmail.com" data-contact-link>Contact</a></div><p class="caption footer-note">Support: <a href="mailto:zippers3737@gmail.com" data-contact-link><span data-contact-email>zippers3737@gmail.com</span></a></p></div></footer>
+    <footer class="site-footer"><div class="wrap footer-grid"><div><p class="footer-title">Zipper Tools</p><p class="caption">Exact-problem migration guides and narrow codemod products.</p></div><div class="footer-links"><a href="/scan">Scan</a><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="/policies">Policies</a><a href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod" data-repo-link>Repo</a><a href="mailto:support@zippertools.org" data-contact-link>Contact</a></div><p class="caption footer-note">Support: <a href="mailto:support@zippertools.org" data-contact-link><span data-contact-email>support@zippertools.org</span></a></p></div></footer>
   </body>
 </html>

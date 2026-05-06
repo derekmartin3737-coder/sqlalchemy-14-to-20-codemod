@@ -182,6 +182,31 @@ Recommended purchase: cleanup pack or preset bundle</code></pre>
             <tbody><tr><td>SQLAlchemy scanner report</td><td>supported input</td></tr><tr><td>Pydantic scanner report</td><td>supported input</td></tr><tr><td>ESLint proof-only report</td><td>out of scope</td></tr><tr><td>Private source upload</td><td>not required</td></tr></tbody>
           </table>
         </div>
+        <div class="grid three artifact-grid">
+          <article class="page-panel">
+            <h3>Apply output</h3>
+            <pre class="code-block"><code>fit-report add-on complete
+input_report: migration-report.json
+supported_ratio: strong enough for paid cleanup consideration
+manual_review_risk: medium
+recommendation_written: manager-fit-summary.md</code></pre>
+          </article>
+          <article class="page-panel">
+            <h3>Validation summary</h3>
+            <pre class="code-block"><code>validation summary
+scanner_report_loaded: passed
+unsupported_product_family_check: passed
+source_upload_required: false
+overall: recommendation ready for review</code></pre>
+          </article>
+          <article class="page-panel">
+            <h3>Final manager summary</h3>
+            <pre class="code-block"><code>final manager summary
+Decision: buy the cleanup pack if validation time is available.
+Why: repeated supported findings dominate the migration noise.
+Risk: manual-review findings remain visible and should be assigned.</code></pre>
+          </article>
+        </div>
       </section>
       <section class="section">
         <div class="grid two">
@@ -192,7 +217,7 @@ Recommended purchase: cleanup pack or preset bundle</code></pre>
           <article class="page-panel">
             <h2>Fit signals and docs</h2>
             <ul class="clean"><li>Reads scanner output locally instead of requiring private repo upload.</li><li>Separates supported findings from manual-review risk before a larger purchase.</li><li>Produces a software-generated recommendation without human service delivery.</li></ul>
-            <div class="page-actions"><ul class="action-list"><li><a class="button secondary" href="/pricing#fit-report">See pricing</a><span class="sr-only">.</span></li><li><a class="button secondary" href="#" data-doc-path="docs/store-products.md">Store products</a><span class="sr-only">.</span></li><li><a class="button secondary" href="#" data-doc-path="docs/fulfillment.md">Fulfillment</a><span class="sr-only">.</span></li></ul></div>
+            <div class="page-actions"><ul class="action-list"><li><a class="button secondary" href="/pricing#fit-report">See pricing</a><span class="sr-only">.</span></li><li><a class="button secondary" href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/docs/store-products.md" data-doc-path="docs/store-products.md">Store products</a><span class="sr-only">.</span></li><li><a class="button secondary" href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/docs/fulfillment.md" data-doc-path="docs/fulfillment.md">Fulfillment</a><span class="sr-only">.</span></li></ul></div>
           </article>
         </div>
       </section>
@@ -211,7 +236,7 @@ Recommended purchase: cleanup pack or preset bundle</code></pre>
           <article class="page-panel">
             <h2>Refund/support note</h2>
             <p>14-day refund review for published-scope or delivery mismatches. This add-on is not automatically credited toward a cleanup pack yet; treat it as a separate diagnostic purchase.</p>
-            <p class="caption">Support: <a href="mailto:zippers3737@gmail.com" data-contact-link><span data-contact-email>zippers3737@gmail.com</span></a></p>
+            <p class="caption">Support: <a href="mailto:support@zippertools.org" data-contact-link><span data-contact-email>support@zippertools.org</span></a></p>
           </article>
         </div>
       </section>
@@ -238,6 +263,6 @@ Recommended purchase: cleanup pack or preset bundle</code></pre>
       </section>
 
     </main>
-    <footer class="site-footer"><div class="wrap footer-grid"><div><p class="footer-title">Zipper Tools</p><p class="caption">Exact-problem migration guides and narrow codemod products.</p></div><div class="footer-links"><a href="/scan">Scan</a><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="/policies">Policies</a><a href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod" data-repo-link>Repo</a><a href="mailto:zippers3737@gmail.com" data-contact-link>Contact</a></div><p class="caption footer-note">Support: <a href="mailto:zippers3737@gmail.com" data-contact-link><span data-contact-email>zippers3737@gmail.com</span></a></p></div></footer>
+    <footer class="site-footer"><div class="wrap footer-grid"><div><p class="footer-title">Zipper Tools</p><p class="caption">Exact-problem migration guides and narrow codemod products.</p></div><div class="footer-links"><a href="/scan">Scan</a><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="/policies">Policies</a><a href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod" data-repo-link>Repo</a><a href="mailto:support@zippertools.org" data-contact-link>Contact</a></div><p class="caption footer-note">Support: <a href="mailto:support@zippertools.org" data-contact-link><span data-contact-email>support@zippertools.org</span></a></p></div></footer>
   </body>
 </html>

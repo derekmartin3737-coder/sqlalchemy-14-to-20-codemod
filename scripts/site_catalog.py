@@ -8,7 +8,7 @@ SITE_NAME = "Zipper Tools"
 SITE_URL = "https://zippertools.org"
 INDEXNOW_KEY = "66d2924ff8a74b898f29b91e27b2fce8"
 REPO_URL = "https://github.com/zippertools/sqlalchemy-14-to-20-codemod"
-SUPPORT_EMAIL = "zippers3737@gmail.com"
+SUPPORT_EMAIL = "support@zippertools.org"
 SA20_INSTALL_URL = f"{REPO_URL}/archive/refs/heads/main.zip"
 # pip's `#subdirectory=` fragment works on both git+ URLs and archive zip URLs.
 # Use the archive form so users do not need a local git binary.

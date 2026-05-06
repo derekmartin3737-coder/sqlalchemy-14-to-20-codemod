@@ -94,6 +94,49 @@
         </div>
       </section>
       <section class="section">
+        <div class="section-heading"><p class="kicker">Artifact trail</p><h2>Visible report, diff, output, validation, and manager summary</h2></div>
+        <div class="grid two">
+          <article class="page-panel">
+            <h3>Scan report</h3>
+            <pre class="code-block"><code>scan report
+supported_findings: 24
+manual_review_findings: 5
+files_uploaded: 0
+next_step: preview supported rewrites</code></pre>
+          </article>
+          <article class="page-panel">
+            <h3>Preview diff</h3>
+            <pre class="code-block"><code>- from pydantic import BaseSettings, validator
++ from pydantic import field_validator
++ from pydantic_settings import BaseSettings
+-     @validator(&quot;email&quot;)
++     @field_validator(&quot;email&quot;)
++     @classmethod</code></pre>
+          </article>
+          <article class="page-panel">
+            <h3>Apply output</h3>
+            <pre class="code-block"><code>apply output
+files_changed: 3
+transforms_applied: imports, BaseSettings, validators, Config
+manual_review_findings: alias/signature-heavy validators</code></pre>
+          </article>
+          <article class="page-panel">
+            <h3>Validation summary</h3>
+            <pre class="code-block"><code>validation summary
+compileall fixture_repo ... passed
+fixture tests ... passed
+buyer repo tests ... required before merge</code></pre>
+          </article>
+        </div>
+        <article class="page-panel">
+          <h3>Final manager summary</h3>
+          <pre class="code-block"><code>final manager summary
+Use the cleanup pack when direct Pydantic v1 patterns repeat.
+Keep alias-heavy imports and signature-heavy validators in manual review.
+No source upload is needed.</code></pre>
+        </article>
+      </section>
+      <section class="section">
         <div class="grid two">
           <article class="page-panel">
             <h2>What this proof covers</h2>
@@ -115,13 +158,13 @@
             <h2>Decision path</h2>
             <p>The cleanup pack is strongest when the repo still uses direct pydantic imports and a clean validator/settings/config subset.</p>
             <div class="page-actions">
-              <ul class="action-list"><li><a class="button" href="/products/pydantic-v2-porter/">Open Pydantic v1 to v2 Migration Cleanup Pack</a><span class="sr-only">.</span></li><li><a class="button secondary" href="/pricing#pydantic-v2-porter">See pricing</a><span class="sr-only">.</span></li><li><a class="button secondary" href="#" data-doc-path="products/pydantic-v2-porter/docs/public-proof.md">Public proof</a><span class="sr-only">.</span></li><li><a class="button secondary" href="#" data-doc-path="products/pydantic-v2-porter/docs/commercial-case.md">Commercial case</a><span class="sr-only">.</span></li><li><a class="button secondary" href="#" data-doc-path="products/pydantic-v2-porter/README.md">README</a><span class="sr-only">.</span></li></ul>
+              <ul class="action-list"><li><a class="button" href="/products/pydantic-v2-porter/">Open Pydantic v1 to v2 Migration Cleanup Pack</a><span class="sr-only">.</span></li><li><a class="button secondary" href="/pricing#pydantic-v2-porter">See pricing</a><span class="sr-only">.</span></li><li><a class="button secondary" href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/products/pydantic-v2-porter/docs/public-proof.md" data-doc-path="products/pydantic-v2-porter/docs/public-proof.md">Public proof</a><span class="sr-only">.</span></li><li><a class="button secondary" href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/products/pydantic-v2-porter/docs/commercial-case.md" data-doc-path="products/pydantic-v2-porter/docs/commercial-case.md">Commercial case</a><span class="sr-only">.</span></li><li><a class="button secondary" href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/products/pydantic-v2-porter/README.md" data-doc-path="products/pydantic-v2-porter/README.md">README</a><span class="sr-only">.</span></li></ul>
             </div>
           </article>
         </div>
       </section>
 
     </main>
-    <footer class="site-footer"><div class="wrap footer-grid"><div><p class="footer-title">Zipper Tools</p><p class="caption">Exact-problem migration guides and narrow codemod products.</p></div><div class="footer-links"><a href="/scan">Scan</a><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="/policies">Policies</a><a href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod" data-repo-link>Repo</a><a href="mailto:zippers3737@gmail.com" data-contact-link>Contact</a></div><p class="caption footer-note">Support: <a href="mailto:zippers3737@gmail.com" data-contact-link><span data-contact-email>zippers3737@gmail.com</span></a></p></div></footer>
+    <footer class="site-footer"><div class="wrap footer-grid"><div><p class="footer-title">Zipper Tools</p><p class="caption">Exact-problem migration guides and narrow codemod products.</p></div><div class="footer-links"><a href="/scan">Scan</a><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="/policies">Policies</a><a href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod" data-repo-link>Repo</a><a href="mailto:support@zippertools.org" data-contact-link>Contact</a></div><p class="caption footer-note">Support: <a href="mailto:support@zippertools.org" data-contact-link><span data-contact-email>support@zippertools.org</span></a></p></div></footer>
   </body>
 </html>

@@ -94,6 +94,47 @@
         </div>
       </section>
       <section class="section">
+        <div class="section-heading"><p class="kicker">Artifact trail</p><h2>Visible report, diff, output, validation, and manager summary</h2></div>
+        <div class="grid two">
+          <article class="page-panel">
+            <h3>Scan report</h3>
+            <pre class="code-block"><code>scan report
+supported_static_configs: 1
+manual_review_findings: 2
+files_uploaded: 0
+checkout_status: proof only</code></pre>
+          </article>
+          <article class="page-panel">
+            <h3>Preview diff</h3>
+            <pre class="code-block"><code>- .eslintrc.json
++ eslint.config.cjs
++ const { FlatCompat } = require(&quot;@eslint/eslintrc&quot;);
++ module.exports = [...compat.config(legacyConfig)];</code></pre>
+          </article>
+          <article class="page-panel">
+            <h3>Apply output</h3>
+            <pre class="code-block"><code>proof output
+generated_preview: eslint.config.cjs
+manual_review_findings: JS config logic, existing flat config
+checkout_status: not listed</code></pre>
+          </article>
+          <article class="page-panel">
+            <h3>Validation summary</h3>
+            <pre class="code-block"><code>validation summary
+static config parse ... passed
+unsupported guards ... passed
+buyer repo lint ... required before merge</code></pre>
+          </article>
+        </div>
+        <article class="page-panel">
+          <h3>Final manager summary</h3>
+          <pre class="code-block"><code>final manager summary
+Use as proof for static JSON/YAML config only.
+Do not buy from this page; checkout is not listed.
+Keep JS config behavior manual.</code></pre>
+        </article>
+      </section>
+      <section class="section">
         <div class="grid two">
           <article class="page-panel">
             <h2>What this proof covers</h2>
@@ -115,13 +156,13 @@
             <h2>Decision path</h2>
             <p>This product exists for the static-config subset. It does not pretend to evaluate JS config logic.</p>
             <div class="page-actions">
-              <ul class="action-list"><li><a class="button" href="/products/flatconfig-lift/">Open ESLint Flat Config Migration Cleanup Pack</a><span class="sr-only">.</span></li><li><a class="button secondary" href="#" data-doc-path="products/flatconfig-lift/docs/public-proof.md">Public proof</a><span class="sr-only">.</span></li><li><a class="button secondary" href="#" data-doc-path="products/flatconfig-lift/docs/commercial-case.md">Commercial case</a><span class="sr-only">.</span></li><li><a class="button secondary" href="#" data-doc-path="products/flatconfig-lift/README.md">README</a><span class="sr-only">.</span></li></ul>
+              <ul class="action-list"><li><a class="button" href="/products/flatconfig-lift/">Open ESLint Flat Config Migration Cleanup Pack</a><span class="sr-only">.</span></li><li><a class="button secondary" href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/products/flatconfig-lift/docs/public-proof.md" data-doc-path="products/flatconfig-lift/docs/public-proof.md">Public proof</a><span class="sr-only">.</span></li><li><a class="button secondary" href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/products/flatconfig-lift/docs/commercial-case.md" data-doc-path="products/flatconfig-lift/docs/commercial-case.md">Commercial case</a><span class="sr-only">.</span></li><li><a class="button secondary" href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/products/flatconfig-lift/README.md" data-doc-path="products/flatconfig-lift/README.md">README</a><span class="sr-only">.</span></li></ul>
             </div>
           </article>
         </div>
       </section>
 
     </main>
-    <footer class="site-footer"><div class="wrap footer-grid"><div><p class="footer-title">Zipper Tools</p><p class="caption">Exact-problem migration guides and narrow codemod products.</p></div><div class="footer-links"><a href="/scan">Scan</a><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="/policies">Policies</a><a href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod" data-repo-link>Repo</a><a href="mailto:zippers3737@gmail.com" data-contact-link>Contact</a></div><p class="caption footer-note">Support: <a href="mailto:zippers3737@gmail.com" data-contact-link><span data-contact-email>zippers3737@gmail.com</span></a></p></div></footer>
+    <footer class="site-footer"><div class="wrap footer-grid"><div><p class="footer-title">Zipper Tools</p><p class="caption">Exact-problem migration guides and narrow codemod products.</p></div><div class="footer-links"><a href="/scan">Scan</a><a href="/guides/">Guides</a><a href="/products/">Products</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="/policies">Policies</a><a href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod" data-repo-link>Repo</a><a href="mailto:support@zippertools.org" data-contact-link>Contact</a></div><p class="caption footer-note">Support: <a href="mailto:support@zippertools.org" data-contact-link><span data-contact-email>support@zippertools.org</span></a></p></div></footer>
   </body>
 </html>

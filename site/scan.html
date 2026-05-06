@@ -4,13 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#08111f" />
-    <title>Run a SQLAlchemy 2.0 Migration Scan | Zipper Tools</title>
+    <title>Run a SQLAlchemy or Pydantic Migration Scan | Zipper Tools</title>
     <meta
       name="description"
-      content="Run the free local SQLAlchemy migration scanner, view example output, and decide whether an automated fit report or cleanup pack is worth it."
+      content="Choose the free local SQLAlchemy or Pydantic migration scanner, view example output, and decide whether an automated fit report or cleanup pack is worth it."
     />
     <link rel="canonical" href="https://zippertools.org/scan" />
-    <meta property="og:title" content="Run a SQLAlchemy 2.0 Migration Scan" />
+    <meta property="og:title" content="Run a SQLAlchemy or Pydantic Migration Scan" />
     <meta
       property="og:description"
       content="Run this command, get a report, upload no repo files, then decide whether automation is worth it."
@@ -74,9 +74,9 @@
           </article>
           <article class="page-panel">
             <h3>Pydantic v1 -> v2</h3>
-            <p>Open the Pydantic scanner README for imports, BaseSettings, Config, validator, validate_arguments, and root-validator checks.</p>
+            <p>Run the Pydantic scanner for imports, BaseSettings, Config, validator, validate_arguments, and root-validator checks.</p>
             <div class="page-actions">
-              <a class="button" href="/go/pydantic-free-scan/scan-chooser">Open Pydantic scanner</a>
+              <a class="button" href="#pydantic-scan">Use Pydantic scanner</a>
             </div>
           </article>
           <article class="page-panel">
@@ -85,6 +85,34 @@
             <div class="page-actions">
               <a class="button secondary" href="/go/flatconfig-free-scan/scan-chooser">Open ESLint proof scanner</a>
             </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="pydantic-scan">
+        <div class="grid two">
+          <article class="page-panel">
+            <p class="kicker">Pydantic install</p>
+            <h2>Install the Pydantic scanner from the public GitHub repo</h2>
+            <pre class="code-block">python -m pip install "https://github.com/zippertools/sqlalchemy-14-to-20-codemod/archive/refs/heads/main.zip#subdirectory=products/pydantic-v2-porter"
+python -m pydantic_v2_porter.cli . --report migration-report.json</pre>
+            <p class="caption">
+              This is the separate Pydantic scanner, not the SQLAlchemy scanner.
+              It still runs locally and uploads no source files.
+            </p>
+            <div class="page-actions">
+              <a class="button" href="/go/pydantic-free-scan/scan-chooser">Open Pydantic quickstart</a>
+              <a class="button secondary" href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod/tree/main/products/pydantic-v2-porter" data-repo-link>View Pydantic scanner repo</a>
+            </div>
+          </article>
+          <article class="page-panel">
+            <p class="kicker">Pydantic scan</p>
+            <h2>Run against a local checkout</h2>
+            <pre class="code-block">python -m pydantic_v2_porter.cli . --report migration-report.json</pre>
+            <p class="caption">
+              The report separates supported direct rewrites from alias-heavy,
+              signature-heavy, or removed-config cases that need manual review.
+            </p>
           </article>
         </div>
       </section>
@@ -98,7 +126,7 @@
 python -m sa20_pack.cli . --report migration-report.json</pre>
             <p class="caption">
               If installation fails, retry from the GitHub quickstart or contact
-              support at zippers3737@gmail.com.
+              support at support@zippertools.org.
             </p>
             <div class="page-actions">
               <a class="button" href="/go/free-scan/scan-install">Open quickstart</a>
@@ -189,10 +217,10 @@ recommended_next_step: preview deterministic rewrites</pre>
           <a href="/demo">Demo</a>
           <a href="/policies">Policies</a>
           <a href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod" data-repo-link>Repo</a>
-          <a href="mailto:zippers3737@gmail.com" data-contact-link>Contact</a>
+          <a href="mailto:support@zippertools.org" data-contact-link>Contact</a>
         </div>
         <p class="caption footer-note">Support:
-          <a href="mailto:zippers3737@gmail.com" data-contact-link><span data-contact-email>zippers3737@gmail.com</span></a>
+          <a href="mailto:support@zippertools.org" data-contact-link><span data-contact-email>support@zippertools.org</span></a>
         </p>
       </div>
     </footer>
