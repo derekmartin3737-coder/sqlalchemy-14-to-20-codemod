@@ -38,6 +38,13 @@ def test_build_site_generates_sitemaps_and_indexnow_key() -> None:
     assert (site_dir / "proof" / "sqlalchemy-public-proof" / "index.html").exists()
     assert (site_dir / "proof" / "pydantic-v2-porter" / "index.html").exists()
     assert (site_dir / "proof" / "flatconfig-lift" / "index.html").exists()
+    proof_text = (
+        site_dir / "proof" / "sqlalchemy-public-proof" / "index.html"
+    ).read_text(encoding="utf-8")
+    assert "Artifact trail" in proof_text
+    assert "Sample repo before" in proof_text
+    assert "Preview diff" in proof_text
+    assert "Final report shape" in proof_text
     assert (site_dir / "sitemap.xml").exists()
     assert (site_dir / "sitemap-problem-pages.xml").exists()
     assert len(manifest["guides"]) >= 50
@@ -272,12 +279,20 @@ def test_static_indexable_pages_use_clean_canonicals_and_links() -> None:
     assert "Current checkout price: $99 per team" in pricing_text
     assert "Buy automated fit report - $99" in pricing_text
     assert "Secure checkout is handled by Stripe." in pricing_text
-    buyer_path_pos = index_text.index("Run local scan.")
+    buyer_path_pos = index_text.index("Run the local scan.")
     pain_pos = index_text.index('<p class="kicker">Pain</p>')
     paid_options_pos = index_text.index('<p class="kicker">Paid options</p>')
     assert buyer_path_pos < pain_pos < paid_options_pos
-    assert "Choose the smallest paid step." in index_text
-    assert "Buy only if repeated supported findings exist." in index_text
+    assert "Use a fit report if the decision is ambiguous." in index_text
+    assert (
+        "Buy the cleanup pack when repeated supported findings justify it."
+        in index_text
+    )
+    assert "/products/fit-report/" in index_text
+    assert "/products/sa20-preset/" in index_text
+    assert "What are you migrating?" in scan_text
+    assert "/go/pydantic-free-scan/scan-chooser" in scan_text
+    assert "/go/flatconfig-free-scan/scan-chooser" in scan_text
     for html in (index_text, scan_text, pricing_text, demo_text, policies_text):
         _assert_primary_nav_order(html)
         _assert_footer_nav_order(html)

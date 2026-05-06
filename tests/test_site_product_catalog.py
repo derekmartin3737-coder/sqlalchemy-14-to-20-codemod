@@ -13,26 +13,37 @@ def test_product_catalog_order_status_and_ctas() -> None:
 
     html = (site_dir / "products" / "index.html").read_text(encoding="utf-8")
 
+    fit_pos = html.index("SQLAlchemy/Pydantic Fit Report Add-on")
     sqlalchemy_pos = html.index("SQLAlchemy 1.4 to 2.0 Migration Cleanup Pack")
     pydantic_pos = html.index("Pydantic v1 to v2 Migration Cleanup Pack")
     preset_pos = html.index("Migration Preset Bundle")
     eslint_pos = html.index("ESLint Flat Config Migration Cleanup Pack")
 
-    assert sqlalchemy_pos < pydantic_pos < preset_pos < eslint_pos
-    assert html.count('class="status-label available">Available now') == 3
+    assert fit_pos < sqlalchemy_pos < pydantic_pos < preset_pos < eslint_pos
+    assert html.count('class="status-label available">Available now') == 4
     assert "Example/proof page only" in html
+    assert "$99 per team" in html
     assert "$299.99 per team" in html
     assert "$249.99 per team" in html
     assert "$149.99 per team" in html
     assert "Not currently purchasable" in html
     assert "Read proof page" in html
+    assert "/products/fit-report/" in html
+    assert "/products/sa20-pack/" in html
+    assert "/products/pydantic-v2-porter/" in html
+    assert "/products/sa20-preset/" in html
+    assert "/go/fit-report/catalog-card-products" in html
     assert "/go/sa20-pack/catalog-card-products" in html
     assert "/go/pydantic-v2-porter/catalog-card-products" in html
     assert "/go/sa20-preset/catalog-card-products" in html
+    assert "View fit report details" in html
+    assert "View rollout kit details" in html
+    assert "Buy automated fit report - $99" in html
     assert "Buy cleanup pack - $299.99" in html
     assert "Buy Pydantic cleanup pack - $249.99" in html
     assert "Buy preset bundle - $149.99" in html
-    assert html.count("Secure checkout is handled by Stripe.") == 3
+    assert html.count("Secure checkout is handled by Stripe.") == 4
+    assert "Labs and proofs" in html
     catalog_text = Path("site/product_catalog.mjs").read_text(encoding="utf-8")
     assert "Buy automated fit report" in catalog_text
     assert "prices.fitReport.display" in catalog_text

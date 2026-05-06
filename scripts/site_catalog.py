@@ -2015,6 +2015,36 @@ GUIDES: tuple[GuidePage, ...] = (
 
 PRODUCTS: tuple[ProductPage, ...] = (
     ProductPage(
+        slug="fit-report",
+        name=FIT_REPORT_NAME,
+        family="SQLAlchemy or Pydantic scanner output",
+        description="Local software add-on that turns SQLAlchemy or Pydantic scanner output into an autonomous buy/do-not-buy migration fit summary.",
+        summary="Use the fit report when the scan output is promising but ambiguous and you want a local recommendation before buying a cleanup pack.",
+        who_it_is_for=(
+            "Teams with SQLAlchemy or Pydantic scanner output but no clear buy/no-buy decision yet.",
+            "Buyers who need a manager-readable fit summary without uploading source code.",
+            "Repos where supported and manual-review findings are mixed enough to justify a second local check.",
+        ),
+        proof_points=(
+            "Reads scanner output locally instead of requiring private repo upload.",
+            "Separates supported findings from manual-review risk before a larger purchase.",
+            "Produces a software-generated recommendation without human service delivery.",
+        ),
+        not_for=(
+            "Repos that have not run the SQLAlchemy or Pydantic scanner yet.",
+            "Teams that already know they need the full cleanup pack.",
+            "ESLint proof-only scans; this add-on is scoped to SQLAlchemy and Pydantic output.",
+        ),
+        guide_slugs=(),
+        docs=(
+            ("Pricing", "docs/pricing.md"),
+            ("Store products", "docs/store-products.md"),
+            ("Fulfillment", "docs/fulfillment.md"),
+        ),
+        price="99",
+        checkout_path=FIT_REPORT_ROUTE,
+    ),
+    ProductPage(
         slug="sa20-pack",
         name="SQLAlchemy 1.4 to 2.0 Migration Cleanup Pack",
         family="SQLAlchemy 1.4 -> 2.0",
@@ -2116,6 +2146,40 @@ PRODUCTS: tuple[ProductPage, ...] = (
         ),
         price="249.99",
         checkout_path="/go/pydantic-v2-porter",
+    ),
+    ProductPage(
+        slug="sa20-preset",
+        name=SA20_PRESET_NAME,
+        family="SQLAlchemy rollout documentation",
+        description="Downloadable rollout checklist, manager summary template, triage presets, review buckets, and handoff notes for SQLAlchemy migration cleanup.",
+        summary="Use the preset bundle when the team needs rollout structure and manager-ready migration notes, not code rewrites.",
+        who_it_is_for=(
+            "Teams that already have scanner output and need a repeatable rollout plan.",
+            "Engineering leads who need manager-ready status language and review buckets.",
+            "Buyers who want documentation and handoff structure without a consulting engagement.",
+        ),
+        proof_points=(
+            "Shows the exact deliverable shape: rollout checklist, manager summary, triage presets, review buckets, and handoff notes.",
+            "Keeps the boundary clear: downloadable docs and presets, not a code rewrite engine.",
+            "Uses the same Stripe Checkout and verified ZIP delivery path as the paid packs.",
+        ),
+        not_for=(
+            "Teams that need deterministic code rewrites; use the SQLAlchemy cleanup pack instead.",
+            "Repos that have not run the free SQLAlchemy scan yet.",
+            "Buyers expecting human migration planning or private code review.",
+        ),
+        guide_slugs=(
+            "sqlalchemy-20-triage-checklist",
+            "sqlalchemy-manual-vs-codemod",
+            "session-query-migration",
+        ),
+        docs=(
+            ("Pricing", "docs/pricing.md"),
+            ("Store products", "docs/store-products.md"),
+            ("Fulfillment", "docs/fulfillment.md"),
+        ),
+        price=SA20_PRESET_PRICE,
+        checkout_path=SA20_PRESET_CHECKOUT_PATH,
     ),
     ProductPage(
         slug="flatconfig-lift",

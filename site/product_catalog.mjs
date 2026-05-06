@@ -154,7 +154,12 @@ export const products = Object.freeze({
     ]),
     pricingNote:
       "Use this only with SQLAlchemy or Pydantic scanner output. It is not listed for ESLint proof-only pages.",
-    links: Object.freeze([]),
+    links: Object.freeze([
+      Object.freeze({
+        label: "Read fit report details",
+        href: "/products/fit-report/",
+      }),
+    ]),
   }),
   sa20: Object.freeze({
     key: "sa20",
@@ -242,6 +247,7 @@ export const products = Object.freeze({
     pricingNote:
       "Use this when you want repeatable rollout structure without buying a service engagement.",
     links: Object.freeze([
+      Object.freeze({ label: "Read rollout kit details", href: "/products/sa20-preset/" }),
       Object.freeze({ label: "Compare all options", href: "/pricing" }),
     ]),
   }),

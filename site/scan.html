@@ -35,7 +35,7 @@
           <a href="/pricing">Pricing</a>
           <a href="/demo">Demo</a>
           <a href="/policies">Policies</a>
-          <a href="#" data-repo-link>Repo</a>
+          <a href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod" data-repo-link>Repo</a>
         </nav>
       </div>
     </header>
@@ -45,22 +45,51 @@
 
       <section class="page-title">
         <p class="kicker">Free local scan</p>
-        <h1>Run this command. Get this report. Upload no repo files.</h1>
+        <h1>Choose the migration scan you need. Upload no repo files.</h1>
         <p>
-          Use the scanner as the first step for SQLAlchemy 1.4 to 2.0 cleanup.
-          The report tells you whether repeated safe candidates exist before
-          you spend money on an automated fit report, cleanup pack, or preset
-          bundle.
+          Start with the scanner that matches the upgrade in front of you. The
+          report tells you whether repeated supported candidates exist before
+          you spend money on a fit report, cleanup pack, or rollout kit.
         </p>
         <div class="badge-row">
           <span class="badge">Local-only</span>
           <span class="badge">No source upload</span>
           <span class="badge">Manual-review flags</span>
-          <span class="badge">Last updated 2026-04-30</span>
+          <span class="badge">Last updated 2026-05-06</span>
         </div>
       </section>
 
       <section class="section">
+        <div class="section-heading">
+          <p class="kicker">Choose scanner</p>
+          <h2>What are you migrating?</h2>
+        </div>
+        <div class="grid three">
+          <article class="page-panel">
+            <h3>SQLAlchemy 1.4 -> 2.0</h3>
+            <p>Find repeated Query.get, select([..]), string relationship paths, DML constructor, and declarative import cleanup candidates.</p>
+            <div class="page-actions">
+              <a class="button" href="#sqlalchemy-scan">Use SQLAlchemy scanner</a>
+            </div>
+          </article>
+          <article class="page-panel">
+            <h3>Pydantic v1 -> v2</h3>
+            <p>Open the Pydantic scanner README for imports, BaseSettings, Config, validator, validate_arguments, and root-validator checks.</p>
+            <div class="page-actions">
+              <a class="button" href="/go/pydantic-free-scan/scan-chooser">Open Pydantic scanner</a>
+            </div>
+          </article>
+          <article class="page-panel">
+            <h3>ESLint flat config proof</h3>
+            <p>Review the static-config proof and README. ESLint is proof-only on this storefront, not a listed checkout product.</p>
+            <div class="page-actions">
+              <a class="button secondary" href="/go/flatconfig-free-scan/scan-chooser">Open ESLint proof scanner</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="sqlalchemy-scan">
         <div class="grid two">
           <article class="page-panel">
             <p class="kicker">Install</p>
@@ -73,7 +102,7 @@ python -m sa20_pack.cli . --report migration-report.json</pre>
             </p>
             <div class="page-actions">
               <a class="button" href="/go/free-scan/scan-install">Open quickstart</a>
-              <a class="button secondary" href="#" data-repo-link>View GitHub repo</a>
+              <a class="button secondary" href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod" data-repo-link>View GitHub repo</a>
             </div>
           </article>
           <article class="page-panel">
@@ -159,7 +188,7 @@ recommended_next_step: preview deterministic rewrites</pre>
           <a href="/pricing">Pricing</a>
           <a href="/demo">Demo</a>
           <a href="/policies">Policies</a>
-          <a href="#" data-repo-link>Repo</a>
+          <a href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod" data-repo-link>Repo</a>
           <a href="mailto:zippers3737@gmail.com" data-contact-link>Contact</a>
         </div>
         <p class="caption footer-note">Support:

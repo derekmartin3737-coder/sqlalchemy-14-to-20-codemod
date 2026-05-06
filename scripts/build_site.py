@@ -88,6 +88,7 @@ RELEASE_URL = (
 )
 
 PRICING_SECTION_IDS = {
+    "fit-report": "fit-report",
     "sa20-pack": "sa20-pack",
     "sa20-preset": "sa20-preset",
     "pydantic-v2-porter": "pydantic-v2-porter",
@@ -327,7 +328,7 @@ def relative_href(from_path: str, to_path: str) -> str:
 
 
 def nav_html(path: str) -> str:
-    repo_link = '<a href="#" data-repo-link>Repo</a>'
+    repo_link = f'<a href="{REPO_URL}" data-repo-link>Repo</a>'
     return (
         '<header class="site-header"><div class="wrap nav">'
         f'<a class="brand" href="{relative_href(path, "index.html")}">Zipper Tools</a>'
@@ -355,7 +356,7 @@ def footer_html(path: str) -> str:
         f'<a href="{relative_href(path, "pricing.html")}">Pricing</a>'
         f'<a href="{relative_href(path, "demo.html")}">Demo</a>'
         f'<a href="{relative_href(path, "policies.html")}">Policies</a>'
-        '<a href="#" data-repo-link>Repo</a>'
+        f'<a href="{REPO_URL}" data-repo-link>Repo</a>'
         f'<a href="mailto:{SUPPORT_EMAIL}" data-contact-link>Contact</a>'
         "</div>"
         f'<p class="caption footer-note">Support: '
@@ -540,8 +541,12 @@ def free_scan_cta_label(product: ProductPage | None) -> str:
 
 
 def checkout_cta_label(product: ProductPage) -> str:
+    if product.slug == "fit-report":
+        return "Buy automated fit report"
     if product.slug == "pydantic-v2-porter":
         return "Buy Pydantic cleanup pack"
+    if product.slug == "sa20-preset":
+        return "Buy preset bundle"
     return "Buy cleanup pack"
 
 
@@ -561,6 +566,10 @@ def product_proof_path(product: ProductPage) -> str:
     if product.slug == "sa20-pack":
         return "proof/sqlalchemy-public-proof/index.html"
     return f"proof/{product.slug}/index.html"
+
+
+def has_product_proof(product: ProductPage) -> bool:
+    return product.slug in {"sa20-pack", "pydantic-v2-porter", "flatconfig-lift"}
 
 
 def pricing_section_href(path: str, product: ProductPage) -> str | None:
@@ -585,6 +594,39 @@ class ProductPageTemplate:
 
 
 def product_page_template(product: ProductPage) -> ProductPageTemplate:
+    if product.slug == "fit-report":
+        return ProductPageTemplate(
+            headline="Get a local buy/no-buy recommendation before buying a cleanup pack",
+            subheadline=(
+                "A software-only add-on for SQLAlchemy or Pydantic scanner output: it summarizes supported findings, manual-review risk, and whether the repo is worth automating next."
+            ),
+            cta_heading="Buy this when the scan is promising but the purchase decision is still fuzzy.",
+            cta_copy=(
+                "Run the SQLAlchemy or Pydantic scanner first, then use the fit report add-on locally to turn the report into a manager-readable recommendation."
+            ),
+            what_this_fixes=(
+                "Ambiguous scan output where supported and manual-review findings are mixed.",
+                "Manager uncertainty about whether a cleanup pack is worth buying.",
+                "The gap between a raw JSON scan report and a clear next-step recommendation.",
+            ),
+            what_you_get=(
+                "Commercial ZIP with the local fit-report add-on.",
+                "Buy/do-not-buy summary for SQLAlchemy or Pydantic scanner output.",
+                "Supported finding counts, manual-review risk notes, and next-step recommendation.",
+                "No human review, no report submission, and no source-code upload.",
+            ),
+            use_this_if=product.who_it_is_for,
+            do_not_use_if=product.not_for,
+            delivery_steps=(
+                CHECKOUT_LANGUAGE,
+                DELIVERY_LANGUAGE,
+                LOCAL_NO_UPLOAD_LANGUAGE,
+                "Run the add-on against scanner output you generated locally; keep the recommendation with your branch or manager notes.",
+            ),
+            support_note=(
+                f"{REFUND_LANGUAGE} This add-on is not automatically credited toward a cleanup pack yet; treat it as a separate diagnostic purchase."
+            ),
+        )
     if product.slug == "sa20-pack":
         return ProductPageTemplate(
             headline="Clean up repeated SQLAlchemy 1.4 to 2.0 migration edits on a local branch",
@@ -622,6 +664,40 @@ def product_page_template(product: ProductPage) -> ProductPageTemplate:
             ),
             support_note=(
                 f"{REFUND_LANGUAGE} Support is by email; include the scanner report and checkout email so the issue can be matched to the published scope."
+            ),
+        )
+    if product.slug == "sa20-preset":
+        return ProductPageTemplate(
+            headline="Turn SQLAlchemy scan output into rollout docs your team can use",
+            subheadline=(
+                "A downloadable SQLAlchemy migration rollout kit: checklist, manager summary template, triage presets, review buckets, and handoff notes."
+            ),
+            cta_heading="Buy this when the team needs rollout structure, not code rewrites.",
+            cta_copy=(
+                "The preset bundle is a documentation product for teams that already know what the scan found and need a cleaner way to plan, report, and hand off the work."
+            ),
+            what_this_fixes=(
+                "Unclear migration status after the scan runs.",
+                "Managers asking for scope, risk, and next-step language.",
+                "Reviewers needing supported/manual/unsupported buckets before cleanup starts.",
+            ),
+            what_you_get=(
+                "Rollout checklist for staged SQLAlchemy 1.4-to-2.0 cleanup work.",
+                "Manager summary template that turns scan findings into status language.",
+                "Migration triage presets for common repo shapes.",
+                "Review bucket template for supported, manual-review, and unsupported findings.",
+                "Handoff note template for the engineers picking up the branch.",
+            ),
+            use_this_if=product.who_it_is_for,
+            do_not_use_if=product.not_for,
+            delivery_steps=(
+                CHECKOUT_LANGUAGE,
+                DELIVERY_LANGUAGE,
+                "Downloadable docs and presets; no human service delivery.",
+                "Use the templates with scanner output, branch notes, and your normal validation plan.",
+            ),
+            support_note=(
+                f"{REFUND_LANGUAGE} This is a documentation/rollout kit, not the SQLAlchemy apply engine."
             ),
         )
     if product.slug == "pydantic-v2-porter":
@@ -702,6 +778,26 @@ def product_page_template(product: ProductPage) -> ProductPageTemplate:
 
 
 def product_purchase_details(product: ProductPage) -> dict[str, tuple[str, ...]]:
+    if product.slug == "fit-report":
+        return {
+            "buy_if": (
+                "You already ran the SQLAlchemy or Pydantic scanner.",
+                "The report has a meaningful mix of supported and manual-review findings.",
+                "You need a local buy/do-not-buy recommendation before buying a full pack.",
+            ),
+            "includes": (
+                "Local add-on workflow, not a hosted review.",
+                "Supported finding summary, manual-review risk notes, and recommendation output.",
+                "Checkout, delivery, refund, and support terms for the diagnostic ZIP.",
+            ),
+            "reassurance": (
+                CHECKOUT_LANGUAGE,
+                DELIVERY_LANGUAGE,
+                LOCAL_NO_UPLOAD_LANGUAGE,
+                "No source upload, report submission, or human service dependency.",
+                REFUND_LANGUAGE,
+            ),
+        }
     if product.slug == "sa20-pack":
         return {
             "buy_if": (
@@ -739,6 +835,25 @@ def product_purchase_details(product: ProductPage) -> dict[str, tuple[str, ...]]
                 DELIVERY_LANGUAGE,
                 LOCAL_NO_UPLOAD_LANGUAGE,
                 FIT_REPORT_ADDON_LANGUAGE,
+                REFUND_LANGUAGE,
+            ),
+        }
+    if product.slug == "sa20-preset":
+        return {
+            "buy_if": (
+                "You already have scanner findings and need rollout structure.",
+                "The buyer is an engineering lead or manager who needs a clearer migration note.",
+                "You need templates and presets, not a code rewrite engine.",
+            ),
+            "includes": (
+                "Rollout checklist, manager summary template, triage presets, and review buckets.",
+                "Handoff note template for the team doing the branch work.",
+                "License/support terms and Stripe-verified ZIP delivery.",
+            ),
+            "reassurance": (
+                CHECKOUT_LANGUAGE,
+                DELIVERY_LANGUAGE,
+                "Downloadable documentation/presets; no human delivery dependency.",
                 REFUND_LANGUAGE,
             ),
         }
@@ -1150,8 +1265,8 @@ def render_guide(guide: GuidePage) -> tuple[str, str]:
       <section class="section">
         <div class="grid two">
           <article class="page-panel">
-            <p class="kicker">Search intent</p>
-            <h2>{escape(guide.search_term)}</h2>
+            <p class="kicker">Why this page exists</p>
+            <h2>{escape(guide.h1)}</h2>
             <p>{escape(guide.summary)}</p>
           </article>
           <article class="page-panel">
@@ -1275,7 +1390,67 @@ def render_guides_hub(grouped: dict[str, list[GuidePage]]) -> tuple[str, str]:
 
 def render_product_workflow_section(product: ProductPage, path: str) -> str:
     command_note = ""
-    if product.slug == "pydantic-v2-porter":
+    if product.slug == "fit-report":
+        command = (
+            f'python -m pip install "{SA20_INSTALL_URL}"\n'
+            "python -m sa20_pack.cli . --report migration-report.json\n"
+            "# Then run the purchased fit-report add-on against that scanner output."
+        )
+        command_note = (
+            '<p class="caption">Use SQLAlchemy or Pydantic scanner output. '
+            "Do not send private source code through support.</p>"
+        )
+        report = (
+            "Fit report complete\n"
+            "supported_findings: 38\n"
+            "manual_review_findings: 6\n"
+            "recommendation: buy cleanup pack if validation budget exists\n"
+            "next_step: preview deterministic rewrites"
+        )
+        diff = (
+            "Manager summary\n"
+            "Repo fit: yes, for the documented SQLAlchemy subset\n"
+            "Why: repeated Query.get and select([..]) findings\n"
+            "Risk: engine.execute remains manual review\n"
+            "Recommended purchase: cleanup pack or preset bundle"
+        )
+        rows = (
+            ("SQLAlchemy scanner report", "supported input"),
+            ("Pydantic scanner report", "supported input"),
+            ("ESLint proof-only report", "out of scope"),
+            ("Private source upload", "not required"),
+        )
+    elif product.slug == "sa20-preset":
+        command = (
+            f'python -m pip install "{SA20_INSTALL_URL}"\n'
+            "python -m sa20_pack.cli . --report migration-report.json\n"
+            "# Then fill the purchased rollout templates from the local report."
+        )
+        command_note = (
+            '<p class="caption">This product is rollout documentation and presets, '
+            "not the code rewrite engine.</p>"
+        )
+        report = (
+            "Manager summary excerpt\n"
+            "Supported cleanup findings: 38\n"
+            "Manual-review findings: 6\n"
+            "Rollout bucket: safe mechanical rewrites first\n"
+            "Next step: run branch validation before merge"
+        )
+        diff = (
+            "Handoff note preview\n"
+            "1. Run scanner on migration branch\n"
+            "2. Bucket supported/manual/unsupported findings\n"
+            "3. Assign owner for manual-review SQLAlchemy execution cases\n"
+            "4. Attach validation commands and merge criteria"
+        )
+        rows = (
+            ("Rollout checklist", "included"),
+            ("Manager summary template", "included"),
+            ("Triage presets and review buckets", "included"),
+            ("Code rewrite engine", "not included"),
+        )
+    elif product.slug == "pydantic-v2-porter":
         command = (
             f'python -m pip install "{PYDANTIC_INSTALL_URL}"\n'
             "python -m pydantic_v2_porter.cli path/to/repo --report migration-report.json"
@@ -1415,9 +1590,10 @@ def render_product(product: ProductPage) -> tuple[str, str]:
     product_source = tracking_source(path, "product")
     checkout_path = tracked_go_path(product.checkout_path, product_source)
     free_scan_path = free_scan_go_path(product, product_source)
-    proof_href = relative_href(path, product_proof_path(product))
     proof_link = (
-        f'<a class="button secondary" href="{proof_href}">Read public proof</a>'
+        f'<a class="button secondary" href="{relative_href(path, product_proof_path(product))}">Read public proof</a>'
+        if has_product_proof(product)
+        else ""
     )
     release_button = ""
     if product.slug == "sa20-pack":
@@ -1451,10 +1627,20 @@ def render_product(product: ProductPage) -> tuple[str, str]:
             f'<a class="button" href="{escape(checkout_path)}">'
             f"{escape(checkout_label)}{price_suffix}</a>"
         )
-        free_scan_button = (
-            f'<a class="button secondary" href="{free_scan_path}">'
-            f"{escape(free_scan_cta_label(product))}</a>"
-        )
+        if product.slug == "fit-report":
+            free_scan_button = (
+                f'<a class="button secondary" href="{free_scan_path}">Run SQLAlchemy scan first</a>'
+            )
+            pydantic_scan_button = (
+                f'<a class="button secondary" href="{tracked_go_path("/go/pydantic-free-scan", product_source)}">'
+                "Run Pydantic scan first</a>"
+            )
+        else:
+            free_scan_button = (
+                f'<a class="button secondary" href="{free_scan_path}">'
+                f"{escape(free_scan_cta_label(product))}</a>"
+            )
+            pydantic_scan_button = ""
         fit_report_button = (
             f'<a class="button secondary" href="{tracked_go_path(FIT_REPORT_ROUTE, product_source)}">'
             f"{FIT_REPORT_CTA}</a>"
@@ -1462,10 +1648,22 @@ def render_product(product: ProductPage) -> tuple[str, str]:
             else ""
         )
         top_primary_action = checkout_button
-        top_secondary_actions = (free_scan_button, fit_report_button)
-        checkout_heading = "Buy the cleanup pack"
-        checkout_copy = "Use checkout when the repo matches the supported subset and the cleanup is expensive enough to justify an apply workflow."
-        checkout_secondary_actions = (free_scan_button, fit_report_button)
+        top_secondary_actions = (free_scan_button, pydantic_scan_button, fit_report_button)
+        checkout_heading = (
+            "Buy the fit report"
+            if product.slug == "fit-report"
+            else "Buy the preset bundle"
+            if product.slug == "sa20-preset"
+            else "Buy the cleanup pack"
+        )
+        checkout_copy = (
+            "Use checkout after you have scanner output and want a local recommendation before buying a larger pack."
+            if product.slug == "fit-report"
+            else "Use checkout when you need rollout templates and manager-ready notes, not code rewrites."
+            if product.slug == "sa20-preset"
+            else "Use checkout when the repo matches the supported subset and the cleanup is expensive enough to justify an apply workflow."
+        )
+        checkout_secondary_actions = (free_scan_button, pydantic_scan_button, fit_report_button)
     else:
         checkout_button = '<span class="button disabled">Checkout not listed yet</span>'
         free_scan_button = (
@@ -1498,9 +1696,26 @@ def render_product(product: ProductPage) -> tuple[str, str]:
         if product.price
         else '<p class="price-line">Checkout is not listed yet.</p>'
     )
-    proof_actions = action_list_html(
-        (proof_link, pricing_button, release_button, *docs_buttons)
+    decision_bullets = (
+        (
+            "Local workflow with no repo upload.",
+            "Recommendation output from scanner data you generated locally.",
+            "Manual-review risk stays visible before a larger purchase.",
+        )
+        if product.slug == "fit-report"
+        else (
+            "Downloadable docs and presets; no repo upload.",
+            "Templates turn scanner output into manager and reviewer notes.",
+            "Manual-review findings stay visible instead of hidden.",
+        )
+        if product.slug == "sa20-preset"
+        else (
+            "Local workflow with no repo upload.",
+            "Previewable changes and a structured report.",
+            "Manual-review findings stay visible instead of hidden.",
+        )
     )
+    proof_actions = action_list_html((proof_link, pricing_button, release_button, *docs_buttons))
     workflow_section = render_product_workflow_section(product, path)
     deliverables_heading = (
         "After purchase, you receive"
@@ -1515,11 +1730,7 @@ def render_product(product: ProductPage) -> tuple[str, str]:
             <p class="kicker">Primary CTA</p>
             <h2>{escape(template.cta_heading)}</h2>
             <p>{escape(template.cta_copy)}</p>
-            <ul class="clean decision-list">
-              <li>Local workflow with no repo upload.</li>
-              <li>Previewable changes and a structured report.</li>
-              <li>Manual-review findings stay visible instead of hidden.</li>
-            </ul>
+            <ul class="clean decision-list">{"".join(f"<li>{escape(item)}</li>" for item in decision_bullets)}</ul>
             {price_line}
           </div>
           <div class="conversion-actions">
@@ -1552,7 +1763,7 @@ def render_product(product: ProductPage) -> tuple[str, str]:
             {clean_list_html(template.use_this_if)}
           </article>
           <article class="page-panel">
-            <h2>Public proof and fit signals</h2>
+            <h2>{"Public proof and fit signals" if has_product_proof(product) else "Fit signals and docs"}</h2>
             {clean_list_html(product.proof_points)}
             <div class="page-actions">{proof_actions}</div>
           </article>
@@ -1625,15 +1836,31 @@ def render_products_hub() -> tuple[str, str]:
     product_lookup = {product.slug: product for product in PRODUCTS}
     available_cards = (
         {
+            "name": product_lookup["fit-report"].name,
+            "status": STATUS_AVAILABLE,
+            "status_class": "available",
+            "outcome": "Turn SQLAlchemy or Pydantic scanner output into a local buy/do-not-buy recommendation before a larger purchase.",
+            "price": product_price_line(product_lookup["fit-report"]),
+            "href": relative_href(path, product_page_path(product_lookup["fit-report"])),
+            "cta": "View fit report details",
+            "buy_href": tracked_go_path(
+                product_lookup["fit-report"].checkout_path, catalog_source
+            ),
+            "buy_cta": product_buy_cta(product_lookup["fit-report"]),
+            "checkout_note": SECURE_CHECKOUT_NOTE,
+        },
+        {
             "name": product_lookup["sa20-pack"].name,
             "status": STATUS_AVAILABLE,
             "status_class": "available",
             "outcome": "Apply repeated safe SQLAlchemy 1.4 to 2.0 cleanup patterns locally after the free scan proves fit.",
             "price": product_price_line(product_lookup["sa20-pack"]),
-            "href": tracked_go_path(
+            "href": relative_href(path, product_page_path(product_lookup["sa20-pack"])),
+            "cta": "View SQLAlchemy pack details",
+            "buy_href": tracked_go_path(
                 product_lookup["sa20-pack"].checkout_path, catalog_source
             ),
-            "cta": product_buy_cta(product_lookup["sa20-pack"]),
+            "buy_cta": product_buy_cta(product_lookup["sa20-pack"]),
             "checkout_note": SECURE_CHECKOUT_NOTE,
         },
         {
@@ -1642,10 +1869,14 @@ def render_products_hub() -> tuple[str, str]:
             "status_class": "available",
             "outcome": "Clean up supported Pydantic v1 to v2 imports, validators, config, and BaseSettings moves.",
             "price": product_price_line(product_lookup["pydantic-v2-porter"]),
-            "href": tracked_go_path(
+            "href": relative_href(
+                path, product_page_path(product_lookup["pydantic-v2-porter"])
+            ),
+            "cta": "View Pydantic pack details",
+            "buy_href": tracked_go_path(
                 product_lookup["pydantic-v2-porter"].checkout_path, catalog_source
             ),
-            "cta": product_buy_cta(product_lookup["pydantic-v2-porter"]),
+            "buy_cta": product_buy_cta(product_lookup["pydantic-v2-porter"]),
             "checkout_note": SECURE_CHECKOUT_NOTE,
         },
         {
@@ -1654,8 +1885,10 @@ def render_products_hub() -> tuple[str, str]:
             "status_class": "available",
             "outcome": "Add reusable SQLAlchemy rollout presets, richer report templates, and manager-ready migration notes.",
             "price": f"${SA20_PRESET_PRICE} per team",
-            "href": tracked_go_path(SA20_PRESET_CHECKOUT_PATH, catalog_source),
-            "cta": f"Buy preset bundle - ${SA20_PRESET_PRICE}",
+            "href": relative_href(path, product_page_path(product_lookup["sa20-preset"])),
+            "cta": "View rollout kit details",
+            "buy_href": tracked_go_path(SA20_PRESET_CHECKOUT_PATH, catalog_source),
+            "buy_cta": f"Buy preset bundle - ${SA20_PRESET_PRICE}",
             "checkout_note": SECURE_CHECKOUT_NOTE,
         },
     )
@@ -1693,7 +1926,10 @@ def render_products_hub() -> tuple[str, str]:
             <h3>{escape(card["name"])}</h3>
             <p>{escape(card["outcome"])}</p>
             {status_note}
-            <a class="button secondary" href="{escape(card["href"])}">{escape(card["cta"])}</a>
+            <div class="page-actions">
+              <a class="button secondary" href="{escape(card["href"])}">{escape(card["cta"])}</a>
+              {f'<a class="button" href="{escape(card["buy_href"])}">{escape(card["buy_cta"])}</a>' if card.get("buy_href") else ""}
+            </div>
             {checkout_note}
           </article>"""
 
@@ -1737,13 +1973,13 @@ def render_products_hub() -> tuple[str, str]:
     )
     body = f"""
       <section class="section">
-        <div class="section-heading"><p class="kicker">{escape(STATUS_AVAILABLE)}</p><h2>Buy only after the local scan proves fit.</h2></div>
+        <div class="section-heading"><p class="kicker">{escape(STATUS_AVAILABLE)}</p><h2>Available products, each with a real detail page.</h2></div>
         <div class="catalog-grid">{available_html}</div>
       </section>
 {preset_deliverables}
 {coming_soon_section}
       <section class="section">
-        <div class="section-heading"><p class="kicker">{escape(STATUS_PROOF_ONLY)}</p><h2>Useful proof, not a listed checkout product.</h2></div>
+        <div class="section-heading"><p class="kicker">Labs and proofs</p><h2>Useful proof, separate from purchasable products.</h2></div>
         <div class="catalog-grid proof-grid">{proof_html}</div>
       </section>
 """
@@ -1818,6 +2054,46 @@ def render_sqlalchemy_public_proof() -> tuple[str, str]:
         "</article>"
         for repo, pattern, result, source_url in blocked_rows
     )
+    sample_before = (
+        "from sqlalchemy.ext.declarative import declarative_base\n"
+        "\n"
+        "Base = declarative_base()\n"
+        "job = session.query(Job).get(job_id)\n"
+        "stmt = select([Job.id, Job.name])"
+    )
+    sample_report = (
+        "{\n"
+        '  "status": "preview_only",\n'
+        '  "transform_count": 3,\n'
+        '  "supported_candidates": {\n'
+        '    "declarative_imports": 1,\n'
+        '    "query_get": 1,\n'
+        '    "select_list_syntax": 1\n'
+        "  },\n"
+        '  "manual_todos": []\n'
+        "}"
+    )
+    sample_diff = (
+        "-from sqlalchemy.ext.declarative import declarative_base\n"
+        "+from sqlalchemy.orm import declarative_base\n"
+        "-job = session.query(Job).get(job_id)\n"
+        "+job = session.get(Job, job_id)\n"
+        "-stmt = select([Job.id, Job.name])\n"
+        "+stmt = select(Job.id, Job.name)"
+    )
+    sample_validation = (
+        "validation:\n"
+        "  python -m compileall copied_public_input ... passed\n"
+        "  scanner report generated ... passed\n"
+        "  unsupported findings ... 0"
+    )
+    sample_final_report = (
+        "final report:\n"
+        "  files scanned: 1\n"
+        "  files changed: 1\n"
+        "  transforms applied: declarative_imports, query_get, select_list_syntax\n"
+        "  confidence: supported subset, validation required before merge"
+    )
     body = f"""
       <section class="section">
         <div class="grid three">
@@ -1842,6 +2118,32 @@ def render_sqlalchemy_public_proof() -> tuple[str, str]:
       <section class="section">
         <div class="section-heading"><p class="kicker">Fail-closed examples</p><h2>Public files that stayed in manual review</h2></div>
         <div class="grid two">{blocked_cards}</div>
+      </section>
+      <section class="section">
+        <div class="section-heading"><p class="kicker">Artifact trail</p><h2>One public-proof run, shown end to end</h2></div>
+        <div class="grid two">
+          <article class="page-panel">
+            <h3>Sample repo before</h3>
+            {code_block(sample_before)}
+          </article>
+          <article class="page-panel">
+            <h3>Scan JSON</h3>
+            {code_block(sample_report)}
+          </article>
+          <article class="page-panel">
+            <h3>Preview diff</h3>
+            {code_block(sample_diff)}
+          </article>
+          <article class="page-panel">
+            <h3>Validation result</h3>
+            {code_block(sample_validation)}
+          </article>
+        </div>
+        <article class="page-panel">
+          <h3>Final report shape</h3>
+          {code_block(sample_final_report)}
+          <p class="caption">This is the visible evidence shape buyers should expect: before input, scanner JSON, preview diff, validation status, and a final report. The paid pack still has to be run on a branch and validated in the buyer's repo.</p>
+        </article>
       </section>
       <section class="section">
         <div class="grid two">
@@ -2033,7 +2335,7 @@ def build_site(output_dir: Path) -> dict[str, Any]:
         *[
             render_generic_product_proof(product)
             for product in PRODUCTS
-            if product.slug != "sa20-pack"
+            if product.slug != "sa20-pack" and has_product_proof(product)
         ],
     ]
     pages = [

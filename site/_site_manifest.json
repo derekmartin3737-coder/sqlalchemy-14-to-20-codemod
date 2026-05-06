@@ -409,6 +409,11 @@
       "status": 301
     },
     {
+      "source": "/products/fit-report/index.html",
+      "target": "/products/fit-report/",
+      "status": 301
+    },
+    {
       "source": "/products/flatconfig-lift/index.html",
       "target": "/products/flatconfig-lift/",
       "status": 301
@@ -426,6 +431,11 @@
     {
       "source": "/products/sa20-pack/index.html",
       "target": "/products/sa20-pack/",
+      "status": 301
+    },
+    {
+      "source": "/products/sa20-preset/index.html",
+      "target": "/products/sa20-preset/",
       "status": 301
     },
     {
@@ -743,8 +753,10 @@
       "https://zippertools.org/pydantic/config-class-deprecated-warning/"
     ],
     "products": [
+      "https://zippertools.org/products/fit-report/",
       "https://zippertools.org/products/sa20-pack/",
       "https://zippertools.org/products/pydantic-v2-porter/",
+      "https://zippertools.org/products/sa20-preset/",
       "https://zippertools.org/products/flatconfig-lift/"
     ],
     "proof": [
@@ -754,6 +766,47 @@
     ]
   },
   "products": [
+    {
+      "slug": "fit-report",
+      "name": "SQLAlchemy/Pydantic Fit Report Add-on",
+      "family": "SQLAlchemy or Pydantic scanner output",
+      "description": "Local software add-on that turns SQLAlchemy or Pydantic scanner output into an autonomous buy/do-not-buy migration fit summary.",
+      "summary": "Use the fit report when the scan output is promising but ambiguous and you want a local recommendation before buying a cleanup pack.",
+      "who_it_is_for": [
+        "Teams with SQLAlchemy or Pydantic scanner output but no clear buy/no-buy decision yet.",
+        "Buyers who need a manager-readable fit summary without uploading source code.",
+        "Repos where supported and manual-review findings are mixed enough to justify a second local check."
+      ],
+      "proof_points": [
+        "Reads scanner output locally instead of requiring private repo upload.",
+        "Separates supported findings from manual-review risk before a larger purchase.",
+        "Produces a software-generated recommendation without human service delivery."
+      ],
+      "not_for": [
+        "Repos that have not run the SQLAlchemy or Pydantic scanner yet.",
+        "Teams that already know they need the full cleanup pack.",
+        "ESLint proof-only scans; this add-on is scoped to SQLAlchemy and Pydantic output."
+      ],
+      "guide_slugs": [],
+      "docs": [
+        [
+          "Pricing",
+          "docs/pricing.md"
+        ],
+        [
+          "Store products",
+          "docs/store-products.md"
+        ],
+        [
+          "Fulfillment",
+          "docs/fulfillment.md"
+        ]
+      ],
+      "price": "99",
+      "currency": "USD",
+      "availability": "InStock",
+      "checkout_path": "/go/fit-report"
+    },
     {
       "slug": "sa20-pack",
       "name": "SQLAlchemy 1.4 to 2.0 Migration Cleanup Pack",
@@ -878,6 +931,51 @@
       "currency": "USD",
       "availability": "InStock",
       "checkout_path": "/go/pydantic-v2-porter"
+    },
+    {
+      "slug": "sa20-preset",
+      "name": "Migration Preset Bundle",
+      "family": "SQLAlchemy rollout documentation",
+      "description": "Downloadable rollout checklist, manager summary template, triage presets, review buckets, and handoff notes for SQLAlchemy migration cleanup.",
+      "summary": "Use the preset bundle when the team needs rollout structure and manager-ready migration notes, not code rewrites.",
+      "who_it_is_for": [
+        "Teams that already have scanner output and need a repeatable rollout plan.",
+        "Engineering leads who need manager-ready status language and review buckets.",
+        "Buyers who want documentation and handoff structure without a consulting engagement."
+      ],
+      "proof_points": [
+        "Shows the exact deliverable shape: rollout checklist, manager summary, triage presets, review buckets, and handoff notes.",
+        "Keeps the boundary clear: downloadable docs and presets, not a code rewrite engine.",
+        "Uses the same Stripe Checkout and verified ZIP delivery path as the paid packs."
+      ],
+      "not_for": [
+        "Teams that need deterministic code rewrites; use the SQLAlchemy cleanup pack instead.",
+        "Repos that have not run the free SQLAlchemy scan yet.",
+        "Buyers expecting human migration planning or private code review."
+      ],
+      "guide_slugs": [
+        "sqlalchemy-20-triage-checklist",
+        "sqlalchemy-manual-vs-codemod",
+        "session-query-migration"
+      ],
+      "docs": [
+        [
+          "Pricing",
+          "docs/pricing.md"
+        ],
+        [
+          "Store products",
+          "docs/store-products.md"
+        ],
+        [
+          "Fulfillment",
+          "docs/fulfillment.md"
+        ]
+      ],
+      "price": "149.99",
+      "currency": "USD",
+      "availability": "InStock",
+      "checkout_path": "/go/sa20-preset"
     },
     {
       "slug": "flatconfig-lift",
