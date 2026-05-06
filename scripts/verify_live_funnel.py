@@ -28,9 +28,14 @@ from dataclasses import dataclass, field
 
 DEFAULT_BASE_URL = "https://zippertools.org"
 REPO_URL = "https://github.com/zippertools/sqlalchemy-14-to-20-codemod"
+PYDANTIC_REPO_URL = "https://github.com/zippertools/pydantic-v1-to-v2-codemod"
 RAW_REPO_URL = (
     "https://raw.githubusercontent.com/zippertools/"
     "sqlalchemy-14-to-20-codemod/main"
+)
+PYDANTIC_RAW_REPO_URL = (
+    "https://raw.githubusercontent.com/zippertools/"
+    "pydantic-v1-to-v2-codemod/main"
 )
 GITHUB_API_CONTENTS_URL = (
     "https://api.github.com/repos/zippertools/"
@@ -39,13 +44,12 @@ GITHUB_API_CONTENTS_URL = (
 
 SQLALCHEMY_INSTALL = (
     'python -m pip install "https://github.com/zippertools/'
-    'sqlalchemy-14-to-20-codemod/archive/refs/heads/main.zip"'
+    'sqlalchemy-14-to-20-codemod/archive/refs/tags/v0.1.1.zip"'
 )
 SQLALCHEMY_RUN = "python -m sa20_pack.cli . --report migration-report.json"
 PYDANTIC_INSTALL = (
     'python -m pip install "https://github.com/zippertools/'
-    "sqlalchemy-14-to-20-codemod/archive/refs/heads/main.zip"
-    '#subdirectory=products/pydantic-v2-porter"'
+    'pydantic-v1-to-v2-codemod/archive/refs/tags/v0.1.1.zip"'
 )
 PYDANTIC_RUN = (
     "python -m pydantic_v2_porter.cli path/to/repo "
@@ -88,12 +92,12 @@ REQUIRED_BY_PATH: dict[str, tuple[str, ...]] = {
         "Buy preset bundle - $149.99",
         "Buy Pydantic cleanup pack - $249.99",
         "Secure checkout is handled by Stripe.",
-        "Support: support@zippertools.org",
+        "Support: zippers3737@gmail.com",
     ),
     "/scan": (
         SQLALCHEMY_INSTALL,
         SQLALCHEMY_RUN,
-        "Support: support@zippertools.org",
+        "Support: zippers3737@gmail.com",
     ),
     "/pricing": (
         "Current checkout price: $99 per team",
@@ -105,7 +109,7 @@ REQUIRED_BY_PATH: dict[str, tuple[str, ...]] = {
         "Buy preset bundle - $149.99",
         "Buy Pydantic cleanup pack - $249.99",
         "Secure checkout is handled by Stripe.",
-        "Support: support@zippertools.org",
+        "Support: zippers3737@gmail.com",
     ),
     "/products/": (
         "Available now",
@@ -117,7 +121,7 @@ REQUIRED_BY_PATH: dict[str, tuple[str, ...]] = {
     "/products/sa20-pack/": (
         "After purchase, you receive",
         "Secure checkout is handled by Stripe.",
-        "Support: support@zippertools.org",
+        "Support: zippers3737@gmail.com",
     ),
     "/products/pydantic-v2-porter/": (
         PYDANTIC_INSTALL,
@@ -126,14 +130,14 @@ REQUIRED_BY_PATH: dict[str, tuple[str, ...]] = {
             "not the SQLAlchemy scanner."
         ),
         "Secure checkout is handled by Stripe.",
-        "Support: support@zippertools.org",
+        "Support: zippers3737@gmail.com",
     ),
     "/products/flatconfig-lift/": (
         "No checkout is listed for this proof page yet.",
     ),
     "/policies": (
         "Support:",
-        "support@zippertools.org",
+        "zippers3737@gmail.com",
     ),
 }
 
@@ -452,7 +456,7 @@ def check_free_scan_route(base_url: str, path: str) -> CheckResult:
         required = (SQLALCHEMY_INSTALL, SQLALCHEMY_RUN)
     elif (
         parsed.netloc == "github.com"
-        and parsed.path.endswith("/products/pydantic-v2-porter/README.md")
+        and parsed.path.endswith("/pydantic-v1-to-v2-codemod/blob/main/README.md")
     ):
         required = (PYDANTIC_INSTALL, PYDANTIC_RUN)
     else:
@@ -499,13 +503,13 @@ def check_github_docs() -> list[CheckResult]:
         ),
         (
             "GitHub raw Pydantic README",
-            f"{RAW_REPO_URL}/products/pydantic-v2-porter/README.md?_cb={int(time.time())}",
+            f"{PYDANTIC_RAW_REPO_URL}/README.md?_cb={int(time.time())}",
             (PYDANTIC_INSTALL, PYDANTIC_RUN),
             None,
         ),
         (
             "GitHub rendered Pydantic README",
-            f"{REPO_URL}/blob/main/products/pydantic-v2-porter/README.md?plain=1",
+            f"{PYDANTIC_REPO_URL}/blob/main/README.md?plain=1",
             (PYDANTIC_INSTALL, PYDANTIC_RUN),
             None,
         ),

@@ -35,7 +35,7 @@ If you contact the seller directly, the seller receives the information you send
 in that message, such as your email address, order reference, and repo problem
 description.
 
-Support email: `support@zippertools.org`.
+Support email: `zippers3737@gmail.com`.
 
 ## What we do not collect by default
 

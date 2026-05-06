@@ -44,7 +44,7 @@ Use the Stripe account that will receive Zipper Tools payouts.
 
 1. In Stripe, set the public business/profile details:
    - public business name: `Zipper Tools`
-   - support email: `support@zippertools.org`
+   - support email: `zippers3737@gmail.com`
    - support site: `https://zippertools.org/`
    - statement descriptor: `ZIPPERTOOLS`
 2. Start in test mode.

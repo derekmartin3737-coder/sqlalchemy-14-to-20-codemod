@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 from scripts.build_site import build_site
@@ -138,7 +139,7 @@ def test_generated_redirects_preserve_legacy_paths_and_track_checkout() -> None:
         in redirects_text
     )
     assert (
-        "/go/pydantic-free-scan https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/products/pydantic-v2-porter/README.md"
+        "/go/pydantic-free-scan https://github.com/zippertools/pydantic-v1-to-v2-codemod/blob/main/README.md"
         in redirects_text
     )
     assert (
@@ -147,7 +148,7 @@ def test_generated_redirects_preserve_legacy_paths_and_track_checkout() -> None:
     )
     assert "utm_campaign=free_scan" in redirects_text
     assert (
-        "/go/github-release https://github.com/zippertools/sqlalchemy-14-to-20-codemod/releases/tag/v0.1.0"
+        "/go/github-release https://github.com/zippertools/sqlalchemy-14-to-20-codemod/releases/tag/v0.1.1"
         in redirects_text
     )
     assert "/go/pydantic-free-scan/*" not in redirects_text
@@ -200,7 +201,8 @@ def test_product_pages_link_to_trackable_checkout_routes() -> None:
     # rather than jumping straight to the GitHub quickstart redirect, so
     # buyers stay on-site for the first step. /scan still links out to the
     # GitHub quickstart as a secondary trust path.
-    assert 'href="/scan?source=product-products-sa20-pack"' in sa20_text
+    assert 'href="/scan"' in sa20_text
+    assert 'href="/scan?source=product-products-sa20-pack"' not in sa20_text
     assert "/go/free-scan/product-products-sa20-pack" not in sa20_text
     assert "Run the SQLAlchemy scan first" in sa20_text
     assert "Run the Pydantic scan first" in pydantic_text
@@ -291,7 +293,7 @@ def test_static_indexable_pages_use_clean_canonicals_and_links() -> None:
     assert 'presetBundleUrl: "/go/sa20-preset"' in config_text
     assert 'pydanticPackUrl: "/go/pydantic-v2-porter"' in config_text
     assert 'fitReportUrl: "/go/fit-report"' in config_text
-    assert 'contactEmail: "support@zippertools.org"' in config_text
+    assert 'contactEmail: "zippers3737@gmail.com"' in config_text
     assert 'href="/scan"' in index_text
     assert "Current checkout price: $99 per team" in pricing_text
     assert "Buy automated fit report - $99" in pricing_text
@@ -321,18 +323,38 @@ def test_static_indexable_pages_use_clean_canonicals_and_links() -> None:
     assert "Final manager report" in demo_text
     assert "Exact ZIP contents" in demo_text
     assert "sa20-pack-edge-case-pack.zip" in demo_text
+    assert "/sample-deliverables/sa20-paid-sample/" in demo_text
+    assert "/sample-deliverables/sa20-paid-sample.zip" in demo_text
+    sample_dir = Path("site/sample-deliverables/sa20-paid-sample")
+    assert (sample_dir / "preview-report.json").exists()
+    assert (sample_dir / "apply-report.json").exists()
+    assert (sample_dir / "validation-summary.txt").exists()
+    assert (sample_dir / "manager-summary.md").exists()
+    assert (sample_dir / "preview.diff").exists()
+    assert (sample_dir / "ZIP-CONTENTS.txt").exists()
+    assert '"mode": "preview"' in (sample_dir / "preview-report.json").read_text(
+        encoding="utf-8"
+    )
+    assert '"mode": "apply"' in (sample_dir / "apply-report.json").read_text(
+        encoding="utf-8"
+    )
     for html in (index_text, scan_text, pricing_text, demo_text, policies_text):
         _assert_primary_nav_order(html)
         _assert_footer_nav_order(html)
         assert 'href="#" data-repo-link' not in html
         assert 'href="#" data-contact-link' not in html
-        assert 'mailto:support@zippertools.org' in html
+        assert "zippers3737@gmail.com" in html
+        assert 'href="/policies#contact"' in html or 'href="policies#contact"' in html
 
 
 def test_free_scan_install_path_uses_verified_archive_command() -> None:
     install_url = (
         "https://github.com/zippertools/"
-        "sqlalchemy-14-to-20-codemod/archive/refs/heads/main.zip"
+        "sqlalchemy-14-to-20-codemod/archive/refs/tags/v0.1.1.zip"
+    )
+    pydantic_install_url = (
+        "https://github.com/zippertools/"
+        "pydantic-v1-to-v2-codemod/archive/refs/tags/v0.1.1.zip"
     )
     scan_text = Path("site/scan.html").read_text(encoding="utf-8")
     index_text = Path("site/index.html").read_text(encoding="utf-8")
@@ -350,7 +372,7 @@ def test_free_scan_install_path_uses_verified_archive_command() -> None:
     scan_command = "python -m sa20_pack.cli . --report migration-report.json"
     fallback_note = (
         "If installation fails, retry from the GitHub quickstart or contact "
-        "support at support@zippertools.org."
+        "support at zippers3737@gmail.com."
     )
     normalized_fallback = " ".join(fallback_note.split())
 
@@ -366,12 +388,49 @@ def test_free_scan_install_path_uses_verified_archive_command() -> None:
         assert scan_command in text
         assert normalized_fallback in " ".join(text.split())
 
-    assert f"{install_url}#subdirectory=products/pydantic-v2-porter" in pydantic_text
+    assert pydantic_install_url in pydantic_text
+    assert "sqlalchemy-14-to-20-codemod/archive/refs/heads/main.zip" not in pydantic_text
     assert (
         "python -m pydantic_v2_porter.cli path/to/repo --report migration-report.json"
         in pydantic_text
     )
     assert f"{install_url}#subdirectory=products/flatconfig-lift" in flatconfig_text
+
+
+def test_site_ctas_do_not_point_to_stale_or_cache_miss_prone_routes() -> None:
+    site_dir = Path.cwd() / "site"
+    build_site(site_dir)
+
+    html_files = list(site_dir.rglob("*.html"))
+    html_text = "\n".join(path.read_text(encoding="utf-8") for path in html_files)
+    hrefs = set(re.findall(r'href="([^"]+)"', html_text))
+
+    assert "derekmartin3737-coder" not in html_text
+    assert "support@zippertools.org" not in html_text
+    assert "archive/refs/heads/main.zip" not in html_text
+    assert 'href="/scan?source=' not in html_text
+    assert "Cache miss" not in html_text
+
+    go_hrefs = {href for href in hrefs if href.startswith("/go/")}
+    assert go_hrefs
+    for href in go_hrefs:
+        assert href.startswith(
+            (
+                "/go/free-scan",
+                "/go/pydantic-free-scan",
+                "/go/flatconfig-free-scan",
+                "/go/fit-report",
+                "/go/fit-review",
+                "/go/sa20-pack",
+                "/go/sa20-preset",
+                "/go/pydantic-v2-porter",
+                "/go/github-release",
+            )
+        )
+
+    redirects_text = (site_dir / "_redirects").read_text(encoding="utf-8")
+    assert "/go/pydantic-free-scan" in redirects_text
+    assert "github.com/zippertools/pydantic-v1-to-v2-codemod" in redirects_text
 
 
 def test_indexnow_payload_uses_generated_manifest_groups() -> None:

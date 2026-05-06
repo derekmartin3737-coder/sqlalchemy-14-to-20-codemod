@@ -1,0 +1,27 @@
+diff --git a/fixtures/demo_repo/queries.py b/fixtures/demo_repo/queries.py
+index 1111111..2222222 100644
+--- a/fixtures/demo_repo/queries.py
++++ b/fixtures/demo_repo/queries.py
+@@ -1,8 +1,8 @@
+-user = session.query(User).get(user_id)
++user = session.get(User, user_id)
+
+-query = session.query(User).join("addresses")
++query = session.query(User).join(User.addresses)
+
+-query = query.options(joinedload("addresses"))
++query = query.options(joinedload(User.addresses))
+diff --git a/fixtures/demo_repo/reports.py b/fixtures/demo_repo/reports.py
+index 3333333..4444444 100644
+--- a/fixtures/demo_repo/reports.py
++++ b/fixtures/demo_repo/reports.py
+@@ -1,4 +1,4 @@
+-stmt = select([User.name])
++stmt = select(User.name)
+diff --git a/fixtures/demo_repo/bulk_updates.py b/fixtures/demo_repo/bulk_updates.py
+index 5555555..6666666 100644
+--- a/fixtures/demo_repo/bulk_updates.py
++++ b/fixtures/demo_repo/bulk_updates.py
+@@ -1,5 +1,5 @@
+-stmt = update(User, whereclause=User.active == False, values={"active": True})
++stmt = update(User).where(User.active == False).values(active=True)

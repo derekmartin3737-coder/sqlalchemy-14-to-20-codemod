@@ -130,6 +130,10 @@ import {
         return;
       }
 
+      if (element.getAttribute("href") && element.getAttribute("href") !== "#") {
+        return;
+      }
+
       const email = contactEmail();
       if (isPlaceholder(email)) {
         element.href = "#";
@@ -214,7 +218,15 @@ import {
     card.appendChild(label);
 
     const heading = document.createElement("h3");
-    heading.textContent = product.cardTitle || product.shortName || product.name;
+    const primaryLink = product.links?.[0]?.href;
+    if (primaryLink) {
+      const link = document.createElement("a");
+      link.href = primaryLink;
+      link.textContent = product.cardTitle || product.shortName || product.name;
+      heading.appendChild(link);
+    } else {
+      heading.textContent = product.cardTitle || product.shortName || product.name;
+    }
     card.appendChild(heading);
 
     const copy = document.createElement("p");

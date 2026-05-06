@@ -1,0 +1,13 @@
+sa20-paid-sample.zip
+====================
+
+preview-report.json
+apply-report.json
+validation-summary.txt
+manager-summary.md
+preview.diff
+ZIP-CONTENTS.txt
+
+The real paid ZIP also includes the commercial local workflow, command docs,
+rollback checklist, support terms, and license terms. This public sample is
+sanitized proof of artifact shape, not the commercial engine.

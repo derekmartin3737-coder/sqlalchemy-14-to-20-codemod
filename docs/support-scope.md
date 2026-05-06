@@ -4,7 +4,7 @@ Last updated: 2026-05-01
 
 Zipper Tools product support is intentionally bounded.
 
-Support email: `support@zippertools.org`.
+Support email: `zippers3737@gmail.com`.
 
 ## Free support
 

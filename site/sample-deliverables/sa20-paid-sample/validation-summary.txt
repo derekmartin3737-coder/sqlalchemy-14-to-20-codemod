@@ -1,0 +1,13 @@
+validation summary
+==================
+
+product: sa20-pack
+fixture: fixtures/demo_repo
+source_uploaded: false
+
+commands:
+- python -m compileall fixtures/demo_repo ... passed
+- python -m pytest fixtures/demo_repo/tests ... passed
+
+overall_status: passed
+merge_gate: buyer must still run normal repo CI on the migration branch

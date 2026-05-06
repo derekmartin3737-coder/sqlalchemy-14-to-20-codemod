@@ -1,0 +1,47 @@
+{
+  "product": "sa20-pack",
+  "mode": "preview",
+  "fixture": "fixtures/demo_repo",
+  "source_uploaded": false,
+  "files_changed": 0,
+  "candidate_files": [
+    "models.py",
+    "queries.py",
+    "reports.py",
+    "bulk_updates.py"
+  ],
+  "transforms_planned": [
+    {
+      "id": "query_get",
+      "file": "queries.py",
+      "count": 1,
+      "confidence": "supported"
+    },
+    {
+      "id": "select_list_syntax",
+      "file": "reports.py",
+      "count": 1,
+      "confidence": "supported"
+    },
+    {
+      "id": "string_loader_options",
+      "file": "queries.py",
+      "count": 1,
+      "confidence": "supported"
+    },
+    {
+      "id": "string_joins",
+      "file": "queries.py",
+      "count": 1,
+      "confidence": "supported"
+    },
+    {
+      "id": "legacy_dml_kwargs",
+      "file": "bulk_updates.py",
+      "count": 2,
+      "confidence": "supported"
+    }
+  ],
+  "manual_review_findings": [],
+  "next_step": "Review preview.diff, then run paid apply on a branch."
+}

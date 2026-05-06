@@ -1,0 +1,29 @@
+{
+  "product": "sa20-pack",
+  "mode": "apply",
+  "fixture": "fixtures/demo_repo",
+  "source_uploaded": false,
+  "files_changed": 4,
+  "transforms_applied": {
+    "query_get": 1,
+    "select_list_syntax": 1,
+    "string_loader_options": 1,
+    "string_joins": 1,
+    "legacy_dml_kwargs": 2
+  },
+  "manual_review_findings": [],
+  "validation": {
+    "overall_status": "passed",
+    "commands": [
+      {
+        "command": "python -m compileall fixtures/demo_repo",
+        "status": "passed"
+      },
+      {
+        "command": "python -m pytest fixtures/demo_repo/tests",
+        "status": "passed"
+      }
+    ]
+  },
+  "next_step": "Review the branch diff and run the buyer repo's normal CI before merge."
+}

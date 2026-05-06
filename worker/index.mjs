@@ -10,6 +10,7 @@ const STRIPE_WEBHOOK_TOLERANCE_SECONDS = 5 * 60;
 const LEGACY_PAID_ASSET_PATH_PREFIX = "/__stripe_paid_assets/";
 const RETIRED_PAYHIP_PATH = "/payhip";
 const CANCEL_PATH = "/cancel";
+const SCAN_PATH = "/scan";
 
 const DELIVERY_ARTIFACTS = {
   "fit-report": {
@@ -60,17 +61,22 @@ function jsonResponse(value, init = {}) {
   return new Response(JSON.stringify(value), { ...init, headers });
 }
 
-function matchGoRoute(pathname) {
+function matchGoRoute(url) {
+  const pathname = url.pathname;
   const candidates = Object.entries(GO_ROUTES).sort(
     ([left], [right]) => right.length - left.length,
   );
   for (const [basePath, route] of candidates) {
     if (pathname === basePath) {
-      return { basePath, route, source: "unknown" };
+      return {
+        basePath,
+        route,
+        source: safeSource(url.searchParams.get("source") || "unknown"),
+      };
     }
     if (pathname.startsWith(`${basePath}/`)) {
       const source = pathname.slice(basePath.length + 1) || "unknown";
-      return { basePath, route, source };
+      return { basePath, route, source: safeSource(source) };
     }
   }
   return null;
@@ -590,6 +596,18 @@ async function handleCancelPage(request, env) {
   });
 }
 
+function handleScanPage(request, env) {
+  const url = new URL(request.url);
+  if (url.search) {
+    const headers = new Headers({
+      location: `${url.origin}${SCAN_PATH}`,
+      "cache-control": "no-store",
+    });
+    return new Response(null, { status: 302, headers });
+  }
+  return env.ASSETS.fetch(request);
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -611,8 +629,11 @@ export default {
     if (url.pathname === CANCEL_PATH) {
       return handleCancelPage(request, env);
     }
+    if (url.pathname === SCAN_PATH) {
+      return handleScanPage(request, env);
+    }
 
-    const goRoute = matchGoRoute(url.pathname);
+    const goRoute = matchGoRoute(url);
     if (goRoute) {
       return handleGoRoute(request, env, goRoute);
     }

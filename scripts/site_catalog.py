@@ -8,12 +8,20 @@ SITE_NAME = "Zipper Tools"
 SITE_URL = "https://zippertools.org"
 INDEXNOW_KEY = "66d2924ff8a74b898f29b91e27b2fce8"
 REPO_URL = "https://github.com/zippertools/sqlalchemy-14-to-20-codemod"
-SUPPORT_EMAIL = "support@zippertools.org"
-SA20_INSTALL_URL = f"{REPO_URL}/archive/refs/heads/main.zip"
+PYDANTIC_REPO_URL = "https://github.com/zippertools/pydantic-v1-to-v2-codemod"
+PUBLIC_RELEASE_TAG = "v0.1.1"
+PYDANTIC_RELEASE_TAG = "v0.1.1"
+SUPPORT_EMAIL = "zippers3737@gmail.com"
+SA20_INSTALL_URL = f"{REPO_URL}/archive/refs/tags/{PUBLIC_RELEASE_TAG}.zip"
 # pip's `#subdirectory=` fragment works on both git+ URLs and archive zip URLs.
 # Use the archive form so users do not need a local git binary.
-PYDANTIC_INSTALL_URL = f"{REPO_URL}/archive/refs/heads/main.zip#subdirectory=products/pydantic-v2-porter"
-FLATCONFIG_INSTALL_URL = f"{REPO_URL}/archive/refs/heads/main.zip#subdirectory=products/flatconfig-lift"
+PYDANTIC_INSTALL_URL = (
+    f"{PYDANTIC_REPO_URL}/archive/refs/tags/{PYDANTIC_RELEASE_TAG}.zip"
+)
+FLATCONFIG_INSTALL_URL = (
+    f"{REPO_URL}/archive/refs/tags/{PUBLIC_RELEASE_TAG}.zip"
+    "#subdirectory=products/flatconfig-lift"
+)
 PROOF_ONLY_CHECKOUT_NOTE = "No checkout is listed for this proof page yet."
 
 CHECKOUT_PROVIDER = "Stripe"
@@ -2142,7 +2150,7 @@ PRODUCTS: tuple[ProductPage, ...] = (
         docs=(
             ("Public proof", "products/pydantic-v2-porter/docs/public-proof.md"),
             ("Commercial case", "products/pydantic-v2-porter/docs/commercial-case.md"),
-            ("README", "products/pydantic-v2-porter/README.md"),
+            ("Dedicated scanner repo", PYDANTIC_REPO_URL),
         ),
         price="249.99",
         checkout_path="/go/pydantic-v2-porter",

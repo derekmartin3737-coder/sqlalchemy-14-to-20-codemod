@@ -18,7 +18,7 @@ Cloudflare storage. Normal use does not require source-code upload or manual
 email delivery.
 
 Refunds receive a 14-day review for published-scope or delivery mismatches.
-Support email: `support@zippertools.org`.
+Support email: `zippers3737@gmail.com`.
 
 ## Free vs paid at a glance
 

@@ -40,7 +40,7 @@ recording the version. That stays open until the next push.
       is still unavailable:
 
   ```bash
-  python -m pip install "https://github.com/zippertools/sqlalchemy-14-to-20-codemod/archive/refs/heads/main.zip"
+  python -m pip install "https://github.com/zippertools/sqlalchemy-14-to-20-codemod/archive/refs/tags/v0.1.1.zip"
   python -m sa20_pack.cli . --report migration-report.json
   ```
 
@@ -49,7 +49,7 @@ recording the version. That stays open until the next push.
 - [x] Update GitHub quickstart / README install instructions.
 - [x] Update any SQLAlchemy guide/demo/product page install references.
 - [x] Add the troubleshooting line under the install command:
-      `If installation fails, use the GitHub install instructions or contact support at support@zippertools.org.`
+      `If installation fails, use the GitHub install instructions or contact support at zippers3737@gmail.com.`
 - [x] Acceptance: a first-time user can copy the visible install command into a
       fresh environment, install successfully, and run the shown scan command.
 
@@ -124,7 +124,7 @@ Evidence: the Pydantic product page now ships a verified GitHub install command
 followed by the scan command:
 
 ```bash
-python -m pip install "https://github.com/zippertools/sqlalchemy-14-to-20-codemod/archive/refs/heads/main.zip#subdirectory=products/pydantic-v2-porter"
+python -m pip install "https://github.com/zippertools/pydantic-v1-to-v2-codemod/archive/refs/tags/v0.1.1.zip"
 python -m pydantic_v2_porter.cli path/to/repo --report migration-report.json
 ```
 

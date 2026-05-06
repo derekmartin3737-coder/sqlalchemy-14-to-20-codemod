@@ -1,7 +1,10 @@
 const SITE_URL = "https://zippertools.org";
 const REPO_URL =
   "https://github.com/zippertools/sqlalchemy-14-to-20-codemod";
-const SUPPORT_EMAIL = "support@zippertools.org";
+const PYDANTIC_REPO_URL =
+  "https://github.com/zippertools/pydantic-v1-to-v2-codemod";
+const PUBLIC_RELEASE_TAG = "v0.1.1";
+const SUPPORT_EMAIL = "zippers3737@gmail.com";
 
 const routes = Object.freeze({
   freeScan: "/go/free-scan",
@@ -44,6 +47,10 @@ const statuses = Object.freeze({
 
 function repoBlobUrl(path, content) {
   return `${REPO_URL}/blob/main/${path}?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=${content}`;
+}
+
+function pydanticRepoBlobUrl(path, content) {
+  return `${PYDANTIC_REPO_URL}/blob/main/${path}?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=${content}`;
 }
 
 const paidAssurances = Object.freeze([
@@ -270,10 +277,7 @@ export const products = Object.freeze({
     checkoutProvider: commerce.checkoutProvider,
     checkoutUrl: routes.pydantic,
     freeScanUrl: routes.pydanticFreeScan,
-    freeScanTargetUrl: repoBlobUrl(
-      "products/pydantic-v2-porter/README.md",
-      "pydantic-v2-porter",
-    ),
+    freeScanTargetUrl: pydanticRepoBlobUrl("README.md", "pydantic-v2-porter"),
     pricingId: "pydantic-v2-porter",
     offerLabel: "Python migration pack",
     stage: prices.pydantic.display,
@@ -392,7 +396,7 @@ export const goRoutes = Object.freeze({
   "/go/github-release": Object.freeze({
     kind: "trust",
     label: "github-release",
-    target: `${REPO_URL}/releases/tag/v0.1.0?utm_source=zippertools&utm_medium=site&utm_campaign=trust&utm_content=v0.1.0`,
+    target: `${REPO_URL}/releases/tag/${PUBLIC_RELEASE_TAG}?utm_source=zippertools&utm_medium=site&utm_campaign=trust&utm_content=${PUBLIC_RELEASE_TAG}`,
   }),
   [products.fitReport.checkoutUrl]: Object.freeze({
     kind: "checkout",

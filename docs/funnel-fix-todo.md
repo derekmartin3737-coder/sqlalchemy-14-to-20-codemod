@@ -25,13 +25,13 @@ small, verify locally, and update this file as fixes land.
 - [x] Use one primary public command pair:
 
 ```bash
-python -m pip install "https://github.com/zippertools/sqlalchemy-14-to-20-codemod/archive/refs/heads/main.zip"
+python -m pip install "https://github.com/zippertools/sqlalchemy-14-to-20-codemod/archive/refs/tags/v0.1.1.zip"
 python -m sa20_pack.cli . --report migration-report.json
 ```
 
 - [x] Add the fallback/support note anywhere the install command appears:
   `If installation fails, retry from the GitHub quickstart or contact support at
-  support@zippertools.org.`
+  zippers3737@gmail.com.`
 - [x] Verify the exact public install command and scan command from outside the
   local developer checkout.
 

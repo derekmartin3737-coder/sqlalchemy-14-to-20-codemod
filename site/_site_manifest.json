@@ -15,7 +15,7 @@
     },
     {
       "source": "/go/pydantic-free-scan",
-      "target": "https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/products/pydantic-v2-porter/README.md?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=pydantic-v2-porter",
+      "target": "https://github.com/zippertools/pydantic-v1-to-v2-codemod/blob/main/README.md?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=pydantic-v2-porter",
       "status": 302
     },
     {
@@ -25,7 +25,7 @@
     },
     {
       "source": "/go/github-release",
-      "target": "https://github.com/zippertools/sqlalchemy-14-to-20-codemod/releases/tag/v0.1.0?utm_source=zippertools&utm_medium=site&utm_campaign=trust&utm_content=v0.1.0",
+      "target": "https://github.com/zippertools/sqlalchemy-14-to-20-codemod/releases/tag/v0.1.1?utm_source=zippertools&utm_medium=site&utm_campaign=trust&utm_content=v0.1.1",
       "status": 302
     },
     {
@@ -679,7 +679,7 @@
       "status": 301
     }
   ],
-  "generated_on": "2026-05-05",
+  "generated_on": "2026-05-06",
   "urls": {
     "static": [
       "https://zippertools.org/",
@@ -923,8 +923,8 @@
           "products/pydantic-v2-porter/docs/commercial-case.md"
         ],
         [
-          "README",
-          "products/pydantic-v2-porter/README.md"
+          "Dedicated scanner repo",
+          "https://github.com/zippertools/pydantic-v1-to-v2-codemod"
         ]
       ],
       "price": "249.99",

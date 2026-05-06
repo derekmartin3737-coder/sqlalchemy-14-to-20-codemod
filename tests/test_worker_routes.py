@@ -10,12 +10,16 @@ def test_cloudflare_assets_runs_worker_for_checkout_and_webhooks() -> None:
 
     run_worker_first = set(config["assets"]["run_worker_first"])
     assert run_worker_first >= {
+        "/scan",
         "/go/*",
         "/stripe/*",
         "/payhip",
         "/payhip/*",
         "/__stripe_paid_assets/*",
     }
+    assert not any(
+        route.startswith("/go/") and route != "/go/*" for route in run_worker_first
+    )
     # The retired checkout paths run through the Worker so stale assets cannot
     # be served if an old deployment artifact exists.
 
@@ -123,7 +127,7 @@ import worker from './worker/index.mjs';
 const env = { ASSETS: { fetch: async () => new Response('asset') } };
 const routes = [
   ['/go/free-scan', '/docs/quickstart.md'],
-  ['/go/pydantic-free-scan', '/products/pydantic-v2-porter/README.md'],
+  ['/go/pydantic-free-scan', '/pydantic-v1-to-v2-codemod/blob/main/README.md'],
   ['/go/flatconfig-free-scan', '/products/flatconfig-lift/README.md'],
 ];
 const originalLog = console.log;
@@ -150,9 +154,64 @@ for (const [route, expectedPath] of routes) {
 
     assert result.stdout.strip().splitlines() == [
         "302 github.com /zippertools/sqlalchemy-14-to-20-codemod/blob/main/docs/quickstart.md free_scan unit-test",
-        "302 github.com /zippertools/sqlalchemy-14-to-20-codemod/blob/main/products/pydantic-v2-porter/README.md free_scan unit-test",
+        "302 github.com /zippertools/pydantic-v1-to-v2-codemod/blob/main/README.md free_scan unit-test",
         "302 github.com /zippertools/sqlalchemy-14-to-20-codemod/blob/main/products/flatconfig-lift/README.md free_scan unit-test",
     ]
+
+
+def test_source_query_go_routes_and_scan_query_are_worker_owned() -> None:
+    script = """
+import worker from './worker/index.mjs';
+const env = {
+  ASSETS: { fetch: async () => new Response('<title>scan</title>', { headers: { 'content-type': 'text/html' } }) },
+  STRIPE_SECRET_KEY: 'sk_test_unit',
+};
+const originalLog = console.log;
+console.log = () => {};
+const originalFetch = globalThis.fetch;
+globalThis.fetch = async (_url, init) => {
+  const params = new URLSearchParams(init.body);
+  const product = params.get('metadata[product_slug]');
+  return new Response(
+    JSON.stringify({ url: `https://checkout.stripe.com/c/pay/cs_test_${product}` }),
+    { status: 200 },
+  );
+};
+const checks = [
+  new Request('https://zippertools.org/scan?source=home-hero'),
+  new Request('https://zippertools.org/go/free-scan?source=pricing-free'),
+  new Request('https://zippertools.org/go/pydantic-free-scan?source=guide-pydantic-basesettings-moved'),
+  new Request('https://zippertools.org/go/fit-report?source=guide-pydantic-basesettings-moved'),
+  new Request('https://zippertools.org/go/pydantic-v2-porter?source=guide-pydantic-basesettings-moved'),
+];
+for (const request of checks) {
+  const response = await worker.fetch(request, env);
+  const location = response.headers.get('location') || '';
+  originalLog([response.status, location].join(' '));
+}
+globalThis.fetch = originalFetch;
+"""
+    result = subprocess.run(
+        ["node", "--input-type=module", "-e", script],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+
+    lines = result.stdout.strip().splitlines()
+    assert lines[0] == "302 https://zippertools.org/scan"
+    assert lines[1].startswith(
+        "302 https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/docs/quickstart.md"
+    )
+    assert "utm_term=pricing-free" in lines[1]
+    assert lines[2].startswith(
+        "302 https://github.com/zippertools/pydantic-v1-to-v2-codemod/blob/main/README.md"
+    )
+    assert "utm_term=guide-pydantic-basesettings-moved" in lines[2]
+    assert lines[3].startswith("303 https://checkout.stripe.com/c/pay/cs_test_fit-report")
+    assert lines[4].startswith(
+        "303 https://checkout.stripe.com/c/pay/cs_test_pydantic-v2-porter"
+    )
 
 
 def test_legacy_fit_review_route_points_to_stripe_fit_report_checkout() -> None:

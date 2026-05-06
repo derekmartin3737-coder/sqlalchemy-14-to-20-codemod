@@ -22,6 +22,7 @@ DEFAULT_SITEMAPS = (
     "sitemap-products.xml",
 )
 IGNORED_INTERNAL_PREFIXES = ("/go/",)
+IGNORED_INTERNAL_SUFFIXES = (".zip",)
 
 
 @dataclass(frozen=True)
@@ -177,7 +178,9 @@ def is_internal_url(base_url: str, url: str) -> bool:
 
 def ignored_internal_path(url: str) -> bool:
     path = urllib.parse.urlparse(url).path
-    return any(path.startswith(prefix) for prefix in IGNORED_INTERNAL_PREFIXES)
+    return any(path.startswith(prefix) for prefix in IGNORED_INTERNAL_PREFIXES) or any(
+        path.endswith(suffix) for suffix in IGNORED_INTERNAL_SUFFIXES
+    )
 
 
 def audit_sitemap_pages(

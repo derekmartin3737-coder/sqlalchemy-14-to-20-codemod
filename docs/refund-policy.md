@@ -5,7 +5,7 @@ Last updated: 2026-05-01
 This policy covers paid Zipper Tools digital migration products sold through
 Stripe Checkout.
 
-Support email: `support@zippertools.org`.
+Support email: `zippers3737@gmail.com`.
 
 ## One-time migration packs
 

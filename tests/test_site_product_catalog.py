@@ -131,7 +131,7 @@ console.log(JSON.stringify({
     data = json.loads(result.stdout)
 
     assert data["configEmail"] == data["supportEmail"]
-    assert data["supportEmail"] == "support@zippertools.org"
+    assert data["supportEmail"] == "zippers3737@gmail.com"
     assert data["configRoutes"] == data["productRoutes"]
     assert data["checkoutAmounts"] == {
         "fit-report": 9900,

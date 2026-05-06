@@ -31,7 +31,9 @@ from scripts.site_catalog import (
     LOCAL_NO_UPLOAD_LANGUAGE,
     PRODUCTS,
     PROOF_ONLY_CHECKOUT_NOTE,
+    PUBLIC_RELEASE_TAG,
     PYDANTIC_INSTALL_URL,
+    PYDANTIC_REPO_URL,
     REFUND_LANGUAGE,
     REPO_URL,
     SA20_INSTALL_URL,
@@ -75,7 +77,7 @@ FREE_SCAN_URL = (
     "?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=quickstart"
 )
 PYDANTIC_FREE_SCAN_URL = (
-    f"{REPO_URL}/blob/main/products/pydantic-v2-porter/README.md"
+    f"{PYDANTIC_REPO_URL}/blob/main/README.md"
     "?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=pydantic-v2-porter"
 )
 FLATCONFIG_FREE_SCAN_URL = (
@@ -83,8 +85,8 @@ FLATCONFIG_FREE_SCAN_URL = (
     "?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=flatconfig-lift"
 )
 RELEASE_URL = (
-    f"{REPO_URL}/releases/tag/v0.1.0"
-    "?utm_source=zippertools&utm_medium=site&utm_campaign=trust&utm_content=v0.1.0"
+    f"{REPO_URL}/releases/tag/{PUBLIC_RELEASE_TAG}"
+    f"?utm_source=zippertools&utm_medium=site&utm_campaign=trust&utm_content={PUBLIC_RELEASE_TAG}"
 )
 
 PRICING_SECTION_IDS = {
@@ -344,6 +346,7 @@ def nav_html(path: str) -> str:
 
 
 def footer_html(path: str) -> str:
+    contact_href = relative_href(path, "policies.html") + "#contact"
     return (
         '<footer class="site-footer"><div class="wrap footer-grid">'
         '<div><p class="footer-title">Zipper Tools</p>'
@@ -357,10 +360,10 @@ def footer_html(path: str) -> str:
         f'<a href="{relative_href(path, "demo.html")}">Demo</a>'
         f'<a href="{relative_href(path, "policies.html")}">Policies</a>'
         f'<a href="{REPO_URL}" data-repo-link>Repo</a>'
-        f'<a href="mailto:{SUPPORT_EMAIL}" data-contact-link>Contact</a>'
+        f'<a href="{contact_href}">Contact</a>'
         "</div>"
         f'<p class="caption footer-note">Support: '
-        f'<a href="mailto:{SUPPORT_EMAIL}" data-contact-link>'
+        f'<a href="{contact_href}">'
         f'<span data-contact-email>{SUPPORT_EMAIL}</span></a></p>'
         "</div></footer>"
     )
@@ -509,6 +512,8 @@ def tracked_go_path(path: str, source: str) -> str:
 
 
 def repo_doc_href(doc_path: str) -> str:
+    if doc_path.startswith(("https://", "http://")):
+        return doc_path
     return f"{REPO_URL}/blob/main/{doc_path}"
 
 
@@ -524,10 +529,10 @@ def free_scan_go_path(product: ProductPage | None, source: str) -> str:
         return tracked_go_path("/go/pydantic-free-scan", source)
     if product is not None and product.slug == "flatconfig-lift":
         return tracked_go_path("/go/flatconfig-free-scan", source)
-    # SQLAlchemy + generic: keep buyers on /scan instead of jumping to GitHub.
-    # `?source=` keeps attribution; `/scan` itself still links out to the
-    # GitHub quickstart as a secondary trust path.
-    return f"/scan?source={source}" if source else "/scan"
+    # SQLAlchemy + generic: keep buyers on a single canonical /scan page.
+    # Query-tagged scan URLs have been a stale-cache failure mode, so source
+    # attribution stays on /go routes and /scan itself remains cache-stable.
+    return "/scan"
 
 
 def supports_fit_report(product: ProductPage | None) -> bool:
@@ -1209,7 +1214,7 @@ def render_guide(guide: GuidePage) -> tuple[str, str]:
     qualification_cta = ""
     if guide.product_slug == "sa20-pack":
         qualification_cta = (
-            f'<a class="button secondary" href="/scan?source={tracking_source(path, "guide")}">'
+            '<a class="button secondary" href="/scan">'
             "Run the free scan first</a>"
         )
         proof_cta = (
@@ -1721,7 +1726,7 @@ def render_product(product: ProductPage) -> tuple[str, str]:
     )
     release_button = ""
     if product.slug == "sa20-pack":
-        release_button = '<a class="button secondary" href="/go/github-release">Read v0.1.0 release</a>'
+        release_button = f'<a class="button secondary" href="/go/github-release">Read {PUBLIC_RELEASE_TAG} release</a>'
     pricing_href = pricing_section_href(path, product)
     pricing_button = (
         f'<a class="button secondary" href="{pricing_href}">See pricing</a>'
@@ -2047,7 +2052,7 @@ def render_products_hub() -> tuple[str, str]:
               <span class="status-label {escape(card["status_class"])}">{escape(card["status"])}</span>
               <span class="catalog-price">{escape(card["price"])}</span>
             </div>
-            <h3>{escape(card["name"])}</h3>
+            <h3><a href="{escape(card["href"])}">{escape(card["name"])}</a></h3>
             <p>{escape(card["outcome"])}</p>
             {status_note}
             <div class="page-actions">
@@ -2125,7 +2130,7 @@ def render_sqlalchemy_public_proof() -> tuple[str, str]:
     proof_actions = action_list_html(
         (
             f'<a class="button" href="{relative_href(path, "products/sa20-pack/index.html")}">Open SQLAlchemy cleanup pack</a>',
-            '<a class="button secondary" href="/scan?source=proof-sqlalchemy-public-proof">Run the free scan first</a>',
+            '<a class="button secondary" href="/scan">Run the free scan first</a>',
         )
     )
     proof_rows = (
