@@ -79,24 +79,28 @@ Decision notes:
 
 ## Phase 4 - Analytics And Demand Tracking
 
-- [ ] Confirm live `site/config.js` uses `support@zippertools.org`.
-- [ ] Set the Cloudflare Web Analytics token in `site/config.js` if the live
+- [x] Confirm live `site/config.js` uses `support@zippertools.org`.
+- [x] Set the Cloudflare Web Analytics token in `site/config.js` if the live
   site needs the static token.
 - [x] Add route-click tracking for the homepage well CTA.
 - [x] Add route-click tracking for the free scanner/download CTA.
 - [x] Add route-click tracking for the product page CTA.
 - [x] Add route-click tracking for the proof page CTA.
 - [x] Add route-click tracking for checkout intent.
-- [x] Bind, expose, or replace the Worker `CONVERSION_EVENTS` store so click
-  events can actually be queried.
+- [x] Replace the Worker `CONVERSION_EVENTS` binding with structured
+  `conversion_route` Worker logs and tracked `/go/...` paths so click events
+  can be checked without enabling another Cloudflare account feature.
 - [x] Update the live funnel verifier for Product Wells routes.
-- [ ] Rerun the live funnel verifier after deployment.
+- [x] Rerun the live funnel verifier after deployment.
 - [ ] Track GitHub repo views, clones, releases, and downloads for Action Guard.
 - [ ] Record all outreach and responses in `docs/lead-tracker.md` or a
   well-specific lead tracker.
 
-Local note: `site/config.js` contains `support@zippertools.org`; live
-confirmation still waits for deployment approval.
+Deployment note: Cloudflare Worker version
+`895a399d-6943-4857-92d2-737b8182fb4f` is live on `zippertools.org` and
+`www.zippertools.org`; live `config.js` contains `support@zippertools.org`.
+The static Cloudflare Web Analytics token remains blank because the current
+demand test uses tracked `/go/...` paths plus structured Worker logs.
 
 ## Phase 5 - Stripe And Paid Fulfillment
 
@@ -131,33 +135,42 @@ confirmation still waits for deployment approval.
 - [ ] Resolve the docs conflict about whether the Stripe payout path is already
   verified.
 
+Blocker note: Action Guard paid fulfillment is intentionally paused. The first
+paid SKU, free-vs-paid boundary, exact deliverables, and paid ZIP are not
+defined yet, and no live Stripe settings or purchases were changed during this
+deploy.
+
 ## Phase 6 - Cloudflare Deployment
 
-- [ ] Keep Cloudflare as the canonical storefront for `zippertools.org`.
-- [ ] Keep GitHub Pages as redirect or backup only.
+- [x] Keep Cloudflare as the canonical storefront for `zippertools.org`.
+- [x] Keep GitHub Pages as redirect or backup only.
 - [x] Confirm `wrangler.jsonc` routes still cover:
   - `zippertools.org`
   - `www.zippertools.org`
   - `/go/*`
   - `/stripe/*`
   - `/cancel`
-- [ ] Decide whether to rename the Worker from `sa20-pack` later. This is not a
+- [x] Decide whether to rename the Worker from `sa20-pack` later. This is not a
   launch blocker if routing works.
-- [ ] Deploy the updated site and Worker to Cloudflare.
+- [x] Deploy the updated site and Worker to Cloudflare.
 - [x] Run the local site URL audit.
-- [ ] Run the live URL audit.
+- [x] Run the live URL audit.
 - [x] Confirm sitemap URLs, canonical URLs, and internal links pass.
-- [ ] Confirm the live homepage shows Product Wells and Action Guard, not the
+- [x] Confirm the live homepage shows Product Wells and Action Guard, not the
   old SQLAlchemy-first storefront.
-- [ ] Confirm success and cancel pages still work.
+- [x] Confirm success and cancel pages still work.
+
+Deployment note: keep the Worker name `sa20-pack` for now because both custom
+domains route correctly; rename only as a later cleanup if it becomes confusing
+in Cloudflare.
 
 ## Phase 7 - Policy, Legal, And Public Trust
 
-- [ ] Update Terms of Sale for a multi-product Product Wells storefront.
-- [ ] Update Refund Policy for downloadable product wells.
-- [ ] Update Privacy Policy if analytics or checkout copy changes.
-- [ ] Update License Terms for Action Guard deliverables.
-- [ ] Update Support Scope for Action Guard and the product library.
+- [x] Update Terms of Sale for a multi-product Product Wells storefront.
+- [x] Update Refund Policy for downloadable product wells.
+- [x] Update Privacy Policy if analytics or checkout copy changes.
+- [x] Update License Terms for Action Guard deliverables.
+- [x] Update Support Scope for Action Guard and the product library.
 - [ ] Confirm seller name consistency across:
   - `site/config.js`
   - Stripe Dashboard
@@ -167,8 +180,13 @@ confirmation still waits for deployment approval.
   real legal name now, branded DBA later, or another path.
 - [ ] Confirm Oregon/state/local software-sales requirements before first real
   sale if seller identity changes.
-- [ ] Review public claims so the site does not promise full autonomous
+- [x] Review public claims so the site does not promise full autonomous
   migration or guaranteed fixes.
+
+Legal note: public policy copy and `site/config.js` now use `Zipper Tools`, but
+Stripe Dashboard seller details, the real legal-name/DBA decision, and
+Oregon/state/local requirements still need owner confirmation before the first
+new paid Action Guard sale.
 
 ## Phase 8 - Seven-Day Demand Test
 

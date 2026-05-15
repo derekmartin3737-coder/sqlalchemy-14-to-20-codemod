@@ -119,15 +119,17 @@ Priority labels:
 - [x] Replace the Worker `CONVERSION_EVENTS` binding with structured
   `conversion_route` Worker logs and tracked `/go/...` paths so demand can be
   checked without enabling another Cloudflare account feature.
-- [ ] Confirm live `site/config.js` uses `support@zippertools.org`.
-- [ ] Rerun the live funnel verifier after deployment.
+- [x] Confirm live `site/config.js` uses `support@zippertools.org`.
+- [x] Rerun the live funnel verifier after deployment.
 - [ ] Track GitHub repo views, clones, releases, and downloads for the new
   product.
 - [ ] Record all outreach and responses in `docs/lead-tracker.md` or a new
   well-specific lead tracker.
 
-Local note: `site/config.js` uses `support@zippertools.org`; live confirmation
-still waits for deployment approval.
+Deployment note: Cloudflare Worker version
+`895a399d-6943-4857-92d2-737b8182fb4f` is live, `config.js` serves
+`support@zippertools.org`, and the live funnel verifier passes after pushing
+commit `4142cb4` so GitHub README targets exist.
 
 ## P1 - Seven-Day Well Test
 

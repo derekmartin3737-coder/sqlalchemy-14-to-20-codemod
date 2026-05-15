@@ -3,9 +3,10 @@
 This file is the practical truth table for whether the business is actually
 ready to sell under the current Product Wells direction.
 
-Status as of 2026-05-14: the SQLAlchemy storefront proved the checkout and
-proof infrastructure, but the active launch target is moving to an autonomous
-Product Wells site with GitHub Actions Upgrade Guard as the first new well.
+Status as of 2026-05-15: the Product Wells storefront is deployed on
+Cloudflare with GitHub Actions Upgrade Guard as the first front-page well.
+Cloudflare Worker version `895a399d-6943-4857-92d2-737b8182fb4f` and public
+repo commit `4142cb4` passed the live URL audit and live funnel verifier.
 
 ## Repo-side assets completed
 
@@ -29,9 +30,8 @@ Product Wells site with GitHub Actions Upgrade Guard as the first new well.
 - enable storefront traffic analytics
 - make one real test purchase
 - verify the live site is serving the current support address and config
-- make the Product Wells homepage, well archive, and active product page live
-- publish a proof page for GitHub Actions Upgrade Guard before asking for
-  checkout
+- define the first paid GitHub Actions Upgrade Guard SKU before adding checkout
+- publish a paid deliverable ZIP only after the free-vs-paid boundary is clear
 
 ## When to call it live
 
@@ -45,6 +45,9 @@ Call the business live only after:
 6. paid checkout buttons are live only for products with proof demand
 7. one real order completes end to end
 8. the paid deliverable path has been tested without manual intervention
+
+The current public launch is live for free scanner/proof demand testing. It is
+not live for a new paid Action Guard offer yet.
 
 ## Launch-day checks
 

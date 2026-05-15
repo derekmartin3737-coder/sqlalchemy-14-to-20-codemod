@@ -7,7 +7,8 @@ viewing progress after launch.
 
 The repo includes both a GitHub Pages workflow in
 [`deploy-site.yml`](../.github/workflows/deploy-site.yml)
-and a simple root-page redirect so GitHub Pages can act as a backup entrypoint.
+and a simple redirect-only Pages artifact so GitHub Pages can act as a backup
+entrypoint without becoming a second storefront.
 The canonical live storefront is:
 
 - `https://zippertools.org/`
