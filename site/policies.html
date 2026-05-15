@@ -7,7 +7,7 @@
     <title>Policies | Zipper Tools</title>
     <meta
       name="description"
-      content="Payment, delivery, refund, support, license, and source-code handling policies for Zipper Tools migration products."
+      content="Payment, delivery, refund, support, license, analytics, and source-code handling policies for Zipper Tools Product Wells."
     />
     <link
       rel="canonical"
@@ -33,11 +33,12 @@
       <div class="wrap nav">
         <a class="brand" href="/">Zipper Tools</a>
         <nav class="nav-links" aria-label="Primary">
+          <a href="/wells/">Wells</a>
           <a href="/scan">Scan</a>
+          <a href="/products/">Library</a>
           <a href="/guides/">Guides</a>
-          <a href="/products/">Products</a>
+          <a href="/framework/">Framework</a>
           <a href="/pricing">Pricing</a>
-          <a href="/demo">Demo</a>
           <a href="/policies">Policies</a>
           <a href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod" data-repo-link>Repo</a>
         </nav>
@@ -46,23 +47,15 @@
 
     <main class="wrap">
       <section class="warning" id="launch-warning" aria-live="polite"></section>
-      <section class="sale-banner" data-sale-banner data-sale-ends="May 27, 2026 at 11:59 PM Pacific">
-        <div>
-          <p class="kicker">90% off for three weeks</p>
-          <strong>Migration Sprint Sale</strong>
-          <span>90% off every listed paid product through May 27, 2026 at 11:59 PM Pacific. Discount is applied automatically in Stripe Checkout.</span>
-        </div>
-        <a class="button secondary" href="/pricing">See sale pricing</a>
-      </section>
       <section class="page-title">
         <p class="kicker">Policies</p>
         <h1>Clear boundaries before anyone buys.</h1>
         <p>
-          These policies cover paid Zipper Tools digital migration products,
-          including the SQLAlchemy cleanup pack, preset bundle, Pydantic cleanup
-          pack, and automated fit report add-on.
+          These policies cover Zipper Tools Product Wells, free local scanners,
+          paid downloadable bundles, the migration library, checkout, support,
+          and source-code handling.
         </p>
-        <p class="caption">Last updated: 2026-05-01</p>
+        <p class="caption">Last updated: 2026-05-15</p>
       </section>
 
       <section class="section stack">
@@ -71,9 +64,10 @@
           <ul class="clean">
             <li>Paid checkout uses Stripe Checkout. Stripe handles secure payment, receipts, and payment records.</li>
             <li>After payment, the site verifies the Stripe session before opening the purchased ZIP download.</li>
-            <li>The products run locally. Zipper Tools does not require source-code upload for normal use.</li>
+            <li>Free Product Well scanners and paid products run locally. Zipper Tools does not require source-code upload for normal use.</li>
             <li>Refunds get a 14-day review when delivery fails or the delivered product materially does not match the published scope.</li>
             <li>Support is email-based and limited to delivery, installation, usage, and published-scope questions.</li>
+            <li>GitHub Actions Upgrade Guard is currently published as a free scanner and proof page; paid checkout is paused until the SKU boundary is explicit.</li>
           </ul>
         </section>
 
@@ -107,6 +101,10 @@
             access, or source-code upload. If delivery fails, contact support
             with the order reference so the issue can be fixed or reviewed.
           </p>
+          <p>
+            Free Product Well scanners and proof artifacts are delivered through
+            the public repo or public site. They do not require payment.
+          </p>
         </section>
 
         <section class="page-panel">
@@ -124,6 +122,11 @@
             review is based on the published product page, support boundary, and
             delivered digital product.
           </p>
+          <p>
+            For future paid Product Well bundles, the review also uses the
+            published free-vs-paid boundary and documented unsupported cases at
+            the time of purchase.
+          </p>
         </section>
 
         <section class="page-panel">
@@ -134,6 +137,7 @@
             <li>Clarifying the published supported and unsupported scope.</li>
             <li>Helping interpret product docs, report fields, and manual-review findings.</li>
             <li>Refund review questions inside the 14-day review window.</li>
+            <li>Published scanner/report behavior for GitHub Actions Upgrade Guard and future Product Wells.</li>
           </ul>
         </section>
 
@@ -145,6 +149,7 @@
             <li>Guarantees that every repo will pass validation or behave correctly in production.</li>
             <li>Private environment access, production credentials, or regulated-data handling.</li>
             <li>Automatic fixes for patterns listed as unsupported or manual review.</li>
+            <li>Monitoring a buyer's repositories after purchase.</li>
           </ul>
         </section>
 
@@ -166,14 +171,17 @@
           <h2>Privacy / source-code handling</h2>
           <p>
             The public website may use Cloudflare Web Analytics if the
-            analytics token is enabled. Checkout and order information are
+            analytics token is enabled. The Cloudflare Worker records
+            <code>/go/...</code> route events for funnel analysis, including the
+            route label, source tag, request path, Cloudflare country/colo
+            metadata, and referrer host. Checkout and order information are
             processed through Stripe. Direct support emails include only the
             information you choose to send.
           </p>
           <p>
             The free scanner and paid products are designed to run in your local
-            checkout. They do not send hidden CLI telemetry by default and do not
-            require uploading private source code. Do not send secrets,
+            checkout. They do not send hidden CLI telemetry by default and do
+            not require uploading private source code. Do not send secrets,
             production credentials, regulated data, or full private application
             dumps through ordinary support email.
           </p>
@@ -181,7 +189,7 @@
 
         <section class="page-panel" id="contact">
           <h2>Contact</h2>
-          <p>Support: <a href="mailto:zippers3737@gmail.com"><span data-contact-email>zippers3737@gmail.com</span></a></p>
+          <p>Support: <a href="mailto:support@zippertools.org"><span data-contact-email>support@zippertools.org</span></a></p>
           <p>
             For paid support or refund review, include the order reference,
             product name, delivery error if any, and a minimal sanitized example
@@ -194,9 +202,11 @@
     <footer class="site-footer">
       <div class="wrap footer-grid">
         <div class="footer-links">
+          <a href="/wells/">Wells</a>
           <a href="/scan">Scan</a>
+          <a href="/products/">Library</a>
           <a href="/guides/">Guides</a>
-          <a href="/products/">Products</a>
+          <a href="/framework/">Framework</a>
           <a href="/pricing">Pricing</a>
           <a href="/demo">Demo</a>
           <a href="/policies">Policies</a>

@@ -6,6 +6,15 @@ This product was exercised against shallow clones of public GitHub repos to
 check that the supported subset behaves the way the product claims, and that
 unsupported patterns are reported instead of silently rewritten.
 
+## Trust Boundary
+
+Do not trust this blindly with your project. Visible GitHub social proof is
+still weak, the public repo is scanner-first and does not expose the full paid
+apply engine, and this proof is narrow: a few supported examples plus
+fail-closed examples. Treat it as a fit signal, then run the scanner or paid
+workflow on a branch and rely on your own typecheck, build, and tests before
+merge.
+
 ## Public repos tested
 
 - `shahmir2004/asylum-appointment-bot`

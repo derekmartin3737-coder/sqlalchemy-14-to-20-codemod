@@ -1,0 +1,95 @@
+{
+  "product": "actions-upgrade-guard",
+  "version": "0.1.0",
+  "rule_pack_version": "2026.05.14",
+  "status": "manual_review_required",
+  "mode": "dry-run",
+  "root_path": "fixture/deprecated_repo",
+  "scanned_files": [
+    ".github/workflows/build.yml"
+  ],
+  "files_changed": [],
+  "blocking_findings": 3,
+  "confidence": 0.74,
+  "findings": [
+    {
+      "rule_id": "AUG008",
+      "title": "Floating latest runner label can hide image migrations",
+      "severity": "medium",
+      "classification": "informational",
+      "blocking": false,
+      "path": ".github/workflows/build.yml",
+      "line": 9,
+      "current": "ubuntu-latest",
+      "recommended": "Pin runner labels where reproducibility matters.",
+      "deadline": "2026-06-15",
+      "source_url": "https://github.blog/changelog/2026-05-14-github-actions-upcoming-image-migrations"
+    },
+    {
+      "rule_id": "AUG002",
+      "title": "Actions cache v1/v2 is retired",
+      "severity": "critical",
+      "classification": "autofix",
+      "blocking": true,
+      "path": ".github/workflows/build.yml",
+      "line": 12,
+      "current": "actions/cache@v2",
+      "recommended": "Replace with actions/cache@v4 and rerun the workflow.",
+      "deadline": "2025-03-01",
+      "source_url": "https://github.blog/changelog/2024-09-16-notice-of-upcoming-deprecations-and-changes-in-github-actions-services/"
+    },
+    {
+      "rule_id": "AUG001",
+      "title": "Artifact action v3 is retired on GitHub.com",
+      "severity": "critical",
+      "classification": "autofix",
+      "blocking": true,
+      "path": ".github/workflows/build.yml",
+      "line": 17,
+      "current": "actions/upload-artifact@v3",
+      "recommended": "Replace with actions/upload-artifact@v4 and rerun the workflow.",
+      "deadline": "2025-01-30",
+      "source_url": "https://github.blog/changelog/2024-04-16-deprecation-notice-v3-of-the-artifact-actions/"
+    },
+    {
+      "rule_id": "AUG001",
+      "title": "Artifact action v3 is retired on GitHub.com",
+      "severity": "critical",
+      "classification": "autofix",
+      "blocking": true,
+      "path": ".github/workflows/build.yml",
+      "line": 21,
+      "current": "actions/download-artifact@v3",
+      "recommended": "Replace with actions/download-artifact@v4 and rerun the workflow.",
+      "deadline": "2025-01-30",
+      "source_url": "https://github.blog/changelog/2024-04-16-deprecation-notice-v3-of-the-artifact-actions/"
+    },
+    {
+      "rule_id": "AUG006",
+      "title": "Workflow does not declare GITHUB_TOKEN permissions",
+      "severity": "medium",
+      "classification": "informational",
+      "blocking": false,
+      "path": ".github/workflows/build.yml",
+      "line": null,
+      "current": null,
+      "recommended": "Declare least-privilege top-level or job-level permissions.",
+      "deadline": null,
+      "source_url": "https://docs.github.com/en/actions/security-for-github-actions/security-guides/automatic-token-authentication"
+    }
+  ],
+  "patches": [
+    {
+      "title": "Actions cache v1/v2 is retired; Artifact action v3 is retired on GitHub.com",
+      "rule_id": "AUG001,AUG002",
+      "path": ".github/workflows/build.yml",
+      "applied": false,
+      "diff": "--- a/.github/workflows/build.yml\n+++ b/.github/workflows/build.yml\n@@ -9,15 +9,15 @@\n     runs-on: ubuntu-latest\n     steps:\n       - uses: actions/checkout@v4\n-      - uses: actions/cache@v2\n+      - uses: actions/cache@v4\n         with:\n           path: ~/.cache/pip\n           key: pip-${{ runner.os }}-${{ hashFiles('requirements.txt') }}\n       - run: pytest\n-      - uses: actions/upload-artifact@v3\n+      - uses: actions/upload-artifact@v4\n         with:\n           name: coverage\n           path: htmlcov\n-      - uses: actions/download-artifact@v3\n+      - uses: actions/download-artifact@v4\n         with:\n           name: coverage\n"
+    }
+  ],
+  "notes": [
+    "Runs locally; no GitHub token, source upload, or repository mutation required.",
+    "Only deterministic action-version upgrades are patched automatically.",
+    "Runner, permissions, and runtime findings are reported for review."
+  ]
+}

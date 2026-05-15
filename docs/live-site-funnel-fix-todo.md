@@ -49,7 +49,7 @@ recording the version. That stays open until the next push.
 - [x] Update GitHub quickstart / README install instructions.
 - [x] Update any SQLAlchemy guide/demo/product page install references.
 - [x] Add the troubleshooting line under the install command:
-      `If installation fails, use the GitHub install instructions or contact support at zippers3737@gmail.com.`
+      `If installation fails, use the GitHub install instructions or contact support at support@zippertools.org.`
 - [x] Acceptance: a first-time user can copy the visible install command into a
       fresh environment, install successfully, and run the shown scan command.
 

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from decimal import Decimal, ROUND_HALF_UP
+from decimal import ROUND_HALF_UP, Decimal
 
 # ruff: noqa: E501
 
@@ -12,7 +12,7 @@ REPO_URL = "https://github.com/zippertools/sqlalchemy-14-to-20-codemod"
 PYDANTIC_REPO_URL = "https://github.com/zippertools/pydantic-v1-to-v2-codemod"
 PUBLIC_RELEASE_TAG = "v0.1.1"
 PYDANTIC_RELEASE_TAG = "v0.1.1"
-SUPPORT_EMAIL = "zippers3737@gmail.com"
+SUPPORT_EMAIL = "support@zippertools.org"
 SALE_NAME = "Migration Sprint Sale"
 SALE_BADGE = "90% off"
 SALE_DISCOUNT_PERCENT = 90
@@ -34,6 +34,8 @@ FLATCONFIG_INSTALL_URL = (
     f"{REPO_URL}/archive/refs/tags/{PUBLIC_RELEASE_TAG}.zip"
     "#subdirectory=products/flatconfig-lift"
 )
+ACTION_GUARD_FREE_SCAN_ROUTE = "/go/actions-upgrade-guard-free"
+ACTION_GUARD_README_PATH = "products/actions-upgrade-guard/README.md"
 PROOF_ONLY_CHECKOUT_NOTE = "No checkout is listed for this proof page yet."
 
 CHECKOUT_PROVIDER = "Stripe"
@@ -2071,6 +2073,35 @@ GUIDES: tuple[GuidePage, ...] = (
 
 
 PRODUCTS: tuple[ProductPage, ...] = (
+    ProductPage(
+        slug="actions-upgrade-guard",
+        name="GitHub Actions Upgrade Guard",
+        family="GitHub Actions deadline-readiness",
+        description="Local scanner for GitHub Actions workflow deprecations, runner drift, permissions risk, and safe patch previews.",
+        summary="Use Action Guard when workflow deadlines or platform changes are likely to break CI and you need a local report, patch preview, and fail-closed findings before checkout exists.",
+        who_it_is_for=(
+            "Platform engineers responsible for keeping many GitHub Actions workflows current.",
+            "DevOps leads cleaning up artifact, cache, runner, Node runtime, and permission risks before they block releases.",
+            "Repo owners who need a manager-readable Actions risk report without giving a hosted service repository access.",
+        ),
+        proof_points=(
+            "Public proof shows deprecated artifact and cache actions detected with a patch preview.",
+            "Runner, Node runtime, permission, local-action, and invalid-YAML cases stay visible as findings instead of guessed fixes.",
+            "The scanner runs locally with no GitHub token, source upload, or repo mutation unless apply mode is explicitly used.",
+        ),
+        not_for=(
+            "Teams looking for hosted monitoring or automatic GitHub account access.",
+            "Generated workflows where the generated YAML is not checked into the repo.",
+            "Security hardening beyond the documented workflow-upgrade rules.",
+        ),
+        guide_slugs=(),
+        docs=(
+            ("README", ACTION_GUARD_README_PATH),
+            ("Product Wells doctrine", "docs/autonomous-product-wells.md"),
+            ("Overhaul checklist", "docs/product-wells-overhaul-todo.md"),
+        ),
+        price="",  # Paid SKU intentionally paused until proof demand is visible.
+    ),
     ProductPage(
         slug="fit-report",
         name=FIT_REPORT_NAME,

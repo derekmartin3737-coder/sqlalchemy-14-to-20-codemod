@@ -1,5 +1,12 @@
 # Market Selection
 
+Status as of 2026-05-14: this document records the original SQLAlchemy market
+selection. It is now superseded for future product direction by
+`docs/autonomous-product-wells.md` and `docs/product-wells-todo.md`.
+
+Keep this file as historical rationale and proof of the earlier selection
+process. Do not use it to force new work back into SQLAlchemy-only scope.
+
 ## Goal
 
 Pick one breaking upgrade path that is painful enough to buy, narrow enough to

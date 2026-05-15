@@ -8,6 +8,15 @@ Website: [zippertools.org](https://zippertools.org/)
 
 Public proof: [SQLAlchemy migration proof on public files](https://zippertools.org/proof/sqlalchemy-public-proof/)
 
+## Trust Boundary
+
+Do not trust this blindly with your project. Visible GitHub social proof is
+still weak, the public repo is scanner-first and does not expose the full paid
+apply engine, and the public proof is intentionally narrow: a few supported
+examples plus fail-closed examples. Run the free scan on a branch, inspect the
+report and diff, and trust the result only after your own typecheck, build, and
+tests pass.
+
 ## Start With The Exact Breakage
 
 | Problem | Page |

@@ -1,0 +1,7 @@
+platform :ios, '16.0'
+
+target 'RiskyApp' do
+  use_frameworks!
+  pod 'FirebaseCore'
+  pod 'Alamofire'
+end

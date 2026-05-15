@@ -11,6 +11,7 @@ import {
     /REPLACE_|YOUR_|example\.com|CHANGE_ME|PUBLIC_REPO_URL/;
   const productUrlKeys = {
     freeScan: "freeStartUrl",
+    actionGuard: "actionGuardFreeScanUrl",
     sa20: "paidPackUrl",
     sa20Preset: "presetBundleUrl",
     pydantic: "pydanticPackUrl",

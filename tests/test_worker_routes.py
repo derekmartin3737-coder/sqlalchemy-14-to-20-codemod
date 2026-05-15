@@ -20,6 +20,10 @@ def test_cloudflare_assets_runs_worker_for_checkout_and_webhooks() -> None:
     assert not any(
         route.startswith("/go/") and route != "/go/*" for route in run_worker_first
     )
+    assert "analytics_engine_datasets" not in config
+    assert config["observability"]["enabled"] is True
+    # Conversion routes write structured Worker logs. Keeping this out of
+    # Analytics Engine avoids a dashboard feature gate during zero-cost deploys.
     # The retired checkout paths run through the Worker so stale assets cannot
     # be served if an old deployment artifact exists.
 
@@ -91,8 +95,10 @@ globalThis.fetch = async (_url, init) => {
   const amount = params.get('line_items[0][price_data][unit_amount]');
   const coupon = params.get('discounts[0][coupon]');
   const saleName = params.get('metadata[sale_name]');
+  const checkoutUrl =
+    `https://checkout.stripe.com/c/pay/cs_test_${product}_${amount}_${coupon}_${saleName}`;
   return new Response(
-    JSON.stringify({ url: `https://checkout.stripe.com/c/pay/cs_test_${product}_${amount}_${coupon}_${saleName}` }),
+    JSON.stringify({ url: checkoutUrl }),
     { status: 200 },
   );
 };
@@ -120,7 +126,10 @@ globalThis.fetch = originalFetch;
         "303 checkout.stripe.com fit-report_9900_ro5ZyRLf_Migration Sprint Sale",
         "303 checkout.stripe.com sa20-pack_29999_ro5ZyRLf_Migration Sprint Sale",
         "303 checkout.stripe.com sa20-preset_14999_ro5ZyRLf_Migration Sprint Sale",
-        "303 checkout.stripe.com pydantic-v2-porter_24999_ro5ZyRLf_Migration Sprint Sale",
+        (
+            "303 checkout.stripe.com "
+            "pydantic-v2-porter_24999_ro5ZyRLf_Migration Sprint Sale"
+        ),
     ]
 
 
@@ -171,6 +180,7 @@ import worker from './worker/index.mjs';
 const env = { ASSETS: { fetch: async () => new Response('asset') } };
 const routes = [
   ['/go/free-scan', '/docs/quickstart.md'],
+  ['/go/actions-upgrade-guard-free', '/products/actions-upgrade-guard/README.md'],
   ['/go/pydantic-free-scan', '/pydantic-v1-to-v2-codemod/blob/main/README.md'],
   ['/go/flatconfig-free-scan', '/products/flatconfig-lift/README.md'],
 ];
@@ -197,9 +207,22 @@ for (const [route, expectedPath] of routes) {
     )
 
     assert result.stdout.strip().splitlines() == [
-        "302 github.com /zippertools/sqlalchemy-14-to-20-codemod/blob/main/docs/quickstart.md free_scan unit-test",
-        "302 github.com /zippertools/pydantic-v1-to-v2-codemod/blob/main/README.md free_scan unit-test",
-        "302 github.com /zippertools/sqlalchemy-14-to-20-codemod/blob/main/products/flatconfig-lift/README.md free_scan unit-test",
+        (
+            "302 github.com /zippertools/sqlalchemy-14-to-20-codemod/blob/main/"
+            "docs/quickstart.md free_scan unit-test"
+        ),
+        (
+            "302 github.com /zippertools/sqlalchemy-14-to-20-codemod/blob/main/"
+            "products/actions-upgrade-guard/README.md free_scan unit-test"
+        ),
+        (
+            "302 github.com /zippertools/pydantic-v1-to-v2-codemod/blob/main/"
+            "README.md free_scan unit-test"
+        ),
+        (
+            "302 github.com /zippertools/sqlalchemy-14-to-20-codemod/blob/main/"
+            "products/flatconfig-lift/README.md free_scan unit-test"
+        ),
     ]
 
 
@@ -207,7 +230,12 @@ def test_source_query_go_routes_and_scan_query_are_worker_owned() -> None:
     script = """
 import worker from './worker/index.mjs';
 const env = {
-  ASSETS: { fetch: async () => new Response('<title>scan</title>', { headers: { 'content-type': 'text/html' } }) },
+  ASSETS: {
+    fetch: async () =>
+      new Response('<title>scan</title>', {
+        headers: { 'content-type': 'text/html' },
+      }),
+  },
   STRIPE_SECRET_KEY: 'sk_test_unit',
 };
 const originalLog = console.log;
@@ -224,6 +252,7 @@ globalThis.fetch = async (_url, init) => {
 const checks = [
   new Request('https://zippertools.org/scan?source=home-hero'),
   new Request('https://zippertools.org/go/free-scan?source=pricing-free'),
+  new Request('https://zippertools.org/go/actions-upgrade-guard-free?source=home-well'),
   new Request('https://zippertools.org/go/pydantic-free-scan?source=guide-pydantic-basesettings-moved'),
   new Request('https://zippertools.org/go/fit-report?source=guide-pydantic-basesettings-moved'),
   new Request('https://zippertools.org/go/pydantic-v2-porter?source=guide-pydantic-basesettings-moved'),
@@ -249,11 +278,15 @@ globalThis.fetch = originalFetch;
     )
     assert "utm_term=pricing-free" in lines[1]
     assert lines[2].startswith(
+        "302 https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/products/actions-upgrade-guard/README.md"
+    )
+    assert "utm_term=home-well" in lines[2]
+    assert lines[3].startswith(
         "302 https://github.com/zippertools/pydantic-v1-to-v2-codemod/blob/main/README.md"
     )
-    assert "utm_term=guide-pydantic-basesettings-moved" in lines[2]
-    assert lines[3].startswith("303 https://checkout.stripe.com/c/pay/cs_test_fit-report")
-    assert lines[4].startswith(
+    assert "utm_term=guide-pydantic-basesettings-moved" in lines[3]
+    assert lines[4].startswith("303 https://checkout.stripe.com/c/pay/cs_test_fit-report")
+    assert lines[5].startswith(
         "303 https://checkout.stripe.com/c/pay/cs_test_pydantic-v2-porter"
     )
 
@@ -457,7 +490,8 @@ const env = {
   ASSETS: {
     fetch: async () =>
       new Response(
-        '<!doctype html><title>Checkout canceled | Zipper Tools</title><h1>No charge was completed.</h1>',
+        '<!doctype html><title>Checkout canceled | Zipper Tools</title>' +
+          '<h1>No charge was completed.</h1>',
         { headers: { 'content-type': 'text/html; charset=utf-8' } },
       ),
   },

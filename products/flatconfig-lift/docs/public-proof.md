@@ -6,6 +6,14 @@ This pass exercised `flatconfig-lift` on public ESLint config files to verify
 that the supported static subset rewrites cleanly and that unsupported config
 shapes are blocked instead of guessed through.
 
+## Trust Boundary
+
+Do not trust this blindly with your project. Visible GitHub social proof is
+still weak, the public repo is scanner-first and does not expose the full paid
+apply engine, and this proof is narrow: a few supported examples plus
+fail-closed examples. Treat it as a fit signal, then run the scanner or paid
+workflow on a branch and rely on your own lint, build, and tests before merge.
+
 ## Supported Path Proof
 
 - [`apache/cordova-plugin-splashscreen`](https://github.com/apache/cordova-plugin-splashscreen/blob/master/.eslintrc.yml)

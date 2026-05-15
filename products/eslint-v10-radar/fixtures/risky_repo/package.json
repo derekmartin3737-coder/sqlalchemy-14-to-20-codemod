@@ -1,0 +1,13 @@
+{
+  "name": "risky-eslint-repo",
+  "version": "0.1.0",
+  "scripts": {
+    "lint": "ESLINT_USE_FLAT_CONFIG=false ESLINT_FLAGS=v10_config_lookup_from_file eslint ."
+  },
+  "eslintConfig": {
+    "extends": ["eslint:recommended"]
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0"
+  }
+}

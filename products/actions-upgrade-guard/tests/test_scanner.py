@@ -1,0 +1,125 @@
+from __future__ import annotations
+
+import json
+import shutil
+from collections.abc import Iterator
+from contextlib import contextmanager
+from pathlib import Path
+from uuid import uuid4
+
+from actions_upgrade_guard.cli import main
+from actions_upgrade_guard.reporting import report_to_html, report_to_json
+from actions_upgrade_guard.scanner import scan_repo
+
+FIXTURES = Path(__file__).resolve().parents[1] / "fixtures"
+TEST_RUNS = Path(__file__).resolve().parents[1] / "test_runs"
+
+
+@contextmanager
+def _copied_fixture(name: str) -> Iterator[Path]:
+    TEST_RUNS.mkdir(exist_ok=True)
+    source = FIXTURES / name
+    target = TEST_RUNS / f"{name}-{uuid4().hex}"
+    shutil.copytree(source, target)
+    try:
+        yield target
+    finally:
+        shutil.rmtree(target, ignore_errors=True)
+
+
+def test_patchable_actions_emit_report_and_patch_preview() -> None:
+    with _copied_fixture("deprecated_repo") as root:
+        workflow = root / ".github" / "workflows" / "build.yml"
+        before = workflow.read_text(encoding="utf-8")
+
+        report = scan_repo(root=root, apply=False)
+
+        assert report.status == "manual_review_required"
+        assert {finding.rule_id for finding in report.findings} >= {"AUG001", "AUG002"}
+        assert len(report.patches) == 1
+        assert "actions/upload-artifact@v4" in report.patches[0].diff
+        assert "actions/cache@v4" in report.patches[0].diff
+        assert workflow.read_text(encoding="utf-8") == before
+
+        json_report = json.loads(report_to_json(report))
+        assert json_report["rule_pack_version"] == "2026.05.14"
+        assert json_report["status"] == "manual_review_required"
+
+        html_report = report_to_html(report)
+        assert "Actions Upgrade Guard Report" in html_report
+        assert "Artifact action v3 is retired" in html_report
+
+
+def test_apply_writes_only_deterministic_action_version_patches() -> None:
+    with _copied_fixture("deprecated_repo") as root:
+        workflow = root / ".github" / "workflows" / "build.yml"
+
+        report = scan_repo(root=root, apply=True)
+        updated = workflow.read_text(encoding="utf-8")
+
+        assert report.files_changed == [".github/workflows/build.yml"]
+        assert "actions/upload-artifact@v4" in updated
+        assert "actions/download-artifact@v4" in updated
+        assert "actions/cache@v4" in updated
+        assert "ubuntu-latest" in updated
+
+
+def test_manual_review_repo_reports_runner_node_and_permission_risks() -> None:
+    with _copied_fixture("manual_review_repo") as root:
+        report = scan_repo(root=root, apply=False)
+
+        rule_ids = {finding.rule_id for finding in report.findings}
+        assert {"AUG003", "AUG004", "AUG005", "AUG007"} <= rule_ids
+        assert not report.patches
+        assert report.status == "manual_review_required"
+        assert any(
+            summary.local_actions == 1 for summary in report.workflow_summaries
+        )
+
+
+def test_clean_repo_is_clean_with_explicit_permissions() -> None:
+    with _copied_fixture("clean_repo") as root:
+        report = scan_repo(root=root, apply=False)
+
+        assert report.status == "clean"
+        assert report.findings == []
+        assert report.patches == []
+        assert report.workflow_summaries[0].jobs == 1
+
+
+def test_invalid_yaml_fails_closed_without_crashing() -> None:
+    with _copied_fixture("invalid_yaml_repo") as root:
+        report = scan_repo(root=root, apply=False)
+
+        assert report.status == "manual_review_required"
+        assert report.blocking_findings[0].rule_id == "AUG000"
+        assert report.patches == []
+
+
+def test_cli_writes_json_and_html_reports() -> None:
+    with _copied_fixture("deprecated_repo") as root:
+        json_path = root / "actions-report.json"
+        html_path = root / "actions-report.html"
+
+        exit_code = main(
+            [
+                str(root),
+                "--report",
+                str(json_path),
+                "--html-report",
+                str(html_path),
+            ]
+        )
+
+        assert exit_code == 1
+        assert json_path.exists()
+        assert html_path.exists()
+        data = json.loads(json_path.read_text(encoding="utf-8"))
+        assert data["product"] == "actions-upgrade-guard"
+        assert "actions/cache@v4" in html_path.read_text(encoding="utf-8")
+
+
+def test_cli_missing_path_returns_scanner_error() -> None:
+    exit_code = main([str(FIXTURES / "does-not-exist")])
+
+    assert exit_code == 2

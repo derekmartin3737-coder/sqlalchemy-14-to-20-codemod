@@ -1,27 +1,34 @@
 # License Terms
 
-Last updated: 2026-05-01
+Last updated: 2026-05-15
 
 ## Free public repo
 
 The public repo uses the repository's open-source license.
 
-## Paid migration packs
+## Free Product Wells and proof artifacts
 
-Paid migration packs are separate commercial digital products.
+Free scanners, reports, examples, and proof artifacts in the public repo or
+public site follow the repository license unless a file says otherwise.
 
-Unless a later paid-pack license says otherwise, the default launch intent is:
+## Paid product wells and migration packs
 
-- one buyer organization may use the paid pack internally on repos it owns or
-  controls
+Paid product wells and migration packs are separate commercial digital
+products.
+
+Unless a later product-specific license says otherwise, the default launch
+intent is:
+
+- one buyer organization may use the paid product internally on repos it owns
+  or controls
 - no resale
 - no sublicensing
-- no republishing the paid pack contents in a public repo
+- no republishing the paid product contents in a public repo
 
 ## Derivative work and internal use
 
-Applying a paid pack to your own codebase for internal migration purposes is the
-intended use.
+Applying a paid product to your own codebase for internal migration, readiness,
+or compliance-prep purposes is the intended use.
 
 Code changes you apply to repos your organization owns or controls remain part
 of your own codebase. The paid product files themselves remain separate

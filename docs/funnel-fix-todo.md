@@ -31,7 +31,7 @@ python -m sa20_pack.cli . --report migration-report.json
 
 - [x] Add the fallback/support note anywhere the install command appears:
   `If installation fails, retry from the GitHub quickstart or contact support at
-  zippers3737@gmail.com.`
+  support@zippertools.org.`
 - [x] Verify the exact public install command and scan command from outside the
   local developer checkout.
 

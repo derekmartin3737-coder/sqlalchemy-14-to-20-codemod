@@ -1,0 +1,7 @@
+[project]
+name = "old-pydantic-v2-service"
+version = "0.1.0"
+requires-python = ">=3.10,<3.15"
+dependencies = [
+  "pydantic==2.11.9",
+]

@@ -55,7 +55,7 @@ python -m pydantic_v2_porter.cli path/to/repo --report migration-report.json
 ```
 
 If installation fails, retry from the GitHub quickstart or contact support at
-zippers3737@gmail.com.
+support@zippertools.org.
 
 The public repo always runs in scan mode. `--apply` is reserved for the
 commercial pack.

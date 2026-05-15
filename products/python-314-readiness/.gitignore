@@ -1,0 +1,10 @@
+.mypy-cache-local/
+.mypy_cache/
+.ruff_cache/
+.test-work/
+.tmp/
+test_runs/
+build/
+dist/
+__pycache__/
+*.pyc

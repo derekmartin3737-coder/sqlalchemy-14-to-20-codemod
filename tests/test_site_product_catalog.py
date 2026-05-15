@@ -13,15 +13,27 @@ def test_product_catalog_order_status_and_ctas() -> None:
 
     html = (site_dir / "products" / "index.html").read_text(encoding="utf-8")
 
+    action_pos = html.index("GitHub Actions Upgrade Guard")
     fit_pos = html.index("SQLAlchemy/Pydantic Fit Report Add-on")
     sqlalchemy_pos = html.index("SQLAlchemy 1.4 to 2.0 Migration Cleanup Pack")
     pydantic_pos = html.index("Pydantic v1 to v2 Migration Cleanup Pack")
     preset_pos = html.index("Migration Preset Bundle")
     eslint_pos = html.index("ESLint Flat Config Migration Cleanup Pack")
 
-    assert fit_pos < sqlalchemy_pos < pydantic_pos < preset_pos < eslint_pos
+    assert (
+        action_pos
+        < fit_pos
+        < sqlalchemy_pos
+        < pydantic_pos
+        < preset_pos
+        < eslint_pos
+    )
     assert html.count('class="status-label available">Available now') == 4
     assert "Example/proof page only" in html
+    assert "Current Product Well" in html
+    assert "/go/actions-upgrade-guard-free/catalog-card-products" in html
+    assert "/products/actions-upgrade-guard/" in html
+    assert "/proof/actions-upgrade-guard/" in html
     assert "$9.90 during Migration Sprint Sale; normally $99 per team" in html
     assert "$30 during Migration Sprint Sale; normally $299.99 per team" in html
     assert "$25 during Migration Sprint Sale; normally $249.99 per team" in html
@@ -65,11 +77,31 @@ def test_product_catalog_order_status_and_ctas() -> None:
     nav_html = html.split('<nav class="nav-links" aria-label="Primary">', 1)[1].split(
         "</nav>", 1
     )[0]
-    expected_nav = ("Scan", "Guides", "Products", "Pricing", "Demo", "Policies", "Repo")
+    expected_nav = (
+        "Wells",
+        "Scan",
+        "Library",
+        "Guides",
+        "Framework",
+        "Pricing",
+        "Policies",
+        "Repo",
+    )
     positions = [nav_html.index(f">{label}<") for label in expected_nav]
     assert positions == sorted(positions)
     footer_html = html.split('<div class="footer-links">', 1)[1].split("</div>", 1)[0]
-    footer_positions = [footer_html.index(f">{label}<") for label in expected_nav]
+    expected_footer = (
+        "Wells",
+        "Scan",
+        "Library",
+        "Guides",
+        "Framework",
+        "Pricing",
+        "Demo",
+        "Policies",
+        "Repo",
+    )
+    footer_positions = [footer_html.index(f">{label}<") for label in expected_footer]
     assert footer_positions == sorted(footer_positions)
 
 
@@ -93,6 +125,7 @@ console.log(JSON.stringify({
   configEmail: config.contactEmail,
   configRoutes: {
     freeScan: config.freeStartUrl,
+    actionGuard: config.actionGuardFreeScanUrl,
     sa20: config.paidPackUrl,
     sa20Preset: config.presetBundleUrl,
     pydantic: config.pydanticPackUrl,
@@ -100,6 +133,7 @@ console.log(JSON.stringify({
   },
   productRoutes: {
     freeScan: products.freeScan.checkoutUrl,
+    actionGuard: products.actionGuard.checkoutUrl,
     sa20: products.sa20.checkoutUrl,
     sa20Preset: products.sa20Preset.checkoutUrl,
     pydantic: products.pydantic.checkoutUrl,
@@ -139,7 +173,7 @@ console.log(JSON.stringify({
     data = json.loads(result.stdout)
 
     assert data["configEmail"] == data["supportEmail"]
-    assert data["supportEmail"] == "zippers3737@gmail.com"
+    assert data["supportEmail"] == "support@zippertools.org"
     assert data["configRoutes"] == data["productRoutes"]
     assert data["checkoutAmounts"] == {
         "fit-report": 9900,
@@ -160,4 +194,8 @@ console.log(JSON.stringify({
         "endsAt": "2026-05-28T06:59:59Z",
     }
     assert data["goRouteLabels"]["/go/fit-report"] == "fit-report"
+    assert (
+        data["goRouteLabels"]["/go/actions-upgrade-guard-free"]
+        == "actions-upgrade-guard-free"
+    )
     assert data["goRouteLabels"]["/go/pydantic-v2-porter"] == "pydantic-v2-porter"

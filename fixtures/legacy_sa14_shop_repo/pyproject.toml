@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "legacy-sa14-shop"
+version = "0.0.1"
+description = "Small SQLAlchemy 1.4 app that depends on legacy APIs."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "SQLAlchemy>=1.4.54,<2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3.3",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"
+
+[tool.sa20_pack.validation]
+test = ["python", "-m", "pytest", "-q"]
+build = ["python", "-m", "compileall", "-q", "src", "tests"]

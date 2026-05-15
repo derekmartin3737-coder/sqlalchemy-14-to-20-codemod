@@ -1,5 +1,6 @@
 /favicon.ico /favicon.svg 301
 /go/free-scan https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/docs/quickstart.md?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=quickstart 302
+/go/actions-upgrade-guard-free https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/products/actions-upgrade-guard/README.md?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=actions-upgrade-guard 302
 /go/pydantic-free-scan https://github.com/zippertools/pydantic-v1-to-v2-codemod/blob/main/README.md?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=pydantic-v2-porter 302
 /go/flatconfig-free-scan https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/products/flatconfig-lift/README.md?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=flatconfig-lift 302
 /go/github-release https://github.com/zippertools/sqlalchemy-14-to-20-codemod/releases/tag/v0.1.1?utm_source=zippertools&utm_medium=site&utm_campaign=trust&utm_content=v0.1.1 302
@@ -75,16 +76,19 @@
 /eslint/overrides-flat-config/index.html /eslint/overrides-flat-config/ 301
 /eslint/package-json-eslintconfig/index.html /eslint/package-json-eslintconfig/ 301
 /eslint/parser-options-flat-config/index.html /eslint/parser-options-flat-config/ 301
+/framework/index.html /framework/ 301
 /guides/index.html /guides/ 301
 /index.html / 301
 /policies.html /policies 301
 /pricing.html /pricing 301
+/products/actions-upgrade-guard/index.html /products/actions-upgrade-guard/ 301
 /products/fit-report/index.html /products/fit-report/ 301
 /products/flatconfig-lift/index.html /products/flatconfig-lift/ 301
 /products/index.html /products/ 301
 /products/pydantic-v2-porter/index.html /products/pydantic-v2-porter/ 301
 /products/sa20-pack/index.html /products/sa20-pack/ 301
 /products/sa20-preset/index.html /products/sa20-preset/ 301
+/proof/actions-upgrade-guard/index.html /proof/actions-upgrade-guard/ 301
 /proof/flatconfig-lift/index.html /proof/flatconfig-lift/ 301
 /proof/pydantic-v2-porter/index.html /proof/pydantic-v2-porter/ 301
 /proof/sqlalchemy-public-proof/index.html /proof/sqlalchemy-public-proof/ 301
@@ -133,3 +137,5 @@
 /sqlalchemy/text-wrapping/index.html /sqlalchemy/text-wrapping/ 301
 /sqlalchemy/update-values-kwargs/index.html /sqlalchemy/update-values-kwargs/ 301
 /success.html /success 301
+/wells/github-actions-upgrade-guard/index.html /wells/github-actions-upgrade-guard/ 301
+/wells/index.html /wells/ 301

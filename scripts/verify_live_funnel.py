@@ -55,6 +55,10 @@ PYDANTIC_RUN = (
     "python -m pydantic_v2_porter.cli path/to/repo "
     "--report migration-report.json"
 )
+ACTION_GUARD_README_PATH = (
+    "/zippertools/sqlalchemy-14-to-20-codemod/blob/main/"
+    "products/actions-upgrade-guard/README.md"
+)
 
 FORBIDDEN_STRINGS: tuple[str, ...] = (
     "python -m pip install sa20-pack",
@@ -74,6 +78,11 @@ FORBIDDEN_PROOF_ONLY_STRINGS: tuple[str, ...] = (
 
 BASE_PAGE_PATHS: tuple[str, ...] = (
     "/",
+    "/wells/",
+    "/wells/github-actions-upgrade-guard/",
+    "/products/actions-upgrade-guard/",
+    "/proof/actions-upgrade-guard/",
+    "/framework/",
     "/scan",
     "/pricing",
     "/products/",
@@ -86,19 +95,43 @@ BASE_PAGE_PATHS: tuple[str, ...] = (
 
 REQUIRED_BY_PATH: dict[str, tuple[str, ...]] = {
     "/": (
-        "Run free scan",
-        "Migration Sprint Sale",
-        "Buy automated fit report - $9.90 sale",
-        "Buy cleanup pack - $30 sale",
-        "Buy preset bundle - $15 sale",
-        "Buy Pydantic cleanup pack - $25 sale",
-        "Secure checkout is handled by Stripe.",
-        "Support: zippers3737@gmail.com",
+        "Autonomous deadline-readiness tools for software teams.",
+        "GitHub Actions Upgrade Guard",
+        "Run free Action Guard scanner",
+        "Read proof and artifacts",
+        "Paid SKU paused",
+        "Support: support@zippertools.org",
+    ),
+    "/wells/": (
+        "Product Wells archive",
+        "GitHub Actions Upgrade Guard",
+        "Promote by demand evidence",
+    ),
+    "/wells/github-actions-upgrade-guard/": (
+        "GitHub Actions Upgrade Guard",
+        "Run free Action Guard scanner",
+        "Paid checkout is paused",
+    ),
+    "/products/actions-upgrade-guard/": (
+        "Run the free scanner before any paid Action Guard SKU exists.",
+        "No checkout is listed for this proof page yet.",
+        "Support: support@zippertools.org",
+    ),
+    "/proof/actions-upgrade-guard/": (
+        "GitHub Actions Upgrade Guard proof artifacts",
+        "Buyer-readable report excerpt",
+        "Why this is not just actionlint",
+        "Do not buy this if",
+    ),
+    "/framework/": (
+        "The Product Wells method",
+        "Hard filters",
+        "Monthly cycle",
     ),
     "/scan": (
         SQLALCHEMY_INSTALL,
         SQLALCHEMY_RUN,
-        "Support: zippers3737@gmail.com",
+        "Support: support@zippertools.org",
     ),
     "/pricing": (
         "Migration Sprint Sale",
@@ -111,7 +144,7 @@ REQUIRED_BY_PATH: dict[str, tuple[str, ...]] = {
         "Buy preset bundle - $15 sale",
         "Buy Pydantic cleanup pack - $25 sale",
         "Secure checkout is handled by Stripe.",
-        "Support: zippers3737@gmail.com",
+        "Support: support@zippertools.org",
     ),
     "/products/": (
         "Available now",
@@ -123,7 +156,7 @@ REQUIRED_BY_PATH: dict[str, tuple[str, ...]] = {
     "/products/sa20-pack/": (
         "After purchase, you receive",
         "Secure checkout is handled by Stripe.",
-        "Support: zippers3737@gmail.com",
+        "Support: support@zippertools.org",
     ),
     "/products/pydantic-v2-porter/": (
         PYDANTIC_INSTALL,
@@ -132,14 +165,14 @@ REQUIRED_BY_PATH: dict[str, tuple[str, ...]] = {
             "not the SQLAlchemy scanner."
         ),
         "Secure checkout is handled by Stripe.",
-        "Support: zippers3737@gmail.com",
+        "Support: support@zippertools.org",
     ),
     "/products/flatconfig-lift/": (
         "No checkout is listed for this proof page yet.",
     ),
     "/policies": (
         "Support:",
-        "zippers3737@gmail.com",
+        "support@zippertools.org",
     ),
 }
 
@@ -150,6 +183,8 @@ RUNTIME_ASSETS: dict[str, tuple[str, ...]] = {
         "commerce.secureCheckoutNote",
     ),
     "/product_catalog.mjs": (
+        "GitHub Actions Upgrade Guard",
+        "/go/actions-upgrade-guard-free",
         "SQLAlchemy/Pydantic Fit Report Add-on",
         "Migration Sprint Sale",
         "Buy automated fit report - ${saleCtaPrice(prices.fitReport)}",
@@ -158,6 +193,7 @@ RUNTIME_ASSETS: dict[str, tuple[str, ...]] = {
 }
 
 KNOWN_FREE_SCAN_ROUTES: tuple[str, ...] = (
+    "/go/actions-upgrade-guard-free/live-verify",
     "/go/free-scan/scan-install",
     "/go/free-scan/live-verify",
     "/go/pydantic-free-scan/product-products-pydantic-v2-porter",
@@ -330,6 +366,16 @@ def canonical_required_path(path: str) -> str:
         return "/pricing"
     if clean in {"/policies", "/policies/"}:
         return "/policies"
+    if clean.rstrip("/") == "/wells":
+        return "/wells/"
+    if clean.rstrip("/") == "/wells/github-actions-upgrade-guard":
+        return "/wells/github-actions-upgrade-guard/"
+    if clean.rstrip("/") == "/products/actions-upgrade-guard":
+        return "/products/actions-upgrade-guard/"
+    if clean.rstrip("/") == "/proof/actions-upgrade-guard":
+        return "/proof/actions-upgrade-guard/"
+    if clean.rstrip("/") == "/framework":
+        return "/framework/"
     if clean.rstrip("/") == "/products":
         return "/products/"
     if clean.rstrip("/") == "/products/sa20-pack":
@@ -396,7 +442,13 @@ def hrefs_from_pages(base_url: str) -> set[str]:
         except Exception:
             continue
         for href in re.findall(r'href=["\']([^"\']+)["\']', result.body):
-            if href.startswith(("/go/free-scan", "/go/pydantic-free-scan")):
+            if href.startswith(
+                (
+                    "/go/actions-upgrade-guard-free",
+                    "/go/free-scan",
+                    "/go/pydantic-free-scan",
+                )
+            ):
                 hrefs.add(href)
     return hrefs
 
@@ -457,6 +509,8 @@ def check_free_scan_route(base_url: str, path: str) -> CheckResult:
         required = (SQLALCHEMY_INSTALL, SQLALCHEMY_RUN)
     elif parsed.netloc == "github.com" and parsed.path.endswith("/docs/quickstart.md"):
         required = (SQLALCHEMY_INSTALL, SQLALCHEMY_RUN)
+    elif parsed.netloc == "github.com" and parsed.path == ACTION_GUARD_README_PATH:
+        required = ("GitHub Actions Upgrade Guard", "actions_upgrade_guard.cli")
     elif (
         parsed.netloc == "github.com"
         and parsed.path.endswith("/pydantic-v1-to-v2-codemod/blob/main/README.md")

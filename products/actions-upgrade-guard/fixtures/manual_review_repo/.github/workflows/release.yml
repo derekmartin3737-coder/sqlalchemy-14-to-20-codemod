@@ -1,0 +1,17 @@
+name: Release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-20.04
+    env:
+      ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/publish
+      - run: ./scripts/release.sh

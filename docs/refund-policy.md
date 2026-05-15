@@ -1,11 +1,12 @@
 # Refund Policy
 
-Last updated: 2026-05-01
+Last updated: 2026-05-15
 
-This policy covers paid Zipper Tools digital migration products sold through
-Stripe Checkout.
+This policy covers paid Zipper Tools digital Product Wells and migration-library
+products sold through Stripe Checkout. Free scanners, public reports, and public
+proof artifacts do not involve a purchase, so there is no payment to refund.
 
-Support email: `zippers3737@gmail.com`.
+Support email: `support@zippertools.org`.
 
 ## One-time migration packs
 
@@ -26,6 +27,13 @@ If the delivered preset or rollout bundle materially fails to match the
 published scope, contact support within 14 days of purchase and include the
 order reference plus the specific scope mismatch.
 
+## Product Well paid bundles
+
+If a future Product Well paid bundle is published, its refund review uses the
+same 14-day window. The review is based on the paid product page, published
+free-vs-paid boundary, delivered files, and documented unsupported cases at the
+time of purchase.
+
 ## What improves refund outcomes
 
 - include the order reference
@@ -39,6 +47,8 @@ order reference plus the specific scope mismatch.
 - "we decided not to migrate yet"
 - "our repo needs custom work outside the published scope"
 - "we wanted a full-service migration instead of a bounded digital product"
+- "we expected the free scanner to include a paid deliverable that was not
+  published"
 
 ## Chargeback prevention note
 

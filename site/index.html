@@ -3,426 +3,170 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#08111f" />
-    <title>SQLAlchemy 1.4 to 2.0 Migration Cleanup | Zipper Tools</title>
-    <meta
-      name="description"
-      content="Run a local SQLAlchemy 1.4 to 2.0 scan, see repeated cleanup findings, preview an example report, and choose the right migration workflow."
-    />
+    <title>Autonomous Deadline-Readiness Tools | Zipper Tools</title>
+    <meta name="description" content="Zipper Tools publishes autonomous Product Wells: local scanners and report generators for urgent software deadlines, starting with GitHub Actions Upgrade Guard." />
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
     <link rel="canonical" href="https://zippertools.org/" />
-    <meta property="og:title" content="Zipper Tools" />
-    <meta
-      property="og:description"
-      content="Local SQLAlchemy 1.4 to 2.0 scan, example reports, deterministic cleanup packs, and paid workflows after the repo proves fit."
-    />
-    <meta
-      property="og:url"
-      content="https://zippertools.org/"
-    />
-    <meta
-      property="og:image"
-      content="https://zippertools.org/og-preview.svg"
-    />
-    <meta property="og:site_name" content="Zipper Tools" />
+    <meta property="og:title" content="Autonomous Deadline-Readiness Tools" />
+    <meta property="og:description" content="Zipper Tools publishes autonomous Product Wells: local scanners and report generators for urgent software deadlines, starting with GitHub Actions Upgrade Guard." />
     <meta property="og:type" content="website" />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Zipper Tools",
-        "url": "https://zippertools.org/",
-        "description": "Local SQLAlchemy migration scan, example reports, deterministic cleanup packs, and paid workflows after the repo proves fit."
-      }
-    </script>
+    <meta property="og:url" content="https://zippertools.org/" />
+    <meta property="og:image" content="https://zippertools.org/og-preview.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Autonomous Deadline-Readiness Tools" />
+    <meta name="twitter:description" content="Zipper Tools publishes autonomous Product Wells: local scanners and report generators for urgent software deadlines, starting with GitHub Actions Upgrade Guard." />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="manifest" href="/site.webmanifest" />
     <link rel="stylesheet" href="styles.css" />
     <script src="config.js"></script>
     <script type="module" src="app.js"></script>
+    <script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Zipper Tools",
+    "url": "https://zippertools.org/"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Autonomous Deadline-Readiness Tools",
+    "description": "Zipper Tools publishes autonomous Product Wells: local scanners and report generators for urgent software deadlines, starting with GitHub Actions Upgrade Guard.",
+    "url": "https://zippertools.org/",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Zipper Tools",
+      "url": "https://zippertools.org/"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://zippertools.org/"
+      }
+    ]
+  }
+]
+    </script>
   </head>
   <body>
-    <header class="site-header">
-      <div class="wrap nav">
-        <a class="brand" href="/">Zipper Tools</a>
-        <nav class="nav-links" aria-label="Primary">
-          <a href="/scan">Scan</a>
-          <a href="/guides/">Guides</a>
-          <a href="/products/">Products</a>
-          <a href="/pricing">Pricing</a>
-          <a href="/demo">Demo</a>
-          <a href="/policies">Policies</a>
-          <a href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod" data-repo-link>Repo</a>
-        </nav>
-      </div>
-    </header>
-
+    <header class="site-header"><div class="wrap nav"><a class="brand" href="/">Zipper Tools</a><nav class="nav-links" aria-label="Primary"><a href="/wells/">Wells</a><a href="/scan">Scan</a><a href="/products/">Library</a><a href="/guides/">Guides</a><a href="/framework/">Framework</a><a href="/pricing">Pricing</a><a href="/policies">Policies</a><a href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod" data-repo-link>Repo</a></nav></div></header>
     <main class="wrap">
       <section class="warning" id="launch-warning" aria-live="polite"></section>
-      <section class="sale-banner" data-sale-banner data-sale-ends="May 27, 2026 at 11:59 PM Pacific">
-        <div>
-          <p class="kicker">90% off for three weeks</p>
-          <strong>Migration Sprint Sale</strong>
-          <span>90% off every listed paid product through May 27, 2026 at 11:59 PM Pacific. Discount is applied automatically in Stripe Checkout.</span>
-        </div>
-        <a class="button secondary" href="/pricing">See sale pricing</a>
+
+      <section class="page-title">
+        <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li aria-current="page">Home</li></ol></nav>
+        <p class="kicker">Product Wells</p>
+        <h1>Autonomous deadline-readiness tools for software teams.</h1>
+        <p>Zipper Tools publishes autonomous Product Wells: local scanners and report generators for urgent software deadlines, starting with GitHub Actions Upgrade Guard.</p>
       </section>
 
-      <section class="lead hero-panel">
-        <p class="kicker">SQLAlchemy 1.4 -> 2.0</p>
-        <h1>Find the SQLAlchemy 2.0 cleanup your team can safely automate.</h1>
-        <p class="subhead">
-          Run a local scan. If your repo has repeated supported findings, use
-          the paid workflow to preview deterministic rewrites on a branch and
-          hand reviewers a shorter, clearer migration report.
-        </p>
-        <div class="badge-row">
-          <span class="badge">Runs locally</span>
-          <span class="badge">No source upload</span>
-          <span class="badge">Deterministic rewrites</span>
-          <span class="badge">Branch-ready report</span>
-        </div>
-        <div class="actions">
-          <a class="button" href="/scan">Run free scan</a>
-          <a class="button secondary" href="#example-workflow">See example report</a>
-        </div>
-        <p class="caption">
-          Built for teams that want to save review hours this week while keeping
-          risky migration decisions visible.
-        </p>
-        <div class="proof-strip">
-          <div class="proof-item">
-            <strong>38</strong>
-            <span>example cleanup findings</span>
-          </div>
-          <div class="proof-item">
-            <strong>1 command</strong>
-            <span>to see where the repo stands</span>
-          </div>
-          <div class="proof-item">
-            <strong>0</strong>
-            <span>files uploaded from your repo</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="section buyer-path-section">
-        <div class="section-heading">
-          <p class="kicker">Buyer path</p>
-          <h2>See whether the paid workflow is worth it in one local report.</h2>
-        </div>
-        <div class="grid two">
-          <article class="list-card">
-            <h3>Start free, then narrow the choice</h3>
-            <ol class="workflow-list">
-              <li>Run the local scan.</li>
-              <li>See example report.</li>
-              <li>Confirm the repo fits the supported subset.</li>
-              <li>Use a fit report if the decision is ambiguous.</li>
-              <li>Buy the cleanup pack when repeated supported findings justify it.</li>
-            </ol>
-          </article>
-          <article class="list-card">
-            <h3>What counts as buying evidence</h3>
-            <p>
-              A single warning is not enough. Use the report counts, file list,
-              manual-review buckets, and validation plan to decide whether the
-              fit report, cleanup pack, or rollout kit is worth it.
-            </p>
-            <div class="actions">
-              <a class="button" href="/scan">Run free scan</a>
-              <a class="button secondary" href="#example-workflow">See example report</a>
+      <section class="section">
+        <article class="conversion-panel product-hero-panel">
+          <div class="conversion-copy">
+            <p class="kicker">Well of the Month</p>
+            <h2>GitHub Actions Upgrade Guard</h2>
+            <p>Scan GitHub Actions workflows for deadline-sensitive breakage and emit source-linked findings, safe patch previews, and a manager-readable report without hosted services or source upload.</p>
+            <div class="badge-row">
+              <span class="badge">Runs locally</span>
+              <span class="badge">No GitHub token</span>
+              <span class="badge">Patch preview</span>
+              <span class="badge">Fail closed</span>
             </div>
-          </article>
-        </div>
+          </div>
+          <div class="conversion-actions">
+            <div class="primary-cta">
+              <a class="button" href="/go/actions-upgrade-guard-free/home-well-index">Run free Action Guard scanner</a>
+            </div>
+            <div class="secondary-cta-group">
+              <p class="caption cta-group-label">Secondary options</p>
+              <a class="button secondary" href="/proof/actions-upgrade-guard/">Read proof and artifacts</a>
+              <a class="button secondary" href="/products/actions-upgrade-guard/">Open product page</a>
+              <a class="button secondary" href="/wells/github-actions-upgrade-guard/">Read the well analysis</a>
+            </div>
+          </div>
+        </article>
+      </section>
+      <section class="section">
+        <article class="page-panel">
+          <p class="kicker">Trust boundary</p>
+          <h2>Do not trust this blindly with your project</h2>
+          <ul class="clean"><li>Visible GitHub stars and forks are weak or absent social proof; treat the public repo as a fit signal, not as proof that the tool is safe for your repo.</li><li>The public repo is scanner-first and does not expose the full paid apply engine.</li><li>Public proof is intentionally narrow: a few supported examples plus fail-closed examples. Run on a branch and trust changes only after your own typecheck, build, and tests pass.</li></ul>
+        </article>
       </section>
 
       <section class="section">
         <div class="section-heading">
-          <p class="kicker">Pain</p>
-          <h2>SQLAlchemy 2.0 migrations get expensive when every warning becomes a judgment call.</h2>
+          <p class="kicker">Current well</p>
+          <h2>What matters this month</h2>
         </div>
         <div class="grid three">
-          <article class="trust-card">
-            <h3>Review time disappears</h3>
-            <p>
-              Simple changes like <code>Query.get()</code>, list-style
-              <code>select()</code>, and legacy imports show up across files,
-              test suites, and old corners of the app.
-            </p>
-          </article>
-          <article class="trust-card">
-            <h3>The risky parts look similar</h3>
-            <p>
-              A migration can mix boring syntax cleanup with transaction,
-              loader, and query-shape decisions that need an engineer's eyes.
-            </p>
-          </article>
-          <article class="trust-card">
-            <h3>Managers need a real next step</h3>
-            <p>
-              "We have warnings" is hard to approve. A counted report with files,
-              patterns, and branch actions gives the upgrade a concrete plan.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <p class="kicker">Local scan</p>
-          <h2>Start with evidence from your repo, before checkout.</h2>
-        </div>
-        <div class="grid two">
-          <div>
-            <h3>The first step is always free</h3>
-            <p>
-              Run the public scanner locally and get a report that shows which
-              SQLAlchemy cleanup candidates were found, where they live, and
-              whether the repo looks ready for a controlled apply pass.
-            </p>
-            <ol class="workflow-list">
-              <li>Run the scanner on a branch or working copy.</li>
-              <li>Inspect the JSON report and example diff shapes.</li>
-              <li>Choose the smallest next step that matches the findings.</li>
-            </ol>
-            <div class="actions">
-              <a class="button" href="/scan">Run free scan</a>
-              <a class="button secondary" href="#example-workflow">See example report</a>
-            </div>
-          </div>
-          <div class="terminal-card">
-            <p class="terminal-label">Install</p>
-            <pre class="code-block">python -m pip install "https://github.com/zippertools/sqlalchemy-14-to-20-codemod/archive/refs/tags/v0.1.1.zip"</pre>
-            <p class="terminal-label">Scan</p>
-            <pre class="code-block">python -m sa20_pack.cli . --report migration-report.json</pre>
-            <p class="terminal-note">
-              If installation fails, retry from the GitHub quickstart or contact
-              support at zippers3737@gmail.com.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="example-workflow">
-        <div class="section-heading">
-          <p class="kicker">Example report</p>
-          <h2>See the decision surface before you touch production code.</h2>
-        </div>
-        <div class="grid two">
-          <div class="report-card">
-            <p class="report-label">Sample scan output</p>
-            <pre class="report-preview">Status: preview_only
-Supported cleanup findings: 38
-Manual-review findings: 6
-Files uploaded: 0
-Recommended next step: preview deterministic rewrites</pre>
-          </div>
-          <div>
-            <h3>Before/after diff preview</h3>
-            <pre class="code-block">- user = session.query(User).get(user_id)
-+ user = session.get(User, user_id)
-
-- stmt = select([User.id, User.email])
-+ stmt = select(User.id, User.email)</pre>
-            <h3>What the report makes obvious</h3>
-            <ul class="clean">
-              <li>which files contain repeated cleanup candidates</li>
-              <li>which edits are safe enough to preview mechanically</li>
-              <li>which findings need deliberate engineering review</li>
-            </ul>
-            <div class="metric-strip">
-              <div class="metric">
-                <strong>38</strong>
-                <span>supported cleanup findings</span>
-              </div>
-              <div class="metric">
-                <strong>6</strong>
-                <span>manual-review findings</span>
-              </div>
-              <div class="metric">
-                <strong>0</strong>
-                <span>repo files uploaded</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <p class="kicker">Safe automation</p>
-          <h2>Automate the boring SQLAlchemy 2.0 cleanup that keeps repeating.</h2>
-        </div>
-        <div class="grid three">
-          <article class="list-card">
-            <h3>Legacy query cleanup</h3>
-            <ul class="clean">
-              <li><code>session.query(Model).get(pk)</code></li>
-              <li>straightforward <code>Query.get()</code> primary-key lookups</li>
-              <li>simple string relationship <code>join()</code> calls</li>
-            </ul>
-          </article>
-          <article class="list-card">
-            <h3>Core API cleanup</h3>
-            <ul class="clean">
-              <li><code>select([..])</code> list syntax</li>
-              <li>legacy DML constructor kwargs</li>
-              <li><code>scalar_subquery()</code> method updates</li>
-            </ul>
-          </article>
-          <article class="list-card">
-            <h3>ORM surface cleanup</h3>
-            <ul class="clean">
-              <li>legacy declarative imports</li>
-              <li>simple string loader options</li>
-              <li>relationship cleanup where both sides are obvious</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <p class="kicker">Manual review</p>
-          <h2>Keep the real migration decisions visible.</h2>
-        </div>
-        <div class="grid two">
-          <article class="list-card">
-            <h3>Flagged for engineering review</h3>
-            <ul class="clean">
-              <li><code>engine.execute(...)</code> and transaction boundary choices</li>
-              <li>dotted loader paths and multi-hop string joins</li>
-              <li>removed <code>Query</code> helpers outside the documented subset</li>
-              <li>parse failures or ambiguous call shapes</li>
-            </ul>
-          </article>
-          <article class="list-card">
-            <h3>Why this matters</h3>
-            <p>
-              The point is to remove repeat work, then hand reviewers a shorter,
-              better-labeled list of decisions that actually affect behavior.
-            </p>
-            <div class="small-links">
-              <a href="/proof/sqlalchemy-public-proof/">Read public proof</a>
-              <a href="/products/sa20-pack/">Open product details</a>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <p class="kicker">Paid options</p>
-          <h2>After the scan, buy the smallest workflow that matches the report.</h2>
-          <p>
-            Run the free scan first. The four paid steps below are listed by
-            buyer question, smallest paid step on the left.
-          </p>
-        </div>
-        <div class="grid two pricing-option-grid">
           <article class="page-panel">
-            <p class="kicker">90% off</p>
-            <h3>SQLAlchemy/Pydantic Fit Report Add-on</h3>
-            <p>Best for teams whose scan output is promising but ambiguous and want a software-only buy/do-not-buy recommendation.</p>
-            <p class="small">Sale price: $9.90 during Migration Sprint Sale; normally $99 per team</p>
-            <div class="page-actions">
-              <a class="button" href="/go/fit-report/home-paid-options">Buy automated fit report - $9.90 sale</a>
-              <a class="button secondary" href="/products/fit-report/">View fit report details</a>
-            </div>
-            <p class="small">Secure checkout is handled by Stripe.</p>
+            <h3>Deadline pressure</h3>
+            <p>GitHub Actions artifact, cache, runner image, runtime, and permission changes keep turning routine CI into surprise upgrade work.</p>
           </article>
           <article class="page-panel">
-            <p class="kicker">90% off</p>
-            <h3>SQLAlchemy 1.4 to 2.0 Migration Cleanup Pack</h3>
-            <p>Best for repos with 10+ supported SQLAlchemy 1.4 cleanup findings that justify the apply workflow.</p>
-            <p class="small">Sale price: $30 during Migration Sprint Sale; normally $299.99 per team</p>
-            <div class="page-actions">
-              <a class="button" href="/go/sa20-pack/home-paid-options">Buy cleanup pack - $30 sale</a>
-            </div>
-            <p class="small">Secure checkout is handled by Stripe.</p>
+            <h3>Local evidence first</h3>
+            <p>The free scanner reads workflow YAML locally and writes JSON/HTML findings with source links and fixability labels.</p>
           </article>
           <article class="page-panel">
-            <p class="kicker">90% off</p>
-            <h3>Migration Preset Bundle</h3>
-            <p>Best for teams that want repeatable rollout structure: presets, manager summary template, and review buckets.</p>
-            <p class="small">Sale price: $15 during Migration Sprint Sale; normally $149.99 per team</p>
-            <div class="page-actions">
-              <a class="button" href="/go/sa20-preset/home-paid-options">Buy preset bundle - $15 sale</a>
-              <a class="button secondary" href="/products/sa20-preset/">View rollout kit details</a>
-            </div>
-            <p class="small">Secure checkout is handled by Stripe.</p>
+            <h3>Paid SKU paused</h3>
+            <p>Action Guard checkout stays hidden until proof-page visits, scanner runs, or buyer questions show real demand.</p>
+          </article></div>
+      </section>
+      <section class="section">
+        <div class="grid two">
+          <article class="page-panel">
+            <p class="kicker">Free scanner</p>
+            <h2>What the public path proves</h2>
+            <ul class="clean">
+              <li>Which workflow files were scanned.</li>
+              <li>Which rules fired, with source URLs and deadlines where available.</li>
+              <li>Which findings are autofix, manual review, blocked, or informational.</li>
+              <li>Which patch preview is safe enough to inspect before apply mode.</li>
+            </ul>
           </article>
           <article class="page-panel">
-            <p class="kicker">90% off</p>
-            <h3>Pydantic v1 to v2 Migration Cleanup Pack</h3>
-            <p>Best for repos with direct Pydantic v1 imports, BaseSettings moves, simple validators, or safe Config blocks.</p>
-            <p class="small">Sale price: $25 during Migration Sprint Sale; normally $249.99 per team</p>
-            <div class="page-actions">
-              <a class="button" href="/go/pydantic-v2-porter/home-paid-options">Buy Pydantic cleanup pack - $25 sale</a>
-            </div>
-            <p class="small">Secure checkout is handled by Stripe.</p>
+            <p class="kicker">Expansion gate</p>
+            <h2>What would make this a paid product</h2>
+            <ul class="clean">
+              <li>Three or more serious users run the free scanner.</li>
+              <li>A buyer asks about pricing, team scope, or rule-pack updates.</li>
+              <li>Proof and product pages show repeated qualified movement from exact sources.</li>
+            </ul>
           </article>
         </div>
-        <p class="small">
-          Not sure which to pick? Start with
-          <a href="/scan">Run free scan</a>, then
-          compare on the
-          <a href="/pricing">pricing page</a>.
-        </p>
       </section>
-
       <section class="section">
         <div class="section-heading">
-          <p class="kicker">Limitations</p>
-          <h2>A credible migration tool has clear edges.</h2>
+          <p class="kicker">Migration Library</p>
+          <h2>Older packages remain available, but they are no longer the flagship.</h2>
         </div>
-        <div class="grid two">
-          <div>
-            <h3>What this is for</h3>
-            <p>
-              Zipper Tools helps teams remove repeated legacy SQLAlchemy cleanup
-              from the branch so reviewers can focus on semantic upgrade work.
-              It is strongest when the scan finds many instances of the
-              documented patterns.
-            </p>
-          </div>
-          <div>
-            <h3>What this is not</h3>
-            <p>
-              It is not a full SQLAlchemy 2.0 migration robot. It does not fake
-              support for async migration, transaction redesign, or every
-              <code>Query</code> to <code>select()</code> rewrite. Validation
-              failures stay visible in the report.
-            </p>
-          </div>
+        <div class="topic-list">
+          <a class="topic-card" href="/products/sa20-pack/">
+            <strong>SQLAlchemy cleanup pack</strong>
+            <span>Legacy proof and search asset for the supported SQLAlchemy 1.4 to 2.0 subset.</span>
+          </a>
+          <a class="topic-card" href="/products/pydantic-v2-porter/">
+            <strong>Pydantic v2 porter</strong>
+            <span>Secondary migration-library package for direct Pydantic v1 to v2 cleanup.</span>
+          </a>
+          <a class="topic-card" href="/proof/flatconfig-lift/">
+            <strong>Flatconfig Lift</strong>
+            <span>Proof-only ESLint static-config migration page, kept alive without checkout pressure.</span>
+          </a></div>
+        <div class="page-actions">
+          <a class="button secondary" href="/products/">Open the full library</a>
+          <a class="button secondary" href="/framework/">Read the Product Wells framework</a>
         </div>
       </section>
+
     </main>
-
-    <footer class="site-footer">
-      <div class="wrap footer-grid">
-        <div>
-          <p class="footer-title">Zipper Tools</p>
-          <p class="caption">
-            Free scanner plus paid cleanup workflow for the boring SQLAlchemy
-            breakages.
-          </p>
-        </div>
-        <div class="footer-links">
-          <a href="/scan">Scan</a>
-          <a href="/guides/">Guides</a>
-          <a href="/products/">Products</a>
-          <a href="/pricing">Pricing</a>
-          <a href="/demo">Demo</a>
-          <a href="/policies">Policies</a>
-          <a href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod" data-repo-link>Repo</a>
-          <a href="/policies#contact">Contact</a>
-        </div>
-        <p class="caption footer-note">
-          Operated by <span data-seller-name>the seller</span>. Support:
-          <a href="/policies#contact"><span data-contact-email>zippers3737@gmail.com</span></a>
-        </p>
-      </div>
-    </footer>
+    <footer class="site-footer"><div class="wrap footer-grid"><div><p class="footer-title">Zipper Tools</p><p class="caption">Autonomous deadline-readiness tools for software teams.</p></div><div class="footer-links"><a href="/wells/">Wells</a><a href="/scan">Scan</a><a href="/products/">Library</a><a href="/guides/">Guides</a><a href="/framework/">Framework</a><a href="/pricing">Pricing</a><a href="/demo">Demo</a><a href="/policies">Policies</a><a href="https://github.com/zippertools/sqlalchemy-14-to-20-codemod" data-repo-link>Repo</a><a href="/policies#contact">Contact</a></div><p class="caption footer-note">Support: <a href="/policies#contact"><span data-contact-email>support@zippertools.org</span></a></p></div></footer>
   </body>
 </html>

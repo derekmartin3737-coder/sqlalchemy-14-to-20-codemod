@@ -9,6 +9,15 @@ not only on local fixtures. The goal was to prove two things:
   public input
 - unsupported patterns are surfaced as explicit manual-review findings
 
+## Trust Boundary
+
+Do not trust this blindly with your project. Visible GitHub social proof is
+still weak, the public repo is scanner-first and does not expose the full paid
+apply engine, and this proof is narrow: a few supported examples plus
+fail-closed examples. Treat it as a fit signal, then run the scanner or paid
+workflow on a branch and rely on your own typecheck, build, and tests before
+merge.
+
 ## Supported Path Proof
 
 - [`Bogdanp/flask_dramatiq_example`](https://github.com/Bogdanp/flask_dramatiq_example/blob/a2f2c2baf7bdd7e1044ec6d241556f6333a6e397/app.py)

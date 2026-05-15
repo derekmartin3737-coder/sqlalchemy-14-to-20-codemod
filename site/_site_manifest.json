@@ -14,6 +14,11 @@
       "status": 302
     },
     {
+      "source": "/go/actions-upgrade-guard-free",
+      "target": "https://github.com/zippertools/sqlalchemy-14-to-20-codemod/blob/main/products/actions-upgrade-guard/README.md?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=actions-upgrade-guard",
+      "status": 302
+    },
+    {
       "source": "/go/pydantic-free-scan",
       "target": "https://github.com/zippertools/pydantic-v1-to-v2-codemod/blob/main/README.md?utm_source=zippertools&utm_medium=site&utm_campaign=free_scan&utm_content=pydantic-v2-porter",
       "status": 302
@@ -389,6 +394,11 @@
       "status": 301
     },
     {
+      "source": "/framework/index.html",
+      "target": "/framework/",
+      "status": 301
+    },
+    {
       "source": "/guides/index.html",
       "target": "/guides/",
       "status": 301
@@ -406,6 +416,11 @@
     {
       "source": "/pricing.html",
       "target": "/pricing",
+      "status": 301
+    },
+    {
+      "source": "/products/actions-upgrade-guard/index.html",
+      "target": "/products/actions-upgrade-guard/",
       "status": 301
     },
     {
@@ -436,6 +451,11 @@
     {
       "source": "/products/sa20-preset/index.html",
       "target": "/products/sa20-preset/",
+      "status": 301
+    },
+    {
+      "source": "/proof/actions-upgrade-guard/index.html",
+      "target": "/proof/actions-upgrade-guard/",
       "status": 301
     },
     {
@@ -677,9 +697,19 @@
       "source": "/success.html",
       "target": "/success",
       "status": 301
+    },
+    {
+      "source": "/wells/github-actions-upgrade-guard/index.html",
+      "target": "/wells/github-actions-upgrade-guard/",
+      "status": 301
+    },
+    {
+      "source": "/wells/index.html",
+      "target": "/wells/",
+      "status": 301
     }
   ],
-  "generated_on": "2026-05-06",
+  "generated_on": "2026-05-15",
   "urls": {
     "static": [
       "https://zippertools.org/",
@@ -689,10 +719,14 @@
       "https://zippertools.org/guides/",
       "https://zippertools.org/products/",
       "https://zippertools.org/proof/sqlalchemy-public-proof/",
+      "https://zippertools.org/proof/actions-upgrade-guard/",
       "https://zippertools.org/proof/pydantic-v2-porter/",
       "https://zippertools.org/proof/flatconfig-lift/"
     ],
     "hubs": [
+      "https://zippertools.org/wells/",
+      "https://zippertools.org/wells/github-actions-upgrade-guard/",
+      "https://zippertools.org/framework/",
       "https://zippertools.org/guides/",
       "https://zippertools.org/products/",
       "https://zippertools.org/sqlalchemy/",
@@ -753,6 +787,7 @@
       "https://zippertools.org/pydantic/config-class-deprecated-warning/"
     ],
     "products": [
+      "https://zippertools.org/products/actions-upgrade-guard/",
       "https://zippertools.org/products/fit-report/",
       "https://zippertools.org/products/sa20-pack/",
       "https://zippertools.org/products/pydantic-v2-porter/",
@@ -761,11 +796,53 @@
     ],
     "proof": [
       "https://zippertools.org/proof/sqlalchemy-public-proof/",
+      "https://zippertools.org/proof/actions-upgrade-guard/",
       "https://zippertools.org/proof/pydantic-v2-porter/",
       "https://zippertools.org/proof/flatconfig-lift/"
     ]
   },
   "products": [
+    {
+      "slug": "actions-upgrade-guard",
+      "name": "GitHub Actions Upgrade Guard",
+      "family": "GitHub Actions deadline-readiness",
+      "description": "Local scanner for GitHub Actions workflow deprecations, runner drift, permissions risk, and safe patch previews.",
+      "summary": "Use Action Guard when workflow deadlines or platform changes are likely to break CI and you need a local report, patch preview, and fail-closed findings before checkout exists.",
+      "who_it_is_for": [
+        "Platform engineers responsible for keeping many GitHub Actions workflows current.",
+        "DevOps leads cleaning up artifact, cache, runner, Node runtime, and permission risks before they block releases.",
+        "Repo owners who need a manager-readable Actions risk report without giving a hosted service repository access."
+      ],
+      "proof_points": [
+        "Public proof shows deprecated artifact and cache actions detected with a patch preview.",
+        "Runner, Node runtime, permission, local-action, and invalid-YAML cases stay visible as findings instead of guessed fixes.",
+        "The scanner runs locally with no GitHub token, source upload, or repo mutation unless apply mode is explicitly used."
+      ],
+      "not_for": [
+        "Teams looking for hosted monitoring or automatic GitHub account access.",
+        "Generated workflows where the generated YAML is not checked into the repo.",
+        "Security hardening beyond the documented workflow-upgrade rules."
+      ],
+      "guide_slugs": [],
+      "docs": [
+        [
+          "README",
+          "products/actions-upgrade-guard/README.md"
+        ],
+        [
+          "Product Wells doctrine",
+          "docs/autonomous-product-wells.md"
+        ],
+        [
+          "Overhaul checklist",
+          "docs/product-wells-overhaul-todo.md"
+        ]
+      ],
+      "price": "",
+      "currency": "USD",
+      "availability": "InStock",
+      "checkout_path": ""
+    },
     {
       "slug": "fit-report",
       "name": "SQLAlchemy/Pydantic Fit Report Add-on",

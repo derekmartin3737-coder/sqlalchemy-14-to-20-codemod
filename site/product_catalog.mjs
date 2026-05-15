@@ -4,7 +4,7 @@ const REPO_URL =
 const PYDANTIC_REPO_URL =
   "https://github.com/zippertools/pydantic-v1-to-v2-codemod";
 const PUBLIC_RELEASE_TAG = "v0.1.1";
-const SUPPORT_EMAIL = "zippers3737@gmail.com";
+const SUPPORT_EMAIL = "support@zippertools.org";
 export const checkoutSale = Object.freeze({
   active: true,
   name: "Migration Sprint Sale",
@@ -20,6 +20,7 @@ export const checkoutSale = Object.freeze({
 
 const routes = Object.freeze({
   freeScan: "/go/free-scan",
+  actionGuardFreeScan: "/go/actions-upgrade-guard-free",
   pydanticFreeScan: "/go/pydantic-free-scan",
   flatconfigFreeScan: "/go/flatconfig-free-scan",
   fitReport: "/go/fit-report",
@@ -159,6 +160,62 @@ export const products = Object.freeze({
       Object.freeze({
         label: "Read public proof",
         href: "/proof/sqlalchemy-public-proof/",
+      }),
+    ]),
+  }),
+  actionGuard: Object.freeze({
+    key: "actionGuard",
+    slug: "actions-upgrade-guard",
+    checkoutSlug: "actions-upgrade-guard",
+    name: "GitHub Actions Upgrade Guard",
+    shortName: "Action Guard",
+    cardTitle: "GitHub Actions Upgrade Guard",
+    description:
+      "Local scanner for GitHub Actions workflow deprecations, runner drift, permissions risk, and safe patch previews.",
+    cardDescription:
+      "Scan workflow YAML locally for deadline-sensitive Actions breakage and get source-linked findings plus patch previews.",
+    price: "",
+    priceDetail: "Free scanner and proof page; paid SKU not listed yet",
+    amountCents: null,
+    currency: "usd",
+    status: statuses.proofOnly,
+    checkoutProvider: "GitHub",
+    checkoutUrl: routes.actionGuardFreeScan,
+    freeScanUrl: routes.actionGuardFreeScan,
+    freeScanTargetUrl: repoBlobUrl(
+      "products/actions-upgrade-guard/README.md",
+      "actions-upgrade-guard",
+    ),
+    pricingId: "actions-upgrade-guard",
+    offerLabel: "Well of the Month",
+    stage: "Proof and demand test",
+    buyerQuestion: "Will my Actions workflows break on known platform changes?",
+    offerName: "GitHub Actions upgrade scanner",
+    ctaLabel: "Run free Action Guard scanner",
+    ctaLabelWithPrice: "Run free Action Guard scanner",
+    supportEmail: SUPPORT_EMAIL,
+    bullets: Object.freeze([
+      "Workflow YAML scanner",
+      "Artifact/cache action deprecation findings",
+      "Runner, Node runtime, and permission risk checks",
+      "JSON and HTML reports",
+      "Patch preview for deterministic action-version upgrades",
+    ]),
+    assurances: Object.freeze([
+      "Runs locally with no GitHub token.",
+      "No repository upload or hosted service account access.",
+      "Uncertain workflow shapes are explicit findings.",
+    ]),
+    pricingNote:
+      "No Action Guard checkout is listed until the proof page and demand test show paid intent.",
+    links: Object.freeze([
+      Object.freeze({
+        label: "Read proof",
+        href: "/proof/actions-upgrade-guard/",
+      }),
+      Object.freeze({
+        label: "Open product page",
+        href: "/products/actions-upgrade-guard/",
       }),
     ]),
   }),
@@ -413,6 +470,7 @@ export const products = Object.freeze({
 });
 
 export const productOrder = Object.freeze([
+  "actionGuard",
   "freeScan",
   "fitReport",
   "sa20",
@@ -439,6 +497,11 @@ export const goRoutes = Object.freeze({
     kind: "free_scan",
     label: products.freeScan.checkoutSlug,
     target: products.freeScan.targetUrl,
+  }),
+  [products.actionGuard.freeScanUrl]: Object.freeze({
+    kind: "free_scan",
+    label: "actions-upgrade-guard-free",
+    target: products.actionGuard.freeScanTargetUrl,
   }),
   [products.pydantic.freeScanUrl]: Object.freeze({
     kind: "free_scan",
@@ -491,6 +554,8 @@ const aliases = Object.freeze({
   pydanticV2Porter: "pydantic",
   free: "freeScan",
   freeStart: "freeScan",
+  actionGuard: "actionGuard",
+  actionsUpgradeGuard: "actionGuard",
   fit: "fitReport",
 });
 

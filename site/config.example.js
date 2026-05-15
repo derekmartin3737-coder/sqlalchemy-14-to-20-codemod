@@ -3,6 +3,7 @@ window.SA20_SITE_CONFIG = {
   contactEmail: "founder@example.com",
   repoUrl: "https://github.com/YOUR-USERNAME/sa20-pack",
   freeStartUrl: "/go/free-scan",
+  actionGuardFreeScanUrl: "/go/actions-upgrade-guard-free",
   paidPackUrl: "/go/sa20-pack",
   presetBundleUrl: "/go/sa20-preset",
   pydanticPackUrl: "/go/pydantic-v2-porter",

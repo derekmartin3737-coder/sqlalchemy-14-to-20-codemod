@@ -1,10 +1,13 @@
 PRODUCT IDEAS TRACKER
-Last updated: 2026-04-07
+Last updated: 2026-05-14
 
 Purpose
 - Keep a running list of product ideas that fit the real business constraint:
   downloadable software or content that a buyer can use on their own, with no
   required seller labor, no required human service, and no mandatory paid API.
+- New source of truth: `Autonomous Product Wells for a Solo Developer.docx`.
+- Product ideas are now screened as autonomous product wells: current official
+  pressure plus local-first scanner/remediator plus useful artifact.
 
 Hard filter for future products
 - Buyer must be able to download it and use it directly.
@@ -16,18 +19,82 @@ Hard filter for future products
   keys where possible.
 - Deterministic transforms, static analysis, local processing, and packaged
   rule bundles are preferred.
+- The product must connect to fresh demand: deadline, deprecation, policy
+  change, compliance date, release breakage, or recurring platform drift.
+- The product must produce an artifact a buyer can use immediately: patch,
+  report, gate, submission bundle, dossier, or manager summary.
 
 Current flagship
-- sa20-pack
+- GitHub Actions Upgrade Guard
   FIT: STRONG
-  Type: codemod + report + validation
+  Type: local workflow scanner + patch/report generator
+  Problem:
+  - GitHub Actions deprecations, runner image changes, cache/artifact breakage,
+    Node runtime pressure, permissions drift, and fragile workflow pins keep
+    creating deadline-sensitive repo maintenance work.
   Why it fits:
-  - local CLI
-  - no hosted backend
-  - no required API
-  - downloadable paid add-ons are possible
+  - local-first YAML/repo analysis
+  - deterministic rule packs
+  - clear exact-search demand
+  - produces PR-ready patches plus HTML/JSON risk reports
+  - no source upload or production credentials
+  - recurring rules can be sold as downloadable updates
+
+Legacy proof assets
+- sa20-pack
+  FIT: PROOF ASSET
+  Type: codemod + report + validation
+  Why it remains useful:
+  - proves local scanner/report/patch workflow
+  - provides live storefront, Stripe, proof-page, and fixture infrastructure
+  - should not be the active growth bet unless fresh buyer demand appears
 
 Strong-fit candidates
+
+- Python 3.14 Readiness Pack
+  FIT: STRONG
+  Type: local repo scanner + codemod + CI gate
+  Problem:
+  - Python 3.14 is live and changes annotation behavior plus dependency
+    compatibility expectations across Python repos.
+  Why it fits:
+  - broad ecosystem
+  - current migration timing
+  - local pyproject/lockfile/source/CI analysis
+  - produces readiness report, candidate patches, and CI matrix updates
+
+- Apple Privacy Manifest Composer
+  FIT: STRONG
+  Type: local macOS/iOS project scanner + submission artifact generator
+  Problem:
+  - Apple app submissions require privacy manifests, SDK evidence, and
+    required-reason API handling.
+  Why it fits:
+  - direct app-review pain
+  - bounded inputs: Xcode projects, manifests, SDKs, bundles
+  - output is a submission-ready artifact plus validation report
+
+- CRA Evidence Builder
+  FIT: STRONG
+  Type: local evidence dossier generator
+  Problem:
+  - EU Cyber Resilience Act obligations create a need for repeatable technical
+    evidence, SBOMs, vulnerability handling records, and release gates.
+  Why it fits:
+  - higher willingness to pay
+  - local artifact collection is feasible
+  - can wrap OSS components while selling a finished evidence workflow
+
+- Package Publisher Hardening Pack
+  FIT: STRONG
+  Type: repo scanner + CI patch pack
+  Problem:
+  - npm/PyPI publishers need to move away from brittle long-lived tokens toward
+    trusted publishing, attestations, and short-lived credentials.
+  Why it fits:
+  - deterministic workflow/config detection
+  - clear security pressure
+  - local patches and reports avoid account access
 
 - flatconfig-lift
   FIT: STRONG
@@ -235,14 +302,18 @@ Weak-fit candidates under the current strict rule
   - violates the "downloadable and just use it" preference
 
 Build queue candidates right now
-- 1. sa20-pack
-- 2. flatconfig-lift (v0.1 scaffolded; next step is real-repo proof)
-- 3. pydantic-v2-porter (v0.1 scaffolded; next step is real-repo proof)
-- 4. export-doctor narrowed to one exact export family
-- 5. prompt-spec-ci narrowed to one exact bot/use case
+- 1. GitHub Actions Upgrade Guard
+- 2. Python 3.14 Readiness Pack
+- 3. Apple Privacy Manifest Composer
+- 4. CRA Evidence Builder
+- 5. Package Publisher Hardening Pack
+- 6. ESLint v10 Migration Radar
+- 7. sa20-pack only as a legacy proof/search asset unless fresh demand appears
 
 Notes for future screening
-- Prefer exact version jumps over broad platform automation.
+- Prefer fresh official pressure over late-cycle migration cleanup.
+- Prefer exact version jumps, policy changes, and platform deprecations over
+  broad platform automation.
 - Prefer one ugly file family over "all documents" or "all CSVs."
 - Prefer packaged rule bundles over anything that smells like consulting.
 - If a product idea needs hosted infrastructure, recurring live data, or user

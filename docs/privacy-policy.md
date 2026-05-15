@@ -1,9 +1,9 @@
 # Privacy Policy
 
-Last updated: 2026-05-01
+Last updated: 2026-05-15
 
-This policy covers the public `sa20-pack` website, the free public repo, and
-related checkout and support flows.
+This policy covers the public Zipper Tools website, Product Wells pages, free
+public repo flows, checkout flows, and support messages.
 
 This is a plain-English operational policy, not legal advice.
 
@@ -13,6 +13,11 @@ This is a plain-English operational policy, not legal advice.
 
 If enabled on the public site, Cloudflare Web Analytics collects privacy-focused
 website analytics such as page views, referrers, and traffic trends.
+
+The Cloudflare Worker also writes structured `/go/...` route events to Worker
+logs for funnel analysis. Those events may include the route kind, product or
+CTA label, source tag, request path, country/colo metadata provided by
+Cloudflare, and referrer host. They do not include source-code contents.
 
 ### Checkout and order information
 
@@ -35,12 +40,12 @@ If you contact the seller directly, the seller receives the information you send
 in that message, such as your email address, order reference, and repo problem
 description.
 
-Support email: `zippers3737@gmail.com`.
+Support email: `support@zippertools.org`.
 
 ## What we do not collect by default
 
 - no hidden CLI telemetry
-- no default background reporting from the codemod
+- no default background reporting from the scanners, codemods, or product wells
 - no production credentials from your environment
 - no source-code upload for normal scanner or paid-product use
 
@@ -64,8 +69,9 @@ written support arrangement says otherwise.
 
 ## Third parties used in the launch stack
 
-- Cloudflare Pages
+- Cloudflare Workers and static assets
 - Cloudflare Web Analytics
+- Cloudflare Worker logs for `/go/...` route events
 - Stripe
 - GitHub
 

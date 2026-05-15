@@ -2,24 +2,52 @@
 
 ## Mission
 
-Build a zero-cost, repo-native codemod migration product that can become the
-default tool for one painful breaking upgrade path, with deterministic
-transforms first, LLM use optional only for edge cases, and a validation loop
-that refuses to claim success when typecheck/build/tests fail.
+Build a zero-cost, repo-native autonomous product-well engine for self-serve
+developer tools. Each product should turn a fresh deadline, deprecation, policy
+shift, compliance requirement, or recurring operational breakage into a local
+scanner/remediator that produces a useful artifact without emails, meetings,
+custom setup, or manual fulfillment.
+
+The standing product shape is:
+
+- local-first input: repo, workflow YAML, manifest, lockfile, app bundle,
+  package config, container, or source tree
+- deterministic rules first: static analysis, parsing, patch synthesis,
+  validation, and confidence scoring before any optional LLM help
+- autonomous output: patch set, HTML/JSON report, CI gate, submission bundle,
+  compliance dossier, or manager-readable risk summary
+- no trust cliff: no source upload, no production credentials, no required paid
+  API, no human delivery path
+- fail closed: uncertain cases become explicit findings, not guessed fixes
+- verification loop: never claim success until local checks for that product
+  pass
 
 ## Current Decision
 
-- Chosen target: SQLAlchemy 1.4 -> 2.0 migration pack for the highest-frequency
-  legacy ORM/Core patterns.
-- Product positioning: a narrow "legacy query and execution API" codemod pack,
-  not a claim to fully automate every SQLAlchemy 2.0 migration.
-- Reason for current bias: very high ecosystem size, painful upgrade path,
-  strong buyer willingness to pay, weak existing automation compared with the
-  other finalists.
+- Strategy source of truth: `Autonomous Product Wells for a Solo Developer.docx`.
+- New operating model: Zipper Tools is a portfolio of autonomous product wells,
+  not a single SQLAlchemy migration-product bet.
+- Active new wells: GitHub Actions Upgrade Guard, Python 3.14 Readiness Pack,
+  Apple Privacy Manifest Composer, CRA Evidence Builder, ESLint v10 Migration
+  Radar, and Package Publisher Hardening Pack.
+- First buyer promise: scan deadline-sensitive software repos and emit
+  source-linked findings, safe patch previews, and business-readable reports
+  without hosted services or source upload.
+- Existing SQLAlchemy, Pydantic, and ESLint/flat-config assets stay useful as
+  portfolio proof and legacy search assets, but SQLAlchemy is no longer the
+  growth bottleneck or primary build target.
+- Monthly front-page motion: publish a current "Product Well of the Month",
+  archive past wells, and promote only wells that show real demand through
+  downloads, scans, checkout intent, or direct buyer conversations.
 
 ## Evidence Status
 
 - Official docs reviewed:
+  - GitHub Actions changelog items around artifact, cache, runner image, and
+    Node runtime deprecations
+  - Python 3.14 porting notes and Pydantic Python 3.14 compatibility updates
+  - Apple privacy manifest and required-reason API guidance
+  - EU Cyber Resilience Act timeline and evidence requirements
   - SQLAlchemy 2.0 migration guide
   - SQLAlchemy declarative mapping docs
   - ESLint flat-config migration guide and migrator announcement
@@ -39,6 +67,7 @@ that refuses to claim success when typecheck/build/tests fail.
   - Tailwind upgrade issues/discussions
   - Pydantic V2 issue examples
 - Install-base proxies reviewed:
+  - GitHub platform scale and GitHub Actions ecosystem pressure
   - `sqlalchemy` and `pydantic` PyPI download stats
   - `tailwindcss` npm package page
   - `eslint` npm dependents/package metadata
@@ -54,11 +83,52 @@ that refuses to claim success when typecheck/build/tests fail.
 ## Planned Repo Shape
 
 - `docs/`
+  - `autonomous-product-wells.md`
+  - `product-wells-todo.md`
   - `market-selection.md`
   - `product-spec.md`
   - `pricing.md`
   - `launch-posts.md`
   - `demo.md`
+- `products/actions-upgrade-guard/`
+  - CLI
+  - GitHub Actions workflow parser
+  - rule-pack engine
+  - patch synthesizer
+  - report generator
+  - fixture repos
+- `products/python-314-readiness/`
+  - CLI
+  - Python metadata/source/workflow scanner
+  - Python 3.14 readiness rule pack
+  - CI matrix patch synthesizer
+  - JSON/HTML report generator
+  - proof fixtures
+- `products/apple-privacy-manifest-composer/`
+  - CLI
+  - required-reason API scanner
+  - third-party SDK detector
+  - PrivacyInfo.xcprivacy parser and candidate generator
+  - JSON/HTML report generator
+  - proof fixtures
+- `products/cra-evidence-builder/`
+  - CLI
+  - CRA evidence-readiness scanner
+  - safe template generator
+  - JSON/HTML dossier generator
+  - proof fixtures
+- `products/eslint-v10-radar/`
+  - CLI
+  - ESLint v10 blocker scanner
+  - simple script-flag patch synthesizer
+  - JSON/HTML report generator
+  - proof fixtures
+- `products/package-publisher-hardening/`
+  - CLI
+  - npm/PyPI publisher workflow scanner
+  - OIDC permission patch synthesizer
+  - JSON/HTML report generator
+  - proof fixtures
 - `src/sa20_pack/`
   - CLI
   - codemods
@@ -87,6 +157,16 @@ And the migration runner itself should produce a structured report showing:
 - validation command results
 - overall confidence
 
+New autonomous products should also produce:
+
+- input files scanned
+- rule-pack version
+- deadline/policy source for each finding
+- fixability classification: autofix, manual review, blocked, or informational
+- generated patches or explicit "no safe patch" notes
+- HTML summary for humans and JSON output for CI
+- exit-code behavior documented and tested
+
 ## Session Notes
 
 - Workspace started empty and not yet initialized as a git repository.
@@ -102,6 +182,17 @@ And the migration runner itself should produce a structured report showing:
 
 ## Current State
 
+- `Autonomous Product Wells for a Solo Developer.docx` is now the strategic
+  source of truth for product direction.
+- `docs/autonomous-product-wells.md` summarizes the new doctrine, scoring model,
+  portfolio map, and monthly well cycle.
+- `docs/product-wells-todo.md` is the active execution checklist for pivoting
+  the repo, site, and first new product toward the autonomous product-well
+  framework.
+- SQLAlchemy showed traffic but almost no paid intent; keep it live as proof,
+  not as the flagship growth bet.
+- GitHub Actions Upgrade Guard is now the first new well implementation.
+- Python 3.14 Readiness Pack is now the second new well implementation.
 - `docs/market-selection.md` completed with rubric, scorecard, and decision.
 - `docs/product-spec.md` completed.
 - `docs/max-revenue-todo.md` completed as the working revenue roadmap.
@@ -226,23 +317,51 @@ And the migration runner itself should produce a structured report showing:
   migration topics.
 - GitHub release `v0.1.0` now exists for the public scanner/discovery baseline:
   `https://github.com/zippertools/sqlalchemy-14-to-20-codemod/releases/tag/v0.1.0`.
+- `products/actions-upgrade-guard/` now exists with a local CLI, deterministic
+  GitHub Actions workflow scanner, JSON/HTML reports, safe patch previews, an
+  apply mode for narrow fixes, fixtures, tests, lint/type/build verification,
+  and a product README.
+- `products/python-314-readiness/` now exists with a local CLI, Python
+  metadata/source/workflow scanner, Python 3.14 rule pack, JSON/HTML reports,
+  safe CI matrix patch preview/apply mode, proof fixtures, tests, product spec,
+  public proof doc, commercial case, lint/type/build verification, and a wheel
+  build through Hatchling.
+- `docs/ranks-3-6-product-task-list.md` now tracks the completed build ledger
+  for ranks 3 through 6 from the product-wells paper.
+- `products/apple-privacy-manifest-composer/` now exists with a local CLI,
+  required-reason API scanning, listed-SDK detection, PrivacyInfo.xcprivacy
+  parsing, candidate manifest generation, JSON/HTML reports, proof fixtures,
+  tests, product spec, public proof doc, commercial case, lint/type/build
+  verification, and a wheel build through Hatchling.
+- `products/cra-evidence-builder/` now exists with a local CLI, CRA
+  evidence-readiness scanner, missing-template generation, JSON/HTML dossier,
+  proof fixtures, tests, product spec, public proof doc, commercial case,
+  lint/type/build verification, and a wheel build through Hatchling.
+- `products/eslint-v10-radar/` now exists with a local CLI, ESLint v10 blocker
+  scanner, simple package-script patch preview/apply mode, JSON/HTML reports,
+  proof fixtures, tests, product spec, public proof doc, commercial case,
+  lint/type/build verification, and a wheel build through Hatchling.
+- `products/package-publisher-hardening/` now exists with a local CLI, npm/PyPI
+  publishing workflow scanner, OIDC permission patch preview/apply mode,
+  JSON/HTML reports, proof fixtures, tests, product spec, public proof doc,
+  commercial case, lint/type/build verification, and a wheel build through
+  Hatchling.
 
 ## Next Steps
 
-1. In Google Search Console, inspect the priority URLs in
-   `docs/traffic-war-room.md`, confirm Google-selected canonicals, and request
-   indexing only for final clean URLs.
-2. Complete the Stripe Dashboard setup in `docs/stripe-checkout.md`, add Worker
-   secrets, and test one Stripe checkout through `/stripe/delivery`.
-3. In Bing Webmaster Tools, re-submit the same clean priority URLs and sitemap
-   set.
-4. Edit controllable public replies so they point to canonical clean URLs, not
-   old `.html` aliases.
-5. Watch `/go/free-scan` and product-specific `/go/...` requests against
-   product visits for the next 24 hours before changing pricing.
-6. Add only 1-2 more exact-fit public replies where the target page directly
-   answers the thread.
-7. Watch indexed page count, impressions, clicks, product-page visits, and
-   `/go/...` requests over a 3-7 day window before changing price or product
-   scope again.
-8. Keep this file updated as decisions harden or blockers appear.
+1. Build the Product Wells site frame: homepage "Well of the Month", `/wells/`
+   archive, active product page, proof page, and legacy SQLAlchemy archive path.
+2. Add product/proof pages for the six new Product Wells:
+   GitHub Actions Upgrade Guard, Python 3.14 Readiness Pack, Apple Privacy
+   Manifest Composer, CRA Evidence Builder, ESLint v10 Migration Radar, and
+   Package Publisher Hardening Pack.
+3. Produce public proof pages showing before files, command, generated report,
+   generated patch, and fail-closed findings for both new wells.
+4. Add route/click analytics that can distinguish well-page visits, free-scan
+   clicks, product-page clicks, and paid checkout intent.
+5. Run exact-fit demand tests for the six new wells before adding paid checkout
+   scope.
+6. Keep SQLAlchemy/Pydantic/flatconfig pages available as proof/archive assets,
+   but stop adding product scope unless real demand appears.
+7. Review the product-well board monthly and promote, pause, or kill wells by
+   evidence, not by how interesting they are to build.

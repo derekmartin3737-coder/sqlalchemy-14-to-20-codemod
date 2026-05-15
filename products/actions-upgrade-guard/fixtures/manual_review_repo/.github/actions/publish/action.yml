@@ -1,0 +1,5 @@
+name: Publish
+description: Local JavaScript action that still needs Node 24 compatibility work.
+runs:
+  using: node20
+  main: dist/index.js

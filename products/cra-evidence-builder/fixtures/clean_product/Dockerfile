@@ -1,0 +1,2 @@
+FROM node:22@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+WORKDIR /app

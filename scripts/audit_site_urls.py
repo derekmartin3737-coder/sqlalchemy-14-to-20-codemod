@@ -22,7 +22,12 @@ DEFAULT_SITEMAPS = (
     "sitemap-products.xml",
 )
 IGNORED_INTERNAL_PREFIXES = ("/go/",)
-IGNORED_INTERNAL_SUFFIXES = (".zip",)
+IGNORED_INTERNAL_SUFFIXES = (
+    ".zip",
+    ".json",
+    ".diff",
+    "/actions-upgrade-report.html",
+)
 
 
 @dataclass(frozen=True)

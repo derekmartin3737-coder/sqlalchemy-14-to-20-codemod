@@ -1,7 +1,25 @@
 # Max Revenue To-Do
 
-This is the working to-do list for turning `sa20-pack` from a solid proof repo
-into the highest-income version of the business under the current constraints.
+Status as of 2026-05-14: this file is now historical for the SQLAlchemy-first
+launch path. The active revenue direction is the autonomous Product Wells
+framework in `docs/autonomous-product-wells.md`, with execution tracked in
+`docs/product-wells-todo.md`.
+
+This file remains useful for checkout, fulfillment, legal, analytics, and
+storefront lessons learned from `sa20-pack`, but it should not pull future work
+back into SQLAlchemy-only scope.
+
+The new revenue thesis is:
+
+- publish a monthly Product Well around fresh deadline/deprecation demand
+- build a local-first scanner/remediator/report artifact
+- keep source code and credentials local
+- sell downloadable rule packs, patch generators, dossiers, or CI gates
+- promote wells by measured demand, not by build interest
+
+Legacy context: this was the working to-do list for turning `sa20-pack` from a
+solid proof repo into the highest-income version of the business under the
+previous constraints.
 
 The detailed go-live execution plan for website, payments, analytics, payout
 access, and legal readiness starts in the "Go-Live Stack Decisions" section

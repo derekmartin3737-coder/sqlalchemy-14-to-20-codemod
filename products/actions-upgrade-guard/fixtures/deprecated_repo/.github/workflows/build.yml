@@ -1,0 +1,23 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+      - run: pytest
+      - uses: actions/upload-artifact@v3
+        with:
+          name: coverage
+          path: htmlcov
+      - uses: actions/download-artifact@v3
+        with:
+          name: coverage
